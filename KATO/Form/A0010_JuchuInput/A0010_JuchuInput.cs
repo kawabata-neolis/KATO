@@ -552,6 +552,7 @@ namespace KATO.Form.A0010_JuchuInput
                 DataTable dtHachu = juchuB.getHatchuNoInfo(strJuchuNo);
                 con.BeginTrans();
                 juchuB.delJuchu(strJuchuNo, lblStatusUser.Text,con);
+                juchuB.delAccept(strJuchuNo, Environment.UserName, con);
                 // 受発注の在庫数を変更
                 //juchuB.updZaiko(true, txtEigyoshoCd.Text, txtShohinCd.Text, (dSearchSu).ToString(), con);
                 //juchuB.updZaiko(false, txtEigyoshoCd.Text, txtShohinCd.Text, (dSearchSuH).ToString(),con);
@@ -2160,6 +2161,9 @@ namespace KATO.Form.A0010_JuchuInput
                     }
                 }
                 #endregion
+
+                // 利益率情報を一旦削除
+                juchuB.delAccept(strJuchuNo, Environment.UserName, con);
 
                 // 利益率チェックに引っかかった場合は利益率承認へ登録する
                 if (acceptFlg)

@@ -119,12 +119,16 @@
             this.txtRiekiritsu4 = new KATO.Common.Ctl.BaseTextMoney();
             this.lblRiekiritsu5 = new KATO.Common.Ctl.BaseLabel(this.components);
             this.txtRiekiritsu5 = new KATO.Common.Ctl.BaseTextMoney();
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.rdTorokuKari = new KATO.Common.Ctl.BaseRadioButton();
+            this.rdTorokuHon = new KATO.Common.Ctl.BaseRadioButton();
             this.panelView.SuspendLayout();
             this.panel1.SuspendLayout();
             this.panelKensaku.SuspendLayout();
             this.gbData3.SuspendLayout();
             this.gbData4.SuspendLayout();
             this.gbData5.SuspendLayout();
+            this.panel2.SuspendLayout();
             this.SuspendLayout();
             // 
             // btnF01
@@ -593,7 +597,7 @@
             this.panelKensaku.Controls.Add(this.lblTorihikikbn);
             this.panelKensaku.Controls.Add(this.txtDenpyoNo);
             this.panelKensaku.Controls.Add(this.txtYMD);
-            this.panelKensaku.Location = new System.Drawing.Point(792, 55);
+            this.panelKensaku.Location = new System.Drawing.Point(793, 74);
             this.panelKensaku.Name = "panelKensaku";
             this.panelKensaku.Size = new System.Drawing.Size(614, 57);
             this.panelKensaku.TabIndex = 0;
@@ -1407,11 +1411,53 @@
             this.txtRiekiritsu5.TabStop = false;
             this.txtRiekiritsu5.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
+            // panel2
+            // 
+            this.panel2.Controls.Add(this.rdTorokuKari);
+            this.panel2.Controls.Add(this.rdTorokuHon);
+            this.panel2.Location = new System.Drawing.Point(814, 38);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(190, 30);
+            this.panel2.TabIndex = 108;
+            // 
+            // rdTorokuKari
+            // 
+            this.rdTorokuKari.AutoSize = true;
+            this.rdTorokuKari.DisabledBackColor = System.Drawing.SystemColors.Control;
+            this.rdTorokuKari.DisabledForeColor = System.Drawing.SystemColors.ControlText;
+            this.rdTorokuKari.FocusedBackColor = System.Drawing.SystemColors.Control;
+            this.rdTorokuKari.FocusedForeColor = System.Drawing.SystemColors.ControlText;
+            this.rdTorokuKari.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
+            this.rdTorokuKari.Location = new System.Drawing.Point(3, 6);
+            this.rdTorokuKari.Name = "rdTorokuKari";
+            this.rdTorokuKari.Size = new System.Drawing.Size(73, 19);
+            this.rdTorokuKari.TabIndex = 1;
+            this.rdTorokuKari.TabStop = true;
+            this.rdTorokuKari.Text = "仮登録";
+            this.rdTorokuKari.UseVisualStyleBackColor = true;
+            // 
+            // rdTorokuHon
+            // 
+            this.rdTorokuHon.AutoSize = true;
+            this.rdTorokuHon.DisabledBackColor = System.Drawing.SystemColors.Control;
+            this.rdTorokuHon.DisabledForeColor = System.Drawing.SystemColors.ControlText;
+            this.rdTorokuHon.FocusedBackColor = System.Drawing.SystemColors.Control;
+            this.rdTorokuHon.FocusedForeColor = System.Drawing.SystemColors.ControlText;
+            this.rdTorokuHon.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
+            this.rdTorokuHon.Location = new System.Drawing.Point(86, 6);
+            this.rdTorokuHon.Name = "rdTorokuHon";
+            this.rdTorokuHon.Size = new System.Drawing.Size(73, 19);
+            this.rdTorokuHon.TabIndex = 0;
+            this.rdTorokuHon.TabStop = true;
+            this.rdTorokuHon.Text = "本登録";
+            this.rdTorokuHon.UseVisualStyleBackColor = true;
+            // 
             // A0030_ShireInput
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1424, 826);
+            this.ClientSize = new System.Drawing.Size(1584, 826);
+            this.Controls.Add(this.panel2);
             this.Controls.Add(this.txtRiekiritsu5);
             this.Controls.Add(this.lblRiekiritsu5);
             this.Controls.Add(this.txtRiekiritsu4);
@@ -1543,6 +1589,7 @@
             this.Controls.SetChildIndex(this.txtRiekiritsu4, 0);
             this.Controls.SetChildIndex(this.lblRiekiritsu5, 0);
             this.Controls.SetChildIndex(this.txtRiekiritsu5, 0);
+            this.Controls.SetChildIndex(this.panel2, 0);
             this.panelView.ResumeLayout(false);
             this.panelView.PerformLayout();
             this.panel1.ResumeLayout(false);
@@ -1555,6 +1602,8 @@
             this.gbData4.PerformLayout();
             this.gbData5.ResumeLayout(false);
             this.gbData5.PerformLayout();
+            this.panel2.ResumeLayout(false);
+            this.panel2.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1651,5 +1700,8 @@
         public Common.Ctl.BaseTextMoney txtRiekiritsu4;
         public Common.Ctl.BaseLabel lblRiekiritsu5;
         public Common.Ctl.BaseTextMoney txtRiekiritsu5;
+        private System.Windows.Forms.Panel panel2;
+        private Common.Ctl.BaseRadioButton rdTorokuKari;
+        private Common.Ctl.BaseRadioButton rdTorokuHon;
     }
 }

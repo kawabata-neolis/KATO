@@ -314,7 +314,7 @@
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 1;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(1424, 599);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(1584, 599);
             this.tableLayoutPanel1.TabIndex = 279;
             // 
             // checkBox1
@@ -455,7 +455,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1424, 838);
+            this.ClientSize = new System.Drawing.Size(1584, 838);
             this.Controls.Add(this.txtOldStr);
             this.Controls.Add(this.txtShohinCd);
             this.Controls.Add(this.lsMakerM);

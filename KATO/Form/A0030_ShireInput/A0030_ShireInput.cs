@@ -32,6 +32,7 @@ namespace KATO.Form.A0030_ShireInput
         //ロギングの設定
         private static readonly log4net.ILog logger = log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
 
+        bool addLock = false;
         //ロックをかけるか否か
         public bool blRock = false;
 
@@ -187,8 +188,12 @@ namespace KATO.Form.A0030_ShireInput
                 case Keys.Enter:
                     break;
                 case Keys.F1:
-                    logger.Info(LogUtil.getMessage(this._Title, "登録実行"));
-                    this.addShireInput();
+                    if (!addLock) {
+                        addLock = true;
+                        logger.Info(LogUtil.getMessage(this._Title, "登録実行"));
+                        this.addShireInput();
+                        addLock = false;
+                    }
                     break;
                 case Keys.F2:
                     break;
@@ -315,8 +320,13 @@ namespace KATO.Form.A0030_ShireInput
             switch (((Button)sender).Name)
             {
                 case STR_BTN_F01: // 登録
-                    logger.Info(LogUtil.getMessage(this._Title, "登録実行"));
-                    this.addShireInput();
+                    if (!addLock)
+                    {
+                        addLock = true;
+                        logger.Info(LogUtil.getMessage(this._Title, "登録実行"));
+                        this.addShireInput();
+                        addLock = false;
+                    }
                     break;
                 case STR_BTN_F03: // 削除
                     logger.Info(LogUtil.getMessage(this._Title, "削除実行"));
@@ -388,6 +398,12 @@ namespace KATO.Form.A0030_ShireInput
         ///</summary>
         public void addShireInput()
         {
+            if (!rdTorokuHon.Checked && !rdTorokuKari.Checked)
+            {
+                BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_ERROR, "本登録または仮登録を選択してください", CommonTeisu.BTN_OK, CommonTeisu.DIAG_EXCLAMATION);
+                basemessagebox.ShowDialog();
+                return;
+            }
             //伝票番号の確保
             int intDenpyoNo;
 
@@ -562,6 +578,15 @@ namespace KATO.Form.A0030_ShireInput
             //ユーザー名[21]
             lstSaveData.Add(SystemInformation.UserName);
 
+            if (rdTorokuHon.Checked)
+            {
+                lstSaveData.Add("");
+            }
+            else if (rdTorokuKari.Checked)
+            {
+                lstSaveData.Add("1");
+            }
+
             //商品マスタ更新用
             List<string> lstMasterKoshin = new List<string>();
             //商品コード取得用
@@ -591,7 +616,7 @@ namespace KATO.Form.A0030_ShireInput
             DataTable dtJuchuDataCnt = new DataTable();
             //受注データカウント(受注番号が1以上の場合の処理)の確保用
             DataTable dtJuchuDataCntNO = new DataTable();
-            
+
             //型番確保用
             string strKataban = "";
 
@@ -1556,6 +1581,9 @@ namespace KATO.Form.A0030_ShireInput
             gbData4.delText();
             gbData5.delText();
 
+            rdTorokuHon.Checked = false;
+            rdTorokuKari.Checked = false;
+
             txtYMD.Focus();
         }
 
@@ -1665,6 +1693,17 @@ namespace KATO.Form.A0030_ShireInput
                     txtEigyouCd.Text = dtSetShireHeader.Rows[0]["営業所コード"].ToString();
                     txtTekiyo.Text = dtSetShireHeader.Rows[0]["摘要欄"].ToString();
                     txtUnchin.Text = (decimal.Parse(dtSetShireHeader.Rows[0]["運賃"].ToString())).ToString("#,0");
+
+                    if (dtSetShireHeader.Rows[0]["仮登録"] != null
+                        && !string.IsNullOrWhiteSpace(dtSetShireHeader.Rows[0]["仮登録"].ToString())
+                        && (dtSetShireHeader.Rows[0]["仮登録"].ToString()).Equals ("1"))
+                    {
+                        rdTorokuKari.Checked = true;
+                    }
+                    else
+                    {
+                        rdTorokuHon.Checked = true;
+                    }
 
                     //数値の入る各項目がnullの場合0を入れる
                     if (txtGokei.Text == "")
@@ -2563,6 +2602,15 @@ namespace KATO.Form.A0030_ShireInput
         ///</summary>
         private bool ChkData()
         {
+
+            //if (!rdTorokuHon.Checked && !rdTorokuKari.Checked)
+            //{
+            //    //メッセージボックスの処理、項目が空の場合のウィンドウ（OK）
+            //    BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_INPUT, "本登録、または仮登録を指定してください。", CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+            //    basemessagebox.ShowDialog();
+            //    return false;
+            //}
+
             object objSu = null;
 
             //チェック後の判定

@@ -70,11 +70,19 @@ namespace KATO.Business.D0360_JuchuzanKakunin
                 strQuery += "      ,dbo.f_get担当者名(a.受注者コード) AS 受注者";
                 strQuery += "      ,dbo.f_get担当者名(a.担当者コード) AS 担当者";
                 strQuery += "      ,dbo.f_get担当者名(b.発注者コード) AS 発注者";
+
+                strQuery += "      ,dbo.f_get営業所名(dbo.f_get営業所コードFROM担当者(a.受注者コード)) AS 受注営業所";
+                strQuery += "      ,dbo.f_get営業所名(dbo.f_get営業所コードFROM担当者(b.発注者コード)) AS 発注営業所";
+                strQuery += "      ,CASE WHEN 差戻.承認フラグ = -1 THEN '戻' WHEN 差戻.承認フラグ = 0 THEN '申' WHEN 差戻.承認フラグ = 1 THEN '承' ELSE '' END AS 差戻";
+                strQuery += "      ,CASE WHEN 値引.承認フラグ = -1 THEN '戻' WHEN 値引.承認フラグ = 0 THEN '申' WHEN 値引.承認フラグ = 1 THEN '承' ELSE '' END AS 値引";
+
                 strQuery += "  FROM 受注 a LEFT OUTER JOIN 発注 b ON a.受注番号 = b.受注番号";
 
                 strQuery += "   AND b.削除 = 'N'";
                 strQuery += "   AND b.発注数量 <> 0";
                 strQuery += "   AND b.発注番号 = dbo.f_get受注番号から最終仕入の発注番号(a.受注番号)";
+                strQuery += "              LEFT OUTER JOIN 利益率承認 差戻 ON a.受注番号 = 差戻.受注番号";
+                strQuery += "              LEFT OUTER JOIN 返品値引売上承認 値引 ON a.受注番号 = 値引.受注番号";
 
                 strQuery += " WHERE a.削除 = 'N'";
                 strQuery += "   AND ((a.売上済数量 = 0) OR (a.売上済数量 < a.受注数量))";
@@ -275,11 +283,17 @@ namespace KATO.Business.D0360_JuchuzanKakunin
                 strQuery += "      ,d.担当者名 AS 担当者";
                 strQuery += "      ,e.担当者名 AS 発注者";
                 strQuery += "      ,a.発注番号";
+                strQuery += "      ,dbo.f_get営業所名(dbo.f_get営業所コードFROM担当者(b.受注者コード)) AS 受注営業所";
+                strQuery += "      ,dbo.f_get営業所名(dbo.f_get営業所コードFROM担当者(a.発注者コード)) AS 発注営業所";
+                strQuery += "      ,CASE WHEN 差戻.承認フラグ = -1 THEN '戻' WHEN 差戻.承認フラグ = 0 THEN '申' WHEN 差戻.承認フラグ = 1 THEN '承' ELSE '' END AS 差戻";
+                strQuery += "      ,CASE WHEN 値引.承認フラグ = -1 THEN '戻' WHEN 値引.承認フラグ = 0 THEN '申' WHEN 値引.承認フラグ = 1 THEN '承' ELSE '' END AS 値引";
                 strQuery += "  FROM 発注 a LEFT OUTER JOIN 受注 b ON a.受注番号 = b.受注番号 AND b.削除 = 'N'";
                 strQuery += "              LEFT OUTER JOIN 担当者 c ON b.受注者コード = c.担当者コード AND c.削除 = 'N'";
                 strQuery += "              LEFT OUTER JOIN 担当者 d ON a.担当者コード = d.担当者コード AND d.削除 = 'N'";
                 strQuery += "              LEFT OUTER JOIN 担当者 e ON a.発注者コード = e.担当者コード AND e.削除 = 'N'";
                 strQuery += "              LEFT OUTER JOIN メーカー f ON a.メーカーコード = f.メーカーコード AND f.削除 = 'N'";
+                strQuery += "              LEFT OUTER JOIN 利益率承認 差戻 ON a.受注番号 = 差戻.受注番号";
+                strQuery += "              LEFT OUTER JOIN 返品値引売上承認 値引 ON a.受注番号 = 値引.受注番号";
 
                 //strQuery += "   AND a.発注番号 = dbo.f_get受注番号から最終仕入の発注番号(b.受注番号)";
 
@@ -787,7 +801,7 @@ namespace KATO.Business.D0360_JuchuzanKakunin
         }
 
         public string printReport(DataTable dt, string stJuchusha, string stTokui, string stFrom,
-            string stTo, string stKata, string stChuban)
+            string stTo, string stKata, string stChuban, int sKind)
         {
             string strWorkPath = System.Configuration.ConfigurationManager.AppSettings["workpath"];
             string strFilePath = "./Template/D0360_JuchuzanKakunin.xlsx";
@@ -811,12 +825,23 @@ namespace KATO.Business.D0360_JuchuzanKakunin
                 // 4行目記載文字列作成
                 #region
                 string sPrm = "受注者：";
+                if (sKind == 1)
+                {
+                    sPrm = "発注者：";
+                }
 
                 if (!string.IsNullOrWhiteSpace(stJuchusha))
                 {
                     sPrm += stJuchusha;
                 }
-                sPrm += " 得意先：";
+                if (sKind == 1)
+                {
+                    sPrm += " 仕入先：";
+                }
+                else
+                {
+                    sPrm += " 得意先：";
+                }
 
                 if (!string.IsNullOrWhiteSpace(stTokui))
                 {
@@ -850,6 +875,12 @@ namespace KATO.Business.D0360_JuchuzanKakunin
 
                 currentsheet.Cell(4, "A").Value = sPrm;
 
+                if (sKind == 1)
+                {
+                    currentsheet.Cell(6, "A").Value = "発注日";
+                    currentsheet.Cell(6, "K").Value = "仕入済";
+                }
+
                 // ClosedXMLで1行ずつExcelに出力
                 for (int i = 0; i < dt.Rows.Count; i++)
                 {
@@ -862,24 +893,51 @@ namespace KATO.Business.D0360_JuchuzanKakunin
                         templatesheet1.CopyTo("Page" + pageCnt.ToString());
                         currentsheet = workbook.Worksheet(workbook.Worksheets.Count);
                         currentsheet.Cell(4, "A").Value = sPrm;
+
+                        if (sKind == 1)
+                        {
+                            currentsheet.Cell(6, "A").Value = "発注日";
+                            currentsheet.Cell(6, "K").Value = "仕入済";
+                        }
                     }
-                    
-                    currentsheet.Cell(xlsRowCnt, "A").Value = "'" + dt.Rows[i]["受注日"].ToString().Substring(2, 8);
-                    currentsheet.Cell(xlsRowCnt, "B").Value = "'" + dt.Rows[i]["納期"].ToString().Substring(2, 8);
-                    currentsheet.Cell(xlsRowCnt, "C").Value = "'" + dt.Rows[i]["注番"];
-                    currentsheet.Cell(xlsRowCnt, "D").Value = dt.Rows[i]["メーカー"];
-                    currentsheet.Cell(xlsRowCnt, "E").Value = "'" + dt.Rows[i]["品名"];
-                    currentsheet.Cell(xlsRowCnt, "F").Value = dt.Rows[i]["受注数"];
-                    currentsheet.Cell(xlsRowCnt, "G").Value = dt.Rows[i]["売上単価"];
-                    currentsheet.Cell(xlsRowCnt, "H").Value = dt.Rows[i]["売上金額"];
-                    currentsheet.Cell(xlsRowCnt, "I").Value = dt.Rows[i]["仕入単価"];
-                    currentsheet.Cell(xlsRowCnt, "J").Value = dt.Rows[i]["仕入金額"];
-                    currentsheet.Cell(xlsRowCnt, "K").Value = dt.Rows[i]["売上済"];
-                    currentsheet.Cell(xlsRowCnt, "L").Value = dt.Rows[i]["状態"];
-                    currentsheet.Cell(xlsRowCnt, "M").Value = dt.Rows[i]["受注番号"];
-                    currentsheet.Cell(xlsRowCnt, "N").Value = dt.Rows[i]["得意先名"];
-                    currentsheet.Cell(xlsRowCnt + 1, "N").Value = dt.Rows[i]["仕入先名"];
-                    currentsheet.Cell(xlsRowCnt, "O").Value = dt.Rows[i]["受注者"];
+
+                    if (sKind != 1) {
+                        currentsheet.Cell(xlsRowCnt, "A").Value = "'" + dt.Rows[i]["受注日"].ToString().Substring(2, 8);
+                        currentsheet.Cell(xlsRowCnt, "B").Value = "'" + dt.Rows[i]["納期"].ToString().Substring(2, 8);
+                        currentsheet.Cell(xlsRowCnt, "C").Value = "'" + dt.Rows[i]["注番"];
+                        currentsheet.Cell(xlsRowCnt, "D").Value = dt.Rows[i]["メーカー"];
+                        currentsheet.Cell(xlsRowCnt, "E").Value = "'" + dt.Rows[i]["品名"];
+                        currentsheet.Cell(xlsRowCnt, "F").Value = dt.Rows[i]["受注数"];
+                        currentsheet.Cell(xlsRowCnt, "G").Value = dt.Rows[i]["売上単価"];
+                        currentsheet.Cell(xlsRowCnt, "H").Value = dt.Rows[i]["売上金額"];
+                        currentsheet.Cell(xlsRowCnt, "I").Value = dt.Rows[i]["仕入単価"];
+                        currentsheet.Cell(xlsRowCnt, "J").Value = dt.Rows[i]["仕入金額"];
+                        currentsheet.Cell(xlsRowCnt, "K").Value = dt.Rows[i]["売上済"];
+                        currentsheet.Cell(xlsRowCnt, "L").Value = dt.Rows[i]["状態"];
+                        currentsheet.Cell(xlsRowCnt, "M").Value = dt.Rows[i]["受注番号"];
+                        currentsheet.Cell(xlsRowCnt, "N").Value = dt.Rows[i]["得意先名"];
+                        currentsheet.Cell(xlsRowCnt + 1, "N").Value = dt.Rows[i]["仕入先名"];
+                        currentsheet.Cell(xlsRowCnt, "O").Value = dt.Rows[i]["受注者"];
+                    }
+                    else
+                    {
+                        currentsheet.Cell(xlsRowCnt, "A").Value = "'" + dt.Rows[i]["発注日"].ToString().Substring(2, 8);
+                        currentsheet.Cell(xlsRowCnt, "B").Value = "'" + dt.Rows[i]["納期"].ToString().Substring(2, 8);
+                        currentsheet.Cell(xlsRowCnt, "C").Value = "'" + dt.Rows[i]["注番"];
+                        currentsheet.Cell(xlsRowCnt, "D").Value = dt.Rows[i]["メーカー"];
+                        currentsheet.Cell(xlsRowCnt, "E").Value = "'" + dt.Rows[i]["品名"];
+                        currentsheet.Cell(xlsRowCnt, "F").Value = dt.Rows[i]["受注数"];
+                        currentsheet.Cell(xlsRowCnt, "G").Value = dt.Rows[i]["売上単価"];
+                        currentsheet.Cell(xlsRowCnt, "H").Value = dt.Rows[i]["売上金額"];
+                        currentsheet.Cell(xlsRowCnt, "I").Value = dt.Rows[i]["仕入単価"];
+                        currentsheet.Cell(xlsRowCnt, "J").Value = dt.Rows[i]["仕入金額"];
+                        currentsheet.Cell(xlsRowCnt, "K").Value = dt.Rows[i]["仕入済"];
+                        currentsheet.Cell(xlsRowCnt, "L").Value = dt.Rows[i]["状態"];
+                        currentsheet.Cell(xlsRowCnt, "M").Value = dt.Rows[i]["受注番号"];
+                        currentsheet.Cell(xlsRowCnt, "N").Value = dt.Rows[i]["得意先名"];
+                        currentsheet.Cell(xlsRowCnt + 1, "N").Value = dt.Rows[i]["仕入先名"];
+                        currentsheet.Cell(xlsRowCnt, "O").Value = dt.Rows[i]["発注者"];
+                    }
                     
                     xlsRowCnt = xlsRowCnt + 2;
                 }

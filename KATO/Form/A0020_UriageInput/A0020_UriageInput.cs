@@ -673,7 +673,9 @@ namespace KATO.Form.A0020_UriageInput
                             else
                             {
                                 //新しい商品コードを取得するメソッドへ。
-                                SyohinCD = GetNewSyohinNo();
+                                //SyohinCD = GetNewSyohinNo();
+                                KATO.Business.M1030_Shohin.M1030_Shohin_B sB = new KATO.Business.M1030_Shohin.M1030_Shohin_B();
+                                SyohinCD = sB.getNewShohinNo(true);
 
                                 //ビジネス層、商品マスタ更新（プロシージャー）
                                 uriageinputB.updSyohinMastr(MeisaiItem, SyohinCD, con);

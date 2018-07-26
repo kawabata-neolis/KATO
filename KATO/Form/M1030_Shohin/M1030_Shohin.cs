@@ -309,6 +309,7 @@ namespace KATO.Form.M1030_Shohin
             }
         }
 
+
         ///<summary>
         ///txtData1_KeyDown
         ///キー入力判定(C1)

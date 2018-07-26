@@ -659,7 +659,7 @@ namespace KATO.Form.F0140_TanaorosiInput
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1424, 828);
+            this.ClientSize = new System.Drawing.Size(1584, 828);
             this.Controls.Add(this.labelSet_Daibunrui_Edit);
             this.Controls.Add(this.txtBiko);
             this.Controls.Add(this.txtTanasuu);

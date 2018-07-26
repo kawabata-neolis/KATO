@@ -2280,7 +2280,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1424, 826);
+            this.ClientSize = new System.Drawing.Size(1584, 826);
             this.Controls.Add(this.gbSohusaki);
             this.Controls.Add(this.gbTorihiki);
             this.Controls.Add(this.gbKaisha);

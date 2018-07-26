@@ -101,6 +101,8 @@ namespace KATO.Common.Form
             //DataGridViewの初期設定
             setupGrid();
 
+            rdTorokuAll.Checked = true;
+
             //初期データが設定されている場合
             if (labelSet_Tantousha.CodeTxtText.Length > 0 ||
                 labelSet_Torihikisaki.CodeTxtText.Length > 0)
@@ -355,7 +357,13 @@ namespace KATO.Common.Form
             chumonNo.Name = "注文番号";
             chumonNo.HeaderText = "注文番号";
 
+            DataGridViewTextBoxColumn toroku = new DataGridViewTextBoxColumn();
+            toroku.DataPropertyName = "登録";
+            toroku.Name = "登録";
+            toroku.HeaderText = "仮";
+
             //個々の幅、文章の寄せ
+            setColumn(toroku, DataGridViewContentAlignment.MiddleCenter, DataGridViewContentAlignment.MiddleCenter, null, 42);
             setColumn(denpyo, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter, null, 70);
             setColumn(ymd, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter, null, 90);
             setColumn(tokuisaki, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter, null, 265);
@@ -547,6 +555,18 @@ namespace KATO.Common.Form
             lstShireView.Add(txtHin.Text);
             //注文番号(発注番号)[5]
             lstShireView.Add(txtHachuNo.Text);
+            if (rdTorokuKari.Checked)
+            {
+                lstShireView.Add(" AND H.仮登録 = '1' ");
+            }
+            else if (rdTorokuHon.Checked)
+            {
+                lstShireView.Add(" AND H.仮登録 != '1'");
+            }
+            else
+            {
+                lstShireView.Add("");
+            }
 
             //ビジネス層のインスタンス生成
             ShireList_B shirelistB = new ShireList_B();
@@ -568,6 +588,7 @@ namespace KATO.Common.Form
                 else
                 {
                     gridShire.DataSource = "";
+                    lblRecords.Text = "該当件数( 0件)";
                 }
             }
             catch (Exception ex)

@@ -519,6 +519,8 @@ namespace KATO.Form.Z0000
 
                 //加工手配入力
                 case "11":
+                    A0110_KakohinTehaiInput.A0110_KakohinTehaiInput kakoTinput = new A0110_KakohinTehaiInput.A0110_KakohinTehaiInput(this);
+                    kakoTinput.ShowDialog();
                     break;
 
                 //注文書印刷
@@ -997,6 +999,12 @@ namespace KATO.Form.Z0000
                     shohinzaikokakunin.ShowDialog();
                     break;
 
+                //発注印刷
+                case "156":
+                    A0156_HachuPrint.A0156_HachuPrint HachuPrint = new A0156_HachuPrint.A0156_HachuPrint(this);
+                    HachuPrint.ShowDialog();
+                    break;
+
             }
             txtShoriNo.Text = "";
             txtShoriNo.Focus();
@@ -1124,6 +1132,8 @@ namespace KATO.Form.Z0000
 
                     //加工手配入力
                     case "11":
+                        A0110_KakohinTehaiInput.A0110_KakohinTehaiInput kakoTinput = new A0110_KakohinTehaiInput.A0110_KakohinTehaiInput(this);
+                        kakoTinput.ShowDialog();
                         break;
 
                     //注文書印刷
@@ -1520,6 +1530,12 @@ namespace KATO.Form.Z0000
                     case "155":
                         D1550_ShohinZaikoKakunin.D1550_ShohinZaikoKakunin shohinzaikokakunin = new D1550_ShohinZaikoKakunin.D1550_ShohinZaikoKakunin(this);
                         shohinzaikokakunin.ShowDialog();
+                        break;
+
+                    //発注印刷
+                    case "156":
+                        A0156_HachuPrint.A0156_HachuPrint HachuPrint = new A0156_HachuPrint.A0156_HachuPrint(this);
+                        HachuPrint.ShowDialog();
                         break;
 
                     default:

@@ -118,6 +118,7 @@
     <Compile Include="Business\A0030_ShireInput\A0030_ShireInput_B.cs" />
     <Compile Include="Business\A0090_SiireCheckPrint\A0090_SiireCheckPrint_B.cs" />
     <Compile Include="Business\A0100_HachuInput\A0100_HachuInput_B.cs" />
+    <Compile Include="Business\A0110_KakohinTehaiInput\A0110_KakohinTehaiInput_B.cs" />
     <Compile Include="Business\A0150_UriageCheckPrint\A0150_UriageCheckPrint_B.cs" />
     <Compile Include="Business\A0160_ShukoIraiInput\A0160_ShukoIraiInput_B.cs" />
     <Compile Include="Business\A0170_ShukoShoninInput\A0170_ShukoShoninInput_B.cs" />
@@ -608,6 +609,18 @@
     <Compile Include="Form\A0090_SiireCheckPrint\A0090_SiireCheckPrint.Designer.cs">
       <DependentUpon>A0090_SiireCheckPrint.cs</DependentUpon>
     </Compile>
+    <Compile Include="Form\A0110_KakohinTehaiInput\KakoTehaiList.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form\A0110_KakohinTehaiInput\KakoTehaiList.Designer.cs">
+      <DependentUpon>KakoTehaiList.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Form\A0156_HachuPrint\A0156_HachuPrint.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form\A0156_HachuPrint\A0156_HachuPrint.Designer.cs">
+      <DependentUpon>A0156_HachuPrint.cs</DependentUpon>
+    </Compile>
     <Compile Include="Form\A0100_HachuInput\A0100_HachuInput.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -661,6 +674,18 @@
     </Compile>
     <Compile Include="Form\A1540_ZaikohinHachu\A1540_ZaikohinHachu.Designer.cs">
       <DependentUpon>A1540_ZaikohinHachu.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Form\A0110_KakohinTehaiInput\A0110_KakohinTehaiInput.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form\A0110_KakohinTehaiInput\A0110_KakohinTehaiInput.Designer.cs">
+      <DependentUpon>A0110_KakohinTehaiInput.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Form\A0110_KakohinTehaiInput\InputLine.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Form\A0110_KakohinTehaiInput\InputLine.Designer.cs">
+      <DependentUpon>InputLine.cs</DependentUpon>
     </Compile>
     <Compile Include="Form\B0040_NyukinInput\B0040_NyukinInput.cs">
       <SubType>Form</SubType>
@@ -1349,6 +1374,12 @@
     <EmbeddedResource Include="Form\A0090_SiireCheckPrint\A0090_SiireCheckPrint.resx">
       <DependentUpon>A0090_SiireCheckPrint.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Form\A0110_KakohinTehaiInput\KakoTehaiList.resx">
+      <DependentUpon>KakoTehaiList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form\A0156_HachuPrint\A0156_HachuPrint.resx">
+      <DependentUpon>A0156_HachuPrint.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Form\A0100_HachuInput\A0100_HachuInput.resx">
       <DependentUpon>A0100_HachuInput.cs</DependentUpon>
     </EmbeddedResource>
@@ -1375,6 +1406,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Form\A1540_ZaikohinHachu\A1540_ZaikohinHachu.resx">
       <DependentUpon>A1540_ZaikohinHachu.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form\A0110_KakohinTehaiInput\A0110_KakohinTehaiInput.resx">
+      <DependentUpon>A0110_KakohinTehaiInput.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form\A0110_KakohinTehaiInput\InputLine.resx">
+      <DependentUpon>InputLine.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Form\B0040_NyukinInput\B0040_NyukinInput.resx">
       <DependentUpon>B0040_NyukinInput.cs</DependentUpon>
@@ -1636,6 +1673,9 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="Template\A0020_UriageInput.xlsx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Template\A0120_ChumonShoPrint.xlsx">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="Template\B0420_SeikyuMeisaishoPrint.xlsx">

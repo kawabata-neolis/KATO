@@ -29,6 +29,7 @@ namespace KATO.Form.A1520_Uriageshonin
         //ロギングの設定
         private static readonly log4net.ILog logger = log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
 
+        private int iGridNo = 0;
 
         ///<summary>
         ///A1520_Uriageshonin
@@ -43,6 +44,8 @@ namespace KATO.Form.A1520_Uriageshonin
             {
                 return;
             }
+
+            iGridNo = 0;
 
             //画面位置の指定
             int intWindowWidth = c.Width;
@@ -97,6 +100,7 @@ namespace KATO.Form.A1520_Uriageshonin
             showGirdRiekiritsu();
             //売上削除承認入力の表示
             showGirdUriage();
+            iGridNo = 0;
 
         }
 
@@ -128,6 +132,11 @@ namespace KATO.Form.A1520_Uriageshonin
             HTokuisaki.DataPropertyName = "得意先";
             HTokuisaki.Name = "得意先";
             HTokuisaki.HeaderText = "得意先";
+
+            DataGridViewTextBoxColumn HShiiresaki = new DataGridViewTextBoxColumn();
+            HShiiresaki.DataPropertyName = "仕入先";
+            HShiiresaki.Name = "仕入先";
+            HShiiresaki.HeaderText = "仕入先";
 
             DataGridViewTextBoxColumn HMaker = new DataGridViewTextBoxColumn();
             HMaker.DataPropertyName = "ﾒｰｶｰ";
@@ -175,21 +184,23 @@ namespace KATO.Form.A1520_Uriageshonin
             HTanto.HeaderText = "担当者";
 
             //個々の幅、文章の寄せ
-            setColumnHenpin(HJuchuNo, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter, null, 0);
             setColumnHenpin(HShonin, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter, null, 21);
             setColumnHenpin(HNoki, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter, null, 88);
             setColumnHenpin(HTokuisaki, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter, null, 200);//元330、省略記号がつく
+            setColumnHenpin(HShiiresaki, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter, null, 200);//元330、省略記号がつく
             setColumnHenpin(HMaker, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter, null, 100); //元200、省略記号がつく
             setColumnHenpin(HKataban, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter, null, 328);
             setColumnHenpin(HSu, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0", 64);
             setColumnHenpin(HJuchuTanka, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0", 96);
             setColumnHenpin(HShireTanka, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0", 96);
             setColumnHenpin(HRiekiritsu, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0.0", 80);
+            setColumnHenpin(HTanto, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter, null, 109);
+            setColumnHenpin(HJuchuNo, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter, null, 0);
             setColumnHenpin(HChuban, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter, null, 248);
             setColumnHenpin(HShanaiMemo, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter, null, 300);
-            setColumnHenpin(HTanto, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter, null, 109);
 
             //受注番号非表示
+            HShanaiMemo.Visible = false;
             HJuchuNo.Visible = false;
 
             //データをバインド
@@ -273,6 +284,11 @@ namespace KATO.Form.A1520_Uriageshonin
             RChokin.Name = "直近仕入単価";
             RChokin.HeaderText = "直近仕入単価";
 
+            DataGridViewTextBoxColumn RJKakeritsu = new DataGridViewTextBoxColumn();
+            RJKakeritsu.DataPropertyName = "受注掛率";
+            RJKakeritsu.Name = "受注掛率";
+            RJKakeritsu.HeaderText = "掛率";
+
             //個々の幅、文章の寄せ
             //setColumnRiekiritsu(RJuchuNo, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter, null, 0);
             setColumnRiekiritsu(RShonin, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter, null, 21);
@@ -281,20 +297,22 @@ namespace KATO.Form.A1520_Uriageshonin
             setColumnRiekiritsu(RMaker, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter, null, 100);//元200、省略記号がつく
             setColumnRiekiritsu(RKataban, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter, null, 328);
             setColumnRiekiritsu(RSu, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0", 64);
+            setColumnRiekiritsu(RTeka, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0", 96);
             setColumnRiekiritsu(RJuchuTanka, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0", 96);
+            setColumnRiekiritsu(RJKakeritsu, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0.0", 64);
             setColumnRiekiritsu(RShireTanka, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0", 96);
+            setColumnRiekiritsu(RKakeritsu, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0.0", 64);
             setColumnRiekiritsu(RRiekiritsu, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0.0", 80);
+            setColumnRiekiritsu(RChokin, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0", 128);
+            setColumnRiekiritsu(RTanto, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter, null, 109);
+            setColumnRiekiritsu(RJuchuNo, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter, null, 96);
             setColumnRiekiritsu(RChuban, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter, null, 248);
             setColumnRiekiritsu(RShanaiMemo, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter, null, 300);
-            setColumnRiekiritsu(RTanto, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter, null, 109);
-            setColumnRiekiritsu(RTeka, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0", 96);
-            setColumnRiekiritsu(RKakeritsu, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0.0", 64);
-            setColumnRiekiritsu(RChokin, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0", 128);
-            setColumnRiekiritsu(RJuchuNo, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter, null, 96);
 
             ////受注番号非表示
+            RShanaiMemo.Visible = false;
             //RJuchuNo.Visible = false;
-            
+
             //データをバインド
             DataGridViewTextBoxColumn UJuchuNo = new DataGridViewTextBoxColumn();
             UJuchuNo.DataPropertyName = "受注番号";
@@ -367,7 +385,6 @@ namespace KATO.Form.A1520_Uriageshonin
             UTanto.HeaderText = "担当者";
 
             //個々の幅、文章の寄せ
-            setColumnUriage(UJuchuNo, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter, null, 0);
             setColumnUriage(UDenpyoYMD, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter, null, 0);
             setColumnUriage(UShonin, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter, null, 21);
             setColumnUriage(UNoki, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter, null, 88);
@@ -378,11 +395,13 @@ namespace KATO.Form.A1520_Uriageshonin
             setColumnUriage(UJuchuTanka, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0", 96);
             setColumnUriage(UShireTanka, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0", 96);
             setColumnUriage(URiekiritsu, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0.0", 80);
+            setColumnUriage(UTanto, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter, null, 109);
+            setColumnUriage(UJuchuNo, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter, null, 0);
             setColumnUriage(UChuban, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter, null, 248);
             setColumnUriage(UShanaiMemo, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter, null, 300);
-            setColumnUriage(UTanto, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter, null, 109);
 
             //受注番号、伝票年月日非表示
+            UShanaiMemo.Visible = false;
             UJuchuNo.Visible = false;
             UDenpyoYMD.Visible = false;
         }
@@ -486,7 +505,7 @@ namespace KATO.Form.A1520_Uriageshonin
                     break;
                 case Keys.F3:
                     logger.Info(LogUtil.getMessage(this._Title, "削除実行"));
-                    this.delRiekiritsu();
+                    this.delBase();
                     break;
                 case Keys.F4:
                     logger.Info(LogUtil.getMessage(this._Title, "取消実行"));
@@ -529,7 +548,7 @@ namespace KATO.Form.A1520_Uriageshonin
             {
                 case STR_BTN_F03: // 削除
                     logger.Info(LogUtil.getMessage(this._Title, "削除実行"));
-                    this.delRiekiritsu();
+                    this.delBase();
                     break;
                 case STR_BTN_F04: // 取消
                     logger.Info(LogUtil.getMessage(this._Title, "取消実行"));
@@ -552,6 +571,11 @@ namespace KATO.Form.A1520_Uriageshonin
         {
             //返品値引き分売上承認のグリッド表示
             showGirdHenpin();
+
+            iGridNo = 0;
+            chgBorderColor(gbHenpinNebiki, SystemColors.Control);
+            chgBorderColor(bgRiekiritsu, SystemColors.Control);
+            chgBorderColor(gbUriagesakujo, SystemColors.Control);
         }
 
         ///<summary>
@@ -619,6 +643,11 @@ namespace KATO.Form.A1520_Uriageshonin
         {
             //利益率承認のグリッド表示
             showGirdRiekiritsu();
+
+            iGridNo = 0;
+            chgBorderColor(gbHenpinNebiki, SystemColors.Control);
+            chgBorderColor(bgRiekiritsu, SystemColors.Control);
+            chgBorderColor(gbUriagesakujo, SystemColors.Control);
         }
 
         ///<summary>
@@ -684,6 +713,11 @@ namespace KATO.Form.A1520_Uriageshonin
         private void btnSaihyojiUriagesakujo_Click(object sender, EventArgs e)
         {
             showGirdUriage();
+
+            iGridNo = 0;
+            chgBorderColor(gbHenpinNebiki, SystemColors.Control);
+            chgBorderColor(bgRiekiritsu, SystemColors.Control);
+            chgBorderColor(gbUriagesakujo, SystemColors.Control);
         }
 
         ///<summary>
@@ -981,6 +1015,81 @@ namespace KATO.Form.A1520_Uriageshonin
 
             //初期フォーカス位置
             radHenpin.Focus();
+            iGridNo = 0;
+            chgBorderColor(gbHenpinNebiki, SystemColors.Control);
+            chgBorderColor(bgRiekiritsu, SystemColors.Control);
+            chgBorderColor(gbUriagesakujo, SystemColors.Control);
+        }
+
+        
+        private void delBase()
+        {
+            if (ActiveControl.Name == gridHenpinNebiki.Name || iGridNo == 1)
+            {
+                if (gridHenpinNebiki.Rows.Count < 1)
+                {
+                    return;
+                }
+                delHenpinNebiki();
+            }
+            else if (ActiveControl.Name == gridRiekiritsu.Name || iGridNo == 2)
+            {
+                if (gridRiekiritsu.Rows.Count < 1)
+                {
+                    return;
+                }
+                delRiekiritsu();
+            }
+            else if (ActiveControl.Name == gridUriagesakujo.Name || iGridNo == 3)
+            {
+                if (gridUriagesakujo.Rows.Count < 1)
+                {
+                    return;
+                }
+                delUriageSakujo();
+            }
+        }
+
+        private void delHenpinNebiki()
+        {
+            //削除しますかメッセージ
+            //メッセージボックスの処理、削除するか否かのウィンドウ(YES,NO)
+            BaseMessageBox basemessageboxNebiki = new BaseMessageBox(this, CommonTeisu.TEXT_DEL, "選択中の返品値引分売上承認データを差し戻します。よろしいですか。", CommonTeisu.BTN_YESNO, CommonTeisu.DIAG_QUESTION);
+            //NOが押された場合
+            if (basemessageboxNebiki.ShowDialog() == DialogResult.No)
+            {
+                return;
+            }
+
+            //データ登録用
+            List<string> lstGrid = new List<string>();
+
+            //承認フラグ登録用
+            int intShoninFlg = -1;
+
+            //承認情報
+            lstGrid.Add(gridHenpinNebiki.CurrentRow.Cells["受注番号"].Value.ToString());
+            lstGrid.Add(intShoninFlg.ToString());
+            lstGrid.Add(DateTime.Now.ToString());
+            lstGrid.Add(SystemInformation.UserName);
+
+            A1520_Uriageshonin_B uriageshoninB = new A1520_Uriageshonin_B();
+            try
+            {
+                uriageshoninB.sashimodoshiNebiki(lstGrid);
+
+                //返品値引売上承認のグリッド表示
+                showGirdHenpin();
+            }
+            catch (Exception ex)
+            {
+                //データロギング
+                new CommonException(ex);
+                //例外発生メッセージ（OK）
+                BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_ERROR, CommonTeisu.LABEL_ERROR_MESSAGE, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                basemessagebox.ShowDialog();
+                return;
+            }
         }
 
         ///<summary>
@@ -991,21 +1100,9 @@ namespace KATO.Form.A1520_Uriageshonin
         ///</summary>
         private void delRiekiritsu()
         {
-            //フォーカスが利益率承認グリッドではない場合
-            if (ActiveControl.Name != gridRiekiritsu.Name)
-            {
-                return;
-            }
-
-            //グリッドが空の場合
-            if (gridRiekiritsu.Rows.Count < 0)
-            {
-                return;
-            }
-
             //削除しますかメッセージ
             //メッセージボックスの処理、削除するか否かのウィンドウ(YES,NO)
-            BaseMessageBox basemessageboxRieki = new BaseMessageBox(this, CommonTeisu.TEXT_DEL, "選択中の利益率承認データを削除します。よろしいですか。", CommonTeisu.BTN_YESNO, CommonTeisu.DIAG_QUESTION);
+            BaseMessageBox basemessageboxRieki = new BaseMessageBox(this, CommonTeisu.TEXT_DEL, "選択中の利益率承認データを差し戻します。よろしいですか。", CommonTeisu.BTN_YESNO, CommonTeisu.DIAG_QUESTION);
             //NOが押された場合
             if (basemessageboxRieki.ShowDialog() == DialogResult.No)
             {
@@ -1017,20 +1114,6 @@ namespace KATO.Form.A1520_Uriageshonin
 
             //承認フラグ登録用
             int intShoninFlg = -1;
-
-            ////承認がNの場合
-            //if (gridRiekiritsu.CurrentRow.Cells["承認"].Value.ToString() == "N")
-            //{
-            //    //Yに変更
-            //    gridRiekiritsu.CurrentRow.Cells["承認"].Value = "Y";
-            //    intShoninFlg = 1;
-            //}
-            //else
-            //{
-            //    //Nに変更
-            //    gridRiekiritsu.CurrentRow.Cells["承認"].Value = "N";
-            //    intShoninFlg = 0;
-            //}
 
             //承認情報
             lstGrid.Add(gridRiekiritsu.CurrentRow.Cells["受注番号"].Value.ToString());
@@ -1055,6 +1138,79 @@ namespace KATO.Form.A1520_Uriageshonin
                 basemessagebox.ShowDialog();
                 return;
             }
+        }
+
+        private void delUriageSakujo()
+        {
+            //削除しますかメッセージ
+            //メッセージボックスの処理、削除するか否かのウィンドウ(YES,NO)
+            BaseMessageBox basemessageboxUri = new BaseMessageBox(this, CommonTeisu.TEXT_DEL, "選択中の売上削除承認データを差し戻します。よろしいですか。", CommonTeisu.BTN_YESNO, CommonTeisu.DIAG_QUESTION);
+            //NOが押された場合
+            if (basemessageboxUri.ShowDialog() == DialogResult.No)
+            {
+                return;
+            }
+
+            //データ登録用
+            List<string> lstGrid = new List<string>();
+
+            //承認フラグ登録用
+            string strShoninFlg = "C";
+
+            //承認情報
+            lstGrid.Add(gridUriagesakujo.CurrentRow.Cells["受注番号"].Value.ToString());
+            lstGrid.Add(strShoninFlg);
+            lstGrid.Add(DateTime.Now.ToString());
+            lstGrid.Add(SystemInformation.UserName);
+
+            A1520_Uriageshonin_B uriageshoninB = new A1520_Uriageshonin_B();
+            try
+            {
+                uriageshoninB.sashimodoshiUriageSakujo(lstGrid);
+
+                //返品値引売上承認のグリッド表示
+                showGirdUriage();
+            }
+            catch (Exception ex)
+            {
+                //データロギング
+                new CommonException(ex);
+                //例外発生メッセージ（OK）
+                BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_ERROR, CommonTeisu.LABEL_ERROR_MESSAGE, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                basemessagebox.ShowDialog();
+                return;
+            }
+        }
+
+        private void gridHenpinNebiki_Enter(object sender, EventArgs e)
+        {
+
+            iGridNo = 1;
+            chgBorderColor(gbHenpinNebiki, Color.DarkTurquoise);
+            chgBorderColor(bgRiekiritsu, SystemColors.Control);
+            chgBorderColor(gbUriagesakujo, SystemColors.Control);
+        }
+
+        private void gridRiekiritsu_Enter(object sender, EventArgs e)
+        {
+            iGridNo = 2;
+            chgBorderColor(gbHenpinNebiki, SystemColors.Control);
+            chgBorderColor(bgRiekiritsu, Color.DarkTurquoise);
+            chgBorderColor(gbUriagesakujo, SystemColors.Control);
+        }
+
+        private void gridUriagesakujo_Enter(object sender, EventArgs e)
+        {
+            iGridNo = 3;
+            chgBorderColor(gbHenpinNebiki, SystemColors.Control);
+            chgBorderColor(bgRiekiritsu, SystemColors.Control);
+            chgBorderColor(gbUriagesakujo, Color.DarkTurquoise);
+        }
+
+        private void chgBorderColor(GroupBox g, Color c)
+        {
+            g.BackColor = c;
+
         }
     }
 }

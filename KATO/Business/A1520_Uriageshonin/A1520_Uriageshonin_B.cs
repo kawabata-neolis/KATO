@@ -39,7 +39,7 @@ namespace KATO.Business.A1520_Uriageshonin_B
             //表示範囲によって分岐
             if (intShonin == 0)
             {
-                strShonin = "";
+                strShonin = "AND dbo.f_get返品値引売上承認フラグ(受注番号) in (0, 1)";
             }
             else if (intShonin == 1)
             {
@@ -168,6 +168,17 @@ namespace KATO.Business.A1520_Uriageshonin_B
                     {
                         dtSetCd_B.Rows[intRowCnt]["掛率"] = ((decimal.Parse(dtSetCd_B.Rows[intRowCnt]["仕入単価"].ToString()) / (decimal.Parse(dtSetCd_B.Rows[intRowCnt]["定価"].ToString())) * 100).ToString("0.0"));
                     }
+
+                    if (decimal.Parse(dtSetCd_B.Rows[intRowCnt]["受注単価"].ToString().Split('.')[0]) == 0 ||
+                        decimal.Parse(dtSetCd_B.Rows[intRowCnt]["定価"].ToString().Split('.')[0]) == 0)
+
+                    {
+                        //スルー
+                    }
+                    else
+                    {
+                        dtSetCd_B.Rows[intRowCnt]["受注掛率"] = ((decimal.Parse(dtSetCd_B.Rows[intRowCnt]["受注単価"].ToString()) / (decimal.Parse(dtSetCd_B.Rows[intRowCnt]["定価"].ToString())) * 100).ToString("0.0"));
+                    }
                 }
 
                 return (dtSetCd_B);
@@ -203,7 +214,7 @@ namespace KATO.Business.A1520_Uriageshonin_B
             //表示範囲によって分岐
             if (lstViewGrid[0] == "0")
             {
-                strShonin = "";
+                strShonin = "AND e.承認 = 'N' OR e.承認 = 'Y'";
             }
             else if (lstViewGrid[0] == "1")
             {
@@ -633,6 +644,91 @@ namespace KATO.Business.A1520_Uriageshonin_B
                 // ロールバック処理
                 dbconnective.Rollback();
 
+                throw (ex);
+            }
+            finally
+            {
+                //トランザクション終了
+                dbconnective.DB_Disconnect();
+            }
+        }
+
+        public void sashimodoshiNebiki(List<string> lstGrid)
+        {
+            DBConnective dbconnective = new DBConnective();
+
+            try
+            {
+                string strSQL = "";
+
+                strSQL = "SELECT * FROM 返品値引売上承認 WHERE 受注番号 = " + lstGrid[0];
+
+                DataTable dt = dbconnective.ReadSql(strSQL);
+
+                if (dt != null && dt.Rows.Count > 0)
+                {
+                    strSQL  = "UPDATE 返品値引売上承認";
+                    strSQL += "   SET 承認フラグ     = '" + lstGrid[1] + "'";
+                    strSQL += "      ,更新日時       = '" + lstGrid[2] + "'";
+                    strSQL += "      ,更新ユーザー名 = '" + lstGrid[3] + "'";
+                    strSQL += " WHERE 受注番号       = "  + lstGrid[0];
+
+                    dbconnective.BeginTrans();
+                    dbconnective.RunSql(strSQL);
+                    dbconnective.Commit();
+                }
+                else
+                {
+                    strSQL = "INSERT INTO 返品値引売上承認 VALUES(" + lstGrid[0] + ", '" + lstGrid[1] + "', '" + lstGrid[2]  + "', '" + lstGrid[3] + "', '" + lstGrid[2] + "', '" + lstGrid[3] + "')";
+                    dbconnective.BeginTrans();
+                    dbconnective.RunSql(strSQL);
+                    dbconnective.Commit();
+                }
+
+            }
+
+            catch (Exception ex)
+            {
+                dbconnective.Rollback();
+                throw (ex);
+            }
+            finally
+            {
+                //トランザクション終了
+                dbconnective.DB_Disconnect();
+            }
+        }
+
+        public void sashimodoshiUriageSakujo(List<string> lstGrid)
+        {
+            DBConnective dbconnective = new DBConnective();
+
+            try
+            {
+                string strSQL = "";
+
+                strSQL = "SELECT * FROM 売上削除承認 WHERE 伝票番号 = " + lstGrid[0];
+
+                DataTable dt = dbconnective.ReadSql(strSQL);
+
+                if (dt != null && dt.Rows.Count > 0)
+                {
+                    strSQL = "UPDATE 売上削除承認";
+                    strSQL += "   SET 承認           = '" + lstGrid[1] + "'";
+                    strSQL += "      ,更新日時       = '" + lstGrid[2] + "'";
+                    strSQL += "      ,更新ユーザー名 = '" + lstGrid[3] + "'";
+                    strSQL += " WHERE 伝票番号       = "  + lstGrid[0];
+
+                    dbconnective.BeginTrans();
+                    dbconnective.RunSql(strSQL);
+                    dbconnective.Commit();
+                }
+
+            }
+
+            catch (Exception ex)
+            {
+                dbconnective.Rollback();
                 throw (ex);
             }
             finally

@@ -2081,6 +2081,32 @@ namespace KATO.Form.H0210_MitsumoriInput
                 return;
             }
             int rNum = gridMitsmori.CurrentCell.RowIndex;
+
+            H0210_MitsumoriInput_B inputB = new H0210_MitsumoriInput_B();
+
+            // 削除行に商品が指定されている場合、仮商品を削除
+            if (!getCellValue(gridMitsmori[86, rNum], false).Equals(""))
+            {
+                try
+                {
+                    inputB.beginTrance();
+                    inputB.delKariShohin(getCellValue(gridMitsmori[86, rNum], false));
+                    inputB.commit();
+                }
+                catch (Exception ex)
+                {
+                    //データロギング
+                    new CommonException(ex);
+                    inputB.rollback();
+                    //例外発生メッセージ（OK）
+                    BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_ERROR, CommonTeisu.LABEL_ERROR_MESSAGE, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                    basemessagebox.ShowDialog();
+                    return;
+                }
+            }
+
+
+
             dt.Rows.RemoveAt(rNum);
 
             for (int i = 0; i < gridMitsmori.RowCount; i++)
@@ -2716,6 +2742,24 @@ namespace KATO.Form.H0210_MitsumoriInput
             try
             {
                 inputB.beginTrance();
+
+                int intMaxLine = 0;
+                for (int i = gridMitsmori.RowCount - 1; i >= 0; i--)
+                {
+                    if (!string.IsNullOrWhiteSpace(getCellValue(gridMitsmori[2, i], false)))
+                    {
+                        intMaxLine = i + 1;
+                        break;
+                    }
+                }
+
+                for (int i = 0; i < intMaxLine; i++)
+                {
+                    if (!getCellValue(gridMitsmori[86, i], false).Equals(""))
+                    {
+                        inputB.delKariShohin(getCellValue(gridMitsmori[86, i], false));
+                    }
+                }
 
                 inputB.delMitsumoriM(txtMNum.Text, Environment.UserName);
                 inputB.delMitsumoriH(txtMNum.Text, Environment.UserName);

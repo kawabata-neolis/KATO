@@ -22,6 +22,7 @@ SELECT CASE 利益率承認.承認フラグ WHEN '0' THEN 'N'
 			WHERE 商品.商品コード = 受注.商品コード
 	   ) AS 定価,
 	   '' AS 掛率,
+       '' AS 受注掛率,
 	   (
 			SELECT B.仕入単価
 			FROM(

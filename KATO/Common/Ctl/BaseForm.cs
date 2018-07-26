@@ -7,7 +7,6 @@ using static KATO.Common.Util.CommonTeisu;
 using KATO.Common.Business;
 using System.Data;
 using KATO.Common.Util;
-using KATO.Common.Business;
 
 namespace KATO.Common.Ctl
 {

@@ -76,18 +76,22 @@ namespace KATO.Common.Business
                 strWhere = strWhere + " AND M.発注番号 ='" + lstShireView[5] + "'";
             }
 
+            strWhere = strWhere + lstShireView[6];
+
             //SQL用に移動
             DBConnective dbconnective = new DBConnective();
             try
             {
-                dtGetTableGrid = dbconnective.ReadSql("SELECT H.伝票番号,H.伝票年月日,dbo.f_get取引先名称(H.仕入先コード) AS 仕入先名," +
+                string s = "SELECT H.伝票番号,H.伝票年月日,dbo.f_get取引先名称(H.仕入先コード) AS 仕入先名," +
                                                       "RTRIM(ISNULL(M.Ｃ１,'')) AS 品名型番," +
                                                       "M.数量,M.仕入単価 AS 売上単価,M.備考," +
                                                       "dbo.f_get担当者名(H.担当者コード) AS 担当者," +
-                                                      "M.発注番号 AS 注文番号 " +
+                                                      "M.発注番号 AS 注文番号, CASE WHEN H.仮登録 = '1' THEN '仮' ELSE '' END AS 登録 " +
                                                       "FROM 仕入ヘッダ H,仕入明細 M " +
                                                       strWhere +
-                                                      " ORDER BY H.伝票年月日 DESC, H.仕入先コード");
+                                                      " ORDER BY H.伝票年月日 DESC, H.仕入先コード";
+
+                dtGetTableGrid = dbconnective.ReadSql(s);
             }
             catch (Exception ex)
             {

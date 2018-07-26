@@ -386,7 +386,7 @@
             this.txtData6.MaxLength = 20;
             this.txtData6.Name = "txtData6";
             this.txtData6.Size = new System.Drawing.Size(170, 22);
-            this.txtData6.TabIndex = 9;
+            this.txtData6.TabIndex = 10;
             this.txtData6.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judShohinTxtKeyDown);
             this.txtData6.KeyUp += new System.Windows.Forms.KeyEventHandler(this.judtxtShohinKeyUp);
             this.txtData6.Leave += new System.EventHandler(this.txtData_Leave);
@@ -399,7 +399,7 @@
             this.txtData5.MaxLength = 20;
             this.txtData5.Name = "txtData5";
             this.txtData5.Size = new System.Drawing.Size(170, 22);
-            this.txtData5.TabIndex = 8;
+            this.txtData5.TabIndex = 9;
             this.txtData5.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judShohinTxtKeyDown);
             this.txtData5.KeyUp += new System.Windows.Forms.KeyEventHandler(this.judtxtShohinKeyUp);
             this.txtData5.Leave += new System.EventHandler(this.txtData_Leave);
@@ -412,7 +412,7 @@
             this.txtData4.MaxLength = 20;
             this.txtData4.Name = "txtData4";
             this.txtData4.Size = new System.Drawing.Size(170, 22);
-            this.txtData4.TabIndex = 7;
+            this.txtData4.TabIndex = 8;
             this.txtData4.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judShohinTxtKeyDown);
             this.txtData4.KeyUp += new System.Windows.Forms.KeyEventHandler(this.judtxtShohinKeyUp);
             this.txtData4.Leave += new System.EventHandler(this.txtData_Leave);
@@ -425,7 +425,7 @@
             this.txtData3.MaxLength = 20;
             this.txtData3.Name = "txtData3";
             this.txtData3.Size = new System.Drawing.Size(170, 22);
-            this.txtData3.TabIndex = 6;
+            this.txtData3.TabIndex = 7;
             this.txtData3.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judShohinTxtKeyDown);
             this.txtData3.KeyUp += new System.Windows.Forms.KeyEventHandler(this.judtxtShohinKeyUp);
             this.txtData3.Leave += new System.EventHandler(this.txtData_Leave);
@@ -438,7 +438,7 @@
             this.txtData2.MaxLength = 20;
             this.txtData2.Name = "txtData2";
             this.txtData2.Size = new System.Drawing.Size(170, 22);
-            this.txtData2.TabIndex = 5;
+            this.txtData2.TabIndex = 6;
             this.txtData2.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judShohinTxtKeyDown);
             this.txtData2.KeyUp += new System.Windows.Forms.KeyEventHandler(this.judtxtShohinKeyUp);
             this.txtData2.Leave += new System.EventHandler(this.txtData_Leave);
@@ -451,7 +451,7 @@
             this.txtData1.MaxLength = 40;
             this.txtData1.Name = "txtData1";
             this.txtData1.Size = new System.Drawing.Size(330, 22);
-            this.txtData1.TabIndex = 4;
+            this.txtData1.TabIndex = 5;
             this.txtData1.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtData1_KeyDown);
             this.txtData1.KeyUp += new System.Windows.Forms.KeyEventHandler(this.judtxtShohinKeyUp);
             this.txtData1.Leave += new System.EventHandler(this.txtData_Leave);
@@ -927,7 +927,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1424, 826);
+            this.ClientSize = new System.Drawing.Size(1584, 826);
             this.Controls.Add(this.chbxHontoroku);
             this.Controls.Add(this.lblGrayToroku);
             this.Controls.Add(this.lblToroku);

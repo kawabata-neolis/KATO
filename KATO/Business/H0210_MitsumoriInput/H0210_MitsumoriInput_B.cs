@@ -672,6 +672,23 @@ namespace KATO.Business.H0210_MitsumoriInput
             }
         }
 
+        public void delKariShohin(string cd)
+        {
+            string strQuery = "";
+            strQuery += "UPDATE 仮商品";
+            strQuery += "   SET 削除 = 'Y'";
+            strQuery += " WHERE 商品コード = '" + cd + "'";
+            try
+            {
+                con.RunSql(strQuery);
+            }
+            catch (Exception ex)
+            {
+                new CommonException(ex);
+                throw (ex);
+            }
+        }
+
         public void updShoninFlg(string stMitsumoriNo, string strFlg, string strMemo)
         {
             string strQuery = "";

@@ -36,7 +36,13 @@ namespace KATO.Form.M1020_Maker
             this.txtName = new KATO.Common.Ctl.BaseText();
             this.lblName = new KATO.Common.Ctl.BaseLabel(this.components);
             this.lblCD = new KATO.Common.Ctl.BaseLabel(this.components);
+            this.baseLabel1 = new KATO.Common.Ctl.BaseLabel(this.components);
+            this.txtNameKana = new KATO.Common.Ctl.BaseText();
             this.SuspendLayout();
+            // 
+            // btnF01
+            // 
+            this.btnF01.Click += new System.EventHandler(this.judBtnClick);
             // 
             // btnF12
             // 
@@ -81,10 +87,6 @@ namespace KATO.Form.M1020_Maker
             // btnF02
             // 
             this.btnF02.Click += new System.EventHandler(this.judBtnClick);
-            // 
-            // btnF01
-            // 
-            this.btnF01.Click += new System.EventHandler(this.judBtnClick);
             // 
             // txtMaker
             // 
@@ -135,11 +137,37 @@ namespace KATO.Form.M1020_Maker
             this.lblCD.Text = "メーカーコード";
             this.lblCD.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
+            // baseLabel1
+            // 
+            this.baseLabel1.AutoSize = true;
+            this.baseLabel1.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
+            this.baseLabel1.Location = new System.Drawing.Point(471, 175);
+            this.baseLabel1.Name = "baseLabel1";
+            this.baseLabel1.Size = new System.Drawing.Size(39, 15);
+            this.baseLabel1.strToolTip = null;
+            this.baseLabel1.TabIndex = 90;
+            this.baseLabel1.Text = "カナ";
+            this.baseLabel1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // txtNameKana
+            // 
+            this.txtNameKana.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
+            this.txtNameKana.ImeMode = System.Windows.Forms.ImeMode.Hiragana;
+            this.txtNameKana.Location = new System.Drawing.Point(596, 172);
+            this.txtNameKana.MaxLength = 80;
+            this.txtNameKana.Name = "txtNameKana";
+            this.txtNameKana.Size = new System.Drawing.Size(391, 22);
+            this.txtNameKana.TabIndex = 2;
+            this.txtNameKana.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judMakerTxtKeyDown);
+            this.txtNameKana.KeyUp += new System.Windows.Forms.KeyEventHandler(this.judtxtMakerKeyUp);
+            // 
             // M1020_Maker
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1424, 828);
+            this.ClientSize = new System.Drawing.Size(1584, 828);
+            this.Controls.Add(this.baseLabel1);
+            this.Controls.Add(this.txtNameKana);
             this.Controls.Add(this.lblCD);
             this.Controls.Add(this.lblName);
             this.Controls.Add(this.txtName);
@@ -148,6 +176,7 @@ namespace KATO.Form.M1020_Maker
             this.Text = "M1020_Maker";
             this.Load += new System.EventHandler(this.M_Maker_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judMakerKeyDown);
+            this.Controls.SetChildIndex(this.cmbSubWinShow, 0);
             this.Controls.SetChildIndex(this.btnF01, 0);
             this.Controls.SetChildIndex(this.btnF02, 0);
             this.Controls.SetChildIndex(this.btnF03, 0);
@@ -164,6 +193,8 @@ namespace KATO.Form.M1020_Maker
             this.Controls.SetChildIndex(this.txtName, 0);
             this.Controls.SetChildIndex(this.lblName, 0);
             this.Controls.SetChildIndex(this.lblCD, 0);
+            this.Controls.SetChildIndex(this.txtNameKana, 0);
+            this.Controls.SetChildIndex(this.baseLabel1, 0);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -175,5 +206,7 @@ namespace KATO.Form.M1020_Maker
         private BaseText txtName;
         private BaseLabel lblName;
         private BaseLabel lblCD;
+        private BaseLabel baseLabel1;
+        private BaseText txtNameKana;
     }
 }

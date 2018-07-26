@@ -48,9 +48,15 @@
             this.object_641ac0e1_3bc7_4d87_a3ae_64129b936786 = new KATO.Common.Ctl.BaseLabel(this.components);
             this.btnF11 = new KATO.Common.Ctl.BaseButton();
             this.btnF12 = new KATO.Common.Ctl.BaseButton();
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.rdTorokuKari = new KATO.Common.Ctl.BaseRadioButton();
+            this.rdTorokuHon = new KATO.Common.Ctl.BaseRadioButton();
+            this.baseLabel1 = new KATO.Common.Ctl.BaseLabel(this.components);
+            this.rdTorokuAll = new KATO.Common.Ctl.BaseRadioButton();
             ((System.ComponentModel.ISupportInitialize)(this.gridShire)).BeginInit();
             this.labelSet_Torihikisaki.SuspendLayout();
             this.labelSet_Tantousha.SuspendLayout();
+            this.panel2.SuspendLayout();
             this.SuspendLayout();
             // 
             // lblRecords
@@ -280,11 +286,83 @@
             this.btnF12.UseVisualStyleBackColor = true;
             this.btnF12.Click += new System.EventHandler(this.btnEndClick);
             // 
+            // panel2
+            // 
+            this.panel2.Controls.Add(this.rdTorokuAll);
+            this.panel2.Controls.Add(this.rdTorokuKari);
+            this.panel2.Controls.Add(this.rdTorokuHon);
+            this.panel2.Location = new System.Drawing.Point(322, 115);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(230, 25);
+            this.panel2.TabIndex = 125;
+            // 
+            // rdTorokuKari
+            // 
+            this.rdTorokuKari.AutoSize = true;
+            this.rdTorokuKari.DisabledBackColor = System.Drawing.SystemColors.Control;
+            this.rdTorokuKari.DisabledForeColor = System.Drawing.SystemColors.ControlText;
+            this.rdTorokuKari.FocusedBackColor = System.Drawing.SystemColors.Control;
+            this.rdTorokuKari.FocusedForeColor = System.Drawing.SystemColors.ControlText;
+            this.rdTorokuKari.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
+            this.rdTorokuKari.Location = new System.Drawing.Point(66, 1);
+            this.rdTorokuKari.Name = "rdTorokuKari";
+            this.rdTorokuKari.Size = new System.Drawing.Size(73, 19);
+            this.rdTorokuKari.TabIndex = 1;
+            this.rdTorokuKari.TabStop = true;
+            this.rdTorokuKari.Text = "仮登録";
+            this.rdTorokuKari.UseVisualStyleBackColor = true;
+            // 
+            // rdTorokuHon
+            // 
+            this.rdTorokuHon.AutoSize = true;
+            this.rdTorokuHon.DisabledBackColor = System.Drawing.SystemColors.Control;
+            this.rdTorokuHon.DisabledForeColor = System.Drawing.SystemColors.ControlText;
+            this.rdTorokuHon.FocusedBackColor = System.Drawing.SystemColors.Control;
+            this.rdTorokuHon.FocusedForeColor = System.Drawing.SystemColors.ControlText;
+            this.rdTorokuHon.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
+            this.rdTorokuHon.Location = new System.Drawing.Point(145, 1);
+            this.rdTorokuHon.Name = "rdTorokuHon";
+            this.rdTorokuHon.Size = new System.Drawing.Size(73, 19);
+            this.rdTorokuHon.TabIndex = 0;
+            this.rdTorokuHon.TabStop = true;
+            this.rdTorokuHon.Text = "本登録";
+            this.rdTorokuHon.UseVisualStyleBackColor = true;
+            // 
+            // baseLabel1
+            // 
+            this.baseLabel1.AutoSize = true;
+            this.baseLabel1.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
+            this.baseLabel1.Location = new System.Drawing.Point(255, 118);
+            this.baseLabel1.Name = "baseLabel1";
+            this.baseLabel1.Size = new System.Drawing.Size(55, 15);
+            this.baseLabel1.strToolTip = null;
+            this.baseLabel1.TabIndex = 126;
+            this.baseLabel1.Text = "仮登録";
+            this.baseLabel1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // rdTorokuAll
+            // 
+            this.rdTorokuAll.AutoSize = true;
+            this.rdTorokuAll.DisabledBackColor = System.Drawing.SystemColors.Control;
+            this.rdTorokuAll.DisabledForeColor = System.Drawing.SystemColors.ControlText;
+            this.rdTorokuAll.FocusedBackColor = System.Drawing.SystemColors.Control;
+            this.rdTorokuAll.FocusedForeColor = System.Drawing.SystemColors.ControlText;
+            this.rdTorokuAll.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
+            this.rdTorokuAll.Location = new System.Drawing.Point(3, 1);
+            this.rdTorokuAll.Name = "rdTorokuAll";
+            this.rdTorokuAll.Size = new System.Drawing.Size(57, 19);
+            this.rdTorokuAll.TabIndex = 2;
+            this.rdTorokuAll.TabStop = true;
+            this.rdTorokuAll.Text = "全て";
+            this.rdTorokuAll.UseVisualStyleBackColor = true;
+            // 
             // ShireList
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1380, 717);
+            this.Controls.Add(this.baseLabel1);
+            this.Controls.Add(this.panel2);
             this.Controls.Add(this.lblRecords);
             this.Controls.Add(this.gridShire);
             this.Controls.Add(this.txtCalendarClose);
@@ -309,6 +387,8 @@
             this.labelSet_Torihikisaki.PerformLayout();
             this.labelSet_Tantousha.ResumeLayout(false);
             this.labelSet_Tantousha.PerformLayout();
+            this.panel2.ResumeLayout(false);
+            this.panel2.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -332,5 +412,10 @@
         private Ctl.BaseButton btnF12;
         private Ctl.BaseLabel lblHachuNo;
         private Ctl.BaseText txtHachuNo;
+        private System.Windows.Forms.Panel panel2;
+        private Ctl.BaseRadioButton rdTorokuAll;
+        private Ctl.BaseRadioButton rdTorokuKari;
+        private Ctl.BaseRadioButton rdTorokuHon;
+        private Ctl.BaseLabel baseLabel1;
     }
 }

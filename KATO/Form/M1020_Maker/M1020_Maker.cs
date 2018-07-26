@@ -370,6 +370,7 @@ namespace KATO.Form.M1020_Maker
             lstMakerData.Add(txtMaker.Text);
             lstMakerData.Add(txtName.Text);
             lstMakerData.Add(SystemInformation.UserName);
+            lstMakerData.Add(txtNameKana.Text);
 
             //ビジネス層のインスタンス生成
             M1020_Maker_B makerB = new M1020_Maker_B();
@@ -459,6 +460,7 @@ namespace KATO.Form.M1020_Maker
                 lstMakerData.Add(dtSetCd.Rows[0]["メーカーコード"].ToString());
                 lstMakerData.Add(dtSetCd.Rows[0]["メーカー名"].ToString());
                 lstMakerData.Add(SystemInformation.UserName);
+                lstMakerData.Add(dtSetCd.Rows[0]["カナ"].ToString());
 
                 //ビジネス層、削除ロジックに移動
                 makerB.delMaker(lstMakerData);
@@ -487,6 +489,7 @@ namespace KATO.Form.M1020_Maker
         {
             txtMaker.Text = dtSelectData.Rows[0]["メーカーコード"].ToString();
             txtName.Text = dtSelectData.Rows[0]["メーカー名"].ToString();
+            txtNameKana.Text = dtSelectData.Rows[0]["カナ"].ToString();
         }
 
         ///<summary>
@@ -528,6 +531,7 @@ namespace KATO.Form.M1020_Maker
                 {
                     txtMaker.Text = dtSetCd.Rows[0]["メーカーコード"].ToString();
                     txtName.Text = dtSetCd.Rows[0]["メーカー名"].ToString();
+                    txtNameKana.Text = dtSetCd.Rows[0]["カナ"].ToString();
                     txtName.Focus();
  
                     // ファンクションボタン制御

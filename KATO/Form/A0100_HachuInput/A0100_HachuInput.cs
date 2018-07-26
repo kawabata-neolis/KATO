@@ -30,6 +30,7 @@ namespace KATO.Form.A0100_HachuInput
         //ロギングの設定
         private static readonly log4net.ILog logger = log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
 
+        bool addLock = false;
         ///<summary>
         ///A0100_HachuInput
         ///フォームの初期設定
@@ -252,8 +253,12 @@ namespace KATO.Form.A0100_HachuInput
                 case Keys.Enter:
                     break;
                 case Keys.F1:
-                    logger.Info(LogUtil.getMessage(this._Title, "登録実行"));
-                    this.addHachu(true);
+                    if (!addLock) {
+                        addLock = true;
+                        logger.Info(LogUtil.getMessage(this._Title, "登録実行"));
+                        this.addHachu(true);
+                        addLock = false;
+                    }
                     break;
                 case Keys.F2:
                     break;
@@ -579,8 +584,13 @@ namespace KATO.Form.A0100_HachuInput
             switch (((Button)sender).Name)
             {
                 case STR_BTN_F01: // 登録
-                    logger.Info(LogUtil.getMessage(this._Title, "登録実行"));
-                    this.addHachu(true);
+                    if (!addLock)
+                    {
+                        addLock = true;
+                        logger.Info(LogUtil.getMessage(this._Title, "登録実行"));
+                        this.addHachu(true);
+                        addLock = false;
+                    }
                     break;
                 case STR_BTN_F03: // 削除
                     logger.Info(LogUtil.getMessage(this._Title, "削除実行"));

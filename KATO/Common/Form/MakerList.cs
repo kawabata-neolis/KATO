@@ -440,6 +440,7 @@ namespace KATO.Common.Form
             //listに追加
             lstSearch.Add(lblSetDaibunrui.CodeTxtText);
             lstSearch.Add(txtKensaku.Text);
+            lstSearch.Add(txtKensakuKana.Text.Trim());
 
             MakerList_B makerlistB = new MakerList_B();
             try
@@ -450,6 +451,10 @@ namespace KATO.Common.Form
                 if (dtKensaku.Rows.Count != 0)
                 {
                     gridMaker.DataSource = dtKensaku;
+                }
+                else
+                {
+                    gridMaker.DataSource = null;
                 }
             
                 //検索件数を表示

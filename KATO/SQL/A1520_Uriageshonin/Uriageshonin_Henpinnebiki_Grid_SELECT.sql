@@ -15,7 +15,8 @@ SELECT CASE WHEN dbo.f_get返品値引売上承認フラグ(受注番号) = 0 TH
 	   AS 利益率,
 	   注番,
 	   社内メモ,
-	   dbo.f_get担当者名(受注者コード) AS 担当者
+	   dbo.f_get担当者名(受注者コード) AS 担当者,
+       dbo.f_get取引先名称(dbo.f_get受注番号から仕入先コード(受注番号)) AS 仕入先
 FROM 受注
 WHERE 削除 ='N' AND 
 	  ABS(売上済数量) < ABS(受注数量) AND 

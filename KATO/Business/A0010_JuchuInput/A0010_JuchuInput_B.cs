@@ -1117,5 +1117,37 @@ namespace KATO.Business.A0010_JuchuInput
             }
         }
 
+        public void delAccept(string stNo, string user, DBConnective con)
+        {
+            string strQuery = "";
+
+            strQuery += "SELECT * FROM 利益率承認 WHERE 受注番号 = " + stNo;
+            DataTable dt = null;
+
+            try
+            {
+                dt = con.ReadSql(strQuery);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+
+            if (dt != null && dt.Rows.Count > 0)
+            {
+                strQuery =  "DELETE FROM 利益率承認";
+                strQuery += " WHERE 受注番号 = " + stNo;
+
+                try
+                {
+                    con.RunSql(strQuery);
+                }
+                catch (Exception ex)
+                {
+                    throw ex;
+                }
+            }
+        }
+
     }
 }

@@ -773,7 +773,6 @@
             this.rsKyoten.Size = new System.Drawing.Size(260, 22);
             this.rsKyoten.TabIndex = 27;
             this.rsKyoten.TabStop = false;
-            this.rsKyoten.Visible = false;
             // 
             // rsJuchuShubetsu
             // 
@@ -1059,7 +1058,6 @@
             this.gridKakoList.AllowUserToAddRows = false;
             this.gridKakoList.AllowUserToResizeColumns = false;
             this.gridKakoList.AllowUserToResizeRows = false;
-            this.gridKakoList.AutoGenerateColumns = false;
             dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle4.BackColor = System.Drawing.Color.Gainsboro;
             dataGridViewCellStyle4.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);

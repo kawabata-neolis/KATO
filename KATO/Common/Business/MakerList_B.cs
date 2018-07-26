@@ -102,12 +102,18 @@ namespace KATO.Common.Business
                 if (lstSearch[1] != "")
                 {
                     //現行では検索不可能だが可能になった
-                    strWhere = strWhere + "AND a.メーカー名 LIKE '%" + lstSearch[1] + "%'";
+                    strWhere = strWhere + " AND a.メーカー名 LIKE '%" + lstSearch[1] + "%'";
                 }
 
-                strWhere = strWhere + "ORDER BY メーカーコード ";
+                if (lstSearch[2] != "")
+                {
+                    //現行では検索不可能だが可能になった
+                    strWhere = strWhere + " AND a.カナ LIKE '%" + lstSearch[2] + "%'";
+                }
 
-                dtGetTableGrid = dbConnective.ReadSql("SELECT a.メーカーコード, a.メーカー名 FROM メーカー a " + strWhere);
+                strWhere = strWhere + " ORDER BY メーカーコード ";
+
+                dtGetTableGrid = dbConnective.ReadSql("SELECT a.メーカーコード, a.メーカー名, a.カナ FROM メーカー a " + strWhere);
             }
             catch (Exception ex)
             {

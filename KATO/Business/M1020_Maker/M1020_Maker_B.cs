@@ -34,6 +34,7 @@ namespace KATO.Business.M1020_Maker_B
                 string[] aryStr = new string[] {
                     lstMakerData[0],
                     lstMakerData[1],
+                    lstMakerData[3],
                     "N",
                     DateTime.Now.ToString(),
                     lstMakerData[2],
@@ -76,6 +77,7 @@ namespace KATO.Business.M1020_Maker_B
                 string[] aryStr = new string[] {
                     lstString[0],
                     lstString[1],
+                    lstString[3],
                     "Y",
                     DateTime.Now.ToString(),
                     lstString[2],

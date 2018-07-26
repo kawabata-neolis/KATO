@@ -347,6 +347,16 @@ namespace KATO.Form.D0360_JuchuzanKakunin
             hachuNo.DataPropertyName = "発注番号";
             hachuNo.Name = "発注番号";
             hachuNo.HeaderText = "発注番号";
+
+            DataGridViewTextBoxColumn eigyoJ = new DataGridViewTextBoxColumn();
+            eigyoJ.DataPropertyName = "受注営業所";
+            eigyoJ.Name = "受注営業所";
+            eigyoJ.HeaderText = "営業所(受)";
+
+            DataGridViewTextBoxColumn eigyoH = new DataGridViewTextBoxColumn();
+            eigyoH.DataPropertyName = "発注営業所";
+            eigyoH.Name = "発注営業所";
+            eigyoH.HeaderText = "営業所(発)";
             #endregion
 
 
@@ -402,10 +412,23 @@ namespace KATO.Form.D0360_JuchuzanKakunin
             kakoShiireSu.Name = "仕入数量";
             kakoShiireSu.HeaderText = "仕入数量";
 
+            DataGridViewTextBoxColumn modoshi = new DataGridViewTextBoxColumn();
+            modoshi.DataPropertyName = "差戻";
+            modoshi.Name = "差戻";
+            modoshi.HeaderText = "承認";
+
+            DataGridViewTextBoxColumn nebiki = new DataGridViewTextBoxColumn();
+            nebiki.DataPropertyName = "値引";
+            nebiki.Name = "値引";
+            nebiki.HeaderText = "値引";
+
             #endregion
 
             //バインド、個々の幅、文章の寄せの設定
             #region
+            setColumn(modoshi,           DataGridViewContentAlignment.MiddleCenter, DataGridViewContentAlignment.MiddleCenter, null,     45);
+            setColumn(nebiki,            DataGridViewContentAlignment.MiddleCenter, DataGridViewContentAlignment.MiddleCenter, null,     45);
+
             setColumn(juchubi,           DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, null,      90);
             setColumn(noki,              DataGridViewContentAlignment.MiddleLeft,  DataGridViewContentAlignment.MiddleCenter, null,      90);
             setColumn(chuban,            DataGridViewContentAlignment.MiddleLeft,  DataGridViewContentAlignment.MiddleCenter, null,     280);
@@ -446,6 +469,10 @@ namespace KATO.Form.D0360_JuchuzanKakunin
             setColumnKako(kakoShiiremei, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter, null, 340);
             setColumnKako(kakoShiireDay, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter, null, 90);
             setColumnKako(kakoShiireSu, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0", 96);
+
+            setColumn(eigyoJ, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter, null, 112);
+            setColumn(eigyoH, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter, null, 112);
+
             #endregion
 
             //発注番号カラムの非表示
@@ -695,6 +722,7 @@ namespace KATO.Form.D0360_JuchuzanKakunin
             D0360_JuchuzanKakunin_B bis = new D0360_JuchuzanKakunin_B();
             try
             {
+                this.Cursor = Cursors.WaitCursor;
                 txtGokeiUriage.Text = "";
                 txtGokeiGenka.Text = "";
                 // 検索実行
@@ -782,6 +810,10 @@ namespace KATO.Form.D0360_JuchuzanKakunin
                 //例外発生メッセージ（OK）
                 BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_ERROR, CommonTeisu.LABEL_ERROR_MESSAGE, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
                 basemessagebox.ShowDialog();
+            }
+            finally
+            {
+                this.Cursor = Cursors.Default;
             }
         }
 
@@ -1136,11 +1168,11 @@ namespace KATO.Form.D0360_JuchuzanKakunin
                 //仕入入力から来た場合
                 if (blShireInput == true)
                 {
-                    bBox.Text = (gridZanList[25, intIdx].Value).ToString();
+                    bBox.Text = (gridZanList[27, intIdx].Value).ToString();
                 }
                 else
                 {
-                    bBox.Text = (gridZanList[21, intIdx].Value).ToString();
+                    bBox.Text = (gridZanList[23, intIdx].Value).ToString();
                 }
                 this.Close();
             }
@@ -1162,11 +1194,11 @@ namespace KATO.Form.D0360_JuchuzanKakunin
                     //仕入入力から来た場合
                     if (blShireInput == true)
                     {
-                        bBox.Text = (gridZanList[25, intIdx].Value).ToString();
+                        bBox.Text = (gridZanList[27, intIdx].Value).ToString();
                     }
                     else
                     {
-                        bBox.Text = (gridZanList[21, intIdx].Value).ToString();
+                        bBox.Text = (gridZanList[23, intIdx].Value).ToString();
                     }
                     this.Close();
                 }
@@ -1320,7 +1352,8 @@ namespace KATO.Form.D0360_JuchuzanKakunin
                 txtGokeiUriage.Text = "";
                 txtGokeiGenka.Text = "";
                 // 検索実行
-                DataTable dtZanList = bis.getZanListP(listParam, hatchuzanFlg);
+                //DataTable dtZanList = bis.getZanListP(listParam, hatchuzanFlg);
+                DataTable dtZanList = bis.getZanList(listParam, hatchuzanFlg);
 
                 if (dtZanList == null || dtZanList.Rows.Count == 0)
                 {
@@ -1328,9 +1361,20 @@ namespace KATO.Form.D0360_JuchuzanKakunin
                 }
 
                 // PDF作成
-                string  stPass = bis.printReport(dtZanList, lsJuchusha.ValueLabelText,
-                    lsTokuisaki.ValueLabelText, txtJuchuNokiFrom.Text, txtJuchuNokiTo.Text,
-                    strUkata, txtChuban.Text);
+                string stSha = lsJuchusha.ValueLabelText;
+                string stSaki = lsTokuisaki.ValueLabelText;
+                string stFrom = txtJuchuNokiFrom.Text;
+                string stTo = txtJuchuNokiTo.Text;
+                if (int.Parse(listParam[29]) == 1)
+                {
+                    stSha = lsHatchusha.ValueLabelText;
+                    stSaki = lsShiiresaki.ValueLabelText;
+                    stFrom = txtHatchuNokiFrom.Text;
+                    stTo = txtHatchuNokiTo.Text;
+                }
+                string  stPass = bis.printReport(dtZanList, stSha,
+                    stSaki, stFrom, stTo,
+                    strUkata, txtChuban.Text, int.Parse(listParam[29]));
 
                 // 印刷ダイアログ表示
                 Common.Form.PrintForm pf = new Common.Form.PrintForm(this, "", CommonTeisu.SIZE_A4, CommonTeisu.YOKO);

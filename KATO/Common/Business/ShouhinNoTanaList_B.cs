@@ -161,6 +161,8 @@ namespace KATO.Common.Business
                     strWhere = strWhere + " )";
                 }
 
+                strWhere += " ORDER BY 見積, 仮商品.商品コード, 仮商品.登録日時";
+
                 //SQLファイルのパスとファイル名を追加
                 lstSQL.Add("Common");
                 lstSQL.Add("CommonForm");

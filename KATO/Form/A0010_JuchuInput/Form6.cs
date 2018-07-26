@@ -1440,6 +1440,37 @@ namespace KATO.Form.A0010_JuchuInput
                     return;
                 }
 
+                string stShi = ((BaseTextMoney)c.Controls["txtHNo"]).Text;
+
+                string sSouko = ((BaseText)c.Controls["txtSouko"]).Text;
+
+                int jud = ((RadSet_2btn)c.Controls["rdSouko"]).judCheckBtn();
+                if (jud == 1 || ((RadSet_2btn)c.Controls["rdSouko"]).radbtn1.Checked)
+                {
+                    sSouko = "0002";
+                }
+                else
+                {
+                    sSouko = "0001";
+                }
+
+                DataTable dtZaiko = kakoB.getZaiko(sSouko, ((BaseText)c.Controls["txtShohin"]).Text);
+
+                decimal decZaikoSu = 0;
+                decimal decSu = decimal.Parse(((BaseTextMoney)c.Controls["txtSuryo"]).Text);
+
+                if (dtZaiko != null && dtZaiko.Rows.Count > 0)
+                {
+                    decZaikoSu = getDecValue(dtZaiko.Rows[0]["在庫数"].ToString());
+
+                    if (decZaikoSu < decSu)
+                    {
+                        basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_ERROR, "出庫数が在庫数を超えています。", CommonTeisu.BTN_OK, CommonTeisu.DIAG_EXCLAMATION);
+                        basemessagebox.ShowDialog();
+                        return;
+                    }
+                }
+
                 BaseMessageBox basemessageboxSa = new BaseMessageBox(this, "出庫", "出庫を行いますか？", CommonTeisu.BTN_YESNO, CommonTeisu.DIAG_QUESTION);
                 //NOが押された場合
                 if (basemessageboxSa.ShowDialog() == DialogResult.No)
@@ -1616,6 +1647,35 @@ namespace KATO.Form.A0010_JuchuInput
                     basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_TOUROKU, "既に出庫済です。", CommonTeisu.BTN_OK, CommonTeisu.DIAG_EXCLAMATION);
                     basemessagebox.ShowDialog();
                     return;
+                }
+
+                string sSouko = ((BaseText)c.Controls["txtSouko"]).Text;
+
+                int jud = ((RadSet_2btn)c.Controls["rdSouko"]).judCheckBtn();
+                if (jud == 1 || ((RadSet_2btn)c.Controls["rdSouko"]).radbtn1.Checked)
+                {
+                    sSouko = "0002";
+                }
+                else
+                {
+                    sSouko = "0001";
+                }
+
+                DataTable dtZaiko = kakoB.getZaiko(sSouko, ((BaseText)c.Controls["txtShohin"]).Text);
+
+                decimal decZaikoSu = 0;
+                decimal decSu = decimal.Parse(((BaseTextMoney)c.Controls["txtSuryo"]).Text);
+
+                if (dtZaiko != null && dtZaiko.Rows.Count > 0)
+                {
+                    decZaikoSu = getDecValue(dtZaiko.Rows[0]["在庫数"].ToString());
+
+                    if (decZaikoSu < decSu)
+                    {
+                        basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_ERROR, "出庫数が在庫数を超えています。", CommonTeisu.BTN_OK, CommonTeisu.DIAG_EXCLAMATION);
+                        basemessagebox.ShowDialog();
+                        return;
+                    }
                 }
 
                 BaseMessageBox basemessageboxSa = new BaseMessageBox(this, "加工品出庫", "出庫を行いますか？", CommonTeisu.BTN_YESNO, CommonTeisu.DIAG_QUESTION);
@@ -2720,6 +2780,7 @@ namespace KATO.Form.A0010_JuchuInput
                 string sHSu = ((BaseTextMoney)cc.Controls["txtSuryo"]).Text;
                 string sHTanka = ((BaseTextMoney)cc.Controls["txtTanka"]).Text;
 
+                #region
                 if (string.IsNullOrWhiteSpace(sHYMD))
                 {
                     ((BaseCalendar)cc.Controls["txtHYMD"]).Focus();
@@ -2766,6 +2827,7 @@ namespace KATO.Form.A0010_JuchuInput
                     ret = 1;
                     break;
                 }
+                #endregion
 
                 DateTime endDateTime = DateTime.Parse(txtJuchuYMD.Text);
                 string strEndDay = endDateTime.AddYears(1).ToString("yyyy/MM/dd");
@@ -2795,6 +2857,7 @@ namespace KATO.Form.A0010_JuchuInput
                     }
                 }
 
+                #region
                 if (!changeVal((Panel)cc))
                 {
                     continue;
@@ -2855,6 +2918,7 @@ namespace KATO.Form.A0010_JuchuInput
                     ((BaseTextMoney)cc.Controls["txtTanka"]).Focus();
                     break;
                 }
+                #endregion
 
                 if (!((RadSet_2btn)cc.Controls["rdSouko"]).radbtn0.Checked && !((RadSet_2btn)cc.Controls["rdSouko"]).radbtn1.Checked)
                 {

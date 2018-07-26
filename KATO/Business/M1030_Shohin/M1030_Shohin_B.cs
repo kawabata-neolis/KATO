@@ -488,8 +488,18 @@ namespace KATO.Business.M1030_Shohin
                         return strGetDenpyo;
                     }
 
+                    DataTable dt = dbconnective.ReadSql("select 最終番号 FROM 伝票番号 where テーブル名 = '" + strDenNo + "'");
+
+                    if (dt == null || dt.Rows.Count == 0)
+                    {
+                        return strGetDenpyo;
+                    }
+                    int num = int.Parse(dtSetCd_B.Rows[0][0].ToString().Substring(1));
+                    num = int.Parse(dt.Rows[0][0].ToString());
+
                     //頭文字以降の数値が9999以上の場合
-                    if (int.Parse(dtSetCd_B.Rows[0][0].ToString().Substring(1)) >= 9999)
+                    //if (int.Parse(dtSetCd_B.Rows[0][0].ToString().Substring(1)) >= 9999)
+                    if (num >= 9999)
                     {
                         strCdHEAD = strCdHEAD2;
                         strDenNo = strDenNo2;

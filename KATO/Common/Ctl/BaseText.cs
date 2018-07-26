@@ -7,7 +7,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using System.ComponentModel;
 using KATO.Form.M1030_Shohin;
 
 namespace KATO.Common.Ctl
