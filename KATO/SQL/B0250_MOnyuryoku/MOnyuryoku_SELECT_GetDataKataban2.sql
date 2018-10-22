@@ -23,14 +23,15 @@ SELECT Rtrim(ISNULL(ＭＯ.Ｃ１, '')) AS 型番,
        Rtrim(ISNULL(ＭＯ.Ｃ６,'')) AS Ｃ６,
        商品.箱入数,
        仕入.最終仕入日,
-	   ＭＯ.中分類コード
+	   ＭＯ.中分類コード,
+       ＭＯ.受注残数量 AS 受注残
 FROM ＭＯ left join (
-		SELECT M.商品コード, MAX(H.伝票年月日) as 最終仕入日
+		SELECT M.商品コード, H.仕入先コード, MAX(H.伝票年月日) as 最終仕入日
 		FROM 仕入ヘッダ H,仕入明細 M
  		WHERE H.削除 = 'N'
  		  AND M.削除 = 'N'
  		  AND H.伝票番号 = M.伝票番号 
- 		group by 商品コード) as 仕入 on ＭＯ.削除 = 'N' and 仕入.商品コード = ＭＯ.商品コード
+ 		group by 商品コード, 仕入先コード) as 仕入 on ＭＯ.削除 = 'N' and 仕入.商品コード = ＭＯ.商品コード and 仕入.仕入先コード = ＭＯ.仕入先コード
 	left join 担当者 on ＭＯ.削除 = 'N' and 担当者.削除 = 'N' and 担当者.担当者コード = ＭＯ.発注担当者コード
 	left join 商品 on ＭＯ.削除 = 'N' and 商品.削除 = 'N' and 商品.商品コード = ＭＯ.商品コード
 	left join 取引先 on ＭＯ.削除 = 'N' and 取引先.削除 = 'N' and 取引先.取引先コード = ＭＯ.取引先コード

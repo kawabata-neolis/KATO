@@ -31,6 +31,8 @@
             this.components = new System.ComponentModel.Container();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.lblTime1 = new KATO.Common.Ctl.BaseLabel(this.components);
+            this.baseLabel1 = new KATO.Common.Ctl.BaseLabel(this.components);
             this.TestButton5 = new KATO.Common.Ctl.BaseButton();
             this.TestButton4 = new KATO.Common.Ctl.BaseButton();
             this.TestButton3 = new KATO.Common.Ctl.BaseButton();
@@ -77,6 +79,7 @@
             this.btn_2 = new KATO.Common.Ctl.BaseMenuButton();
             this.btn_1 = new KATO.Common.Ctl.BaseMenuButton();
             this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.lblTime2 = new KATO.Common.Ctl.BaseLabel(this.components);
             this.btn_70 = new KATO.Common.Ctl.BaseMenuButton();
             this.btn_69 = new KATO.Common.Ctl.BaseMenuButton();
             this.btn_50 = new KATO.Common.Ctl.BaseMenuButton();
@@ -118,6 +121,7 @@
             this.btn_42 = new KATO.Common.Ctl.BaseMenuButton();
             this.btn_41 = new KATO.Common.Ctl.BaseMenuButton();
             this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.lblTime3 = new KATO.Common.Ctl.BaseLabel(this.components);
             this.btn_110 = new KATO.Common.Ctl.BaseMenuButton();
             this.btn_109 = new KATO.Common.Ctl.BaseMenuButton();
             this.btn_90 = new KATO.Common.Ctl.BaseMenuButton();
@@ -159,6 +163,7 @@
             this.btn_82 = new KATO.Common.Ctl.BaseMenuButton();
             this.btn_81 = new KATO.Common.Ctl.BaseMenuButton();
             this.tabPage4 = new System.Windows.Forms.TabPage();
+            this.lblTime4 = new KATO.Common.Ctl.BaseLabel(this.components);
             this.btn_150 = new KATO.Common.Ctl.BaseMenuButton();
             this.btn_149 = new KATO.Common.Ctl.BaseMenuButton();
             this.btn_130 = new KATO.Common.Ctl.BaseMenuButton();
@@ -201,6 +206,7 @@
             this.btn_122 = new KATO.Common.Ctl.BaseMenuButton();
             this.btnChokusosaki = new KATO.Common.Ctl.BaseMenuButton();
             this.tabPage5 = new System.Windows.Forms.TabPage();
+            this.lblTime5 = new KATO.Common.Ctl.BaseLabel(this.components);
             this.btn_190 = new KATO.Common.Ctl.BaseMenuButton();
             this.btn_189 = new KATO.Common.Ctl.BaseMenuButton();
             this.btn_170 = new KATO.Common.Ctl.BaseMenuButton();
@@ -343,6 +349,8 @@
             // tabPage1
             // 
             this.tabPage1.BackColor = System.Drawing.SystemColors.Control;
+            this.tabPage1.Controls.Add(this.lblTime1);
+            this.tabPage1.Controls.Add(this.baseLabel1);
             this.tabPage1.Controls.Add(this.TestButton5);
             this.tabPage1.Controls.Add(this.TestButton4);
             this.tabPage1.Controls.Add(this.TestButton3);
@@ -394,6 +402,30 @@
             this.tabPage1.Size = new System.Drawing.Size(1392, 737);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "1";
+            // 
+            // lblTime1
+            // 
+            this.lblTime1.AutoSize = true;
+            this.lblTime1.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
+            this.lblTime1.Location = new System.Drawing.Point(6, 5);
+            this.lblTime1.Name = "lblTime1";
+            this.lblTime1.Size = new System.Drawing.Size(87, 15);
+            this.lblTime1.strToolTip = null;
+            this.lblTime1.TabIndex = 88;
+            this.lblTime1.Text = "利用可能：";
+            this.lblTime1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // baseLabel1
+            // 
+            this.baseLabel1.AutoSize = true;
+            this.baseLabel1.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
+            this.baseLabel1.Location = new System.Drawing.Point(27, 715);
+            this.baseLabel1.Name = "baseLabel1";
+            this.baseLabel1.Size = new System.Drawing.Size(87, 15);
+            this.baseLabel1.strToolTip = null;
+            this.baseLabel1.TabIndex = 42;
+            this.baseLabel1.Text = "利用可能：";
+            this.baseLabel1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // TestButton5
             // 
@@ -1044,6 +1076,7 @@
             // tabPage2
             // 
             this.tabPage2.BackColor = System.Drawing.SystemColors.Control;
+            this.tabPage2.Controls.Add(this.lblTime2);
             this.tabPage2.Controls.Add(this.btn_70);
             this.tabPage2.Controls.Add(this.btn_69);
             this.tabPage2.Controls.Add(this.btn_50);
@@ -1090,6 +1123,18 @@
             this.tabPage2.Size = new System.Drawing.Size(1392, 737);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "2";
+            // 
+            // lblTime2
+            // 
+            this.lblTime2.AutoSize = true;
+            this.lblTime2.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
+            this.lblTime2.Location = new System.Drawing.Point(6, 5);
+            this.lblTime2.Name = "lblTime2";
+            this.lblTime2.Size = new System.Drawing.Size(87, 15);
+            this.lblTime2.strToolTip = null;
+            this.lblTime2.TabIndex = 89;
+            this.lblTime2.Text = "利用可能：";
+            this.lblTime2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // btn_70
             // 
@@ -1671,6 +1716,7 @@
             // tabPage3
             // 
             this.tabPage3.BackColor = System.Drawing.SystemColors.Control;
+            this.tabPage3.Controls.Add(this.lblTime3);
             this.tabPage3.Controls.Add(this.btn_110);
             this.tabPage3.Controls.Add(this.btn_109);
             this.tabPage3.Controls.Add(this.btn_90);
@@ -1717,6 +1763,18 @@
             this.tabPage3.Size = new System.Drawing.Size(1392, 737);
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "3";
+            // 
+            // lblTime3
+            // 
+            this.lblTime3.AutoSize = true;
+            this.lblTime3.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
+            this.lblTime3.Location = new System.Drawing.Point(6, 5);
+            this.lblTime3.Name = "lblTime3";
+            this.lblTime3.Size = new System.Drawing.Size(87, 15);
+            this.lblTime3.strToolTip = null;
+            this.lblTime3.TabIndex = 89;
+            this.lblTime3.Text = "利用可能：";
+            this.lblTime3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // btn_110
             // 
@@ -2288,6 +2346,7 @@
             // tabPage4
             // 
             this.tabPage4.BackColor = System.Drawing.SystemColors.Control;
+            this.tabPage4.Controls.Add(this.lblTime4);
             this.tabPage4.Controls.Add(this.btn_150);
             this.tabPage4.Controls.Add(this.btn_149);
             this.tabPage4.Controls.Add(this.btn_130);
@@ -2334,6 +2393,18 @@
             this.tabPage4.Size = new System.Drawing.Size(1392, 737);
             this.tabPage4.TabIndex = 3;
             this.tabPage4.Text = "4";
+            // 
+            // lblTime4
+            // 
+            this.lblTime4.AutoSize = true;
+            this.lblTime4.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
+            this.lblTime4.Location = new System.Drawing.Point(6, 5);
+            this.lblTime4.Name = "lblTime4";
+            this.lblTime4.Size = new System.Drawing.Size(87, 15);
+            this.lblTime4.strToolTip = null;
+            this.lblTime4.TabIndex = 105;
+            this.lblTime4.Text = "利用可能：";
+            this.lblTime4.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // btn_150
             // 
@@ -2926,6 +2997,7 @@
             // tabPage5
             // 
             this.tabPage5.BackColor = System.Drawing.SystemColors.Control;
+            this.tabPage5.Controls.Add(this.lblTime5);
             this.tabPage5.Controls.Add(this.btn_190);
             this.tabPage5.Controls.Add(this.btn_189);
             this.tabPage5.Controls.Add(this.btn_170);
@@ -2971,6 +3043,18 @@
             this.tabPage5.Size = new System.Drawing.Size(1392, 737);
             this.tabPage5.TabIndex = 4;
             this.tabPage5.Text = "5";
+            // 
+            // lblTime5
+            // 
+            this.lblTime5.AutoSize = true;
+            this.lblTime5.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
+            this.lblTime5.Location = new System.Drawing.Point(6, 5);
+            this.lblTime5.Name = "lblTime5";
+            this.lblTime5.Size = new System.Drawing.Size(87, 15);
+            this.lblTime5.strToolTip = null;
+            this.lblTime5.TabIndex = 253;
+            this.lblTime5.Text = "利用可能：";
+            this.lblTime5.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // btn_190
             // 
@@ -3523,7 +3607,7 @@
             // 
             // btn_161
             // 
-            this.btn_161.BackColor = System.Drawing.Color.Cyan;
+            this.btn_161.BackColor = System.Drawing.Color.LightYellow;
             this.btn_161.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
             this.btn_161.Location = new System.Drawing.Point(30, 30);
             this.btn_161.Name = "btn_161";
@@ -3550,6 +3634,7 @@
             // 
             // txtShoriNo
             // 
+            this.txtShoriNo.BackColor = System.Drawing.Color.White;
             this.txtShoriNo.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
             this.txtShoriNo.Location = new System.Drawing.Point(1253, 783);
             this.txtShoriNo.MaxLength = 4;
@@ -3571,6 +3656,7 @@
             this.Name = "Z0000";
             this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
             this.Text = "メニュー";
+            this.Activated += new System.EventHandler(this.Z0000_Activated);
             this.Load += new System.EventHandler(this.Z0000_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judKeyDown);
             this.Controls.SetChildIndex(this.cmbSubWinShow, 0);
@@ -3591,10 +3677,15 @@
             this.Controls.SetChildIndex(this.txtShoriNo, 0);
             this.tabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
+            this.tabPage1.PerformLayout();
             this.tabPage2.ResumeLayout(false);
+            this.tabPage2.PerformLayout();
             this.tabPage3.ResumeLayout(false);
+            this.tabPage3.PerformLayout();
             this.tabPage4.ResumeLayout(false);
+            this.tabPage4.PerformLayout();
             this.tabPage5.ResumeLayout(false);
+            this.tabPage5.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -3816,5 +3907,11 @@
         private Common.Ctl.BaseButton TestButton3;
         private Common.Ctl.BaseButton TestButton2;
         private Common.Ctl.BaseButton TestButton1;
+        private Common.Ctl.BaseLabel lblTime1;
+        private Common.Ctl.BaseLabel baseLabel1;
+        private Common.Ctl.BaseLabel lblTime2;
+        private Common.Ctl.BaseLabel lblTime3;
+        private Common.Ctl.BaseLabel lblTime4;
+        private Common.Ctl.BaseLabel lblTime5;
     }
 }

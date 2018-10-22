@@ -258,7 +258,7 @@
             this.labelSet_Eigyosho.SpaceCodeValue = 4;
             this.labelSet_Eigyosho.SpaceNameCode = 5;
             this.labelSet_Eigyosho.SpaceValueAppend = 5;
-            this.labelSet_Eigyosho.TabIndex = 3;
+            this.labelSet_Eigyosho.TabIndex = 4;
             this.labelSet_Eigyosho.ValueLabelSize = 80;
             this.labelSet_Eigyosho.ValueLabelText = "";
             // 
@@ -295,7 +295,7 @@
             this.txtKensaku.MaxLength = 40;
             this.txtKensaku.Name = "txtKensaku";
             this.txtKensaku.Size = new System.Drawing.Size(330, 22);
-            this.txtKensaku.TabIndex = 4;
+            this.txtKensaku.TabIndex = 3;
             this.txtKensaku.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judTxtShohinTxtDown);
             // 
             // lblHinmeiKataban

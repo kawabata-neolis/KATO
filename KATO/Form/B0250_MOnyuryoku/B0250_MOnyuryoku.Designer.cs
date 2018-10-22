@@ -182,6 +182,7 @@
             this.lblSetDaibunrui.TabIndex = 3;
             this.lblSetDaibunrui.ValueLabelSize = 205;
             this.lblSetDaibunrui.ValueLabelText = "";
+            this.lblSetDaibunrui.Validated += new System.EventHandler(this.lblSetDaibunrui_Validated);
             // 
             // lblSetChubunrui
             // 
@@ -201,6 +202,7 @@
             this.lblSetChubunrui.TabIndex = 4;
             this.lblSetChubunrui.ValueLabelSize = 315;
             this.lblSetChubunrui.ValueLabelText = "";
+            this.lblSetChubunrui.Validated += new System.EventHandler(this.lblSetChubunrui_Validated);
             // 
             // lblSetMaker
             // 
@@ -220,6 +222,7 @@
             this.lblSetMaker.TabIndex = 5;
             this.lblSetMaker.ValueLabelSize = 190;
             this.lblSetMaker.ValueLabelText = "";
+            this.lblSetMaker.Validated += new System.EventHandler(this.lblSetMaker_Validated);
             // 
             // lblYM
             // 
@@ -298,6 +301,8 @@
             this.gridKataban.Size = new System.Drawing.Size(1560, 183);
             this.gridKataban.StandardTab = true;
             this.gridKataban.TabIndex = 35;
+            this.gridKataban.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.gridKataban_CellClick);
+            this.gridKataban.KeyUp += new System.Windows.Forms.KeyEventHandler(this.gridKataban_KeyUp);
             // 
             // gridKataban2
             // 
@@ -340,10 +345,12 @@
             this.gridKataban2.Size = new System.Drawing.Size(1560, 236);
             this.gridKataban2.StandardTab = true;
             this.gridKataban2.TabIndex = 7;
+            this.gridKataban2.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.gridKataban2_CellClick);
             this.gridKataban2.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.gridKataban2_CellDoubleClick);
-            this.gridKataban2.SelectionChanged += new System.EventHandler(this.gridKataban2_SelectionChanged);
+            this.gridKataban2.CurrentCellChanged += new System.EventHandler(this.gridKataban2_SelectionChanged);
             this.gridKataban2.Sorted += new System.EventHandler(this.gridKataban2_Sorted);
             this.gridKataban2.KeyDown += new System.Windows.Forms.KeyEventHandler(this.gridKataban2_KeyDown);
+            this.gridKataban2.KeyUp += new System.Windows.Forms.KeyEventHandler(this.gridKataban2_KeyUp);
             // 
             // lblKensaku
             // 
@@ -481,7 +488,6 @@
             this.gridRireki.AllowUserToAddRows = false;
             this.gridRireki.AllowUserToResizeColumns = false;
             this.gridRireki.AllowUserToResizeRows = false;
-            this.gridRireki.AutoGenerateColumns = false;
             dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle7.BackColor = System.Drawing.Color.Gainsboro;
             dataGridViewCellStyle7.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
@@ -804,7 +810,6 @@
         private Common.Ctl.BaseLabel lblShukeiM;
         private Common.Ctl.BaseLabel lblZaikoYMD;
         private Common.Ctl.BaseDataGridView gridKataban;
-        private Common.Ctl.BaseDataGridView gridKataban2;
         private Common.Ctl.BaseLabel lblKensaku;
         private Common.Ctl.BaseLabel lblHachusu;
         private Common.Ctl.BaseLabel lblTanka;
@@ -828,5 +833,6 @@
         private Common.Ctl.BaseTextMoney txtShukeiM;
         private Common.Ctl.BaseLabel lblKensu;
         private Common.Ctl.RadSet_2btn radSet_2btn_PrintCheck;
+        public Common.Ctl.BaseDataGridView gridKataban2;
     }
 }

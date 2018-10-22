@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.label14 = new System.Windows.Forms.Label();
             this.label22 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
@@ -50,6 +51,10 @@
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
+            this.cmbRepri = new KATO.Common.Ctl.BaseComboBox();
+            this.lblRepriBase = new KATO.Common.Ctl.BaseLabel(this.components);
+            this.txtRepri = new KATO.Common.Ctl.BaseTextMoney();
+            this.lblRepri = new KATO.Common.Ctl.BaseLabel(this.components);
             this.txtArariElem8 = new KATO.Common.Ctl.BaseTextMoney();
             this.txtKingakuElem6 = new KATO.Common.Ctl.BaseTextMoney();
             this.labelSet_SoukoNoElem10 = new KATO.Common.Ctl.LabelSet_Eigyosho();
@@ -304,8 +309,68 @@
             this.label1.TabIndex = 0;
             this.label1.Text = "No";
             // 
+            // cmbRepri
+            // 
+            this.cmbRepri.blnBlankFlg = false;
+            this.cmbRepri.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
+            this.cmbRepri.FormattingEnabled = true;
+            this.cmbRepri.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.cmbRepri.Items.AddRange(new object[] {
+            "本社",
+            "岐阜"});
+            this.cmbRepri.Location = new System.Drawing.Point(89, 38);
+            this.cmbRepri.Name = "cmbRepri";
+            this.cmbRepri.Size = new System.Drawing.Size(53, 23);
+            this.cmbRepri.TabIndex = 10003;
+            this.cmbRepri.Visible = false;
+            // 
+            // lblRepriBase
+            // 
+            this.lblRepriBase.AutoSize = true;
+            this.lblRepriBase.Font = new System.Drawing.Font("ＭＳ ゴシック", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.lblRepriBase.Location = new System.Drawing.Point(9, 45);
+            this.lblRepriBase.Name = "lblRepriBase";
+            this.lblRepriBase.Size = new System.Drawing.Size(77, 12);
+            this.lblRepriBase.strToolTip = null;
+            this.lblRepriBase.TabIndex = 10002;
+            this.lblRepriBase.Text = "現品票再印刷";
+            this.lblRepriBase.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.lblRepriBase.Visible = false;
+            // 
+            // txtRepri
+            // 
+            this.txtRepri.blnCommaOK = true;
+            this.txtRepri.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
+            this.txtRepri.ImeMode = System.Windows.Forms.ImeMode.Disable;
+            this.txtRepri.intDeciSet = 0;
+            this.txtRepri.intIntederSet = 3;
+            this.txtRepri.intShishagonyu = 0;
+            this.txtRepri.Location = new System.Drawing.Point(183, 39);
+            this.txtRepri.MaxLength = 3;
+            this.txtRepri.MinusFlg = true;
+            this.txtRepri.Name = "txtRepri";
+            this.txtRepri.Size = new System.Drawing.Size(32, 22);
+            this.txtRepri.TabIndex = 10001;
+            this.txtRepri.TabStop = false;
+            this.txtRepri.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.txtRepri.Visible = false;
+            // 
+            // lblRepri
+            // 
+            this.lblRepri.AutoSize = true;
+            this.lblRepri.Font = new System.Drawing.Font("ＭＳ ゴシック", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.lblRepri.Location = new System.Drawing.Point(148, 45);
+            this.lblRepri.Name = "lblRepri";
+            this.lblRepri.Size = new System.Drawing.Size(29, 12);
+            this.lblRepri.strToolTip = null;
+            this.lblRepri.TabIndex = 10000;
+            this.lblRepri.Text = "枚数";
+            this.lblRepri.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.lblRepri.Visible = false;
+            // 
             // txtArariElem8
             // 
+            this.txtArariElem8.BackColor = System.Drawing.SystemColors.Window;
             this.txtArariElem8.blnCommaOK = true;
             this.txtArariElem8.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
             this.txtArariElem8.ImeMode = System.Windows.Forms.ImeMode.Disable;
@@ -324,6 +389,7 @@
             // 
             // txtKingakuElem6
             // 
+            this.txtKingakuElem6.BackColor = System.Drawing.SystemColors.Window;
             this.txtKingakuElem6.blnCommaOK = true;
             this.txtKingakuElem6.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
             this.txtKingakuElem6.ImeMode = System.Windows.Forms.ImeMode.Disable;
@@ -347,7 +413,7 @@
             this.labelSet_SoukoNoElem10.CodeTxtSize = 40;
             this.labelSet_SoukoNoElem10.CodeTxtText = "";
             this.labelSet_SoukoNoElem10.LabelName = "倉庫番号";
-            this.labelSet_SoukoNoElem10.Location = new System.Drawing.Point(148, 39);
+            this.labelSet_SoukoNoElem10.Location = new System.Drawing.Point(221, 39);
             this.labelSet_SoukoNoElem10.Name = "labelSet_SoukoNoElem10";
             this.labelSet_SoukoNoElem10.ShowAppendFlg = false;
             this.labelSet_SoukoNoElem10.Size = new System.Drawing.Size(236, 22);
@@ -598,6 +664,7 @@
             // 
             // txtTeika
             // 
+            this.txtTeika.BackColor = System.Drawing.SystemColors.Window;
             this.txtTeika.blnCommaOK = true;
             this.txtTeika.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
             this.txtTeika.ImeMode = System.Windows.Forms.ImeMode.Disable;
@@ -617,6 +684,7 @@
             // 
             // txtTankaElem5
             // 
+            this.txtTankaElem5.BackColor = System.Drawing.SystemColors.Window;
             this.txtTankaElem5.blnCommaOK = true;
             this.txtTankaElem5.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
             this.txtTankaElem5.ImeMode = System.Windows.Forms.ImeMode.Disable;
@@ -658,6 +726,7 @@
             // 
             // txtGenkaElem7
             // 
+            this.txtGenkaElem7.BackColor = System.Drawing.SystemColors.Window;
             this.txtGenkaElem7.blnCommaOK = true;
             this.txtGenkaElem7.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
             this.txtGenkaElem7.ImeMode = System.Windows.Forms.ImeMode.Disable;
@@ -795,6 +864,10 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.cmbRepri);
+            this.Controls.Add(this.lblRepriBase);
+            this.Controls.Add(this.txtRepri);
+            this.Controls.Add(this.lblRepri);
             this.Controls.Add(this.txtArariElem8);
             this.Controls.Add(this.txtKingakuElem6);
             this.Controls.Add(this.labelSet_SoukoNoElem10);
@@ -893,5 +966,9 @@
         public LabelSet_Eigyosho labelSet_SoukoNoElem10;
         public BaseTextMoney txtKingakuElem6;
         public BaseTextMoney txtArariElem8;
+        public BaseLabel lblRepri;
+        public BaseTextMoney txtRepri;
+        public BaseLabel lblRepriBase;
+        public BaseComboBox cmbRepri;
     }
 }

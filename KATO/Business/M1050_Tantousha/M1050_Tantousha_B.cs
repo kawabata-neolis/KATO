@@ -77,6 +77,71 @@ namespace KATO.Business.M1050_Tantousha
             }
         }
 
+        public void addTime(string cd, string from, string to)
+        {
+            //接続用クラスのインスタンス作成
+            DBConnective con = new DBConnective();
+
+            //トランザクション開始
+            con.BeginTrans();
+
+            try
+            {
+                string st = "select * from 担当者利用時刻 where 担当者コード = '" + cd + "'";
+
+                DataTable dt = con.ReadSql(st);
+
+                if (dt != null && dt.Rows.Count > 0)
+                {
+                    st = "update 担当者利用時刻 set 開始1 = '" + from + "', 終了1 = '" + to + "' where 担当者コード = '" + cd + "'";
+                }
+                else
+                {
+                    st = "insert into 担当者利用時刻 values('" + cd + "', '" + from + "', '" + to + "')";
+                }
+                con.RunSql(st);
+                con.Commit();
+            }
+            catch (Exception ex)
+            {
+                //ロールバック開始
+                con.Rollback();
+                throw (ex);
+            }
+            finally
+            {
+                //トランザクション終了
+                con.DB_Disconnect();
+            }
+        }
+
+        public DataTable getTime(string cd)
+        {
+            DataTable dt = null;
+
+            //接続用クラスのインスタンス作成
+            DBConnective con = new DBConnective();
+            con.DB_Connect();
+
+            try
+            {
+                string st = "select RTRIM(開始1) as 開始1, RTRIM(終了1) as 終了1 from 担当者利用時刻 where 担当者コード = '" + cd + "'";
+                dt = con.ReadSql(st);
+            }
+            catch (Exception ex)
+            {
+                //ロールバック開始
+                throw (ex);
+            }
+            finally
+            {
+                //トランザクション終了
+                con.DB_Disconnect();
+            }
+
+            return dt;
+        }
+
         ///<summary>
         ///addKengen
         ///新規でメニュー権限を追加

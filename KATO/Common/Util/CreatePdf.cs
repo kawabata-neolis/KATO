@@ -13,6 +13,9 @@ using iTextSharp.text;
 using iTextSharp.text.pdf;
 using ClosedXML.Excel;
 
+using NPOI;
+using NPOI.SS.UserModel;
+
 namespace KATO.Common.Util
 {
     class CreatePdf
@@ -501,6 +504,55 @@ namespace KATO.Common.Util
                 workbook.Dispose();
             }
 
+        }
+
+        public DataTable exceltoDataTablePoi(string xlFilePath, string strKakucho)
+        {
+
+            DataTable dt = new DataTable();
+
+            dt.Columns.Add("A", Type.GetType("System.String"));
+            dt.Columns.Add("B", Type.GetType("System.String"));
+            dt.Columns.Add("C", Type.GetType("System.String"));
+            dt.Columns.Add("D", Type.GetType("System.String"));
+            dt.Columns.Add("E", Type.GetType("System.String"));
+            dt.Columns.Add("F", Type.GetType("System.String"));
+            dt.Columns.Add("G", Type.GetType("System.String"));
+
+            // ファイル取得用
+            FileStream fs = null;
+
+            // ブック格納用
+            IWorkbook readBook = null;
+
+            using (fs = File.OpenRead(xlFilePath))
+            {
+                readBook = WorkbookFactory.Create(fs);
+            }
+
+            // 1番目のシートを取得
+            ISheet readSheet = readBook.GetSheetAt(0);
+
+            int lrow = readSheet.LastRowNum + 1;
+
+            for (int i = 2; i < lrow; i++)
+            {
+                // 行オブジェクトを取得
+                IRow row = readSheet.GetRow(i);
+                
+                DataRow dr = dt.NewRow();
+                dr["A"] = "";
+                dr["B"] = row.GetCell(1).StringCellValue;
+                dr["C"] = row.GetCell(2).StringCellValue;
+                dr["D"] = row.GetCell(3).StringCellValue;
+                dr["E"] = row.GetCell(4).StringCellValue;
+                dr["F"] = row.GetCell(5).NumericCellValue.ToString();
+                dr["G"] = row.GetCell(6).NumericCellValue.ToString();
+
+                dt.Rows.Add(dr);
+            }
+
+            return dt;
         }
 
     }

@@ -36,6 +36,11 @@ namespace KATO.Form.Z0000
 
         public string test = "test";
 
+        string timeF = "";
+        string timeT = "";
+        string timeSpan = "";
+        bool bAct = false;
+
         ///<summary>
         ///Z0000
         ///フォームの初期設定
@@ -45,12 +50,86 @@ namespace KATO.Form.Z0000
             InitializeComponent();
         }
 
+        private bool chkTime()
+        {
+            bAct = true;
+
+            string strUserID = SystemInformation.UserName;
+
+            Z0000_B mainmenuB = new Z0000_B();
+            //担当者コードの取得
+            string strTantoshaCd = mainmenuB.getTantoshaCd(strUserID);
+
+            // 担当者の利用可能時刻を取得
+            DataTable dtTime = mainmenuB.getTime(strTantoshaCd);
+
+            string lbls = "";
+            string lblt = "";
+
+            if (dtTime != null && dtTime.Rows.Count > 0)
+            {
+                timeF = dtTime.Rows[0]["開始1"].ToString();
+                timeT = dtTime.Rows[0]["終了1"].ToString();
+                lbls = timeF;
+                lblt = timeT;
+            }
+
+            if (string.IsNullOrWhiteSpace(timeF))
+            {
+                timeF = "00:00";
+            }
+
+            if (string.IsNullOrWhiteSpace(timeT))
+            {
+                timeT = "23:59";
+            }
+
+            if (timeF.Equals("00:00"))
+            {
+                lbls = "";
+            }
+            if (timeT.Equals("23:59"))
+            {
+                lblt = "";
+            }
+
+            if (!string.IsNullOrWhiteSpace(lbls) || !string.IsNullOrWhiteSpace(lblt))
+            {
+                timeSpan = "利用可能時刻： " + lbls + "～" + lblt;
+            }
+            else
+            {
+                timeSpan = "";
+            }
+            lblTime1.Text = timeSpan;
+            lblTime2.Text = timeSpan;
+            lblTime3.Text = timeSpan;
+            lblTime4.Text = timeSpan;
+            lblTime5.Text = timeSpan;
+
+            string timeN = DateTime.Now.ToString("HH:mm");
+
+            if ((timeN.CompareTo(timeF) < 0) || (timeN.CompareTo(timeT) > 0))
+            {
+                BaseMessageBox basemessagebox = new BaseMessageBox(this, "時間外", "利用時間外です。\r\n" + timeSpan, CommonTeisu.BTN_OK, CommonTeisu.DIAG_INFOMATION);
+                basemessagebox.ShowDialog();
+                return false;
+            }
+
+            return true;
+        }
+
         ///<summary>
         ///Z0000_Load
         ///画面レイアウト設定
         ///</summary>
         public void Z0000_Load(object sender, EventArgs e)
         {
+            if (!chkTime())
+            {
+                this.Close();
+            }
+
             this.btnF12.Text = STR_FUNC_F12;
 
             //フォームでもキーイベントを受け取る
@@ -456,6 +535,8 @@ namespace KATO.Form.Z0000
             Control cControl = this.ActiveControl;
 
             BaseMenuButton bmb = (BaseMenuButton)cControl;
+
+            bAct = false;
 
             switch (bmb.strPGNo)
             {
@@ -1070,6 +1151,8 @@ namespace KATO.Form.Z0000
                     return;
                 }
 
+                bAct = false;
+
                 switch (txtShoriNo.Text)
                 {
                     //受注入力
@@ -1638,6 +1721,18 @@ namespace KATO.Form.Z0000
                 BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_ERROR, CommonTeisu.LABEL_ERROR_MESSAGE, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
                 basemessagebox.ShowDialog();
                 return;
+            }
+        }
+
+        private void Z0000_Activated(object sender, EventArgs e)
+        {
+            if (bAct)
+            {
+                return;
+            }
+            if (!chkTime())
+            {
+                this.Close();
             }
         }
     }

@@ -397,6 +397,7 @@ namespace KATO.Form.A0010_JuchuInput
                     {
                         f6.Close();
                         f6.Dispose();
+                        f6 = null;
                     }
                     this.Close();
                     break;
@@ -481,6 +482,7 @@ namespace KATO.Form.A0010_JuchuInput
                     {
                         f6.Close();
                         f6.Dispose();
+                        f6 = null;
                     }
                     this.Close();
                     break;
@@ -1027,6 +1029,14 @@ namespace KATO.Form.A0010_JuchuInput
 
                                 nokiFlg = true;
                                 txtJuchuSuryo.Enabled = true;
+
+                                if (txtHonshaShukko.Visible) {
+                                    txtJuchuSuryo.ReadOnly = false;
+                                    txtHonshaShukko.ReadOnly = false;
+                                    txtGihuShukko.ReadOnly = false;
+                                    txtHatchusu.ReadOnly = false;
+                                }
+
                                 BaseMessageBox basemessageboxEr1 = new BaseMessageBox(this, CommonTeisu.TEXT_VIEW, "分納で売上済みです。受注数・納期・注番のみ変更可能です。", CommonTeisu.BTN_OK, CommonTeisu.DIAG_INFOMATION);
                                 basemessageboxEr1.ShowDialog();
                                 return;
@@ -1146,6 +1156,7 @@ namespace KATO.Form.A0010_JuchuInput
                 {
                     f6.Close();
                     f6.Dispose();
+                    f6 = null;
                 }
 
                // A0024_KakohinJuchuInput_B juchuB = new A0024_KakohinJuchuInput_B();
@@ -1408,7 +1419,8 @@ namespace KATO.Form.A0010_JuchuInput
                 }
 
                 DateTime endDateTime = DateTime.Parse(txtJuchuYMD.Text);
-                string strEndDay = endDateTime.AddYears(1).ToString("yyyy/MM/dd");
+                //string strEndDay = endDateTime.AddYears(1).ToString("yyyy/MM/dd");
+                string strEndDay = (DateTime.Now.AddMonths(6)).ToString("yyyy/MM/dd");
 
                 if (!string.IsNullOrWhiteSpace(txtJuchuNo.Text))
                 {
@@ -1439,7 +1451,7 @@ namespace KATO.Form.A0010_JuchuInput
                 {
                     if (txtNoki.Text.CompareTo(strEndDay) > 0)
                     {
-                        BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_ERROR, "納期は仕入済みの場合は６ケ月、未仕入の場合は１年間に設定してください。", CommonTeisu.BTN_OK, CommonTeisu.DIAG_EXCLAMATION);
+                        BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_ERROR, "納期は仕入済みの場合は受注日より６ケ月、\r\n未仕入の場合は本日より半年以内に設定してください。", CommonTeisu.BTN_OK, CommonTeisu.DIAG_EXCLAMATION);
                         basemessagebox.ShowDialog();
                         txtNoki.Text = "";
                         txtNoki.Focus();
@@ -1468,7 +1480,8 @@ namespace KATO.Form.A0010_JuchuInput
                 }
 
                 DateTime endDateTime = DateTime.Parse(txtJuchuYMD.Text);
-                string strEndDay = endDateTime.AddYears(1).ToString("yyyy/MM/dd");
+                //string strEndDay = endDateTime.AddYears(1).ToString("yyyy/MM/dd");
+                string strEndDay = (DateTime.Now.AddMonths(6)).ToString("yyyy/MM/dd");
 
                 if (!string.IsNullOrWhiteSpace(txtJuchuNo.Text))
                 {
@@ -1499,7 +1512,7 @@ namespace KATO.Form.A0010_JuchuInput
                 {
                     if (txtShiireNoki.Text.CompareTo(strEndDay) > 0)
                     {
-                        BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_ERROR, "納期は仕入済みの場合は６ケ月、未仕入の場合は１年間に設定してください。", CommonTeisu.BTN_OK, CommonTeisu.DIAG_EXCLAMATION);
+                        BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_ERROR, "納期は仕入済みの場合は受注日より６ケ月、\r\n未仕入の場合は本日より半年以内に設定してください。", CommonTeisu.BTN_OK, CommonTeisu.DIAG_EXCLAMATION);
                         basemessagebox.ShowDialog();
                         txtShiireNoki.Text = "";
                         txtShiireNoki.Focus();
@@ -1855,7 +1868,7 @@ namespace KATO.Form.A0010_JuchuInput
                         basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_ERROR, "納期は本日以降に設定してください。", CommonTeisu.BTN_OK, CommonTeisu.DIAG_EXCLAMATION);
                     }
                     else if (c == 3) {
-                        basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_ERROR, "納期は仕入済みの場合は６ケ月、未仕入の場合は１年間に設定してください。", CommonTeisu.BTN_OK, CommonTeisu.DIAG_EXCLAMATION);
+                        basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_ERROR, "納期は仕入済みの場合は受注日より６ケ月、\r\n未仕入の場合は本日より半年以内に設定してください。", CommonTeisu.BTN_OK, CommonTeisu.DIAG_EXCLAMATION);
                     }
                     else if (c == 4)
                     {
@@ -2438,8 +2451,8 @@ namespace KATO.Form.A0010_JuchuInput
             // 納期チェック
             #region
             DateTime endDateTime = DateTime.Parse(txtJuchuYMD.Text);
-            string strEndDay = endDateTime.AddYears(1).ToString("yyyy/MM/dd");
-
+            //string strEndDay = endDateTime.AddYears(1).ToString("yyyy/MM/dd");
+            string strEndDay = (DateTime.Now.AddMonths(6)).ToString("yyyy/MM/dd");
             if (!string.IsNullOrWhiteSpace(txtJuchuNo.Text))
             {
                 A0010_JuchuInput_B juchuB = new A0010_JuchuInput_B();
@@ -2483,7 +2496,7 @@ namespace KATO.Form.A0010_JuchuInput
                     {
                         if (txtNoki.Text.CompareTo(strEndDay) > 0)
                         {
-                            BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_ERROR, "納期は仕入済みの場合は６ケ月、未仕入の場合は１年間に設定してください。", CommonTeisu.BTN_OK, CommonTeisu.DIAG_EXCLAMATION);
+                            BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_ERROR, "納期は仕入済みの場合は受注日より６ケ月、\r\n未仕入の場合は本日より半年以内に設定してください。", CommonTeisu.BTN_OK, CommonTeisu.DIAG_EXCLAMATION);
                             basemessagebox.ShowDialog();
                             txtNoki.Text = "";
                             txtNoki.Focus();
@@ -2504,7 +2517,7 @@ namespace KATO.Form.A0010_JuchuInput
 
                         if (txtShiireNoki.Text.CompareTo(strEndDay) > 0)
                         {
-                            BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_ERROR, "納期は仕入済みの場合は６ケ月、未仕入の場合は１年間に設定してください。", CommonTeisu.BTN_OK, CommonTeisu.DIAG_EXCLAMATION);
+                            BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_ERROR, "納期は仕入済みの場合は受注日より６ケ月、\r\n未仕入の場合は本日より半年以内に設定してください。", CommonTeisu.BTN_OK, CommonTeisu.DIAG_EXCLAMATION);
                             basemessagebox.ShowDialog();
                             txtShiireNoki.Text = "";
                             txtShiireNoki.Focus();
@@ -3377,6 +3390,7 @@ namespace KATO.Form.A0010_JuchuInput
             {
                 f6.Close();
                 f6.Dispose();
+                f6 = null;
             }
 
             lsJuchusha.Focus();
@@ -3479,6 +3493,7 @@ namespace KATO.Form.A0010_JuchuInput
             {
                 f6.Close();
                 f6.Dispose();
+                f6 = null;
             }
 
             lsJuchusha.Focus();

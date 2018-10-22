@@ -39,6 +39,15 @@ namespace KATO.Form.B0250_MOnyuryoku
         int iRad = 0;
         int iIdx = 0;
 
+        string s1 = "";
+        string s2 = "";
+        string s3 = "";
+        string s4 = "";
+        string s5 = "";
+
+         public bool ari;
+
+
         ///<summary>
         ///MOnyuryoku
         ///フォームの初期設定
@@ -831,6 +840,23 @@ namespace KATO.Form.B0250_MOnyuryoku
         ///</summary>
         private void addMO()
         {
+            int idxK1 = 0;
+            int idxK2 = 0;
+            int idxRi = 0;
+
+            if (gridKataban.RowCount > 0)
+            {
+                idxK1 = gridKataban.CurrentCell.RowIndex;
+            }
+            if (gridKataban2.RowCount > 0)
+            {
+                idxK2 = gridKataban2.CurrentCell.RowIndex;
+            }
+            if (gridRireki.RowCount > 0)
+            {
+                idxRi = gridRireki.CurrentCell.RowIndex;
+            }
+
             string strYM = string.Format("yyyy/MM", txtYM); //年月度
             string strSijisU = "";                          //指示数
             decimal decSu = 0;                              //数量
@@ -1054,8 +1080,22 @@ namespace KATO.Form.B0250_MOnyuryoku
                 //中段グリッドの表示
                 showGridKataban2();
 
+                if (gridKataban2.RowCount > 0 && gridKataban2.RowCount > idxK2)
+                {
+                    gridKataban2.FirstDisplayedScrollingRowIndex = idxK2;
+                    gridKataban2.CurrentCell = gridKataban2[0, idxK2];
+                    iIdx = idxK2;
+                }
+
                 //上段グリッドの表示
                 showGridKataban1();
+
+                if (gridKataban.RowCount > 0 && gridKataban.RowCount > idxK1)
+                {
+                    //gridKataban.FirstDisplayedScrollingRowIndex = idxK1;
+                    //gridKataban.CurrentCell = gridKataban[0, idxK1];
+                    //iIdx = idxK1;
+                }
 
                 //登録されていないフラグを落とす
                 blNoToroku = false;
@@ -1428,6 +1468,15 @@ namespace KATO.Form.B0250_MOnyuryoku
             //データのカウント処理
             if (chkDataCount() == true)
             {
+                //if (s1.Equals(lblSetDaibunrui.CodeTxtText)
+                //    && s2.Equals(lblSetMaker.CodeTxtText)
+                //    && s3.Equals(lblSetShiresaki.CodeTxtText)
+                //    && s4.Equals(txtShukeiM.Text)
+                //    && s5.Equals(txtYM.Text))
+                //{
+                //    return;
+                //}
+
                 //ＭＯデータ商品マスタチェック_PROCの実行
                 updMOMasterCheck();
             }
@@ -1506,6 +1555,15 @@ namespace KATO.Form.B0250_MOnyuryoku
                     return;
                 }
 
+                //if (s1.Equals(lblSetDaibunrui.CodeTxtText)
+                //    && s2.Equals(lblSetMaker.CodeTxtText)
+                //    && s3.Equals(lblSetShiresaki.CodeTxtText)
+                //    && s4.Equals(txtShukeiM.Text)
+                //    && s5.Equals(txtYM.Text))
+                //{
+                //    return;
+                //}
+
                 //待機状態
                 Cursor.Current = Cursors.WaitCursor;
 
@@ -1552,6 +1610,12 @@ namespace KATO.Form.B0250_MOnyuryoku
 
             //登録されていないフラグを落とす
             blNoToroku = false;
+
+            s1 = lblSetDaibunrui.CodeTxtText;
+            s2 = lblSetMaker.CodeTxtText;
+            s3 = lblSetShiresaki.CodeTxtText;
+            s4 = txtShukeiM.Text;
+            s5 = txtYM.Text;
 
             return;
         }
@@ -1790,6 +1854,8 @@ namespace KATO.Form.B0250_MOnyuryoku
                 {
                     //グリッドビューの表示
                     gridKataban.DataSource = dtGridViewKataban;
+
+                    gridKatabanCellChg2();
                 }
             }
             catch (Exception ex)
@@ -1854,6 +1920,12 @@ namespace KATO.Form.B0250_MOnyuryoku
 
             //登録されていないフラグを落とす
             blNoToroku = false;
+
+            s1 = "";
+            s2 = "";
+            s3 = "";
+            s4 = "";
+            s5 = "";
         }
 
         ///<summary>
@@ -2134,6 +2206,8 @@ namespace KATO.Form.B0250_MOnyuryoku
             }
         }
 
+
+        
         ///<summary>
         ///gridKataban2_SelectionChanged
         ///下段のデータのどこかが選択された時
@@ -2163,12 +2237,16 @@ namespace KATO.Form.B0250_MOnyuryoku
             gridRireki.DataSource = dtRireki;
 
             //選択行が空の場合
-            if (gridKataban2.CurrentRow.Index == 0)
-            {
-                //return;
-            }
+            //if (gridKataban2.CurrentRow.Index == 0)
+            //{
+            //    //return;
+            //}
 
+            if (gridKataban2.CurrentCell == null) {
+                return;
+            }
             iIdx = gridKataban2.CurrentCell.RowIndex;
+            setNyuryokuData(false);
 
             B0250_MOnyuryoku_B monyuryokuB = new B0250_MOnyuryoku_B();
             try
@@ -2191,6 +2269,7 @@ namespace KATO.Form.B0250_MOnyuryoku
                 basemessagebox.ShowDialog();
                 return;
             }
+
         }
 
         ///<summary>
@@ -2199,7 +2278,7 @@ namespace KATO.Form.B0250_MOnyuryoku
         ///</summary>
         private void gridKataban2_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
-            setNyuryokuData();
+            setNyuryokuData(true);
         }
 
         ///<summary>
@@ -2212,7 +2291,7 @@ namespace KATO.Form.B0250_MOnyuryoku
             if (e.KeyData == Keys.Enter)
             {
                 e.Handled = true;
-                setNyuryokuData();
+                setNyuryokuData(true);
             }
         }
 
@@ -2220,7 +2299,7 @@ namespace KATO.Form.B0250_MOnyuryoku
         ///setNyuryokuData
         ///入力項目に記載
         ///</summary>
-        private void setNyuryokuData()
+        private void setNyuryokuData(bool b)
         {
             //納期入力項目に月末処理をするのに使う
             DateTime dateYMD;
@@ -2302,8 +2381,10 @@ namespace KATO.Form.B0250_MOnyuryoku
                 txtNoki.setUp(2);
             }
 
-            //発注数テキストボックスにフォーカス
-            txtHachusu.Focus();
+            if (b) {
+                //発注数テキストボックスにフォーカス
+                txtHachusu.Focus();
+            }
         }
 
         ///<summary>
@@ -2360,6 +2441,8 @@ namespace KATO.Form.B0250_MOnyuryoku
                 //型番先頭文字列が検索文字と一致する場合
                 if (strKataban.StartsWith(strUkata))
                 {
+                    gridKataban2.CurrentCell = gridKataban2.Rows[intCnt].Cells["型番"];
+                    gridKataban2.FirstDisplayedScrollingRowIndex = gridKataban2.CurrentCell.RowIndex;
                     gridKataban2.CurrentCell = gridKataban2.Rows[intCnt].Cells["型番"];
                     txtKensaku.Text = "";
                     break;
@@ -2523,6 +2606,11 @@ namespace KATO.Form.B0250_MOnyuryoku
                 {
                     gridKataban2.Rows[intRow].Cells["ｺｰﾄﾞ"].Value = lblSetShimukesaki.CodeTxtText.ToString();
                     gridKataban2.Rows[intRow].Cells["仕向け先名"].Value = lblSetShimukesaki.ValueLabelText;
+                }
+                else
+                {
+                    gridKataban2.Rows[intRow].Cells["ｺｰﾄﾞ"].Value = "";
+                    gridKataban2.Rows[intRow].Cells["仕向け先名"].Value = "";
                 }
 
                 //担当者コードがある場合
@@ -2952,8 +3040,8 @@ namespace KATO.Form.B0250_MOnyuryoku
                 gridKataban2.Rows[intRow].Cells["発注数"].Value = "0";
                 gridKataban2.Rows[intRow].Cells["金額"].Value = "0";
                 gridKataban2.Rows[intRow].Cells["納期"].Value = "";
-                gridKataban2.Rows[intRow].Cells["ｺｰﾄﾞ"].Value = "....";
-                gridKataban2.Rows[intRow].Cells["仕向け先名"].Value = "";
+                //gridKataban2.Rows[intRow].Cells["ｺｰﾄﾞ"].Value = "....";
+                //gridKataban2.Rows[intRow].Cells["仕向け先名"].Value = "";
                 gridKataban2.Rows[intRow].Cells["発注担当者"].Value = "";
 
                 //取り消しした項目文字列を黒に戻す
@@ -3313,7 +3401,8 @@ namespace KATO.Form.B0250_MOnyuryoku
                 try
                 {
                     //エクセルデータをデータテーブルで取得する
-                    dtExcelData = createpdf.exceltoDataTable(strFilePath, strKakucho);
+                    //dtExcelData = createpdf.exceltoDataTable(strFilePath, strKakucho);
+                    dtExcelData = createpdf.exceltoDataTablePoi(strFilePath, strKakucho);
 
                     int intIDCol;
                     intIDCol = 3;
@@ -3321,18 +3410,23 @@ namespace KATO.Form.B0250_MOnyuryoku
                     intSuCol = 6;
 
                     string Kataban;
+                    string Kataban2;
 
                     int i;
                     int r;
                     int IDRow;
-                    bool ari;
                     string NasiKataban;
                     NasiKataban = "";
 
                     IDRow = 2;
 
+                    List<string> kataList;
+                    List<int> rowList;
+
                     for (i = IDRow; i < dtExcelData.Rows.Count; i++)
                     {
+                        kataList = new List<string>();
+                        rowList = new List<int>();
                         if (dtExcelData.Rows[i][intIDCol].ToString().Trim() == "")
                         {
                             break;
@@ -3340,13 +3434,16 @@ namespace KATO.Form.B0250_MOnyuryoku
 
                         //空白を削除
                         Kataban = dtExcelData.Rows[i][intIDCol].ToString().Trim();
+                        Kataban2 = Kataban.Replace(" ", "");
 
                         ari = false;
 
                         for (r = 0; r < this.gridKataban2.RowCount; r++)
                         {
+                            string s = gridKataban2.Rows[r].Cells["型番"].Value.ToString().Trim();
+                            s = s.Replace(" ", "");
                             //該当の型番の場合
-                            if (gridKataban2.Rows[r].Cells["型番"].Value.ToString().Trim() == Kataban)
+                            if (s == Kataban2)
                             {
                                 gridKataban2.Rows[r].Cells["発注指"].Value = dtExcelData.Rows[i][intSuCol].ToString();
                                 ari = true;
@@ -3354,10 +3451,42 @@ namespace KATO.Form.B0250_MOnyuryoku
                             }
                         }
 
+                        if (ari == false)
+                        {
+                            for (r = 0; r < this.gridKataban2.RowCount; r++)
+                            {
+                                string s = gridKataban2.Rows[r].Cells["型番"].Value.ToString().Trim().Split(' ')[0];
+                                //前方一致の型番の場合
+                                if ((!string.IsNullOrWhiteSpace(Kataban2)) && (!string.IsNullOrWhiteSpace(s)) && Kataban2.StartsWith(s))
+                                {
+                                    kataList.Add(gridKataban2.Rows[r].Cells["型番"].Value.ToString().Trim());
+                                    rowList.Add(r);
+                                }
+                            }
+
+                            if (kataList.Count > 0)
+                            {
+                                FormKataList f = new FormKataList(this, dtExcelData.Rows[i][intSuCol].ToString());
+
+                                f.baseLabel1.Text = f.baseLabel1.Text + Kataban + " " + dtExcelData.Rows[i][intIDCol + 1].ToString().Trim();
+
+                                for (int ir = 0; ir < kataList.Count; ir++)
+                                {
+                                    f.baseDataGridView1.Rows.Add(kataList[ir], rowList[ir]);
+                                }
+
+                                f.StartPosition = FormStartPosition.Manual;
+                                f.Left = this.Left + 400;
+                                f.Top = this.Top + 150;
+
+                                f.ShowDialog();
+                            }
+                        }
+
                         //型番なしの場合
                         if (ari == false)
                         {
-                            NasiKataban = NasiKataban + Kataban + "\t" + "\t" + "\t" + dtExcelData.Rows[i][intSuCol].ToString() + "\r\n";
+                            NasiKataban = NasiKataban + Kataban2 + "\t" + "\t" + "\t" + dtExcelData.Rows[i][intSuCol].ToString() + "\r\n";
                         }
                     }
 
@@ -3425,6 +3554,226 @@ namespace KATO.Form.B0250_MOnyuryoku
         private void radSet_2btn_PrintCheck_MouseClick(object sender, MouseEventArgs e)
         {
             
+        }
+
+        private void lblSetDaibunrui_Validated(object sender, EventArgs e)
+        {
+            validAfter();
+        }
+
+        private void lblSetChubunrui_Validated(object sender, EventArgs e)
+        {
+            validAfter();
+        }
+
+        private void lblSetMaker_Validated(object sender, EventArgs e)
+        {
+            validAfter();
+        }
+
+        private void validAfter()
+        {
+            if (!string.IsNullOrWhiteSpace(lblSetDaibunrui.CodeTxtText)
+                && !string.IsNullOrWhiteSpace(lblSetMaker.CodeTxtText)
+                && !string.IsNullOrWhiteSpace(lblSetShiresaki.CodeTxtText)
+                && !string.IsNullOrWhiteSpace(txtShukeiM.Text)
+                && !string.IsNullOrWhiteSpace(txtYM.Text))
+            {
+                if (s1.Equals(lblSetDaibunrui.CodeTxtText)
+                    && s2.Equals(lblSetMaker.CodeTxtText)
+                    && s3.Equals(lblSetShiresaki.CodeTxtText)
+                    && s4.Equals(txtShukeiM.Text)
+                    && s5.Equals(txtYM.Text))
+                {
+                }
+                else {                    //ＭＯ作成、中段グリッド表示を押したときの処理
+                    setShiresakiEnterKey();
+                }
+            }
+
+            s1 = lblSetDaibunrui.CodeTxtText;
+            s2 = lblSetMaker.CodeTxtText;
+            s3 = lblSetShiresaki.CodeTxtText;
+            s4 = txtShukeiM.Text;
+            s5 = txtYM.Text;
+        }
+
+        private void gridKatabanCellChg()
+        {
+            if (gridKataban2.Rows != null && gridKataban2.Rows.Count > 0)
+            {
+                string kata1 = (string)gridKataban.CurrentRow.Cells["型番"].Value.ToString().Trim();
+                string kata11 = (string)gridKataban.CurrentRow.Cells["型番"].Value.ToString().Trim()
+                        + (string)gridKataban.CurrentRow.Cells["Ｃ２"].Value.ToString().Trim()
+                        + (string)gridKataban.CurrentRow.Cells["Ｃ３"].Value.ToString().Trim()
+                        + (string)gridKataban.CurrentRow.Cells["Ｃ４"].Value.ToString().Trim()
+                        + (string)gridKataban.CurrentRow.Cells["Ｃ５"].Value.ToString().Trim()
+                        + (string)gridKataban.CurrentRow.Cells["Ｃ６"].Value.ToString().Trim();
+
+                for (int i = 0; i < gridKataban2.Rows.Count; i++)
+                {
+                    string kata2 = gridKataban2.Rows[i].Cells["型番"].Value.ToString().Trim();
+                    string kata22 = (string)gridKataban2.Rows[i].Cells["型番"].Value.ToString().Trim()
+                        + (string)gridKataban2.Rows[i].Cells["Ｃ２"].Value.ToString().Trim()
+                        + (string)gridKataban2.Rows[i].Cells["Ｃ３"].Value.ToString().Trim()
+                        + (string)gridKataban2.Rows[i].Cells["Ｃ４"].Value.ToString().Trim()
+                        + (string)gridKataban2.Rows[i].Cells["Ｃ５"].Value.ToString().Trim()
+                        + (string)gridKataban2.Rows[i].Cells["Ｃ６"].Value.ToString().Trim();
+
+                    if (!string.IsNullOrWhiteSpace(kata1) && !string.IsNullOrWhiteSpace(kata2) && kata11.Equals(kata22))
+                    {
+                        gridKataban2.CurrentCell = gridKataban2.Rows[i].Cells["型番"];
+                        gridKataban2.FirstDisplayedScrollingRowIndex = gridKataban2.CurrentCell.RowIndex;
+                        gridKataban2.CurrentCell = gridKataban2.Rows[i].Cells["型番"];
+                    }
+                }
+            }
+        }
+
+        private void gridKatabanCellChg2()
+        {
+            if (gridKataban.Rows != null && gridKataban.Rows.Count > 0)
+            {
+                string kata2 = (string)gridKataban2.CurrentRow.Cells["型番"].Value.ToString().Trim();
+                string kata22 = (string)gridKataban2.CurrentRow.Cells["型番"].Value.ToString().Trim()
+                    + (string)gridKataban2.CurrentRow.Cells["Ｃ２"].Value.ToString().Trim()
+                    + (string)gridKataban2.CurrentRow.Cells["Ｃ３"].Value.ToString().Trim()
+                    + (string)gridKataban2.CurrentRow.Cells["Ｃ４"].Value.ToString().Trim()
+                    + (string)gridKataban2.CurrentRow.Cells["Ｃ５"].Value.ToString().Trim()
+                    + (string)gridKataban2.CurrentRow.Cells["Ｃ６"].Value.ToString().Trim();
+
+                for (int i = 0; i < gridKataban.Rows.Count; i++)
+                {
+                    string kata1 = gridKataban.Rows[i].Cells["型番"].Value.ToString().Trim();
+                    string kata11 = (string)gridKataban.Rows[i].Cells["型番"].Value.ToString().Trim()
+                        + (string)gridKataban.Rows[i].Cells["Ｃ２"].Value.ToString().Trim()
+                        + (string)gridKataban.Rows[i].Cells["Ｃ３"].Value.ToString().Trim()
+                        + (string)gridKataban.Rows[i].Cells["Ｃ４"].Value.ToString().Trim()
+                        + (string)gridKataban.Rows[i].Cells["Ｃ５"].Value.ToString().Trim()
+                        + (string)gridKataban.Rows[i].Cells["Ｃ６"].Value.ToString().Trim();
+
+                    if (!string.IsNullOrWhiteSpace(kata1) && !string.IsNullOrWhiteSpace(kata2) && kata11.Equals(kata22))
+                    {
+                        gridKataban.CurrentCell = gridKataban.Rows[i].Cells["型番"];
+                        gridKataban.FirstDisplayedScrollingRowIndex = gridKataban.CurrentCell.RowIndex;
+                        gridKataban.CurrentCell = gridKataban.Rows[i].Cells["型番"];
+                    }
+                }
+            }
+        }
+
+        private void gridKataban_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            gridKatabanCellChg();
+        }
+
+        private void gridKataban_KeyUp(object sender, KeyEventArgs e)
+        {
+            switch (e.KeyCode)
+            {
+                case Keys.Tab:
+                    break;
+                case Keys.Left:
+                    break;
+                case Keys.Right:
+                    break;
+                case Keys.Up:
+                    gridKatabanCellChg();
+                    break;
+                case Keys.Down:
+                    gridKatabanCellChg();
+                    break;
+                case Keys.Delete:
+                    break;
+                case Keys.Back:
+                    break;
+                case Keys.Enter:
+                    break;
+                case Keys.F1:
+                    break;
+                case Keys.F2:
+                    break;
+                case Keys.F3:
+                    break;
+                case Keys.F4:
+                    break;
+                case Keys.F5:
+                    break;
+                case Keys.F6:
+                    break;
+                case Keys.F7:
+                    break;
+                case Keys.F8:
+                    break;
+                case Keys.F9:
+                    break;
+                case Keys.F10:
+                    break;
+                case Keys.F11:
+                    break;
+                case Keys.F12:
+                    break;
+
+                default:
+                    break;
+            }
+        }
+
+        private void gridKataban2_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            gridKatabanCellChg2();
+        }
+
+        private void gridKataban2_KeyUp(object sender, KeyEventArgs e)
+        {
+            switch (e.KeyCode)
+            {
+                case Keys.Tab:
+                    break;
+                case Keys.Left:
+                    break;
+                case Keys.Right:
+                    break;
+                case Keys.Up:
+                    gridKatabanCellChg2();
+                    break;
+                case Keys.Down:
+                    gridKatabanCellChg2();
+                    break;
+                case Keys.Delete:
+                    break;
+                case Keys.Back:
+                    break;
+                case Keys.Enter:
+                    break;
+                case Keys.F1:
+                    break;
+                case Keys.F2:
+                    break;
+                case Keys.F3:
+                    break;
+                case Keys.F4:
+                    break;
+                case Keys.F5:
+                    break;
+                case Keys.F6:
+                    break;
+                case Keys.F7:
+                    break;
+                case Keys.F8:
+                    break;
+                case Keys.F9:
+                    break;
+                case Keys.F10:
+                    break;
+                case Keys.F11:
+                    break;
+                case Keys.F12:
+                    break;
+
+                default:
+                    break;
+            }
         }
     }
 }

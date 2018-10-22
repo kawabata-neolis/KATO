@@ -1263,6 +1263,56 @@ namespace KATO.Business.A0020_UriageInput
             }
         }
 
+        public DataTable getJucyuAll(List<string> lstString, DBConnective con)
+        {
+
+            DataTable dtGetData = new DataTable();
+            string strSql = "";
+
+            strSql = strSql + "SELECT *";
+            strSql = strSql + " FROM 受注";
+            strSql = strSql + " WHERE 受注番号=" + lstString[0];
+            strSql = strSql + "   AND 削除= 'N'";
+
+
+            try
+            {
+                // 検索データをテーブルへ格納
+                dtGetData = con.ReadSql(strSql);
+
+                return dtGetData;
+            }
+            catch
+            {
+                throw;
+            }
+            finally
+            {
+            }
+        }
+
+        public DataTable getHachuData(string no, DBConnective con)
+        {
+            DataTable dt = null;
+
+            string strSql = "SELECT * FROM 発注 WHERE 削除 = 'N' AND 受注番号 = " + no;
+
+            try
+            {
+                // 検索データをテーブルへ格納
+                dt = con.ReadSql(strSql);
+            }
+            catch
+            {
+                throw;
+            }
+            finally
+            {
+            }
+
+            return dt;
+        }
+
         /// <summary>
         /// getHacyusijiKbn
         /// 受注番号から発注指示区分を取得する。
@@ -2293,6 +2343,84 @@ namespace KATO.Business.A0020_UriageInput
             }
         }
 
+        public void printGenpinhyoRe(string stDenno, string stLineNo, string c, int idx)
+        {
+            try
+            {
+                DataTable dt = getGenpinhyoInfo(stDenno, false);
+
+                String strDenpyoNo = "";                 // 伝票番号
+                String strGyoNo = "";                    // 行番号
+                String strJuchusaki = "";                // 受注先
+                String strNohinsaki = "";                // 納品先
+                String strNohinbi = "";                  // 納品日
+                String strKataban = "";                  // 型番
+                String strTanaban = "";                  // 棚番
+                String strSu = "";                       // 数量
+                String strBiko = "";                     // 備考
+                String strNonyu = "";                    // 納入方法
+                String strTekiyo = "";                   // 摘要欄
+                String strShoCd = "";                    // 商品コード
+                String strShukko = "";                   // 出庫倉庫
+
+                if (dt != null)
+                {
+                    for (int i = 0; i < dt.Rows.Count; i++)
+                    {
+                        DataRow dr = dt.Rows[i];
+
+                        strJuchusaki = dt.Rows[i]["得意先名"].ToString();
+                        strNohinsaki = dt.Rows[i]["直送先名"].ToString();
+                        if (string.IsNullOrWhiteSpace(strNohinsaki))
+                        {
+                            strNohinsaki = strJuchusaki;
+                        }
+                        strNohinsaki += " 殿";
+                        strNohinbi = dt.Rows[i]["伝票年月日"].ToString();
+                        strKataban = dt.Rows[i]["型番"].ToString();
+                        strTanaban = dt.Rows[i]["棚番"].ToString();
+                        strSu = dt.Rows[i]["数量"].ToString();
+                        strBiko = dt.Rows[i]["備考"].ToString();
+                        strNonyu = dt.Rows[i]["納入方法"].ToString();
+                        if (string.IsNullOrWhiteSpace(strNonyu))
+                        {
+                            strNonyu = "";
+                        }
+                        else
+                        {
+                            strNonyu = strNonyu.TrimEnd();
+                        }
+                        strTekiyo = dt.Rows[i]["摘要欄"].ToString();
+                        strShoCd = dt.Rows[i]["商品コード"].ToString();
+                        strShukko = dt.Rows[i]["出庫倉庫"].ToString();
+                        strDenpyoNo = dt.Rows[i]["伝票番号"].ToString();
+                        strGyoNo = dt.Rows[i]["行番号"].ToString();
+
+                        //string stGPrt = getGPDriver(strShoCd, strShukko);
+                        string stGPrt = System.Configuration.ConfigurationManager.AppSettings["PRINTER_GENPIN_DRIVER2"];
+                        if (idx == 1)
+                        {
+                            stGPrt = System.Configuration.ConfigurationManager.AppSettings["PRINTER_GENPIN_DRIVERG"];
+                        }
+
+                        if (!string.IsNullOrWhiteSpace(c) && !string.IsNullOrWhiteSpace(strGyoNo) && strGyoNo.Equals(stLineNo)) {
+                            int cnt = int.Parse(c);
+                            for (int x = 0; x < cnt; x++) {
+                                printout(stGPrt, strDenpyoNo, strGyoNo, strJuchusaki,
+                                    strNohinsaki, strNohinbi, strKataban, strTanaban, strSu,
+                                    strBiko, strNonyu, strTekiyo, (x + 1).ToString(), cnt.ToString());
+                            }
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+
         private DataTable getGenpinhyoInfo(string stDenno, bool blNotPrintedOnly)
         {
             DataTable dt = null;
@@ -2327,6 +2455,8 @@ namespace KATO.Business.A0020_UriageInput
                 strSQL += "   AND 売上ヘッダ.伝票発行フラグ = '0'";
             }
 
+            strSQL += " ORDER BY 売上ヘッダ.伝票番号, 売上明細.行番号";
+
             DBConnective dtCon = new DBConnective();
             try
             {
@@ -2341,7 +2471,8 @@ namespace KATO.Business.A0020_UriageInput
         }
 
         public void printout(string stGPrt, String strDenpyoNo, String strGyoNo, String strJuchusaki, String strNohinsaki,
-            String strNohinbi, String strKataban, String strTanaban, String strSu, String strBiko, String strNonyu, String strTekiyo)
+            String strNohinbi, String strKataban, String strTanaban, String strSu, String strBiko, String strNonyu,
+            String strTekiyo, String num = "", String total = "")
         {
 
             //String _xslFile = @"C:\Users\admin\Desktop\KATO\やること_画面別\現品票\現品票(Temp).xls";  // XLSファイル名
@@ -2421,6 +2552,14 @@ namespace KATO.Business.A0020_UriageInput
                 //Marshal.ReleaseComObject(objRange);     // オブジェクト参照を解放
                 //Marshal.ReleaseComObject(objCell);      // オブジェクト参照を解放
 
+                if (!string.IsNullOrWhiteSpace(num) && !num.Equals("0"))
+                {
+                    objCell = objWorkSheet.Cells[_line - 1, _col + 1];
+                    objRange = objWorkSheet.get_Range(objCell, objCell);
+                    objRange.Value2 = "現品票 " + "(" + num + "/" + total + ")";
+                    Marshal.ReleaseComObject(objRange);     // オブジェクト参照を解放
+                    Marshal.ReleaseComObject(objCell);      // オブジェクト参照を解放
+                }
                 objCell = objWorkSheet.Cells[_line - 1, _col - 1];          // 伝票番号＋行番号
                 objRange = objWorkSheet.get_Range(objCell, objCell);
                 objRange.Value2 = strDenpyoNo + "-" + strGyoNo;
@@ -2441,25 +2580,25 @@ namespace KATO.Business.A0020_UriageInput
 
                 objCell = objWorkSheet.Cells[_line + 2, _col + 1];          // 摘要
                 objRange = objWorkSheet.get_Range(objCell, objCell);
-                objRange.Value2 = strTekiyo;
+                objRange.Value2 = "'" + strTekiyo;
                 Marshal.ReleaseComObject(objRange);     // オブジェクト参照を解放
                 Marshal.ReleaseComObject(objCell);      // オブジェクト参照を解放
 
                 objCell = objWorkSheet.Cells[_line + 3, _col];          // 型番
                 objRange = objWorkSheet.get_Range(objCell, objCell);
-                objRange.Value2 = strKataban;
+                objRange.Value2 = "'" + strKataban;
                 Marshal.ReleaseComObject(objRange);     // オブジェクト参照を解放
                 Marshal.ReleaseComObject(objCell);      // オブジェクト参照を解放
 
                 objCell = objWorkSheet.Cells[_line + 4, _col];          // 棚番
                 objRange = objWorkSheet.get_Range(objCell, objCell);
-                objRange.Value2 = strTanaban;
+                objRange.Value2 = "'" + strTanaban;
                 Marshal.ReleaseComObject(objRange);     // オブジェクト参照を解放
                 Marshal.ReleaseComObject(objCell);      // オブジェクト参照を解放
 
                 objCell = objWorkSheet.Cells[_line - 1, _col + 2];          // 納入方法
                 objRange = objWorkSheet.get_Range(objCell, objCell);
-                objRange.Value2 = "[" + strNonyu + "] " + DateTime.Now.ToString("yyyy.MM.dd");
+                objRange.Value2 = "[" + strNonyu + "] " + DateTime.Now.ToString("yyyy.MM.dd HH:mm");
                 Marshal.ReleaseComObject(objRange);     // オブジェクト参照を解放
                 Marshal.ReleaseComObject(objCell);      // オブジェクト参照を解放
 
@@ -2471,7 +2610,7 @@ namespace KATO.Business.A0020_UriageInput
 
                 objCell = objWorkSheet.Cells[_line + 7, _col];          // 備考
                 objRange = objWorkSheet.get_Range(objCell, objCell);
-                objRange.Value2 = strBiko;
+                objRange.Value2 = "'" + strBiko;
                 Marshal.ReleaseComObject(objRange);     // オブジェクト参照を解放
                 Marshal.ReleaseComObject(objCell);      // オブジェクト参照を解放
 
@@ -2648,6 +2787,34 @@ namespace KATO.Business.A0020_UriageInput
             try
             {
                 string strSQL = "SELECT * FROM 利益率承認 WHERE 受注番号 = " + stNo + " AND 承認フラグ = 1";
+                dt = dtCon.ReadSql(strSQL);
+
+                if (dt != null && dt.Rows.Count > 0)
+                {
+                    ret = 1;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+            return ret;
+        }
+
+        public int getRiekiAcceptRe(string stNo)
+        {
+            int ret = 0;
+
+            if (string.IsNullOrWhiteSpace(stNo))
+            {
+                return ret;
+            }
+
+            DBConnective dtCon = new DBConnective();
+            DataTable dt = null;
+            try
+            {
+                string strSQL = "SELECT * FROM 利益率承認 WHERE 受注番号 = " + stNo + " AND 承認フラグ = 0";
                 dt = dtCon.ReadSql(strSQL);
 
                 if (dt != null && dt.Rows.Count > 0)

@@ -58,54 +58,71 @@
             this.lblMasterKengenMemo = new KATO.Common.Ctl.BaseLabel(this.components);
             this.lblEtsuranKengenMemo = new KATO.Common.Ctl.BaseLabel(this.components);
             this.lblRiekiritsuKengenMemo = new KATO.Common.Ctl.BaseLabel(this.components);
+            this.txtTimeFrom1 = new KATO.Common.Ctl.BaseText();
+            this.txtTimeTo1 = new KATO.Common.Ctl.BaseText();
+            this.baseLabel1 = new KATO.Common.Ctl.BaseLabel(this.components);
+            this.baseLabel2 = new KATO.Common.Ctl.BaseLabel(this.components);
+            this.baseLabel3 = new KATO.Common.Ctl.BaseLabel(this.components);
             this.SuspendLayout();
             // 
             // btnF01
             // 
+            this.btnF01.TabIndex = 15;
             this.btnF01.Click += new System.EventHandler(this.judBtnClick);
             // 
             // btnF12
             // 
+            this.btnF12.TabIndex = 19;
             this.btnF12.Click += new System.EventHandler(this.judBtnClick);
             // 
             // btnF11
             // 
+            this.btnF11.TabIndex = 18;
             this.btnF11.Click += new System.EventHandler(this.judBtnClick);
             // 
             // btnF10
             // 
+            this.btnF10.TabStop = false;
             this.btnF10.Click += new System.EventHandler(this.judBtnClick);
             // 
             // btnF09
             // 
+            this.btnF09.TabStop = false;
             this.btnF09.Click += new System.EventHandler(this.judBtnClick);
             // 
             // btnF08
             // 
+            this.btnF08.TabStop = false;
             this.btnF08.Click += new System.EventHandler(this.judBtnClick);
             // 
             // btnF07
             // 
+            this.btnF07.TabStop = false;
             this.btnF07.Click += new System.EventHandler(this.judBtnClick);
             // 
             // btnF06
             // 
+            this.btnF06.TabStop = false;
             this.btnF06.Click += new System.EventHandler(this.judBtnClick);
             // 
             // btnF05
             // 
+            this.btnF05.TabStop = false;
             this.btnF05.Click += new System.EventHandler(this.judBtnClick);
             // 
             // btnF04
             // 
+            this.btnF04.TabIndex = 17;
             this.btnF04.Click += new System.EventHandler(this.judBtnClick);
             // 
             // btnF03
             // 
+            this.btnF03.TabIndex = 16;
             this.btnF03.Click += new System.EventHandler(this.judBtnClick);
             // 
             // btnF02
             // 
+            this.btnF02.TabStop = false;
             this.btnF02.Click += new System.EventHandler(this.judBtnClick);
             // 
             // lblSetEigyousho
@@ -268,6 +285,7 @@
             this.txtMokuhyou.intShishagonyu = 0;
             this.txtMokuhyou.Location = new System.Drawing.Point(861, 312);
             this.txtMokuhyou.MaxLength = 12;
+            this.txtMokuhyou.MinusFlg = true;
             this.txtMokuhyou.Name = "txtMokuhyou";
             this.txtMokuhyou.Size = new System.Drawing.Size(117, 22);
             this.txtMokuhyou.TabIndex = 7;
@@ -481,11 +499,74 @@
             this.lblRiekiritsuKengenMemo.Text = "0：なし    1：あり";
             this.lblRiekiritsuKengenMemo.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
+            // txtTimeFrom1
+            // 
+            this.txtTimeFrom1.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
+            this.txtTimeFrom1.Location = new System.Drawing.Point(861, 548);
+            this.txtTimeFrom1.MaxLength = 5;
+            this.txtTimeFrom1.Name = "txtTimeFrom1";
+            this.txtTimeFrom1.Size = new System.Drawing.Size(47, 22);
+            this.txtTimeFrom1.TabIndex = 13;
+            this.txtTimeFrom1.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judTantouTxtKeyDown);
+            this.txtTimeFrom1.Leave += new System.EventHandler(this.txtTimeFrom_Leave);
+            // 
+            // txtTimeTo1
+            // 
+            this.txtTimeTo1.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
+            this.txtTimeTo1.Location = new System.Drawing.Point(944, 548);
+            this.txtTimeTo1.MaxLength = 5;
+            this.txtTimeTo1.Name = "txtTimeTo1";
+            this.txtTimeTo1.Size = new System.Drawing.Size(47, 22);
+            this.txtTimeTo1.TabIndex = 14;
+            this.txtTimeTo1.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judTantouTxtKeyDown);
+            this.txtTimeTo1.Leave += new System.EventHandler(this.txtTimeTo_Leave);
+            // 
+            // baseLabel1
+            // 
+            this.baseLabel1.AutoSize = true;
+            this.baseLabel1.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
+            this.baseLabel1.Location = new System.Drawing.Point(915, 551);
+            this.baseLabel1.Name = "baseLabel1";
+            this.baseLabel1.Size = new System.Drawing.Size(23, 15);
+            this.baseLabel1.strToolTip = null;
+            this.baseLabel1.TabIndex = 103;
+            this.baseLabel1.Text = "～";
+            this.baseLabel1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // baseLabel2
+            // 
+            this.baseLabel2.AutoSize = true;
+            this.baseLabel2.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
+            this.baseLabel2.Location = new System.Drawing.Point(739, 551);
+            this.baseLabel2.Name = "baseLabel2";
+            this.baseLabel2.Size = new System.Drawing.Size(103, 15);
+            this.baseLabel2.strToolTip = null;
+            this.baseLabel2.TabIndex = 104;
+            this.baseLabel2.Text = "利用可能時刻";
+            this.baseLabel2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // baseLabel3
+            // 
+            this.baseLabel3.AutoSize = true;
+            this.baseLabel3.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
+            this.baseLabel3.Location = new System.Drawing.Point(738, 574);
+            this.baseLabel3.Name = "baseLabel3";
+            this.baseLabel3.Size = new System.Drawing.Size(119, 15);
+            this.baseLabel3.strToolTip = null;
+            this.baseLabel3.TabIndex = 105;
+            this.baseLabel3.Text = "(00:00～23:59)";
+            this.baseLabel3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
             // M1050_Tantousha
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1584, 826);
+            this.Controls.Add(this.baseLabel3);
+            this.Controls.Add(this.baseLabel2);
+            this.Controls.Add(this.baseLabel1);
+            this.Controls.Add(this.txtTimeTo1);
+            this.Controls.Add(this.txtTimeFrom1);
             this.Controls.Add(this.lblRiekiritsuKengenMemo);
             this.Controls.Add(this.lblEtsuranKengenMemo);
             this.Controls.Add(this.lblMasterKengenMemo);
@@ -561,6 +642,11 @@
             this.Controls.SetChildIndex(this.lblMasterKengenMemo, 0);
             this.Controls.SetChildIndex(this.lblEtsuranKengenMemo, 0);
             this.Controls.SetChildIndex(this.lblRiekiritsuKengenMemo, 0);
+            this.Controls.SetChildIndex(this.txtTimeFrom1, 0);
+            this.Controls.SetChildIndex(this.txtTimeTo1, 0);
+            this.Controls.SetChildIndex(this.baseLabel1, 0);
+            this.Controls.SetChildIndex(this.baseLabel2, 0);
+            this.Controls.SetChildIndex(this.baseLabel3, 0);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -597,5 +683,10 @@
         private Common.Ctl.BaseLabel lblMasterKengenMemo;
         private Common.Ctl.BaseLabel lblEtsuranKengenMemo;
         private Common.Ctl.BaseLabel lblRiekiritsuKengenMemo;
+        private Common.Ctl.BaseText txtTimeFrom1;
+        private Common.Ctl.BaseText txtTimeTo1;
+        private Common.Ctl.BaseLabel baseLabel1;
+        private Common.Ctl.BaseLabel baseLabel2;
+        private Common.Ctl.BaseLabel baseLabel3;
     }
 }

@@ -522,6 +522,15 @@ namespace KATO.Form.M1050_Tantousha
                 return;
             }
 
+            if (!chkTime(txtTimeFrom1))
+            {
+                return;
+            }
+            if (!chkTime(txtTimeTo1))
+            {
+                return;
+            }
+
             //登録情報を入れる（担当者コード、担当者名、ログインID、営業所コード、注番、グループコード、目標金額、マスター権限、閲覧権限、利益率権限、ユーザー名）
             //[0]
             lstTantousha.Add(txtTantoushaCd.Text);
@@ -571,6 +580,15 @@ namespace KATO.Form.M1050_Tantousha
                 //登録
                 tantouB.addTantousha(lstTantousha, dataflag);
 
+                tantouB.addTime(txtTantoushaCd.Text, txtTimeFrom1.Text, txtTimeTo1.Text);
+
+
+
+
+
+
+
+
                 //メッセージボックスの処理、登録完了のウィンドウ（OK）
                 BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_TOUROKU, CommonTeisu.LABEL_TOUROKU, CommonTeisu.BTN_OK, CommonTeisu.DIAG_INFOMATION);
                 basemessagebox.ShowDialog();
@@ -596,6 +614,8 @@ namespace KATO.Form.M1050_Tantousha
         {
             //画面の項目内を白紙にする
             delFormClear(this);
+            txtTimeFrom1.Text = "";
+            txtTimeTo1.Text = "";
 
             this.btnF01.Enabled = false;
             this.btnF03.Enabled = false;
@@ -739,12 +759,22 @@ namespace KATO.Form.M1050_Tantousha
             try
             {
                 //戻り値のDatatableを取り込む
+                txtTimeFrom1.Text = "";
+                txtTimeTo1.Text = "";
                 dtSetCd = tantouB.getTxtTantoshaLeave(txtTantoushaCd.Text);
 
                 //Datatable内のデータが存在する場合
                 if (dtSetCd.Rows.Count != 0)
                 {
                     setTantousha(dtSetCd);
+
+                    DataTable dtTime = tantouB.getTime(txtTantoushaCd.Text);
+
+                    if (dtTime != null && dtTime.Rows.Count > 0)
+                    {
+                        txtTimeFrom1.Text = dtTime.Rows[0]["開始1"].ToString();
+                        txtTimeTo1.Text = dtTime.Rows[0]["終了1"].ToString();
+                    }
 
                     this.btnF01.Enabled = true;
                     this.btnF03.Enabled = true;
@@ -1051,5 +1081,100 @@ namespace KATO.Form.M1050_Tantousha
             return false;
         }
 
+        private void txtTimeFrom_Leave(object sender, EventArgs e)
+        {
+            if (!chkTime((BaseText)sender))
+            {
+                ((BaseText)sender).Focus();
+            }
+        }
+
+        private void txtTimeTo_Leave(object sender, EventArgs e)
+        {
+            if(!chkTime((BaseText)sender))
+            {
+                ((BaseText)sender).Focus();
+            }
+        }
+
+        private bool chkTime(BaseText tx)
+        {
+            if (string.IsNullOrWhiteSpace(tx.Text))
+            {
+                return true;
+            }
+
+            try
+            {
+                DateTime input = System.DateTime.ParseExact(tx.Text, "HH:mm",
+                    System.Globalization.DateTimeFormatInfo.InvariantInfo,
+                    System.Globalization.DateTimeStyles.NoCurrentDateDefault);
+                return true;
+            }
+            catch (Exception ex)
+            {
+            }
+
+            try
+            {
+                DateTime input = System.DateTime.ParseExact(tx.Text, "HHmm",
+                    System.Globalization.DateTimeFormatInfo.InvariantInfo,
+                    System.Globalization.DateTimeStyles.NoCurrentDateDefault);
+
+                string s = tx.Text;
+                tx.Text = s.Substring(0, 2) + ":" + s.Substring(2);
+                return true;
+            }
+            catch (Exception ex)
+            {
+            }
+
+            try
+            {
+                DateTime input = System.DateTime.ParseExact(tx.Text, "H:mm",
+                    System.Globalization.DateTimeFormatInfo.InvariantInfo,
+                    System.Globalization.DateTimeStyles.NoCurrentDateDefault);
+
+                string s = tx.Text;
+                tx.Text = "0" + s;
+                return true;
+            }
+            catch (Exception ex)
+            {
+            }
+
+            try
+            {
+                DateTime input = System.DateTime.ParseExact(tx.Text, "HH:m",
+                    System.Globalization.DateTimeFormatInfo.InvariantInfo,
+                    System.Globalization.DateTimeStyles.NoCurrentDateDefault);
+
+                string s = tx.Text;
+                tx.Text = tx.Text = s.Substring(0, 2) + ":0" + s.Substring(3);
+                return true;
+            }
+            catch (Exception ex)
+            {
+            }
+
+            try
+            {
+                DateTime input = System.DateTime.ParseExact(tx.Text, "H:m",
+                    System.Globalization.DateTimeFormatInfo.InvariantInfo,
+                    System.Globalization.DateTimeStyles.NoCurrentDateDefault);
+
+                string s = tx.Text;
+                tx.Text = tx.Text = "0" + s.Substring(0, 1) + ":0" + s.Substring(2);
+                return true;
+            }
+            catch (Exception ex)
+            {
+            }
+
+            BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_INPUT, CommonTeisu.LABEL_MISS, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+            basemessagebox.ShowDialog();
+            return false;
+
+        }
     }
 }

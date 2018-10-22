@@ -66,6 +66,10 @@
       <HintPath>..\packages\Ghostscript.NET.1.2.1\lib\net40\Ghostscript.NET.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="ICSharpCode.SharpZipLib, Version=0.86.0.518, Culture=neutral, PublicKeyToken=1b03e6acf1164f73, processorArchitecture=MSIL">
+      <HintPath>..\packages\SharpZipLib.0.86.0\lib\20\ICSharpCode.SharpZipLib.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="itextsharp, Version=5.5.10.0, Culture=neutral, PublicKeyToken=8354ae6d2174ddca, processorArchitecture=MSIL">
       <HintPath>..\packages\iTextSharp.5.5.10\lib\itextsharp.dll</HintPath>
       <Private>True</Private>
@@ -80,6 +84,22 @@
     </Reference>
     <Reference Include="NonHCopyNet">
       <HintPath>..\..\0214deci001\0214deci001\suntsu_master\suntsu\DLL\NonHCopyNet.dll</HintPath>
+    </Reference>
+    <Reference Include="NPOI, Version=2.3.0.0, Culture=neutral, PublicKeyToken=0df73ec7942b34e1, processorArchitecture=MSIL">
+      <HintPath>..\packages\NPOI.2.3.0\lib\net40\NPOI.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="NPOI.OOXML, Version=2.3.0.0, Culture=neutral, PublicKeyToken=0df73ec7942b34e1, processorArchitecture=MSIL">
+      <HintPath>..\packages\NPOI.2.3.0\lib\net40\NPOI.OOXML.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="NPOI.OpenXml4Net, Version=2.3.0.0, Culture=neutral, PublicKeyToken=0df73ec7942b34e1, processorArchitecture=MSIL">
+      <HintPath>..\packages\NPOI.2.3.0\lib\net40\NPOI.OpenXml4Net.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="NPOI.OpenXmlFormats, Version=2.3.0.0, Culture=neutral, PublicKeyToken=0df73ec7942b34e1, processorArchitecture=MSIL">
+      <HintPath>..\packages\NPOI.2.3.0\lib\net40\NPOI.OpenXmlFormats.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="Spire.Common, Version=1.2.366.55040, Culture=neutral, PublicKeyToken=663f351905198cb3, processorArchitecture=MSIL">
       <HintPath>..\packages\FreeSpire.XLS.7.9.1\lib\net40\Spire.Common.dll</HintPath>
@@ -716,6 +736,12 @@
     </Compile>
     <Compile Include="Form\B0250_MOnyuryoku\B0250_MOnyuryoku.designer.cs">
       <DependentUpon>B0250_MOnyuryoku.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Form\B0250_MOnyuryoku\FormKataList.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form\B0250_MOnyuryoku\FormKataList.Designer.cs">
+      <DependentUpon>FormKataList.cs</DependentUpon>
     </Compile>
     <Compile Include="Form\B0250_MOnyuryoku\TokuteimukesakiTankaList.cs">
       <SubType>Form</SubType>
@@ -1427,6 +1453,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Form\B0250_MOnyuryoku\B0250_MOnyuryoku.resx">
       <DependentUpon>B0250_MOnyuryoku.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form\B0250_MOnyuryoku\FormKataList.resx">
+      <DependentUpon>FormKataList.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Form\B0250_MOnyuryoku\TokuteimukesakiTankaList.resx">
       <DependentUpon>TokuteimukesakiTankaList.cs</DependentUpon>

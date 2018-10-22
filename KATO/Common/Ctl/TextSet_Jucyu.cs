@@ -288,6 +288,7 @@ namespace KATO.Common.Ctl
             InitializeComponent();
             labelSet_SoukoNoElem10.codeTxt.Leave += new EventHandler(labelSet_SoukoNo_Leave);
             txtBikouElem9.Leave += new EventHandler(txtBikou_Leave);
+            cmbRepri.SelectedIndex = 0;
 
             this.TabStop = true;
         }

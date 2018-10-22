@@ -19,6 +19,34 @@ namespace KATO.Business.Z0000_B
     ///</summary>
     class Z0000_B
     {
+        public DataTable getTime(string cd)
+        {
+            DataTable dt = null;
+
+            //接続用クラスのインスタンス作成
+            DBConnective con = new DBConnective();
+            con.DB_Connect();
+
+            try
+            {
+                string st = "select * from 担当者利用時刻 where 担当者コード = '" + cd + "'";
+                dt = con.ReadSql(st);
+            }
+            catch (Exception ex)
+            {
+                //ロールバック開始
+                throw (ex);
+            }
+            finally
+            {
+                //トランザクション終了
+                con.DB_Disconnect();
+            }
+
+            return dt;
+        }
+
+
         ///<summary>
         ///getComment
         ///コメントの取り出し

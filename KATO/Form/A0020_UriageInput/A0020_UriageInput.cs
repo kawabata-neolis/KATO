@@ -152,8 +152,11 @@ namespace KATO.Form.A0020_UriageInput
             this.btnF07.Text = "F7:行削除";
             //this.btnF08.Text = "F8:売上実績確認";
             this.btnF09.Text = STR_FUNC_F9;
+            this.btnF10.Text = "現品票再印刷";
             this.btnF11.Text = STR_FUNC_F11;
             this.btnF12.Text = STR_FUNC_F12;
+
+            this.btnF10.Enabled = false;
 
             //本日日付を設定
             txtYMD.Text = DateTime.Now.ToString("yyyy/MM/dd");
@@ -343,6 +346,8 @@ namespace KATO.Form.A0020_UriageInput
                 case Keys.F9:
                     break;
                 case Keys.F10:
+                    logger.Info(LogUtil.getMessage(this._Title, "現品票再印刷実行"));
+                    this.printGenpin(txtDenNo.Text);
                     break;
                 case Keys.F11:
                     logger.Info(LogUtil.getMessage(this._Title, "印刷実行"));
@@ -411,7 +416,11 @@ namespace KATO.Form.A0020_UriageInput
                     //logger.Info(LogUtil.getMessage(this._Title, "売上実績確認実行"));
                     ////売上実績確認表示
                     //showUriageJissekiKakunin();
-                    //break;
+                    break;
+                case STR_BTN_F10: // 印刷
+                    logger.Info(LogUtil.getMessage(this._Title, "現品票再印刷実行"));
+                    this.printGenpin(txtDenNo.Text);
+                    break;
                 case STR_BTN_F11: // 印刷
                     logger.Info(LogUtil.getMessage(this._Title, "印刷実行"));
                     this.PrintReport(txtDenNo.Text, 1);
@@ -448,6 +457,9 @@ namespace KATO.Form.A0020_UriageInput
         /// </summary>
         private void addJucyu()
         {
+            // 合計の再計算
+            textSet_Jucyu1.GokeiKeisan();
+
             //変数を初期化する。
             string Denno;
             int i;
@@ -1043,7 +1055,7 @@ namespace KATO.Form.A0020_UriageInput
 
                         if (sp.Contains("C840M") == false)
                         {
-                            uriageinput_B.printGenpinhyo(Denno, false);
+                            //uriageinput_B.printGenpinhyo(Denno, false);
                         }
 
                         //印刷済みにする。（プロシージャー）
@@ -1060,7 +1072,7 @@ namespace KATO.Form.A0020_UriageInput
                         string sp = prtList.SelectedItem.ToString();
 
                         if (sp.Contains("C840M") == false) {
-                            uriageinput_B.printGenpinhyo(Denno, false);
+                            //uriageinput_B.printGenpinhyo(Denno, false);
                         }
 
                         //印刷済みにする。（プロシージャー）
@@ -1682,7 +1694,33 @@ namespace KATO.Form.A0020_UriageInput
                             ((TextSet_Jucyu)cs1[0]).txtSuuryoElem4.Focus();
                             return false;
                         }
-                        
+
+                        // 通常発注がかかっている場合、仕入済＋倉庫出庫数を超えていないかチェック（仕入分納）
+                        #region
+                        DataTable dt1 = uriageinputB.getHachuData(((TextSet_Jucyu)cs1[0]).txtJucyuNoElem2.Text, con);
+
+                        if (dt1 != null && dt1.Rows.Count > 0) {
+
+                            DataTable dt2 = uriageinputB.getJucyuAll(lstString, con);
+
+                            string kako = PutIsNull(dt2.Rows[0]["加工区分"].ToString(), "");
+
+                            if (string.IsNullOrWhiteSpace(kako) || !kako.Equals("1")) {
+                                decimal cH = decimal.Parse(PutIsNull(dt2.Rows[0]["本社出庫数"].ToString(), "0"));
+                                decimal cG = decimal.Parse(PutIsNull(dt2.Rows[0]["岐阜出庫数"].ToString(), "0"));
+                                decimal cS = decimal.Parse(PutIsNull(dt1.Rows[0]["仕入済数量"].ToString(), "0"));
+
+                                if (cH + cG + cS > 0 && decimal.Parse(((TextSet_Jucyu)cs1[0]).txtSuuryoElem4.Text) + UriSU - UriSU2 > cH + cG + cS)
+                                {
+                                    // メッセージボックスの処理、項目が空の場合のウィンドウ（OK）
+                                    BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_INPUT, "仕入済数量を超えています。", CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                                    basemessagebox.ShowDialog();
+                                    ((TextSet_Jucyu)cs1[0]).txtSuuryoElem4.Focus();
+                                    return false;
+                                }
+                            }
+                        }
+                        #endregion
                     }
                     catch (Exception ex)
                     {
@@ -2127,8 +2165,16 @@ namespace KATO.Form.A0020_UriageInput
                 }
                 #endregion
 
+                // 利益率承認が下りている場合、利益率チェックは無視
+                //if (uriageinputB.getRiekiAcceptRe(((TextSet_Jucyu)cs1[0]).txtJucyuNoElem2.Text) > 0)
+                //{
+                //    BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_INPUT, "利益率承認されていない受注が存在します。", CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                //    basemessagebox.ShowDialog();
+                //    return false;
+                //}
+
                 //2014.4.25 商品別利益率チェック機能　追加
-                if (((TextSet_Jucyu)cs1[0]).txtJucyuNoElem2.Text != "")
+                if (((TextSet_Jucyu)cs1[0]).txtJucyuNoElem2.Text != "" && decimal.Parse(((TextSet_Jucyu)cs1[0]).txtSuuryoElem4.Text) > 0)
                 {
                     //商品別利益率チェックメソッドへ
                     SyohinbetuCheckFLG = SyohinbetuCheck(i);
@@ -2244,7 +2290,9 @@ namespace KATO.Form.A0020_UriageInput
             {
                 Control[] cs1 = this.Controls.Find("textSet_Jucyu" + i.ToString(), true);
 
-                if (((TextSet_Jucyu)cs1[0]).txtJucyuNoElem2.Text != "")
+                ((TextSet_Jucyu)cs1[0]).txtTankaElem5.ForeColor = Color.Black;
+
+                if (((TextSet_Jucyu)cs1[0]).txtJucyuNoElem2.Text != "" && decimal.Parse(((TextSet_Jucyu)cs1[0]).txtSuuryoElem4.Text) > 0)
                 {
                     if (DoituTanka[i] != 9)
                     {
@@ -3077,9 +3125,14 @@ namespace KATO.Form.A0020_UriageInput
                 ((TextSet_Jucyu)cs1[0]).txtRitsuElem21.Text = ((TextSet_Jucyu)cs2[0]).txtRitsuElem21.Text;
                 ((TextSet_Jucyu)cs1[0]).txtElem22.Text = ((TextSet_Jucyu)cs2[0]).txtElem22.Text;
 
-
+                ((TextSet_Jucyu)cs1[0]).lblRepri.Visible = ((TextSet_Jucyu)cs2[0]).lblRepri.Visible;
+                ((TextSet_Jucyu)cs1[0]).lblRepriBase.Visible = ((TextSet_Jucyu)cs2[0]).lblRepriBase.Visible;
+                ((TextSet_Jucyu)cs1[0]).cmbRepri.Visible = ((TextSet_Jucyu)cs2[0]).cmbRepri.Visible;
+                ((TextSet_Jucyu)cs1[0]).txtRepri.Visible = ((TextSet_Jucyu)cs2[0]).txtRepri.Visible;
+                ((TextSet_Jucyu)cs1[0]).txtRepri.Text = ((TextSet_Jucyu)cs2[0]).txtRepri.Text;
+                ((TextSet_Jucyu)cs1[0]).cmbRepri.SelectedIndex = ((TextSet_Jucyu)cs2[0]).cmbRepri.SelectedIndex;
             }
-            
+
             //一番下の行の内容をクリア
             textSet_Jucyu5.txtNoElem1.Text = "";
             textSet_Jucyu5.txtJucyuNoElem2.Text = "";
@@ -3124,6 +3177,15 @@ namespace KATO.Form.A0020_UriageInput
             textSet_Jucyu5.oldArari = "";
             textSet_Jucyu5.oldSouko = "";
             textSet_Jucyu5.oldBiko = "";
+
+            textSet_Jucyu5.lblRepri.Visible = false;
+            textSet_Jucyu5.txtRepri.Visible = false;
+            textSet_Jucyu5.txtRepri.Text = "";
+            textSet_Jucyu5.lblRepriBase.Visible = false;
+            textSet_Jucyu5.cmbRepri.Visible = false;
+            textSet_Jucyu5.cmbRepri.SelectedIndex = 0;
+
+            this.btnF10.Enabled = false;
 
             //合計計算メソッドへ
             textSet_Jucyu1.GokeiKeisan();
@@ -3764,8 +3826,14 @@ namespace KATO.Form.A0020_UriageInput
                         ((TextSet_Jucyu)cs1[0]).txtMasterSiireRitu.Text = decimal.Parse(PutIsNull(((TextSet_Jucyu)cs1[0]).txtMasterSiireRitu.Text,"0")).ToString("0.0");
                         ((TextSet_Jucyu)cs1[0]).txtCyokkinSiireRituA.Text = decimal.Parse(PutIsNull(((TextSet_Jucyu)cs1[0]).txtCyokkinSiireRituA.Text,"0")).ToString("0.0");
                         ((TextSet_Jucyu)cs1[0]).txtMasterSiireRituA.Text = decimal.Parse(PutIsNull(((TextSet_Jucyu)cs1[0]).txtMasterSiireRituA.Text,"0")).ToString("0.0");
-                    }
 
+                        ((TextSet_Jucyu)cs1[0]).lblRepri.Visible = true;
+                        ((TextSet_Jucyu)cs1[0]).txtRepri.Visible = true;
+                        ((TextSet_Jucyu)cs1[0]).lblRepriBase.Visible = true;
+                        ((TextSet_Jucyu)cs1[0]).cmbRepri.Visible = true;
+                        ((TextSet_Jucyu)cs1[0]).cmbRepri.SelectedIndex = 0;
+                    }
+                    this.btnF10.Enabled = true;
                 }
                 else
                 {
@@ -3930,6 +3998,14 @@ namespace KATO.Form.A0020_UriageInput
                 ((TextSet_Jucyu)cs1[0]).oldArari = "";
                 ((TextSet_Jucyu)cs1[0]).oldSouko = "";
                 ((TextSet_Jucyu)cs1[0]).oldBiko = "";
+
+                ((TextSet_Jucyu)cs1[0]).lblRepri.Visible = false;
+                ((TextSet_Jucyu)cs1[0]).txtRepri.Visible = false;
+                ((TextSet_Jucyu)cs1[0]).txtRepri.Text = "";
+                ((TextSet_Jucyu)cs1[0]).lblRepriBase.Visible = false;
+                ((TextSet_Jucyu)cs1[0]).cmbRepri.Visible = false;
+                ((TextSet_Jucyu)cs1[0]).cmbRepri.SelectedIndex = 0;
+                this.btnF10.Enabled = false;
 
             }
         }
@@ -4256,6 +4332,31 @@ namespace KATO.Form.A0020_UriageInput
 
             BaseText basetext = new BaseText();
             basetext.judKeyUp(cActiveBefore, e);
+        }
+
+        private void printGenpin(string no)
+        {
+            if (string.IsNullOrWhiteSpace(no))
+            {
+                return;
+            }
+
+            A0020_UriageInput_B bis = new A0020_UriageInput_B();
+
+                for (int i = 1; i <= 5; i++)
+            {
+                Control[] cs1 = this.Controls.Find("textSet_Jucyu" + i.ToString(), true);
+                string s1 = ((TextSet_Jucyu)cs1[0]).txtJucyuNoElem2.Text;
+                string s2 = ((TextSet_Jucyu)cs1[0]).txtRepri.Text;
+                int idx = ((TextSet_Jucyu)cs1[0]).cmbRepri.SelectedIndex;
+
+                if (!string.IsNullOrWhiteSpace(s1) && !string.IsNullOrWhiteSpace(s1) && idx >= 0)
+                {
+                    bis.printGenpinhyoRe(no, i.ToString(), s2, idx);
+                    //int Flag = 1;
+                    //bis.updInsatuzumi(no, Environment.UserName, Flag);
+                }
+            }
         }
     }
 }

@@ -135,6 +135,7 @@
             // 
             this.btnF10.TabIndex = 18;
             this.btnF10.TabStop = false;
+            this.btnF10.Click += new System.EventHandler(this.judBtnClick);
             // 
             // btnF09
             // 

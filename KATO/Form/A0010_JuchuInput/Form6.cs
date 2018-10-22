@@ -2830,7 +2830,8 @@ namespace KATO.Form.A0010_JuchuInput
                 #endregion
 
                 DateTime endDateTime = DateTime.Parse(txtJuchuYMD.Text);
-                string strEndDay = endDateTime.AddYears(1).ToString("yyyy/MM/dd");
+                //string strEndDay = endDateTime.AddYears(1).ToString("yyyy/MM/dd");
+                string strEndDay = (DateTime.Now.AddMonths(6)).ToString("yyyy/MM/dd");
 
                 if (!string.IsNullOrWhiteSpace(strJuchuNo))
                 {
