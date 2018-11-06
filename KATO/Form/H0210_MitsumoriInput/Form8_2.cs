@@ -583,13 +583,13 @@ namespace KATO.Form.H0210_MitsumoriInput
             }
             finally
             {
-                // Workフォルダの全ファイルを取得
-                string[] files = System.IO.Directory.GetFiles(strWorkPath, "*", System.IO.SearchOption.AllDirectories);
-                // Workフォルダ内のファイル削除
-                foreach (string filepath in files)
-                {
-                    System.IO.File.Delete(filepath);
-                }
+                //// Workフォルダの全ファイルを取得
+                //string[] files = System.IO.Directory.GetFiles(strWorkPath, "*", System.IO.SearchOption.AllDirectories);
+                //// Workフォルダ内のファイル削除
+                //foreach (string filepath in files)
+                //{
+                //    System.IO.File.Delete(filepath);
+                //}
                 this.Cursor = Cursors.Default;
             }
         }

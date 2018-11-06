@@ -35,12 +35,18 @@
             this.lblYear = new KATO.Common.Ctl.BaseLabel(this.components);
             this.gridUriage = new KATO.Common.Ctl.BaseDataGridView();
             this.txtYear = new KATO.Common.Ctl.BaseTextMoney();
+            this.baseLabel1 = new KATO.Common.Ctl.BaseLabel(this.components);
+            this.lsTantoF = new KATO.Common.Ctl.LabelSet_Tantousha();
+            this.lsTantoT = new KATO.Common.Ctl.LabelSet_Tantousha();
+            this.nameLabel = new KATO.Common.Ctl.BaseLabel(this.components);
+            this.baseLabel2 = new KATO.Common.Ctl.BaseLabel(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.gridUriage)).BeginInit();
+            this.lsTantoT.SuspendLayout();
             this.SuspendLayout();
             // 
             // btnF01
             // 
-            this.btnF01.TabIndex = 9;
+            this.btnF01.TabIndex = 4;
             this.btnF01.Click += new System.EventHandler(this.judBtnClick);
             // 
             // btnF12
@@ -167,13 +173,91 @@
             this.txtYear.Size = new System.Drawing.Size(40, 22);
             this.txtYear.TabIndex = 1;
             this.txtYear.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.txtYear.KeyDown += new System.Windows.Forms.KeyEventHandler(this.C0140_TantouUriageArariNenkan_KeyDown);
+            this.txtYear.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtYear_KeyDown);
+            // 
+            // baseLabel1
+            // 
+            this.baseLabel1.AutoSize = true;
+            this.baseLabel1.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
+            this.baseLabel1.Location = new System.Drawing.Point(148, 24);
+            this.baseLabel1.Name = "baseLabel1";
+            this.baseLabel1.Size = new System.Drawing.Size(55, 15);
+            this.baseLabel1.strToolTip = null;
+            this.baseLabel1.TabIndex = 91;
+            this.baseLabel1.Text = "担当者";
+            this.baseLabel1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // lsTantoF
+            // 
+            this.lsTantoF.AppendLabelSize = 0;
+            this.lsTantoF.AppendLabelText = "";
+            this.lsTantoF.CodeTxtSize = 40;
+            this.lsTantoF.CodeTxtText = "";
+            this.lsTantoF.LabelName = "";
+            this.lsTantoF.Location = new System.Drawing.Point(209, 21);
+            this.lsTantoF.Name = "lsTantoF";
+            this.lsTantoF.ShowAppendFlg = false;
+            this.lsTantoF.Size = new System.Drawing.Size(172, 22);
+            this.lsTantoF.SpaceCodeValue = 4;
+            this.lsTantoF.SpaceNameCode = 4;
+            this.lsTantoF.SpaceValueAppend = 4;
+            this.lsTantoF.TabIndex = 2;
+            this.lsTantoF.ValueLabelSize = 120;
+            this.lsTantoF.ValueLabelText = "";
+            this.lsTantoF.KeyDown += new System.Windows.Forms.KeyEventHandler(this.baseText1_KeyDown);
+            // 
+            // lsTantoT
+            // 
+            this.lsTantoT.AppendLabelSize = 0;
+            this.lsTantoT.AppendLabelText = "";
+            this.lsTantoT.CodeTxtSize = 40;
+            this.lsTantoT.CodeTxtText = "";
+            this.lsTantoT.Controls.Add(this.nameLabel);
+            this.lsTantoT.LabelName = "";
+            this.lsTantoT.Location = new System.Drawing.Point(416, 21);
+            this.lsTantoT.Name = "lsTantoT";
+            this.lsTantoT.ShowAppendFlg = false;
+            this.lsTantoT.Size = new System.Drawing.Size(180, 22);
+            this.lsTantoT.SpaceCodeValue = 4;
+            this.lsTantoT.SpaceNameCode = 4;
+            this.lsTantoT.SpaceValueAppend = 4;
+            this.lsTantoT.TabIndex = 3;
+            this.lsTantoT.ValueLabelSize = 120;
+            this.lsTantoT.ValueLabelText = "";
+            this.lsTantoT.KeyDown += new System.Windows.Forms.KeyEventHandler(this.baseText2_KeyDown);
+            // 
+            // nameLabel
+            // 
+            this.nameLabel.AutoSize = true;
+            this.nameLabel.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
+            this.nameLabel.Location = new System.Drawing.Point(2, 3);
+            this.nameLabel.Name = "nameLabel";
+            this.nameLabel.Size = new System.Drawing.Size(0, 15);
+            this.nameLabel.strToolTip = null;
+            this.nameLabel.TabIndex = 0;
+            this.nameLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // baseLabel2
+            // 
+            this.baseLabel2.AutoSize = true;
+            this.baseLabel2.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
+            this.baseLabel2.Location = new System.Drawing.Point(387, 24);
+            this.baseLabel2.Name = "baseLabel2";
+            this.baseLabel2.Size = new System.Drawing.Size(23, 15);
+            this.baseLabel2.strToolTip = null;
+            this.baseLabel2.TabIndex = 95;
+            this.baseLabel2.Text = "～";
+            this.baseLabel2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // C1530_TantouUriageArariNenkan
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1584, 826);
+            this.Controls.Add(this.baseLabel2);
+            this.Controls.Add(this.lsTantoT);
+            this.Controls.Add(this.lsTantoF);
+            this.Controls.Add(this.baseLabel1);
             this.Controls.Add(this.txtYear);
             this.Controls.Add(this.gridUriage);
             this.Controls.Add(this.lblYear);
@@ -197,7 +281,13 @@
             this.Controls.SetChildIndex(this.lblYear, 0);
             this.Controls.SetChildIndex(this.gridUriage, 0);
             this.Controls.SetChildIndex(this.txtYear, 0);
+            this.Controls.SetChildIndex(this.baseLabel1, 0);
+            this.Controls.SetChildIndex(this.lsTantoF, 0);
+            this.Controls.SetChildIndex(this.lsTantoT, 0);
+            this.Controls.SetChildIndex(this.baseLabel2, 0);
             ((System.ComponentModel.ISupportInitialize)(this.gridUriage)).EndInit();
+            this.lsTantoT.ResumeLayout(false);
+            this.lsTantoT.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -207,5 +297,10 @@
         private Common.Ctl.BaseLabel lblYear;
         private Common.Ctl.BaseDataGridView gridUriage;
         private Common.Ctl.BaseTextMoney txtYear;
+        private Common.Ctl.BaseLabel baseLabel1;
+        private Common.Ctl.LabelSet_Tantousha lsTantoF;
+        private Common.Ctl.LabelSet_Tantousha lsTantoT;
+        private Common.Ctl.BaseLabel nameLabel;
+        private Common.Ctl.BaseLabel baseLabel2;
     }
 }

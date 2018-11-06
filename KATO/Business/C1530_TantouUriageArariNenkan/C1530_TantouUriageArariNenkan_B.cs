@@ -31,6 +31,19 @@ namespace KATO.Business.C1530_TantouUriageArariNenkan_B
             string strZennenDate;
             DateTime dt = new DateTime(int.Parse(lstItem[0]), 5, 1);
 
+            string tantoF = "";
+            string tantoT = "";
+
+            if (!string.IsNullOrWhiteSpace(lstItem[1]))
+            {
+                tantoF = lstItem[1];
+            }
+            if (!string.IsNullOrWhiteSpace(lstItem[2]))
+            {
+                tantoT = lstItem[2];
+            }
+
+
             strSql = "SELECT グループコード, グループ名, 担当者コード, 担当者名,";
 
             for (int cnt = 1; cnt <=12; cnt++)
@@ -143,6 +156,17 @@ namespace KATO.Business.C1530_TantouUriageArariNenkan_B
 
             strSql += " FROM 担当者";
             strSql += " WHERE 削除 = 'N'";
+
+            if (!string.IsNullOrWhiteSpace(tantoF))
+            {
+                strSql += " AND 担当者コード >= '"+ tantoF + "'";
+            }
+            if (!string.IsNullOrWhiteSpace(tantoT))
+            {
+                strSql += " AND 担当者コード <= '" + tantoT + "'";
+            }
+
+
             strSql += " ) AS Z";
             strSql += " ORDER BY グループコード, 担当者コード";
 

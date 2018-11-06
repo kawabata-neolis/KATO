@@ -664,7 +664,7 @@ namespace KATO.Form.D0360_JuchuzanKakunin
             //加工グリッドの初期化
             this.gridKakoList.DataSource = "";
 
-            string[] listParam = new string[30];
+            string[] listParam = new string[32];
 
             // パラメータ設定
             setParam(listParam, txtJuchuNo.Text, 0);
@@ -718,6 +718,9 @@ namespace KATO.Form.D0360_JuchuzanKakunin
             setParam(listParam, (rsSortItem.judCheckBtn()).ToString(), 27);
             setParam(listParam, (rsSortOrder.judCheckBtn()).ToString(), 28);
             setParam(listParam, (rsSearchKind.judCheckBtn()).ToString(), 29);
+
+            setParam(listParam, "", 30);
+            setParam(listParam, "", 31);
 
             D0360_JuchuzanKakunin_B bis = new D0360_JuchuzanKakunin_B();
             try
@@ -1291,7 +1294,7 @@ namespace KATO.Form.D0360_JuchuzanKakunin
             //加工グリッドの初期化
             this.gridKakoList.DataSource = "";
 
-            string[] listParam = new string[30];
+            string[] listParam = new string[32];
 
             // パラメータ設定
             setParam(listParam, txtJuchuNo.Text, 0);
@@ -1345,6 +1348,21 @@ namespace KATO.Form.D0360_JuchuzanKakunin
             setParam(listParam, (rsSortItem.judCheckBtn()).ToString(), 27);
             setParam(listParam, (rsSortOrder.judCheckBtn()).ToString(), 28);
             setParam(listParam, (rsSearchKind.judCheckBtn()).ToString(), 29);
+
+            string sortColName = "";
+            string orderCol = "";
+
+            if (gridZanList.SortedColumn != null)
+            {
+                if (!string.IsNullOrWhiteSpace(gridZanList.SortedColumn.DataPropertyName))
+                {
+                    sortColName = gridZanList.SortedColumn.DataPropertyName;
+                    orderCol = ((int)gridZanList.SortOrder).ToString();
+                }
+            }
+
+            setParam(listParam, sortColName, 30);
+            setParam(listParam, orderCol, 31);
 
             D0360_JuchuzanKakunin_B bis = new D0360_JuchuzanKakunin_B();
             try

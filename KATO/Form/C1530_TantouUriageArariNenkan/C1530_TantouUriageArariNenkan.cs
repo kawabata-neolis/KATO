@@ -493,6 +493,8 @@ namespace KATO.Form.C1530_TantouUriageArariNenkan
 
             // 検索するデータをリストに格納
             lstSearchItem.Add(txtYear.Text);
+            lstSearchItem.Add(lsTantoF.CodeTxtText);
+            lstSearchItem.Add(lsTantoT.CodeTxtText);
 
             // ビジネス層のインスタンス生成
             C1530_TantouUriageArariNenkan_B uriagePrint_B = new C1530_TantouUriageArariNenkan_B();
@@ -671,6 +673,8 @@ namespace KATO.Form.C1530_TantouUriageArariNenkan
 
             // 検索するデータをリストに格納
             lstSearchItem.Add(txtYear.Text);
+            lstSearchItem.Add(lsTantoF.CodeTxtText);
+            lstSearchItem.Add(lsTantoT.CodeTxtText);
 
             // ビジネス層のインスタンス生成
             C1530_TantouUriageArariNenkan_B uriagePrint_B = new C1530_TantouUriageArariNenkan_B();
@@ -777,5 +781,28 @@ namespace KATO.Form.C1530_TantouUriageArariNenkan
             return true;
         }
 
+        private void txtYear_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                    SendKeys.Send("{TAB}");
+            }
+        }
+
+        private void baseText1_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                SendKeys.Send("{TAB}");
+            }
+        }
+
+        private void baseText2_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                SendKeys.Send("{TAB}");
+            }
+        }
     }
 }

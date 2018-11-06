@@ -294,11 +294,22 @@ namespace KATO.Form.B0420_SeikyuMeisaishoPrint
         {
             // データ検索用
             List<string> lstSearchItem = new List<string>();
+            string stSimebi = "";
 
-            // データチェック
-            if (!blnDataCheck())
+            if (string.IsNullOrWhiteSpace(txtEndDay.Text)) {
+                // データチェック
+                if (!blnDataCheck())
+                {
+                    return;
+                }
+                stSimebi = txtSimekiriYmd.Text;
+            } else
             {
-                return;
+                if (!blnDataCheck2())
+                {
+                    return;
+                }
+                stSimebi = txtEndDay.Text;
             }
 
             // ビジネス層のインスタンス生成
@@ -306,7 +317,8 @@ namespace KATO.Form.B0420_SeikyuMeisaishoPrint
             try
             {
                 // 検索するデータをリストに格納
-                lstSearchItem.Add(txtSimekiriYmd.Text);
+                //lstSearchItem.Add(txtSimekiriYmd.Text);
+                lstSearchItem.Add(stSimebi);
                 lstSearchItem.Add(txtStartYmd.Text);
                 lstSearchItem.Add(txtSimekiribi.Text);
                 lstSearchItem.Add(labelSet_TokuisakiCdFrom.CodeTxtText);
@@ -523,6 +535,208 @@ namespace KATO.Form.B0420_SeikyuMeisaishoPrint
                 lstSearchItem.Add(labelSet_TokuisakiCdFrom.CodeTxtText);
                 lstSearchItem.Add(labelSet_TokuisakiCdTo.CodeTxtText);
                 lstSearchItem.Add(txtSimekiriYmd.Text);
+
+                // ビジネス層のインスタンス生成
+                B0420_SeikyuMeisaishoPrint_B meisaiPrintB = new B0420_SeikyuMeisaishoPrint_B();
+                try
+                {
+                    // 請求履歴を取得
+                    DataTable dtSeikyuRireki = meisaiPrintB.getSeikyuRireki(lstSearchItem);
+
+                    if (dtSeikyuRireki != null && dtSeikyuRireki.Rows.Count > 0)
+                    {
+                        // 請求履歴に登録されている場合
+                        if (!dtSeikyuRireki.Rows[0][0].Equals(0))
+                        {
+                            // メッセージボックスの処理、請求履歴に登録されている場合のウィンドウ（OK）
+                            BaseMessageBox basemessagebox = new BaseMessageBox(this, "通常発行の確認", "請求明細書はすでに発行済みです。" + "\r\n" + "取引先の範囲を限定するか、再発行をしてください。", CommonTeisu.BTN_OK, CommonTeisu.DIAG_INFOMATION);
+                            basemessagebox.ShowDialog();
+
+                            return false;
+                        }
+                    }
+                }
+                catch (Exception ex)
+                {
+                    // エラーロギング
+                    new CommonException(ex);
+
+                    // 例外発生メッセージ（OK）
+                    BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_ERROR, CommonTeisu.LABEL_ERROR_MESSAGE, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                    basemessagebox.ShowDialog();
+
+                    return false;
+                }
+            }
+
+            return true;
+        }
+
+        private Boolean blnDataCheck2()
+        {
+            // 空文字判定（締切年月日）
+            if (txtEndDay.blIsEmpty() == false)
+            {
+                // メッセージボックスの処理、項目が空の場合のウィンドウ（OK）
+                BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_INPUT, "項目が空です。日付を入力してください。", CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                basemessagebox.ShowDialog();
+
+                txtEndDay.Focus();
+
+                return false;
+            }
+
+            // 空文字判定（開始年月日）
+            if (txtStartYmd.blIsEmpty() == false)
+            {
+                // メッセージボックスの処理、項目が空の場合のウィンドウ（OK）
+                BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_INPUT, "項目が空です。日付を入力してください。", CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                basemessagebox.ShowDialog();
+
+                txtStartYmd.Focus();
+
+                return false;
+            }
+
+            // 空文字判定（締切日コード）
+            if (txtSimekiribi.Text.Equals(""))
+            {
+                // メッセージボックスの処理、項目が空の場合のウィンドウ（OK）
+                BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_INPUT, "項目が空です。数値を入力してください。", CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                basemessagebox.ShowDialog();
+
+                txtSimekiribi.Focus();
+
+                return false;
+            }
+
+            // 空文字判定（得意先コード（開始））
+            if (labelSet_TokuisakiCdFrom.CodeTxtText.Equals(""))
+            {
+                // メッセージボックスの処理、項目が空の場合のウィンドウ（OK）
+                BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_INPUT, CommonTeisu.LABEL_NULL, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                basemessagebox.ShowDialog();
+
+                labelSet_TokuisakiCdFrom.Focus();
+
+                return false;
+            }
+
+            // フォーマットチェック（得意先コード（開始））
+            if (labelSet_TokuisakiCdFrom.chkTxtTorihikisaki())
+            {
+                return false;
+            }
+
+            // 空文字判定（得意先コード（終了））
+            if (labelSet_TokuisakiCdTo.CodeTxtText.Equals(""))
+            {
+                // メッセージボックスの処理、項目が空の場合のウィンドウ（OK）
+                BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_INPUT, CommonTeisu.LABEL_NULL, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                basemessagebox.ShowDialog();
+
+                labelSet_TokuisakiCdTo.Focus();
+
+                return false;
+            }
+
+            // フォーマットチェック（得意先コード（終了））
+            if (labelSet_TokuisakiCdTo.chkTxtTorihikisaki())
+            {
+                return false;
+            }
+
+            // 日付フォーマットチェック（締切年月日）
+            string datedata = txtEndDay.chkDateDataFormat(txtEndDay.Text);
+            if ("".Equals(datedata))
+            {
+                // メッセージボックスの処理
+                BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_INPUT, CommonTeisu.LABEL_DATE_ALERT, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                basemessagebox.ShowDialog();
+                return false;
+            }
+            else
+            {
+                txtEndDay.Text = datedata;
+            }
+
+            // 日付フォーマットチェック（開始年月日）
+            datedata = txtStartYmd.chkDateDataFormat(txtStartYmd.Text);
+            if ("".Equals(datedata))
+            {
+                // メッセージボックスの処理
+                BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_INPUT, CommonTeisu.LABEL_DATE_ALERT, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                basemessagebox.ShowDialog();
+                return false;
+            }
+            else
+            {
+                txtStartYmd.Text = datedata;
+            }
+
+            // 日付フォーマットチェック（発行年月日）
+            if (!"".Equals(txtHakkoYmd.Text))
+            {
+                // 日付フォーマットチェック（開始年月日）
+                datedata = txtHakkoYmd.chkDateDataFormat(txtHakkoYmd.Text);
+                if ("".Equals(datedata))
+                {
+                    // メッセージボックスの処理
+                    BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_INPUT, CommonTeisu.LABEL_DATE_ALERT, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                    basemessagebox.ShowDialog();
+                    return false;
+                }
+                else
+                {
+                    txtHakkoYmd.Text = datedata;
+                }
+
+            }
+
+            // 締切年月日の日付と締切日コードが違う場合
+            //if (!DateTime.Parse(txtEndDay.Text).Day.Equals(int.Parse(txtSimekiribi.Text)))
+            //{
+            //    // メッセージボックスの処理（YES,NO）
+            //    BaseMessageBox basemessagebox = new BaseMessageBox(this, "締日付の確認", "締切年月日の日付と締切日コードが違います。" + "\r\n" + "続行しますか？", CommonTeisu.BTN_YESNO, CommonTeisu.DIAG_QUESTION);
+
+            //    // Noが押された場合
+            //    if (basemessagebox.ShowDialog() == DialogResult.No)
+            //    {
+            //        return false;
+            //    }
+            //}
+            // メッセージボックスの処理（YES,NO）
+            BaseMessageBox mb = new BaseMessageBox(this, "締日付の確認", "月末日の日付で明細を作成します。" + "\r\n" + "続行しますか？", CommonTeisu.BTN_YESNO, CommonTeisu.DIAG_QUESTION);
+
+            // Noが押された場合
+            if (mb.ShowDialog() == DialogResult.No)
+            {
+                return false;
+            }
+
+            // 再発行の場合
+            if (radSet_2btnSyurui.radbtn1.Checked)
+            {
+                // メッセージボックスの処理（YES,NO）
+                BaseMessageBox basemessagebox = new BaseMessageBox(this, "再発行の確認", "再発行をすると前回の請求履歴が破棄されます。" + "\r\n" + "よろしいですか？。", CommonTeisu.BTN_YESNO, CommonTeisu.DIAG_QUESTION);
+
+                // Noが押された場合
+                if (basemessagebox.ShowDialog() == DialogResult.No)
+                {
+                    return false;
+                }
+            }
+
+            // 通常発行の場合
+            if (radSet_2btnSyurui.radbtn0.Checked)
+            {
+                // データ検索用
+                List<string> lstSearchItem = new List<string>();
+
+                // 検索するデータをリストに格納
+                lstSearchItem.Add(labelSet_TokuisakiCdFrom.CodeTxtText);
+                lstSearchItem.Add(labelSet_TokuisakiCdTo.CodeTxtText);
+                lstSearchItem.Add(txtEndDay.Text);
 
                 // ビジネス層のインスタンス生成
                 B0420_SeikyuMeisaishoPrint_B meisaiPrintB = new B0420_SeikyuMeisaishoPrint_B();

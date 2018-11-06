@@ -309,6 +309,8 @@ namespace KATO.Form.C0130_TantouUriageArariPrint
 
                     // 印刷ダイアログ
                     Common.Form.PrintForm pf = new Common.Form.PrintForm(this, "", CommonTeisu.SIZE_A4, CommonTeisu.YOKO);
+                    pf.lblBusu.Visible = true;
+                    pf.txtBusu.Visible = true;
                     pf.ShowDialog(this);
 
                     // プレビューの場合
@@ -318,10 +320,10 @@ namespace KATO.Form.C0130_TantouUriageArariPrint
                         this.Cursor = Cursors.WaitCursor;
 
                         // PDF作成
-                        String strFile = uriagePrint_B.dbToPdf(dtUriage, lstSearchItem);
+                        String strFile = uriagePrint_B.dbToPdf(dtUriage, lstSearchItem, null, 0);
 
                         // プレビュー
-                        pf.execPreview(strFile);
+                        //pf.execPreview(strFile);
                     }
                     // 一括印刷の場合
                     else if (this.printFlg == CommonTeisu.ACTION_PRINT)
@@ -329,11 +331,20 @@ namespace KATO.Form.C0130_TantouUriageArariPrint
                         // カーソルを待機状態にする
                         this.Cursor = Cursors.WaitCursor;
 
+                        string s = pf.txtBusu.Text;
+
+                        int num = 0;
+
+                        if (!string.IsNullOrWhiteSpace(s))
+                        {
+                            num = int.Parse(s);
+                        }
+
                         // PDF作成
-                        String strFile = uriagePrint_B.dbToPdf(dtUriage, lstSearchItem);
+                        String strFile = uriagePrint_B.dbToPdf(dtUriage, lstSearchItem, pf.printer, num);
 
                         // 一括印刷
-                        pf.execPrint(null, strFile, CommonTeisu.SIZE_B4, CommonTeisu.YOKO, true);
+                        //pf.execPrint(null, strFile, CommonTeisu.SIZE_A4, CommonTeisu.YOKO, true);
                     }
                     // カーソルの状態を元に戻す
                     this.Cursor = Cursors.Default;

@@ -627,7 +627,7 @@ namespace KATO.Business.A0100_HachuInput_B
             strSql += "'FAX: ' + dbo.f_getＦＡＸ(仕入先コード) AS FAX ,";
             strSql += "RTRIM(dbo.f_getメーカー名(メーカーコード))";
             strSql += " + ' ' + RTRIM(dbo.f_get中分類名(大分類コード,中分類コード)) ";
-            strSql += " + ' ' + Rtrim(ISNULL(Ｃ１,'')) ";
+            strSql += " + ' ' + CHAR(13) + CHAR(10) + Rtrim(ISNULL(Ｃ１,'')) ";
             strSql += " + ' ' + Rtrim(ISNULL(Ｃ２,''))";
             strSql += " + ' ' + Rtrim(ISNULL(Ｃ３,''))";
             strSql += " + ' ' + Rtrim(ISNULL(Ｃ４,''))";
@@ -822,13 +822,13 @@ namespace KATO.Business.A0100_HachuInput_B
             }
             finally
             {
-                // Workフォルダの作成日時ファイルを取得
-                string[] files = Directory.GetFiles(strWorkPath, strDateTime + "*", SearchOption.AllDirectories);
-                // Workフォルダ内のファイル削除
-                foreach (string filepath in files)
-                {
-                    File.Delete(filepath);
-                }
+                //// Workフォルダの作成日時ファイルを取得
+                //string[] files = Directory.GetFiles(strWorkPath, strDateTime + "*", SearchOption.AllDirectories);
+                //// Workフォルダ内のファイル削除
+                //foreach (string filepath in files)
+                //{
+                //    File.Delete(filepath);
+                //}
             }
         }
 

@@ -96,8 +96,14 @@ namespace KATO.Form.C0490_UriageSuiiHyo
 
             //DataGridViewの初期設定
             SetUpGrid();
+
+            labelSet_TokuisakiStart.CodeTxtText = "0000";
+            labelSet_TokuisakiEnd.CodeTxtText = "9999";
+            setUriageSuiiHyo();
+            //labelSet_TokuisakiStart.CodeTxtText = "";
+            //labelSet_TokuisakiEnd.CodeTxtText = "";
         }
-        
+
 
         ///<summary>
         ///GridSetUp

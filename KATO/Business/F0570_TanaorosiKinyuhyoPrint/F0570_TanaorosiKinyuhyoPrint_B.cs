@@ -362,7 +362,8 @@ namespace KATO.Business.F0570_TanaorosiKinyuhyoPrint
                 foreach (DataRow drTanaorosi in dtChkList.Rows)
                 {
                     // 大分類コードが違う場合
-                    if (!string.IsNullOrWhiteSpace(strDaibunruiCd) && !strDaibunruiCd.Equals(drTanaorosi[5].ToString()))
+                    //if (!string.IsNullOrWhiteSpace(strDaibunruiCd) && !strDaibunruiCd.Equals(drTanaorosi[5].ToString()))
+                    if (!string.IsNullOrWhiteSpace(strDaibunruiCd) && !strDaibunruiCd.Equals(drTanaorosi[0].ToString()))
                     {
                         pageCnt++;
                         xlsRowCnt = 6;
@@ -393,6 +394,7 @@ namespace KATO.Business.F0570_TanaorosiKinyuhyoPrint
                     }
 
                     strDaibunruiCd = drTanaorosi[5].ToString();
+                    strDaibunruiCd = drTanaorosi[0].ToString();
 
                     currentsheet.Cell(xlsRowCnt, "A").Value = drTanaorosi[0].ToString();
                     currentsheet.Cell(xlsRowCnt, "B").Value = drTanaorosi[1].ToString();

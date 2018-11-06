@@ -5,6 +5,7 @@ using System.Data;
 using System.Linq;
 
 using ClosedXML.Excel;
+using System.Runtime.InteropServices;
 
 namespace KATO.Business.C0130_TantouUriageArariPrint
 {
@@ -62,11 +63,17 @@ namespace KATO.Business.C0130_TantouUriageArariPrint
         /// <param name="dtUriage">
         ///     売上管理表のデータテーブル</param>
         /// -----------------------------------------------------------------------------
-        public string dbToPdf(DataTable dtUriage, List<string> lstItem)
+        public string dbToPdf(DataTable dtUriage, List<string> lstItem, string pr, int num)
         {
             string strWorkPath = System.Configuration.ConfigurationManager.AppSettings["workpath"];
             string strDateTime = DateTime.Now.ToString("yyyyMMddHHmmss");
             string strNow = DateTime.Now.ToString("yyyy/MM/dd HH:mm:ss");
+
+            Microsoft.Office.Interop.Excel.Application objExcel = null;
+            Microsoft.Office.Interop.Excel.Workbooks objWorkBooks = null;
+            Microsoft.Office.Interop.Excel.Workbook objWorkBook = null;
+            Microsoft.Office.Interop.Excel.Worksheet objWorkSheet = null;
+            Microsoft.Office.Interop.Excel.Range objRange = null;
 
             try
             {
@@ -291,21 +298,45 @@ namespace KATO.Business.C0130_TantouUriageArariPrint
                         headersheet.Range("A4", "N4").Style.Fill.BackgroundColor = XLColor.LightGray;
 
                         // 列幅の指定
-                        headersheet.Column(1).Width = 10;
+                        //headersheet.Column(1).Width = 10;
+                        headersheet.Column(1).Width = 8.1;
+                        //headersheet.Column(2).Width = 10;
                         headersheet.Column(2).Width = 10;
-                        headersheet.Column(3).Width = 14;
-                        headersheet.Column(4).Width = 12;
-                        headersheet.Column(5).Width = 12;
-                        headersheet.Column(6).Width = 8;
-                        for (int cnt = 7; cnt <= 13; cnt++)
-                        {
-                            headersheet.Column(cnt).Width = 12;
-                        }
-                        headersheet.Column(14).Width = 8;
+                        //headersheet.Column(3).Width = 14;
+                        headersheet.Column(3).Width = 12.7;
+                        //headersheet.Column(4).Width = 12;
+                        headersheet.Column(4).Width = 12.7;
+                        //headersheet.Column(5).Width = 12;
+                        headersheet.Column(5).Width = 12.7;
+                        //headersheet.Column(6).Width = 8;
+                        headersheet.Column(6).Width = 7;
+                        //for (int cnt = 7; cnt <= 13; cnt++)
+                        //{
+                        //    headersheet.Column(cnt).Width = 12;
+                        //}
+                        headersheet.Column(7).Width = 12.7;
+                        headersheet.Column(8).Width = 12.7;
+                        headersheet.Column(9).Width = 12.7;
+                        headersheet.Column(10).Width = 12.7;
+                        headersheet.Column(11).Width = 12.7;
+                        headersheet.Column(12).Width = 12.7;
+                        headersheet.Column(13).Width = 12.7;
+
+                        headersheet.Column(14).Width = 10.1;
 
                         // 印刷体裁（B4横、印刷範囲）
-                        headersheet.PageSetup.PaperSize = XLPaperSize.B4Paper;
+                        //headersheet.PageSetup.PaperSize = XLPaperSize.B4Paper;
+                        headersheet.PageSetup.PaperSize = XLPaperSize.A4Paper;
                         headersheet.PageSetup.PageOrientation = XLPageOrientation.Landscape;
+                        headersheet.PageSetup.Margins.Left = 0.2;
+                        headersheet.PageSetup.Margins.Right = 0.2;
+                        headersheet.PageSetup.Margins.Top = 0.4;
+                        headersheet.PageSetup.Margins.Bottom = 0.3;
+
+                        for (int ir = 3; ir < 39; ir++)
+                        {
+                            headersheet.Row(ir).Height = 13.2;
+                        }
 
                         // ヘッダー部の指定（番号）
                         headersheet.PageSetup.Header.Left.AddText("（№13）");
@@ -395,7 +426,7 @@ namespace KATO.Business.C0130_TantouUriageArariPrint
                         // セル結合
                         currentsheet.Range(xlsRowCnt, 2, xlsRowCnt, 3).Merge();
 
-                        currentsheet.Cell(xlsRowCnt, 2).Value = "　　　　　　◆グループ計◆";
+                        currentsheet.Cell(xlsRowCnt, 2).Value = "　　　　 ◆グループ計◆";
                         for (int cnt = 0; cnt < 11; cnt++)
                         {
                             // 粗利率の場合
@@ -465,7 +496,7 @@ namespace KATO.Business.C0130_TantouUriageArariPrint
                         // セル結合
                         currentsheet.Range(xlsRowCnt, 2, xlsRowCnt, 3).Merge();
 
-                        currentsheet.Cell(xlsRowCnt, 2).Value = "　　　　　　◆営業所計◆";
+                        currentsheet.Cell(xlsRowCnt, 2).Value = "　　　　 ◆営業所計◆";
                         for (int cnt = 0; cnt < 11; cnt++)
                         {
                             // 粗利率の場合
@@ -536,7 +567,7 @@ namespace KATO.Business.C0130_TantouUriageArariPrint
                     // セル結合
                     currentsheet.Range(xlsRowCnt, 2, xlsRowCnt, 3).Merge();
 
-                    currentsheet.Cell(xlsRowCnt, 2).Value = "　　　　　　◆総合計◆";
+                    currentsheet.Cell(xlsRowCnt, 2).Value = "　　　　 ◆総合計◆";
                     for (int cnt = 0; cnt < 11; cnt++)
                     {
                         // 粗利率の場合
@@ -595,7 +626,74 @@ namespace KATO.Business.C0130_TantouUriageArariPrint
                 workbook.Dispose();
 
                 // PDF化の処理
-                return pdf.createPdf(strOutXlsFile, strDateTime, 0);
+                //return pdf.createPdf(strOutXlsFile, strDateTime, 0);
+
+                objExcel = new Microsoft.Office.Interop.Excel.Application();
+                objExcel.Visible = false;
+
+                if (pr != null)
+                {
+                    objExcel.WindowState = Microsoft.Office.Interop.Excel.XlWindowState.xlMinimized;
+                }
+                else
+                {
+                    objExcel.WindowState = Microsoft.Office.Interop.Excel.XlWindowState.xlMaximized;
+                }
+
+                objExcel.DisplayAlerts = false;
+
+                objWorkBooks = objExcel.Workbooks;
+
+                String strP = System.IO.Path.GetFullPath(strOutXlsFile);
+
+                objWorkBook = objWorkBooks.Open(strP, //_xslFile,     // FileName:ファイル名
+                                                Type.Missing, // UpdateLinks:ファイル内の外部参照の更新方法
+                                                Type.Missing, // ReadOnly:ReadOnlyにするかどうか
+                                                Type.Missing, // Format: テキストファイルを開く場合に区切り文字を指定する
+                                                Type.Missing, // Password:開く際にパスワードがある場合にパスワードを入力
+                                                Type.Missing, // WriteResPassword:書き込む際にパスワードがある場合にパスワードを入力
+                                                Type.Missing, // IgnoreReadOnlyRecommended:[読み取り専用を推奨する]チェックがオンの場合でも[読み取り専用を推奨する]メッセージを非表示
+                                                Type.Missing, // Origin:テキストファイルの場合、プラットフォームを指定
+                                                Type.Missing, // Delimiter:テキストファイルで且つ引数Formatが6の場合に区切り文字を指定
+                                                Type.Missing, // Editable:Excel4.0アドインの場合、アドインウィンドウを出すか指定
+                                                Type.Missing, // Notify:ファイルが読み取りor書き込みモードで開けない場合に通知リストに追加するか指定
+                                                Type.Missing, // Converter:ファイルを開くときに最初に使用するファイルコンバーターのインデックス番号を指定
+                                                Type.Missing, // AddToMru:最近使用したファイルの一覧にブックを追加するか指定
+                                                Type.Missing, // Local:Excel言語設定に合わせてファイルを保存するか指定
+                                                Type.Missing  // CorruptLoad:使用できる定数は[xlNormalLoad][xlRepairFile][xlExtractData]。指定がない場合のは[xlNormalLoad]になりOMを通じて開始するときに回復は行われません。
+                                                );
+
+                if (pr != null)
+                {
+                    for (int ip = 0; ip < num; ip ++) {
+                        objWorkBook.PrintOut(Type.Missing, // From:印刷開始のページ番号
+                                              Type.Missing, // To:印刷終了のページ番号
+                                              1,            // Copies:印刷部数
+                                              Type.Missing, // Preview:印刷プレビューをするか指定
+                                              pr, // ActivePrinter:プリンターの名称
+                                              Type.Missing, // PrintToFile:ファイル出力をするか指定
+                                              true,         // Collate:部単位で印刷するか指定
+                                              Type.Missing  // PrToFileName	:出力先ファイルの名前を指定するかどうか
+                                              );
+                    }
+                }
+                else
+                {
+                    objWorkBook.PrintOut(Type.Missing, // From:印刷開始のページ番号
+                                          Type.Missing, // To:印刷終了のページ番号
+                                          1,            // Copies:印刷部数
+                                          true, // Preview:印刷プレビューをするか指定
+                                          pr, // ActivePrinter:プリンターの名称
+                                          Type.Missing, // PrintToFile:ファイル出力をするか指定
+                                          true,         // Collate:部単位で印刷するか指定
+                                          Type.Missing  // PrToFileName	:出力先ファイルの名前を指定するかどうか
+                                          );
+                    objExcel.Visible = true;
+                    objWorkBook.Activate();
+
+                }
+
+                return "";
 
             }
             catch
@@ -604,6 +702,35 @@ namespace KATO.Business.C0130_TantouUriageArariPrint
             }
             finally
             {
+                // EXCEL終了処理
+                if (objWorkSheet != null)
+                {
+                    Marshal.ReleaseComObject(objWorkSheet);     // オブジェクト参照を解放
+                    objWorkSheet = null;                        // オブジェクト解放
+                }
+
+                if (objWorkBook != null)
+                {
+                    objWorkBook.Close(false,
+                        Type.Missing, Type.Missing);            //ファイルを閉じる
+                    Marshal.ReleaseComObject(objWorkBook);      // オブジェクト参照を解放
+                    objWorkBook = null;                         // オブジェクト解放
+                }
+
+                if (objWorkBooks != null)
+                {
+                    Marshal.ReleaseComObject(objWorkBooks);     // オブジェクト参照を解放
+                    objWorkBooks = null;                        // オブジェクト解放
+                }
+                if (objExcel != null)
+                {
+                    objExcel.Quit();                            // EXCELを閉じる
+
+                    Marshal.ReleaseComObject(objExcel);         // オブジェクト参照を解放
+                    objExcel = null;                            // オブジェクト解放
+                }
+
+                System.GC.Collect();
                 // Workフォルダの全ファイルを取得
                 string[] files = System.IO.Directory.GetFiles(strWorkPath, "*", System.IO.SearchOption.AllDirectories);
                 // Workフォルダ内のファイル削除

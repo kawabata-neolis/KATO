@@ -460,6 +460,26 @@ namespace KATO.Business.D0360_JuchuzanKakunin
 
             DataTable dtRet = null;
 
+            if (!string.IsNullOrWhiteSpace(listParam[30]))
+            {
+                var drs = dtZanList.AsEnumerable();
+                if (listParam[31].Equals("1"))
+                {
+                    drs = drs
+                      .OrderBy(row => row[listParam[30]]);
+                }
+                else
+                {
+                    drs = drs
+                      .OrderByDescending(row => row[listParam[30]]);
+                }
+
+                if (drs != null && drs.Count() > 0)
+                {
+                    dtZanList = drs.CopyToDataTable();
+                }
+            }
+
             // 入荷済のみ表示の場合
             if (int.Parse(listParam[23]) == 1)
             {

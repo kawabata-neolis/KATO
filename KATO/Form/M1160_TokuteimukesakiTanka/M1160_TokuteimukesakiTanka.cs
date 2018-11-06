@@ -526,7 +526,13 @@ namespace KATO.Form.M1160_TokuteimukesakiTanka
                     break;
                 case Keys.Enter:
                     //入力文字で商品検索
-                    this.setShohinList();
+                    if (!string.IsNullOrWhiteSpace(txtKensakuS.Text)) {
+                        this.setShohinList();
+                    }
+                    else
+                    {
+                        SendKeys.Send("{TAB}");
+                    }
                     break;
                 case Keys.F1:
                     break;
@@ -546,6 +552,7 @@ namespace KATO.Form.M1160_TokuteimukesakiTanka
                     break;
                 case Keys.F9:
                     //商品フォームを開く
+                    blSelectFlag = false;
                     this.setShohinList();
                     break;
                 case Keys.F10:
@@ -639,6 +646,10 @@ namespace KATO.Form.M1160_TokuteimukesakiTanka
                         basemessagebox.ShowDialog();
                         return;
                     }
+                }
+                else
+                {
+                    SendKeys.Send("{TAB}");
                 }
             }
         }
