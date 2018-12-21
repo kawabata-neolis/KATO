@@ -74,7 +74,7 @@ namespace KATO.Common.Ctl
                     //前の年に変更
                     strYear = (DateTime.Today.Year + 1).ToString();
                     //前の月に変更
-                    strMonth = "1";
+                    strMonth = "0";
                 }
 
                 //その月の来月の1日を取り出す
@@ -285,6 +285,12 @@ namespace KATO.Common.Ctl
                     this.Text = strDataPi;
                 }
             }
+
+            if (!string.IsNullOrWhiteSpace(this.Text))
+            {
+                this.Text = chkModDay(this.Text);
+            }
+
             return (blnDateCheck);
         }
 
@@ -554,7 +560,30 @@ namespace KATO.Common.Ctl
                     strDateData = "";
                 }
             }
+
+            if (!string.IsNullOrWhiteSpace(strDateData))
+            {
+                strDateData = chkModDay(strDateData);
+            }
+
             return (strDateData);
+        }
+
+        private string chkModDay(string s)
+        {
+            string ret = s;
+
+            if (s.CompareTo(DateTime.Now.ToString("yyyy/MM")) < 0)
+            {
+                DateTime d = DateTime.ParseExact(s + "/01", "yyyy/MM/dd", null).AddYears(1);
+                if (d.ToString("yyyy/MM/01").CompareTo(DateTime.Now.AddMonths(6).ToString("yyyy/MM/01")) > 0)
+                {
+                    d = d.AddYears(-1);
+                }
+                ret = d.ToString("yyyy/MM");
+            }
+
+            return ret;
         }
     }
 }

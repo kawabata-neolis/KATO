@@ -2612,7 +2612,7 @@ namespace KATO.Form.A0020_UriageInput
                     SetteiAri = true;
                     getSyohinbetuCheck = 1;
 
-                    if (dtSetView.Rows[0]["単価"].ToString() != "")
+                    if (dtSetView.Rows[0]["単価"] != null && dtSetView.Rows[0]["単価"].ToString() != "")
                     {
                         //if (((TextSet_Jucyu)cs1[0]).txtTankaElem5.Text == dtSetView.Rows[0]["単価"].ToString())
                         //{
@@ -2633,7 +2633,7 @@ namespace KATO.Form.A0020_UriageInput
                     //単価同一だった場合は処理をパスする。
                     if (getSyohinbetuCheck != 9)
                     {
-                        if (dtSetView.Rows[0]["単価"].ToString() != "")
+                        if (dtSetView.Rows[0]["単価"] != null && dtSetView.Rows[0]["単価"].ToString() != "")
                         {
                             if (decimal.Parse(((TextSet_Jucyu)cs1[0]).txtTankaElem5.Text) < decimal.Parse(dtSetView.Rows[0]["単価"].ToString()))
                             {
@@ -2645,7 +2645,7 @@ namespace KATO.Form.A0020_UriageInput
                             }
                         }
 
-                        if (dtSetView.Rows[0]["利益率"].ToString() != "")
+                        if (dtSetView.Rows[0]["利益率"] != null && dtSetView.Rows[0]["利益率"].ToString() != "")
                         {
                             if (Ritu < decimal.Parse(dtSetView.Rows[0]["利益率"].ToString()))
                             {

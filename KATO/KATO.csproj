@@ -725,6 +725,12 @@
     <Compile Include="Form\B0060_ShiharaiInput\B0060_ShiharaiInput.designer.cs">
       <DependentUpon>B0060_ShiharaiInput.cs</DependentUpon>
     </Compile>
+    <Compile Include="Form\B0061_ShharaiInputR\B0061_ShiharaiInputR.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form\B0061_ShharaiInputR\B0061_ShiharaiInputR.Designer.cs">
+      <DependentUpon>B0061_ShiharaiInputR.cs</DependentUpon>
+    </Compile>
     <Compile Include="Form\B0070_ShiharaiCheakPrint\B0070_ShiharaiCheakPrint.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -766,6 +772,18 @@
     </Compile>
     <Compile Include="Form\B0420_SeikyuMeisaishoPrint\B0420_SeikyuMeisaishoPrint.Designer.cs">
       <DependentUpon>B0420_SeikyuMeisaishoPrint.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Form\B1570_NyukinInput\B1570_NyukinInput.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form\B1570_NyukinInput\B1570_NyukinInput.Designer.cs">
+      <DependentUpon>B1570_NyukinInput.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Form\B1580_ShiharaiInput\B1580_ShiharaiInput.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form\B1580_ShiharaiInput\B1580_ShiharaiInput.Designer.cs">
+      <DependentUpon>B1580_ShiharaiInput.cs</DependentUpon>
     </Compile>
     <Compile Include="Form\C0130_TantouUriageArariPrint\C0130_TantouUriageArariPrint.cs">
       <SubType>Form</SubType>
@@ -1448,6 +1466,9 @@
     <EmbeddedResource Include="Form\B0060_ShiharaiInput\B0060_ShiharaiInput.resx">
       <DependentUpon>B0060_ShiharaiInput.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Form\B0061_ShharaiInputR\B0061_ShiharaiInputR.resx">
+      <DependentUpon>B0061_ShiharaiInputR.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Form\B0070_ShiharaiCheakPrint\B0070_ShiharaiCheakPrint.resx">
       <DependentUpon>B0070_ShiharaiCheakPrint.cs</DependentUpon>
     </EmbeddedResource>
@@ -1469,6 +1490,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Form\B0420_SeikyuMeisaishoPrint\B0420_SeikyuMeisaishoPrint.resx">
       <DependentUpon>B0420_SeikyuMeisaishoPrint.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form\B1570_NyukinInput\B1570_NyukinInput.resx">
+      <DependentUpon>B1570_NyukinInput.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form\B1580_ShiharaiInput\B1580_ShiharaiInput.resx">
+      <DependentUpon>B1580_ShiharaiInput.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Form\C0130_TantouUriageArariPrint\C0130_TantouUriageArariPrint.resx">
       <DependentUpon>C0130_TantouUriageArariPrint.cs</DependentUpon>
@@ -1744,6 +1771,7 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Form\B1590_TegataCalendar\" />
     <Folder Include="Log\" />
     <Folder Include="Work\" />
   </ItemGroup>

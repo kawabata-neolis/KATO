@@ -14,6 +14,8 @@ namespace KATO.Common.Ctl
 {
     public partial class BaseCalendar : BaseText
     {
+        public bool modDay = true;
+        
         //最初のクリックかの判断
         Boolean blnFirstClick = true;
 
@@ -321,6 +323,21 @@ namespace KATO.Common.Ctl
                     this.Text = strDataPi;
                 }
             }
+
+            if (modDay && !string.IsNullOrWhiteSpace(this.Text))
+            {
+                this.Text = chkModDay(this.Text);
+                //if (this.Text.CompareTo(DateTime.Now.ToString("yyyy/MM/dd")) < 0)
+                //{
+                //    DateTime d = DateTime.ParseExact(this.Text, "yyyy/MM/dd", null).AddYears(1);
+                //    //if (d.ToString("yyyy/MM/dd").CompareTo(DateTime.Now.AddMonths(6).ToString("yyyy/MM/dd")) > 0)
+                //    //{
+                //    //    d = d.AddYears(-1);
+                //    //}
+                //    this.Text = d.ToString("yyyy/MM/dd");
+                //}
+            }
+
             return (blnDateCheck);
         }
 
@@ -610,7 +627,38 @@ namespace KATO.Common.Ctl
             {
                 strDateData = "";
             }
+
+            if (modDay && !string.IsNullOrWhiteSpace(strDateData))
+            {
+                strDateData = chkModDay(strDateData);
+                //if (strDateData.CompareTo(DateTime.Now.ToString("yyyy/MM/dd")) < 0)
+                //{
+                //    DateTime d = DateTime.ParseExact(strDateData, "yyyy/MM/dd", null).AddYears(1);
+                //    if (d.ToString("yyyy/MM/01").CompareTo(DateTime.Now.AddMonths(6).ToString("yyyy/MM/01")) > 0)
+                //    {
+                //        d = d.AddYears(-1);
+                //    }
+                //    strDateData = d.ToString("yyyy/MM/dd");
+                //}
+            }
             return (strDateData);
+        }
+
+        private string chkModDay (string s)
+        {
+            string ret = s;
+
+            if (s.CompareTo(DateTime.Now.ToString("yyyy/MM/dd")) < 0)
+            {
+                DateTime d = DateTime.ParseExact(s, "yyyy/MM/dd", null).AddYears(1);
+                if (d.ToString("yyyy/MM/01").CompareTo(DateTime.Now.AddMonths(6).ToString("yyyy/MM/01")) > 0)
+                {
+                    d = d.AddYears(-1);
+                }
+                ret = d.ToString("yyyy/MM/dd");
+            }
+
+            return ret;
         }
     }
 }

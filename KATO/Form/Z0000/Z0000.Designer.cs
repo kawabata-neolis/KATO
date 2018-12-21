@@ -249,6 +249,7 @@
             this.btn_161 = new KATO.Common.Ctl.BaseMenuButton();
             this.lblShoriNo = new KATO.Common.Ctl.BaseLabel(this.components);
             this.txtShoriNo = new KATO.Common.Ctl.BaseText();
+            this.timerM = new System.Windows.Forms.Timer(this.components);
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
@@ -3644,6 +3645,12 @@
             this.txtShoriNo.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtShoriNo_KeyDown);
             this.txtShoriNo.Leave += new System.EventHandler(this.txtShoriNo_Leave);
             // 
+            // timerM
+            // 
+            this.timerM.Enabled = true;
+            this.timerM.Interval = 60000;
+            this.timerM.Tick += new System.EventHandler(this.timerM_Tick);
+            // 
             // Z0000
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -3913,5 +3920,6 @@
         private Common.Ctl.BaseLabel lblTime3;
         private Common.Ctl.BaseLabel lblTime4;
         private Common.Ctl.BaseLabel lblTime5;
+        private System.Windows.Forms.Timer timerM;
     }
 }

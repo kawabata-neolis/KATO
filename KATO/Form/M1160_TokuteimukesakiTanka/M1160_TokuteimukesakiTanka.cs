@@ -714,6 +714,11 @@ namespace KATO.Form.M1160_TokuteimukesakiTanka
 
                 gridTokuteimukesakiTanka.Visible = true;
 
+                //if (dtSetView != null && dtSetView.Rows.Count > 0)
+                //{
+                //    gridTokuteimukesakiTanka.Focus();
+                //}
+
             }
             catch (Exception ex)
             {
@@ -742,6 +747,7 @@ namespace KATO.Form.M1160_TokuteimukesakiTanka
             txtShohinCd.Text = gridTokuteimukesakiTanka.CurrentRow.Cells[7].Value.ToString();
             txtTanka.Text = decimal.Parse(gridTokuteimukesakiTanka.CurrentRow.Cells[3].Value.ToString()).ToString("#,0");
             txtTanka.updPriceMethod();
+            txtTanka.Focus();
 
         }
 
@@ -928,8 +934,10 @@ namespace KATO.Form.M1160_TokuteimukesakiTanka
         //得意先コードのフォーカスが外れた場合の処理
         private void labelSet_Tokuisaki_Leave(object sender, EventArgs e)
         {
-            //マスターチェックメソッドへ
-            CheckMaster();
+            if (!string.IsNullOrWhiteSpace(labelSet_Tokuisaki.CodeTxtText)) {
+                //マスターチェックメソッドへ
+                CheckMaster();
+            }
         }
 
         ///<summary>
@@ -944,14 +952,27 @@ namespace KATO.Form.M1160_TokuteimukesakiTanka
                 e.Handled = true;
 
                 //選択行をテキストボックスに設定（カラム順：仕向先、ﾒｰｶｰ、型番、単価、最終仕入日、仕入先コード、得意先コード、商品コード）
-                labelSet_Siiresaki.CodeTxtText = gridTokuteimukesakiTanka.CurrentRow.Cells[5].Value.ToString();
-                labelSet_Tokuisaki.CodeTxtText = gridTokuteimukesakiTanka.CurrentRow.Cells[6].Value.ToString();
-                txtKataban.Text = gridTokuteimukesakiTanka.CurrentRow.Cells[2].Value.ToString();
-                txtShohinCd.Text = gridTokuteimukesakiTanka.CurrentRow.Cells[7].Value.ToString();
-                txtTanka.Text = decimal.Parse(gridTokuteimukesakiTanka.CurrentRow.Cells[3].Value.ToString()).ToString("#,0");
-                txtTanka.updPriceMethod();
+                if (gridTokuteimukesakiTanka.Rows != null && gridTokuteimukesakiTanka.Rows.Count > 0)
+                {
+                    labelSet_Siiresaki.CodeTxtText = gridTokuteimukesakiTanka.CurrentRow.Cells[5].Value.ToString();
+                    labelSet_Tokuisaki.CodeTxtText = gridTokuteimukesakiTanka.CurrentRow.Cells[6].Value.ToString();
+                    txtKataban.Text = gridTokuteimukesakiTanka.CurrentRow.Cells[2].Value.ToString();
+                    txtShohinCd.Text = gridTokuteimukesakiTanka.CurrentRow.Cells[7].Value.ToString();
+                    txtTanka.Text = decimal.Parse(gridTokuteimukesakiTanka.CurrentRow.Cells[3].Value.ToString()).ToString("#,0");
+                    txtTanka.updPriceMethod();
+                    txtTanka.Focus();
+                }
             }
 
         }
+
+        private void txtTanka_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyData == Keys.Enter)
+            {
+                SendKeys.Send("{TAB}");
+            }
+        }
+
     }
 }

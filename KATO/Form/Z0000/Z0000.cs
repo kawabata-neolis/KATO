@@ -40,6 +40,7 @@ namespace KATO.Form.Z0000
         string timeT = "";
         string timeSpan = "";
         bool bAct = false;
+        int limitW = 0;
 
         ///<summary>
         ///Z0000
@@ -50,10 +51,29 @@ namespace KATO.Form.Z0000
             InitializeComponent();
         }
 
-        private bool chkTime()
+        private bool chkTime(string ttl, string msg)
         {
             bAct = true;
 
+            string timeN = DateTime.Now.ToString("HH:mm");
+
+            if ((timeN.CompareTo(timeF) < 0) || (timeN.CompareTo(timeT) > 0))
+            {
+                BaseMessageBox basemessagebox = new BaseMessageBox(this, ttl, msg + "\r\n" + timeSpan, CommonTeisu.BTN_OK, CommonTeisu.DIAG_INFOMATION);
+                basemessagebox.TopMost = true;
+                basemessagebox.ShowDialog();
+                return false;
+            }
+
+            return true;
+        }
+
+        ///<summary>
+        ///Z0000_Load
+        ///画面レイアウト設定
+        ///</summary>
+        public void Z0000_Load(object sender, EventArgs e)
+        {
             string strUserID = SystemInformation.UserName;
 
             Z0000_B mainmenuB = new Z0000_B();
@@ -107,28 +127,12 @@ namespace KATO.Form.Z0000
             lblTime4.Text = timeSpan;
             lblTime5.Text = timeSpan;
 
-            string timeN = DateTime.Now.ToString("HH:mm");
-
-            if ((timeN.CompareTo(timeF) < 0) || (timeN.CompareTo(timeT) > 0))
-            {
-                BaseMessageBox basemessagebox = new BaseMessageBox(this, "時間外", "利用時間外です。\r\n" + timeSpan, CommonTeisu.BTN_OK, CommonTeisu.DIAG_INFOMATION);
-                basemessagebox.ShowDialog();
-                return false;
-            }
-
-            return true;
-        }
-
-        ///<summary>
-        ///Z0000_Load
-        ///画面レイアウト設定
-        ///</summary>
-        public void Z0000_Load(object sender, EventArgs e)
-        {
-            if (!chkTime())
+            if (!chkTime("時間外", "利用時間外です。"))
             {
                 this.Close();
             }
+
+            chkLimit();
 
             this.btnF12.Text = STR_FUNC_F12;
 
@@ -145,6 +149,8 @@ namespace KATO.Form.Z0000
 
             //日付制限の更新
             updHidukeSeigen();
+
+            //timerM.Tick += new EventHandler(timerM_Tick);
         }
 
 
@@ -1086,6 +1092,16 @@ namespace KATO.Form.Z0000
                     HachuPrint.ShowDialog();
                     break;
 
+                case "157":
+                    B1570_NyukinInput.B1570_NyukinInput NyukinInput = new B1570_NyukinInput.B1570_NyukinInput(this);
+                    NyukinInput.ShowDialog();
+                    break;
+
+                case "158":
+                    B1580_ShiharaiInput.B1580_ShiharaiInput ShiharaiInput = new B1580_ShiharaiInput.B1580_ShiharaiInput(this);
+                    ShiharaiInput.ShowDialog();
+                    break;
+
             }
             txtShoriNo.Text = "";
             txtShoriNo.Focus();
@@ -1621,6 +1637,16 @@ namespace KATO.Form.Z0000
                         HachuPrint.ShowDialog();
                         break;
 
+                    case "157":
+                        B1570_NyukinInput.B1570_NyukinInput NyukinInput = new B1570_NyukinInput.B1570_NyukinInput(this);
+                        NyukinInput.ShowDialog();
+                        break;
+
+                    case "158":
+                        B1580_ShiharaiInput.B1580_ShiharaiInput ShiharaiInput = new B1580_ShiharaiInput.B1580_ShiharaiInput(this);
+                        ShiharaiInput.ShowDialog();
+                        break;
+
                     default:
                         BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_INPUT, "指定のPG番号はマイメニューに設定されていません。", CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
                         basemessagebox.ShowDialog();
@@ -1726,14 +1752,67 @@ namespace KATO.Form.Z0000
 
         private void Z0000_Activated(object sender, EventArgs e)
         {
-            if (bAct)
-            {
-                return;
-            }
-            if (!chkTime())
+            //if (bAct)
+            //{
+            //    return;
+            //}
+            //if (!chkTime())
+            //{
+            //    this.Close();
+            //}
+        }
+
+        private void timerM_Tick(object sender, EventArgs e)
+        {
+            bAct = true;
+
+            string timeN = DateTime.Now.ToString("HH:mm");
+
+            chkLimit();
+
+            if (!chkTime("利用終了時刻です", "利用終了時刻となりました。"))
             {
                 this.Close();
             }
         }
+
+        private void chkLimit()
+        {
+            if (string.IsNullOrEmpty(timeT) || timeT.Equals("23:59"))
+            {
+                return;
+            }
+
+            if (limitW == 2)
+            {
+                return;
+            }
+
+            DateTime nowD = DateTime.Now;
+
+            string timeW = nowD.AddMinutes(3).ToString("HH:mm");
+            if ((timeW.CompareTo(timeT) > 0))
+            {
+                BaseMessageBox basemessagebox = new BaseMessageBox(this, "まもなく利用終了時刻です", "まもなく利用終了時刻です。\r\n終了時刻後に画面は強制終了されます。\r\n" + timeSpan, CommonTeisu.BTN_OK, CommonTeisu.DIAG_INFOMATION);
+                basemessagebox.BackColor = Color.Orange;
+                basemessagebox.TopMost = true;
+                basemessagebox.ShowDialog();
+                limitW = 2;
+                return;
+            }
+
+            timeW = nowD.AddMinutes(10).ToString("HH:mm");
+            if (limitW == 0 && (timeW.CompareTo(timeT) > 0))
+            {
+                BaseMessageBox basemessagebox = new BaseMessageBox(this, "あと10分で利用終了時刻です", "あと10分で利用終了時刻です。\r\n終了時刻後に画面は強制終了されます。\r\n" + timeSpan, CommonTeisu.BTN_OK, CommonTeisu.DIAG_INFOMATION);
+                basemessagebox.BackColor = Color.LightGreen;
+                basemessagebox.TopMost = true;
+                basemessagebox.ShowDialog();
+                limitW = 1;
+            }
+
+            
+        }
+
     }
 }

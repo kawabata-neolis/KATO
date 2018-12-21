@@ -68,6 +68,8 @@ namespace KATO.Form.A0010_JuchuInput
             lsDaibunrui.Lsmakerdata = lsMaker;
 
             panel1.Visible = false;
+            //txtNoki.modDay = true;
+
         }
 
         private void A0010JuchuInput_Load(object sender, EventArgs e)
@@ -1406,6 +1408,16 @@ namespace KATO.Form.A0010_JuchuInput
             {
                 return;
             }
+
+            //if (txtNoki.Text.CompareTo(DateTime.Now.ToString("yyyy/MM/dd")) < 0)
+            //{
+            //    DateTime d = DateTime.ParseExact(txtNoki.Text, "yyyy/MM/dd", null).AddYears(1);
+            //    //if (d.ToString("yyyy/MM/dd").CompareTo(DateTime.Now.AddMonths(6).ToString("yyyy/MM/dd")) > 0)
+            //    //{
+            //    //    d = d.AddYears(-1);
+            //    //}
+            //    txtNoki.Text = d.ToString("yyyy/MM/dd");
+            //}
 
             if (!"1".Equals(riekiritsuFlg))
             {

@@ -149,8 +149,42 @@ namespace KATO.Business.M1160_TokuteimukesakiTanka
                 // トランザクション開始
                 dbconnective.BeginTrans();
 
+                string stsql = "SELECT * FROM 特定向先単価 WHERE 仕入先コード	= '" + lstItem[0] +"' "
+                    + " AND 得意先コード = '" + lstItem[1] + "' "
+                    + " AND 商品コード = '" + lstItem[2] + "'";
+
+                DataTable dt = dbconnective.ReadSql(stsql);
+
+                if (dt != null && dt.Rows.Count > 0)
+                {
+                    stsql = "UPDATE 特定向先単価";
+                    stsql += "   SET 型番  = '" + lstItem[3] + "',";
+                    stsql += "       単価  = " + lstItem[4] + ",";
+                    stsql += "       削除  = 'N',";
+                    stsql += "       更新日時  = GETDATE(),";
+                    stsql += "       更新ユーザー名 = '" + lstItem[5] + "'";
+                    stsql += " WHERE 仕入先コード = '" + lstItem[0] + "'";
+                    stsql += "   AND 得意先コード = '" + lstItem[1] + "'";
+                    stsql += "   AND 商品コード = '" + lstItem[2] + "'";
+                } else
+                {
+                    stsql = " INSERT INTO 特定向先単価";
+                    stsql += " VALUES(";
+                    stsql += "     '" + lstItem[0] + "',";
+                    stsql += "     '" + lstItem[1] + "',";
+                    stsql += "     '" + lstItem[2] + "',";
+                    stsql += "     '" + lstItem[3] + "',";
+                    stsql += "      " + lstItem[4] + ",";
+                    stsql += "     'N',";
+                    stsql += "     GETDATE(),";
+                    stsql += "     '" + lstItem[5] + "',";
+                    stsql += "     GETDATE(),";
+                    stsql += "     '" + lstItem[5] + "')";
+                }
+
                 // 商品分類別利益率設定マスタ更新_PROCを実行
-                dbconnective.RunSql(strProc);
+                //dbconnective.RunSql(strProc);
+                dbconnective.RunSql(stsql);
 
                 // コミット
                 dbconnective.Commit();
