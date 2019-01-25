@@ -66,12 +66,12 @@
             // 
             // btnF12
             // 
-            this.btnF12.TabIndex = 11;
+            this.btnF12.TabIndex = 12;
             this.btnF12.Click += new System.EventHandler(this.judBtnClick);
             // 
             // btnF11
             // 
-            this.btnF11.TabIndex = 10;
+            this.btnF11.TabIndex = 11;
             this.btnF11.Click += new System.EventHandler(this.judBtnClick);
             // 
             // btnF10
@@ -106,7 +106,7 @@
             // 
             // btnF04
             // 
-            this.btnF04.TabIndex = 12;
+            this.btnF04.TabIndex = 13;
             this.btnF04.Click += new System.EventHandler(this.judBtnClick);
             // 
             // btnF03
@@ -406,7 +406,7 @@
             this.labelSet_EigyoshoCdFrom.SpaceCodeValue = 4;
             this.labelSet_EigyoshoCdFrom.SpaceNameCode = 19;
             this.labelSet_EigyoshoCdFrom.SpaceValueAppend = 4;
-            this.labelSet_EigyoshoCdFrom.TabIndex = 3;
+            this.labelSet_EigyoshoCdFrom.TabIndex = 9;
             this.labelSet_EigyoshoCdFrom.ValueLabelSize = 0;
             this.labelSet_EigyoshoCdFrom.ValueLabelText = "";
             // 
@@ -425,7 +425,7 @@
             this.labelSet_EigyoshoCdTo.SpaceCodeValue = 4;
             this.labelSet_EigyoshoCdTo.SpaceNameCode = 4;
             this.labelSet_EigyoshoCdTo.SpaceValueAppend = 4;
-            this.labelSet_EigyoshoCdTo.TabIndex = 4;
+            this.labelSet_EigyoshoCdTo.TabIndex = 10;
             this.labelSet_EigyoshoCdTo.ValueLabelSize = 0;
             this.labelSet_EigyoshoCdTo.ValueLabelText = "";
             // 

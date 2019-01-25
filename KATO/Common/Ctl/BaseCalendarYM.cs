@@ -115,6 +115,8 @@ namespace KATO.Common.Ctl
             //日付チェック用
             DateTime dateCheck = new DateTime();
 
+            bool modDay = true;
+
             strY = DateTime.Today.Year.ToString();
             strM = "01";
 
@@ -189,6 +191,7 @@ namespace KATO.Common.Ctl
             if (strInData.Count() == 2)
             {
                 strY = strInData[0];
+                modDay = false;
 
                 //20~と付けるか否か
                 if (strY.Length == 3)
@@ -226,6 +229,7 @@ namespace KATO.Common.Ctl
                 {
                     // 年部分取得
                     strY = strInData[0].Substring(0, strInData[0].Length - 2);
+                    modDay = false;
 
                     //20~と付けるか否か
                     if (strY.Length == 3)
@@ -286,7 +290,7 @@ namespace KATO.Common.Ctl
                 }
             }
 
-            if (!string.IsNullOrWhiteSpace(this.Text))
+            if (modDay && !string.IsNullOrWhiteSpace(this.Text))
             {
                 this.Text = chkModDay(this.Text);
             }
@@ -424,6 +428,8 @@ namespace KATO.Common.Ctl
         ///</summary>
         public string chkDateYMDataFormat(string strDateData)
         {
+            bool modDay = true;
+
             strY = DateTime.Today.Year.ToString();
             strM = "01";
 
@@ -460,6 +466,7 @@ namespace KATO.Common.Ctl
             if (strInData.Count() == 2)
             {
                 strY = strInData[0];
+                modDay = false;
 
                 //20~と付けるか否か
                 if (strY.Length == 3)
@@ -497,6 +504,7 @@ namespace KATO.Common.Ctl
                 {
                     //月部のみを取り出す
                     strY = strInData[0].Substring(0, strInData[0].Length - 2);
+                    modDay = false;
 
                     //20~と付けるか否か
                     if (strY.Length == 3)
@@ -561,7 +569,7 @@ namespace KATO.Common.Ctl
                 }
             }
 
-            if (!string.IsNullOrWhiteSpace(strDateData))
+            if (modDay && !string.IsNullOrWhiteSpace(strDateData))
             {
                 strDateData = chkModDay(strDateData);
             }

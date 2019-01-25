@@ -196,6 +196,7 @@ namespace KATO.Common.Ctl
             if (strInData.Count() == 3)
             {
                 strY = strInData[0];
+                modDay = false;
 
                 //20~と付けるか否か
                 if (strY.Length == 3)
@@ -256,6 +257,7 @@ namespace KATO.Common.Ctl
                 {
                     //月部のみを取り出す
                     strY = strInData[0].Substring(0, strInData[0].Length - 4);
+                    modDay = false;
 
                     //20~と付けるか否か
                     if (strY.Length == 3)
@@ -337,6 +339,8 @@ namespace KATO.Common.Ctl
                 //    this.Text = d.ToString("yyyy/MM/dd");
                 //}
             }
+
+            modDay = true;
 
             return (blnDateCheck);
         }
@@ -510,6 +514,7 @@ namespace KATO.Common.Ctl
             if (strInData.Count() == 3)
             {
                 strY = strInData[0];
+                modDay = false;
 
                 //20~と付けるか否か
                 if (strY.Length == 3)
@@ -570,6 +575,7 @@ namespace KATO.Common.Ctl
                 {
                     //月部のみを取り出す
                     strY = strInData[0].Substring(0, strInData[0].Length - 4);
+                    modDay = false;
 
                     //20~と付けるか否か
                     if (strY.Length == 3)
@@ -641,6 +647,9 @@ namespace KATO.Common.Ctl
                 //    strDateData = d.ToString("yyyy/MM/dd");
                 //}
             }
+
+            modDay = true;
+
             return (strDateData);
         }
 

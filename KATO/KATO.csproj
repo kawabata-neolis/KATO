@@ -155,6 +155,8 @@
     <Compile Include="Business\B0250_MOnyuryoku\B0250_MOnyuryoku_B.cs" />
     <Compile Include="Business\B0410_SeikyuItiranPrint\B0410_SeikyuItiranPrint_B.cs" />
     <Compile Include="Business\B0420_SeikyuMeisaishoPrint\B0420_SeikyuMeisaishoPrint_B.cs" />
+    <Compile Include="Business\B1570_NyukinInput\B1570_NyukinInput_B.cs" />
+    <Compile Include="Business\B1580_ShiharaiInput\B1580_ShiharaiInput_B.cs" />
     <Compile Include="Business\C0130_TantouUriageArariPrint\C0130_TantouUriageArariPrint_B.cs" />
     <Compile Include="Business\C0500_UrikakekinZandakaIchiranKakunin\C0500_UrikakekinZandakaIchiranKakunin_B.cs" />
     <Compile Include="Business\C0520_KaikakekinZandakaIchiranKakunin\C0520_KaikakekinZandakaIchiranKakunin_B.cs" />
@@ -779,11 +781,23 @@
     <Compile Include="Form\B1570_NyukinInput\B1570_NyukinInput.Designer.cs">
       <DependentUpon>B1570_NyukinInput.cs</DependentUpon>
     </Compile>
+    <Compile Include="Form\B1570_NyukinInput\B1571_SeikyuRireki.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form\B1570_NyukinInput\B1571_SeikyuRireki.Designer.cs">
+      <DependentUpon>B1571_SeikyuRireki.cs</DependentUpon>
+    </Compile>
     <Compile Include="Form\B1580_ShiharaiInput\B1580_ShiharaiInput.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Form\B1580_ShiharaiInput\B1580_ShiharaiInput.Designer.cs">
       <DependentUpon>B1580_ShiharaiInput.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Form\B1580_ShiharaiInput\B1581_ShiharaiJisseki.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form\B1580_ShiharaiInput\B1581_ShiharaiJisseki.Designer.cs">
+      <DependentUpon>B1581_ShiharaiJisseki.cs</DependentUpon>
     </Compile>
     <Compile Include="Form\C0130_TantouUriageArariPrint\C0130_TantouUriageArariPrint.cs">
       <SubType>Form</SubType>
@@ -1494,8 +1508,14 @@
     <EmbeddedResource Include="Form\B1570_NyukinInput\B1570_NyukinInput.resx">
       <DependentUpon>B1570_NyukinInput.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Form\B1570_NyukinInput\B1571_SeikyuRireki.resx">
+      <DependentUpon>B1571_SeikyuRireki.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Form\B1580_ShiharaiInput\B1580_ShiharaiInput.resx">
       <DependentUpon>B1580_ShiharaiInput.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form\B1580_ShiharaiInput\B1581_ShiharaiJisseki.resx">
+      <DependentUpon>B1581_ShiharaiJisseki.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Form\C0130_TantouUriageArariPrint\C0130_TantouUriageArariPrint.resx">
       <DependentUpon>C0130_TantouUriageArariPrint.cs</DependentUpon>
