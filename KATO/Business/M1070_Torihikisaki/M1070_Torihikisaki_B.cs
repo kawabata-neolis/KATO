@@ -115,7 +115,9 @@ namespace KATO.Business.M1070_Torihikisaki
                     DateTime.Now.ToString(),
                     lstString[76],
                     DateTime.Now.ToString(),
-                    lstString[76]
+                    lstString[76],
+                    lstString[77],
+                    lstString[78]
                 };
 
                 //SQL接続、追加
@@ -230,11 +232,15 @@ namespace KATO.Business.M1070_Torihikisaki
                     DateTime.Now.ToString(),
                     lstString[76],
                     DateTime.Now.ToString(),
-                    lstString[76]
+                    lstString[76],
+                    lstString[77],
+                    lstString[78]
                 };
 
-                //SQL接続、削除
-                dbconnective.RunSqlCommon(CommonTeisu.C_SQL_TORIHIKISAKI_UPD, aryStr);
+                ////SQL接続、削除
+                //dbconnective.RunSqlCommon(CommonTeisu.C_SQL_TORIHIKISAKI_UPD, aryStr);
+
+                dbconnective.ReadSql("update 取引先 set 削除 = 'Y', 更新日時 = '" + DateTime.Now.ToString() + "' where 取引先コード = '" + lstString[0] + "'");
 
                 //コミット開始
                 dbconnective.Commit();

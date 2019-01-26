@@ -44,7 +44,7 @@ namespace KATO.Business.B1570_NyukinInput
             strSql += " FROM 入金 S, 取引先 T";
             strSql += " WHERE S.削除 ='N' ";
             strSql += "   AND T.削除 ='N' ";
-            strSql += "   AND S.仕入先コード = T.取引先コード ";
+            strSql += "   AND S.得意先コード = T.取引先コード ";
 
             // 入力年月日（開始）がある場合
             if (!lstItem[0].Equals(""))
@@ -69,8 +69,8 @@ namespace KATO.Business.B1570_NyukinInput
             // 仕入先コードがある場合
             if (!lstItem[5].Equals("") && !lstItem[6].Equals(""))
             {
-                strSql += " AND S.仕入先コード >='" + lstItem[5] + "'";
-                strSql += " AND S.仕入先コード <='" + lstItem[6] + "'";
+                strSql += " AND S.得意先コード >='" + lstItem[5] + "'";
+                strSql += " AND S.得意先コード <='" + lstItem[6] + "'";
             }
 
             if (!lstItem[7].Equals(""))
@@ -90,17 +90,17 @@ namespace KATO.Business.B1570_NyukinInput
 
             if (!lstItem[12].Equals(""))
             {
-                strSql += " AND T.銀行名 like '%" + lstItem[12] + "%'";
+                strSql += " AND S.金融機関名 like '%" + lstItem[12] + "%'";
             }
 
             if (!lstItem[13].Equals(""))
             {
-                strSql += " AND T.支店名 like '%" + lstItem[13] + "%'";
+                strSql += " AND S.支店名 like '%" + lstItem[13] + "%'";
             }
 
             if (!lstItem[14].Equals(""))
             {
-                strSql += " AND T.口座種別 like '%" + lstItem[14] + "%'";
+                strSql += " AND S.口座 like '%" + lstItem[14] + "%'";
             }
 
             strSql += " ORDER BY S.入金年月日,S.伝票番号,S.行番号";
@@ -164,25 +164,63 @@ namespace KATO.Business.B1570_NyukinInput
                         strProc += "'" + strs[7] + "', ";
                     }
 
-                    //if (strs[8].Equals(""))
-                    //{
-                    //    strProc += "NULL, ";
-                    //}
-                    //else
-                    //{
-                    //    strProc += "'" + strs[8] + "', ";
-                    //}
+                    if (strs[8].Equals(""))
+                    {
+                        strProc += "NULL, ";
+                    }
+                    else
+                    {
+                        strProc += "'" + strs[8] + "', ";
+                    }
 
-                    //if (strs[9].Equals(""))
-                    //{
-                    //    strProc += "NULL, ";
-                    //}
-                    //else
-                    //{
-                    //    strProc += "'" + strs[9] + "', ";
-                    //}
+                    if (strs[9].Equals(""))
+                    {
+                        strProc += "NULL, ";
+                    }
+                    else
+                    {
+                        strProc += "'" + strs[9] + "', ";
+                    }
 
-                    strProc += "'" + strs[10] + "'";
+
+
+                    if (strs[10].Equals(""))
+                    {
+                        strProc += "NULL, ";
+                    }
+                    else
+                    {
+                        strProc += "'" + strs[10] + "', ";
+                    }
+
+                    if (strs[11].Equals(""))
+                    {
+                        strProc += "NULL, ";
+                    }
+                    else
+                    {
+                        strProc += "'" + strs[11] + "', ";
+                    }
+
+                    if (strs[12].Equals(""))
+                    {
+                        strProc += "NULL, ";
+                    }
+                    else
+                    {
+                        strProc += "'" + strs[12] + "', ";
+                    }
+
+                    if (strs[13].Equals(""))
+                    {
+                        strProc += "NULL, ";
+                    }
+                    else
+                    {
+                        strProc += "'" + strs[13] + "', ";
+                    }
+
+                    strProc += "'" + strs[14] + "'";
 
                     // 支払追加_PROCを実行
                     dbconnective.ReadSql(strProc);

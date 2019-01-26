@@ -181,6 +181,12 @@
             this.lblZeikbn = new KATO.Common.Ctl.BaseLabel(this.components);
             this.gbSohusaki = new System.Windows.Forms.GroupBox();
             this.gbTori.SuspendLayout();
+            this.txtShiireTegata = new KATO.Common.Ctl.BaseText();
+            this.baseLabel113 = new KATO.Common.Ctl.BaseLabel(this.components);
+            this.baseLabel115 = new KATO.Common.Ctl.BaseLabel(this.components);
+            this.txtNyukinTegata = new KATO.Common.Ctl.BaseText();
+            this.baseLabel16 = new KATO.Common.Ctl.BaseLabel(this.components);
+            this.baseLabel17 = new KATO.Common.Ctl.BaseLabel(this.components);
             this.gbRyoshu.SuspendLayout();
             this.labelSet_GyoshuCd.SuspendLayout();
             this.labelSet_GyomuTantousha.SuspendLayout();
@@ -1195,7 +1201,7 @@
             this.gbSeikyu.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
             this.gbSeikyu.Location = new System.Drawing.Point(505, 5);
             this.gbSeikyu.Name = "gbSeikyu";
-            this.gbSeikyu.Size = new System.Drawing.Size(470, 173);
+            this.gbSeikyu.Size = new System.Drawing.Size(597, 173);
             this.gbSeikyu.TabIndex = 94;
             this.gbSeikyu.TabStop = false;
             this.gbSeikyu.Text = "請求書送付先";
@@ -1225,9 +1231,15 @@
             this.gbSime.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
             this.gbSime.Location = new System.Drawing.Point(505, 180);
             this.gbSime.Name = "gbSime";
-            this.gbSime.Size = new System.Drawing.Size(470, 130);
+            this.gbSime.Size = new System.Drawing.Size(597, 130);
             this.gbSime.TabIndex = 95;
             this.gbSime.TabStop = false;
+            this.gbSime.Controls.Add(this.txtNyukinTegata);
+            this.gbSime.Controls.Add(this.baseLabel16);
+            this.gbSime.Controls.Add(this.baseLabel17);
+            this.gbSime.Controls.Add(this.txtShiireTegata);
+            this.gbSime.Controls.Add(this.baseLabel113);
+            this.gbSime.Controls.Add(this.baseLabel115);
             // 
             // txtNohinnshoumu
             // 
@@ -2269,12 +2281,82 @@
             this.gbSohusaki.Controls.Add(this.baseLabel13);
             this.gbSohusaki.Controls.Add(this.lblZeikbn);
             this.gbSohusaki.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            this.gbSohusaki.Location = new System.Drawing.Point(997, 74);
+            this.gbSohusaki.Location = new System.Drawing.Point(1119, 74);
             this.gbSohusaki.Name = "gbSohusaki";
             this.gbSohusaki.Size = new System.Drawing.Size(253, 236);
             this.gbSohusaki.TabIndex = 98;
             this.gbSohusaki.TabStop = false;
             this.gbSohusaki.Text = "消費税";
+
+            // 
+            // txtShiireTegata
+            // 
+            this.txtShiireTegata.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
+            this.txtShiireTegata.ImeMode = System.Windows.Forms.ImeMode.Disable;
+            this.txtShiireTegata.Location = new System.Drawing.Point(559, 14);
+            this.txtShiireTegata.MaxLength = 2;
+            this.txtShiireTegata.Name = "txtShiireTegata";
+            this.txtShiireTegata.Size = new System.Drawing.Size(24, 22);
+            this.txtShiireTegata.TabIndex = 7;
+            // 
+            // baseLabel13
+            // 
+            this.baseLabel113.AutoSize = true;
+            this.baseLabel113.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
+            this.baseLabel113.Location = new System.Drawing.Point(455, 16);
+            this.baseLabel113.Name = "baseLabel13";
+            this.baseLabel113.Size = new System.Drawing.Size(103, 15);
+            this.baseLabel113.strToolTip = "月末払いは３１";
+            this.baseLabel113.TabIndex = 102;
+            this.baseLabel113.Text = "仕入手形期日";
+            this.baseLabel113.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // baseLabel15
+            // 
+            this.baseLabel115.AutoSize = true;
+            this.baseLabel115.Font = new System.Drawing.Font("ＭＳ ゴシック", 9F);
+            this.baseLabel115.Location = new System.Drawing.Point(456, 37);
+            this.baseLabel115.Name = "baseLabel15";
+            this.baseLabel115.Size = new System.Drawing.Size(77, 12);
+            this.baseLabel115.strToolTip = "";
+            this.baseLabel115.TabIndex = 101;
+            this.baseLabel115.Text = "(月末締は31)";
+            this.baseLabel115.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // txtNyukinTegata
+            // 
+            this.txtNyukinTegata.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
+            this.txtNyukinTegata.ImeMode = System.Windows.Forms.ImeMode.Disable;
+            this.txtNyukinTegata.Location = new System.Drawing.Point(559, 58);
+            this.txtNyukinTegata.MaxLength = 2;
+            this.txtNyukinTegata.Name = "txtNyukinTegata";
+            this.txtNyukinTegata.Size = new System.Drawing.Size(24, 22);
+            this.txtNyukinTegata.TabIndex = 8;
+            // 
+            // baseLabel16
+            // 
+            this.baseLabel16.AutoSize = true;
+            this.baseLabel16.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
+            this.baseLabel16.Location = new System.Drawing.Point(455, 60);
+            this.baseLabel16.Name = "baseLabel16";
+            this.baseLabel16.Size = new System.Drawing.Size(103, 15);
+            this.baseLabel16.strToolTip = "月末払いは３１";
+            this.baseLabel16.TabIndex = 105;
+            this.baseLabel16.Text = "入金手形期日";
+            this.baseLabel16.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // baseLabel17
+            // 
+            this.baseLabel17.AutoSize = true;
+            this.baseLabel17.Font = new System.Drawing.Font("ＭＳ ゴシック", 9F);
+            this.baseLabel17.Location = new System.Drawing.Point(456, 81);
+            this.baseLabel17.Name = "baseLabel17";
+            this.baseLabel17.Size = new System.Drawing.Size(77, 12);
+            this.baseLabel17.strToolTip = "";
+            this.baseLabel17.TabIndex = 104;
+            this.baseLabel17.Text = "(月末締は31)";
+            this.baseLabel17.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+
             // 
             // M1071_TorihikisakiInfo
             // 
@@ -2500,5 +2582,12 @@
         private Common.Ctl.BaseText txtNohinnshoumu;
         private Common.Ctl.BaseLabel lblNohinnshoumu;
         private Common.Ctl.BaseLabel baseLabel15;
+
+        private Common.Ctl.BaseText txtNyukinTegata;
+        private Common.Ctl.BaseLabel baseLabel16;
+        private Common.Ctl.BaseLabel baseLabel17;
+        private Common.Ctl.BaseText txtShiireTegata;
+        private Common.Ctl.BaseLabel baseLabel113;
+        private Common.Ctl.BaseLabel baseLabel115;
     }
 }

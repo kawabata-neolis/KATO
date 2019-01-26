@@ -41,6 +41,8 @@ namespace KATO.Business.B1580_ShiharaiInput
             strSql += "T.支払条件 AS 支払条件,";
             strSql += "T.集金区分 AS 集金区分,";
             strSql += "T.消費税端数計算区分,";
+            strSql += "S.廻し先,";
+            strSql += "S.廻し先日付,";
             strSql += "S.備考, ";
             strSql += "S.支払額 AS 額 ";
             strSql += " FROM 支払 S, 取引先 T";
@@ -92,17 +94,17 @@ namespace KATO.Business.B1580_ShiharaiInput
 
             if (!lstItem[12].Equals(""))
             {
-                strSql += " AND T.銀行名 like '%" + lstItem[12] + "%'";
+                strSql += " AND S.金融機関名 like '%" + lstItem[12] + "%'";
             }
 
             if (!lstItem[13].Equals(""))
             {
-                strSql += " AND T.支店名 like '%" + lstItem[13] + "%'";
+                strSql += " AND S.支店名 like '%" + lstItem[13] + "%'";
             }
 
             if (!lstItem[14].Equals(""))
             {
-                strSql += " AND T.口座種別 like '%" + lstItem[14] + "%'";
+                strSql += " AND S.口座 like '%" + lstItem[14] + "%'";
             }
 
             strSql += " ORDER BY S.支払年月日,S.伝票番号,S.行番号";

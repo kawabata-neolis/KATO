@@ -178,6 +178,12 @@ namespace KATO.Form.B1570_NyukinInput
             colKouza.HeaderText = "口座";
             setColumn(gridNyukin, colKouza, posLeft, posCenter, fmtString, 122);
 
+            DataGridViewTextBoxColumn colTekataHakkoMoto = new DataGridViewTextBoxColumn();
+            colTekataHakkoMoto.DataPropertyName = "手形発行元";
+            colTekataHakkoMoto.Name = "手形発行元";
+            colTekataHakkoMoto.HeaderText = "手形発行元";
+            setColumn(gridNyukin, colTekataHakkoMoto, posLeft, posCenter, fmtString, 122);
+
             DataGridViewTextBoxColumn colKinyuKikan = new DataGridViewTextBoxColumn();
             colKinyuKikan.DataPropertyName = "金融機関名";
             colKinyuKikan.Name = "金融機関名";
@@ -384,9 +390,12 @@ namespace KATO.Form.B1570_NyukinInput
         // クリック行のデータを入力欄に反映
         private void gridNyukin_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            formToGrid();
-            rowIdx = e.RowIndex;
-            gridToForm();
+            if (e.RowIndex >= 0)
+            {
+                formToGrid();
+                rowIdx = e.RowIndex;
+                gridToForm();
+            }
         }
 
         private void formToGrid()
@@ -415,7 +424,6 @@ namespace KATO.Form.B1570_NyukinInput
                 gridNyukin.Rows[rowIdx].Cells["支払条件"].Value = txtShiharaiJoken.Text;
                 gridNyukin.Rows[rowIdx].Cells["備考"].Value = txtBikoInput.Text;
                 gridNyukin.Rows[rowIdx].Cells["廻し先"].Value = txtMawashisakiInput.Text;
-                gridNyukin.Rows[rowIdx].Cells["廻し先日付"].Value = txtMawashisakiYMDInput.Text;
                 if (string.IsNullOrWhiteSpace(txtDenpyoYMD.Text))
                 {
                     gridNyukin.Rows[rowIdx].Cells["伝票年月日"].Value = DBNull.Value;
@@ -424,9 +432,18 @@ namespace KATO.Form.B1570_NyukinInput
                 {
                     gridNyukin.Rows[rowIdx].Cells["伝票年月日"].Value = txtDenpyoYMD.chkDateDataFormat(txtDenpyoYMD.Text);
                 }
+                if (string.IsNullOrWhiteSpace(txtDenpyoYMD.Text))
+                {
+                    gridNyukin.Rows[rowIdx].Cells["廻し先日付"].Value = DBNull.Value;
+                }
+                else
+                {
+                    gridNyukin.Rows[rowIdx].Cells["廻し先日付"].Value = txtMawashisakiYMDInput.chkDateDataFormat(txtMawashisakiYMDInput.Text);
+                }
                 gridNyukin.Rows[rowIdx].Cells["金融機関名"].Value = txtKinyuInput.Text;
                 gridNyukin.Rows[rowIdx].Cells["支店名"].Value = txtShitenInput.Text;
                 gridNyukin.Rows[rowIdx].Cells["口座"].Value = txtKozaInput.Text;
+                gridNyukin.Rows[rowIdx].Cells["手形発行元"].Value = txtHakkoMoto.Text;
 
             }
         }
@@ -451,12 +468,12 @@ namespace KATO.Form.B1570_NyukinInput
             txtShiharaiJoken.Text = getCellValue(rowIdx, "支払条件", false);
             txtBikoInput.Text = getCellValue(rowIdx, "備考", false);
             txtMawashisakiInput.Text = getCellValue(rowIdx, "廻し先", false);
-            txtMawashisakiYMDInput.Text = getCellValue(rowIdx, "廻し先日付", false);
+            txtMawashisakiYMDInput.Text = getCellValueYMD(rowIdx, "廻し先日付", false);
             txtDenpyoYMD.Text = getCellValueYMD(rowIdx, "伝票年月日", false);
             txtKinyuInput.Text = getCellValue(rowIdx, "金融機関名", false);
             txtShitenInput.Text = getCellValue(rowIdx, "支店名", false);
             txtKozaInput.Text = getCellValue(rowIdx, "口座", false);
-
+            txtHakkoMoto.Text = getCellValue(rowIdx, "手形発行元", false);
         }
 
         // 入力欄のデータをグリッド行に反映
@@ -729,7 +746,7 @@ namespace KATO.Form.B1570_NyukinInput
 
                 for (int i = 0; i < gridNyukin.Rows.Count; i++)
                 {
-                    string[] strs = new string[14];
+                    string[] strs = new string[15];
 
                     if (string.IsNullOrWhiteSpace(getCellValue(i, "伝票年月日", false)))
                     {
@@ -761,11 +778,12 @@ namespace KATO.Form.B1570_NyukinInput
                     strs[6] = getCellValueYMD(i, "手形期日", false);
                     strs[7] = getCellValue(i, "備考", false);
                     strs[8] = getCellValue(i, "廻し先", false);
-                    strs[9] = getCellValue(i, "廻し先日付", false);
-                    strs[10] = getCellValue(i, "金融機関名", false);
-                    strs[11] = getCellValue(i, "支店名", false);
-                    strs[12] = getCellValue(i, "口座", false);
-                    strs[13] = Environment.UserName;
+                    strs[9] = getCellValueYMD(i, "廻し先日付", false);
+                    strs[10] = getCellValue(i, "手形発行元", false);
+                    strs[11] = getCellValue(i, "金融機関名", false);
+                    strs[12] = getCellValue(i, "支店名", false);
+                    strs[13] = getCellValue(i, "口座", false);
+                    strs[14] = Environment.UserName;
 
                     lsInput.Add(strs);
                 }

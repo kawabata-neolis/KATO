@@ -443,10 +443,10 @@
             this.baseLabel12.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
             this.baseLabel12.Location = new System.Drawing.Point(440, 128);
             this.baseLabel12.Name = "baseLabel12";
-            this.baseLabel12.Size = new System.Drawing.Size(135, 15);
+            this.baseLabel12.Size = new System.Drawing.Size(87, 15);
             this.baseLabel12.strToolTip = null;
             this.baseLabel12.TabIndex = 155;
-            this.baseLabel12.Text = "取立手形金融機関";
+            this.baseLabel12.Text = "手形発行元";
             this.baseLabel12.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // txtTegataShiten
@@ -456,6 +456,7 @@
             this.txtTegataShiten.Name = "txtTegataShiten";
             this.txtTegataShiten.Size = new System.Drawing.Size(166, 22);
             this.txtTegataShiten.TabIndex = 158;
+            this.txtTegataShiten.Visible = false;
             // 
             // baseLabel14
             // 
@@ -468,6 +469,7 @@
             this.baseLabel14.TabIndex = 157;
             this.baseLabel14.Text = "支店";
             this.baseLabel14.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.baseLabel14.Visible = false;
             // 
             // baseLabel15
             // 
@@ -697,6 +699,7 @@
             this.txtTegataKouza.Name = "txtTegataKouza";
             this.txtTegataKouza.Size = new System.Drawing.Size(100, 22);
             this.txtTegataKouza.TabIndex = 185;
+            this.txtTegataKouza.Visible = false;
             // 
             // baseLabel3
             // 
@@ -709,6 +712,7 @@
             this.baseLabel3.TabIndex = 184;
             this.baseLabel3.Text = "口座";
             this.baseLabel3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.baseLabel3.Visible = false;
             // 
             // baseLabel28
             // 
@@ -1057,7 +1061,6 @@
             this.baseLabel32.TabIndex = 215;
             this.baseLabel32.Text = "口座";
             this.baseLabel32.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.baseLabel32.Visible = false;
             // 
             // baseLabel17
             // 

@@ -29,9 +29,9 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             this.txtInputYMDFr = new KATO.Common.Ctl.BaseCalendar();
             this.baseLabel1 = new KATO.Common.Ctl.BaseLabel(this.components);
             this.baseLabel2 = new KATO.Common.Ctl.BaseLabel(this.components);
@@ -534,34 +534,34 @@
             this.gridShiharai.AllowUserToAddRows = false;
             this.gridShiharai.AllowUserToResizeColumns = false;
             this.gridShiharai.AllowUserToResizeRows = false;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.Gainsboro;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("ＭＳ ゴシック", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.ScrollBar;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.ScrollBar;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.gridShiharai.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle4.BackColor = System.Drawing.Color.Gainsboro;
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("ＭＳ ゴシック", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.ScrollBar;
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.ScrollBar;
+            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.gridShiharai.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle4;
             this.gridShiharai.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.Cyan;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.Desktop;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.gridShiharai.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle5.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
+            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.Color.Cyan;
+            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.Desktop;
+            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.gridShiharai.DefaultCellStyle = dataGridViewCellStyle5;
             this.gridShiharai.EnableHeadersVisualStyles = false;
             this.gridShiharai.Location = new System.Drawing.Point(12, 157);
             this.gridShiharai.Name = "gridShiharai";
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.ControlLight;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.ControlLight;
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.gridShiharai.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle6.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
+            dataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.ControlLight;
+            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.ControlLight;
+            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.gridShiharai.RowHeadersDefaultCellStyle = dataGridViewCellStyle6;
             this.gridShiharai.RowHeadersVisible = false;
             this.gridShiharai.RowTemplate.Height = 21;
             this.gridShiharai.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
@@ -1057,7 +1057,7 @@
             this.txtKinyuInput.Location = new System.Drawing.Point(109, 747);
             this.txtKinyuInput.Name = "txtKinyuInput";
             this.txtKinyuInput.Size = new System.Drawing.Size(320, 22);
-            this.txtKinyuInput.TabIndex = 161;
+            this.txtKinyuInput.TabIndex = 30;
             this.txtKinyuInput.Leave += new System.EventHandler(this.txtMawashisakiYMDInput_Leave);
             // 
             // baseLabel30
@@ -1078,7 +1078,7 @@
             this.txtShitenInput.Location = new System.Drawing.Point(520, 747);
             this.txtShitenInput.Name = "txtShitenInput";
             this.txtShitenInput.Size = new System.Drawing.Size(320, 22);
-            this.txtShitenInput.TabIndex = 163;
+            this.txtShitenInput.TabIndex = 31;
             this.txtShitenInput.Leave += new System.EventHandler(this.txtMawashisakiYMDInput_Leave);
             // 
             // baseLabel31
@@ -1099,7 +1099,7 @@
             this.txtKozaInput.Location = new System.Drawing.Point(953, 747);
             this.txtKozaInput.Name = "txtKozaInput";
             this.txtKozaInput.Size = new System.Drawing.Size(100, 22);
-            this.txtKozaInput.TabIndex = 165;
+            this.txtKozaInput.TabIndex = 32;
             this.txtKozaInput.Leave += new System.EventHandler(this.txtMawashisakiYMDInput_Leave);
             // 
             // baseLabel32
@@ -1113,7 +1113,6 @@
             this.baseLabel32.TabIndex = 166;
             this.baseLabel32.Text = "口座";
             this.baseLabel32.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.baseLabel32.Visible = false;
             // 
             // B1580_ShiharaiInput
             // 

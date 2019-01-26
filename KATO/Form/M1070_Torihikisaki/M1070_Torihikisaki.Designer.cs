@@ -177,6 +177,12 @@
             this.labelSet_GyomuTantousha = new KATO.Common.Ctl.LabelSet_Tantousha();
             this.baseLabel12 = new KATO.Common.Ctl.BaseLabel(this.components);
             this.nameLabel = new KATO.Common.Ctl.BaseLabel(this.components);
+            this.txtShiireTegata = new KATO.Common.Ctl.BaseText();
+            this.baseLabel13 = new KATO.Common.Ctl.BaseLabel(this.components);
+            this.baseLabel15 = new KATO.Common.Ctl.BaseLabel(this.components);
+            this.txtNyukinTegata = new KATO.Common.Ctl.BaseText();
+            this.baseLabel16 = new KATO.Common.Ctl.BaseLabel(this.components);
+            this.baseLabel17 = new KATO.Common.Ctl.BaseLabel(this.components);
             this.gbTori.SuspendLayout();
             this.gbRyoshu.SuspendLayout();
             this.gbSeikyu.SuspendLayout();
@@ -915,7 +921,7 @@
             this.gbSeikyu.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
             this.gbSeikyu.Location = new System.Drawing.Point(505, 5);
             this.gbSeikyu.Name = "gbSeikyu";
-            this.gbSeikyu.Size = new System.Drawing.Size(470, 173);
+            this.gbSeikyu.Size = new System.Drawing.Size(597, 173);
             this.gbSeikyu.TabIndex = 6;
             this.gbSeikyu.TabStop = false;
             this.gbSeikyu.Text = "請求書送付先";
@@ -1072,6 +1078,12 @@
             // 
             // gbSime
             // 
+            this.gbSime.Controls.Add(this.txtNyukinTegata);
+            this.gbSime.Controls.Add(this.baseLabel16);
+            this.gbSime.Controls.Add(this.baseLabel17);
+            this.gbSime.Controls.Add(this.txtShiireTegata);
+            this.gbSime.Controls.Add(this.baseLabel13);
+            this.gbSime.Controls.Add(this.baseLabel15);
             this.gbSime.Controls.Add(this.txtNohinshoumu);
             this.gbSime.Controls.Add(this.lblNohinshoumu);
             this.gbSime.Controls.Add(this.baseLabel14);
@@ -1095,7 +1107,7 @@
             this.gbSime.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
             this.gbSime.Location = new System.Drawing.Point(505, 180);
             this.gbSime.Name = "gbSime";
-            this.gbSime.Size = new System.Drawing.Size(470, 130);
+            this.gbSime.Size = new System.Drawing.Size(597, 130);
             this.gbSime.TabIndex = 7;
             this.gbSime.TabStop = false;
             // 
@@ -1107,7 +1119,7 @@
             this.txtNohinshoumu.MaxLength = 1;
             this.txtNohinshoumu.Name = "txtNohinshoumu";
             this.txtNohinshoumu.Size = new System.Drawing.Size(24, 22);
-            this.txtNohinshoumu.TabIndex = 97;
+            this.txtNohinshoumu.TabIndex = 6;
             this.txtNohinshoumu.Enter += new System.EventHandler(this.torihikisaki_Enter);
             this.txtNohinshoumu.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judTorihikiTxtKeyDown);
             this.txtNohinshoumu.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.NomberTxt_KeyPress);
@@ -1141,7 +1153,7 @@
             // 
             this.txtSihabi.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
             this.txtSihabi.ImeMode = System.Windows.Forms.ImeMode.Disable;
-            this.txtSihabi.Location = new System.Drawing.Point(384, 14);
+            this.txtSihabi.Location = new System.Drawing.Point(384, 13);
             this.txtSihabi.MaxLength = 2;
             this.txtSihabi.Name = "txtSihabi";
             this.txtSihabi.Size = new System.Drawing.Size(24, 22);
@@ -2001,7 +2013,7 @@
             this.gbSohusaki.Controls.Add(this.baseLabel2);
             this.gbSohusaki.Controls.Add(this.lblZeikbn);
             this.gbSohusaki.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            this.gbSohusaki.Location = new System.Drawing.Point(997, 74);
+            this.gbSohusaki.Location = new System.Drawing.Point(1119, 74);
             this.gbSohusaki.Name = "gbSohusaki";
             this.gbSohusaki.Size = new System.Drawing.Size(253, 236);
             this.gbSohusaki.TabIndex = 8;
@@ -2253,6 +2265,74 @@
             this.nameLabel.Text = "担当者コード";
             this.nameLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
+            // txtShiireTegata
+            // 
+            this.txtShiireTegata.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
+            this.txtShiireTegata.ImeMode = System.Windows.Forms.ImeMode.Disable;
+            this.txtShiireTegata.Location = new System.Drawing.Point(559, 14);
+            this.txtShiireTegata.MaxLength = 2;
+            this.txtShiireTegata.Name = "txtShiireTegata";
+            this.txtShiireTegata.Size = new System.Drawing.Size(24, 22);
+            this.txtShiireTegata.TabIndex = 7;
+            // 
+            // baseLabel13
+            // 
+            this.baseLabel13.AutoSize = true;
+            this.baseLabel13.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
+            this.baseLabel13.Location = new System.Drawing.Point(455, 16);
+            this.baseLabel13.Name = "baseLabel13";
+            this.baseLabel13.Size = new System.Drawing.Size(103, 15);
+            this.baseLabel13.strToolTip = "月末払いは３１";
+            this.baseLabel13.TabIndex = 102;
+            this.baseLabel13.Text = "仕入手形期日";
+            this.baseLabel13.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // baseLabel15
+            // 
+            this.baseLabel15.AutoSize = true;
+            this.baseLabel15.Font = new System.Drawing.Font("ＭＳ ゴシック", 9F);
+            this.baseLabel15.Location = new System.Drawing.Point(456, 37);
+            this.baseLabel15.Name = "baseLabel15";
+            this.baseLabel15.Size = new System.Drawing.Size(77, 12);
+            this.baseLabel15.strToolTip = "";
+            this.baseLabel15.TabIndex = 101;
+            this.baseLabel15.Text = "(月末締は31)";
+            this.baseLabel15.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // txtNyukinTegata
+            // 
+            this.txtNyukinTegata.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
+            this.txtNyukinTegata.ImeMode = System.Windows.Forms.ImeMode.Disable;
+            this.txtNyukinTegata.Location = new System.Drawing.Point(559, 58);
+            this.txtNyukinTegata.MaxLength = 2;
+            this.txtNyukinTegata.Name = "txtNyukinTegata";
+            this.txtNyukinTegata.Size = new System.Drawing.Size(24, 22);
+            this.txtNyukinTegata.TabIndex = 8;
+            // 
+            // baseLabel16
+            // 
+            this.baseLabel16.AutoSize = true;
+            this.baseLabel16.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
+            this.baseLabel16.Location = new System.Drawing.Point(455, 60);
+            this.baseLabel16.Name = "baseLabel16";
+            this.baseLabel16.Size = new System.Drawing.Size(103, 15);
+            this.baseLabel16.strToolTip = "月末払いは３１";
+            this.baseLabel16.TabIndex = 105;
+            this.baseLabel16.Text = "入金手形期日";
+            this.baseLabel16.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // baseLabel17
+            // 
+            this.baseLabel17.AutoSize = true;
+            this.baseLabel17.Font = new System.Drawing.Font("ＭＳ ゴシック", 9F);
+            this.baseLabel17.Location = new System.Drawing.Point(456, 81);
+            this.baseLabel17.Name = "baseLabel17";
+            this.baseLabel17.Size = new System.Drawing.Size(77, 12);
+            this.baseLabel17.strToolTip = "";
+            this.baseLabel17.TabIndex = 104;
+            this.baseLabel17.Text = "(月末締は31)";
+            this.baseLabel17.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
             // M1070_Torihikisaki
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -2470,5 +2550,11 @@
         private Common.Ctl.BaseText txtNohinshoumu;
         private Common.Ctl.BaseLabel lblNohinshoumu;
         private Common.Ctl.BaseLabel baseLabel14;
+        private Common.Ctl.BaseText txtNyukinTegata;
+        private Common.Ctl.BaseLabel baseLabel16;
+        private Common.Ctl.BaseLabel baseLabel17;
+        private Common.Ctl.BaseText txtShiireTegata;
+        private Common.Ctl.BaseLabel baseLabel13;
+        private Common.Ctl.BaseLabel baseLabel15;
     }
 }

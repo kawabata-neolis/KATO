@@ -223,6 +223,9 @@ namespace KATO.Form.M1071_TorihikisakiInfo
             labelSet_GyomuTantousha.CodeTxtText = dtSelectData.Rows[0]["業務担当者コード"].ToString();
             // 納品書有無
             txtNohinnshoumu.Text = dtSelectData.Rows[0]["納品書印刷"].ToString();
+
+            txtShiireTegata.Text = dtSelectData.Rows[0]["仕入手形期日"].ToString();
+            txtNyukinTegata.Text = dtSelectData.Rows[0]["入金手形期日"].ToString();
         }
 
         ///<summary>

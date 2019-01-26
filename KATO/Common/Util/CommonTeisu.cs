@@ -735,6 +735,8 @@ namespace KATO.Common.Util
             ,SqlDbType.NChar
             ,SqlDbType.DateTime
             ,SqlDbType.NChar
+            ,SqlDbType.Char
+            ,SqlDbType.Char
         };
         public static readonly SqlDbType[] P_C_SQL_TORIHIKISAKI_DEL =
         {

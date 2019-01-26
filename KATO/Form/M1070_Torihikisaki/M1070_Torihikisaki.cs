@@ -700,6 +700,10 @@ namespace KATO.Form.M1070_Torihikisaki
             //ユーザー名
             lstTorihikisaki.Add(SystemInformation.UserName);
 
+            //仕入手形期日・入金手形期日
+            lstTorihikisaki.Add(txtShiireTegata.Text);
+            lstTorihikisaki.Add(txtNyukinTegata.Text);
+
             //ビジネス層のインスタンス生成
             M1070_Torihikisaki_B torihikisakiB = new M1070_Torihikisaki_B();
             try
@@ -886,6 +890,10 @@ namespace KATO.Form.M1070_Torihikisaki
                 //ユーザー名
                 lstTorihikisaki.Add(SystemInformation.UserName);
 
+                //仕入手形期日・入金手形期日
+                lstTorihikisaki.Add(dtSetCd.Rows[0]["仕入手形期日"].ToString());
+                lstTorihikisaki.Add(dtSetCd.Rows[0]["入金手形期日"].ToString());
+
                 torihikisakiB.delTorihiki(lstTorihikisaki);
                 //メッセージボックスの処理、削除完了のウィンドウ(OK)
                 basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_DEL, CommonTeisu.LABEL_DEL_AFTER, CommonTeisu.BTN_OK, CommonTeisu.DIAG_INFOMATION);
@@ -1008,6 +1016,9 @@ namespace KATO.Form.M1070_Torihikisaki
             labelSet_GyomuTantousha.CodeTxtText = dtSelectData.Rows[0]["業務担当者コード"].ToString();
             // 納品書有無
             txtNohinshoumu.Text = dtSelectData.Rows[0]["納品書印刷"].ToString();
+
+            txtShiireTegata.Text = dtSelectData.Rows[0]["仕入手形期日"].ToString();
+            txtNyukinTegata.Text = dtSelectData.Rows[0]["入金手形期日"].ToString();
 
         }
 
