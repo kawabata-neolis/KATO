@@ -68,6 +68,7 @@ namespace KATO.Form.B0410_SeikyuItiranPrint
 
             this.btnF04.Text = STR_FUNC_F4;
             this.btnF11.Text = STR_FUNC_F11;
+            this.btnF10.Text = "Excel出力";
             this.btnF12.Text = STR_FUNC_F12;
 
             //初期表示
@@ -131,6 +132,8 @@ namespace KATO.Form.B0410_SeikyuItiranPrint
                 case Keys.F9:
                     break;
                 case Keys.F10:
+                    logger.Info(LogUtil.getMessage(this._Title, "Excel出力"));
+                    this.exportXls();
                     break;
                 case Keys.F11:
                     logger.Info(LogUtil.getMessage(this._Title, "印刷実行"));
@@ -158,6 +161,10 @@ namespace KATO.Form.B0410_SeikyuItiranPrint
                 case STR_BTN_F04: // 取消
                     logger.Info(LogUtil.getMessage(this._Title, "取消実行"));
                     this.delText();
+                    break;
+                case STR_BTN_F10: // Excel出力
+                    logger.Info(LogUtil.getMessage(this._Title, "Excel出力"));
+                    this.exportXls();
                     break;
                 case STR_BTN_F11: // 印刷
                     logger.Info(LogUtil.getMessage(this._Title, "印刷実行"));
@@ -353,6 +360,166 @@ namespace KATO.Form.B0410_SeikyuItiranPrint
                 return;
             }
 
+        }
+
+        /// <summary>
+        /// F10：Excel出力
+        /// </summary>
+        private void exportXls()
+        {
+            // SaveFileDialogクラスのインスタンスを作成
+            SaveFileDialog sfd = new SaveFileDialog();
+            // ファイル名の指定
+            sfd.FileName = "請求一覧表_" + DateTime.Now.ToString("yyyy_MM_dd_HH_mm_ss") + ".xlsx";
+            // デフォルトパス取得（デスクトップ）
+            string Init_dir = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
+            //はじめに表示されるフォルダを指定する
+            sfd.InitialDirectory = Init_dir;
+            // ファイルフィルタの設定
+            sfd.Filter = "すべてのファイル(*.*)|*.*";
+
+            try
+            {
+                //待機状態
+                Cursor.Current = Cursors.WaitCursor;
+
+                // データチェック処理
+                if (!dataCheack())
+                {
+                    //元に戻す
+                    Cursor.Current = Cursors.Default;
+                    return;
+                }
+
+                // データ検索用
+                List<string> lstSearchItem = new List<string>();
+
+
+                // ビジネス層のインスタンス生成
+                B0410_SeikyuItiranPrint_B seikyuitiranprintB = new B0410_SeikyuItiranPrint_B();
+
+                // 検索するデータをリストに格納
+                lstSearchItem.Add(txtSimekiriYMD.Text);
+                lstSearchItem.Add(txtKaisiYMD.Text);
+                lstSearchItem.Add(labelSet_TokuisakiStart.CodeTxtText);
+                lstSearchItem.Add(labelSet_TokuisakiEnd.CodeTxtText);
+                lstSearchItem.Add(txtSimekiribiCd.Text);
+                if (radSetSort.judCheckBtn() == 0 || radSetSort.radbtn0.Checked)
+                {
+                    lstSearchItem.Add("1");
+                }
+                else if (radSetSort.judCheckBtn() == 1 || radSetSort.radbtn1.Checked)
+                {
+                    lstSearchItem.Add("2");
+                }
+                else
+                {
+                    lstSearchItem.Add("3");
+                }
+                lstSearchItem.Add(Environment.UserName);
+
+
+                // 検索実行
+                DataTable dtSeikyuItiran = seikyuitiranprintB.getSeikyuItiran(lstSearchItem);
+
+                // カーソルを戻す
+                this.Cursor = Cursors.Default;
+
+                // 検索結果にデータがあった場合
+                if (dtSeikyuItiran.Rows.Count > 0)
+                {
+                    // ダイアログ表示
+                    if (sfd.ShowDialog() == DialogResult.OK)
+                    {
+                        //待機状態
+                        Cursor.Current = Cursors.WaitCursor;
+
+                        CreatePdf cpdf = new CreatePdf();
+
+                        // 出力するヘッダを設定
+                        string[] header =
+                        {
+                            "コード",
+                            "得意先名",
+                            "前月売掛残",
+                            "入金現金",
+                            "入金小切手",
+                            "入金振込",
+                            "入金手形",
+                            "入金相殺",
+                            "入金手数料",
+                            "入金その他",
+                            "繰越残高",
+                            "当月売上高",
+                            "当月消費税",
+                            "当月残高",
+                            "税区分",
+                    };
+
+                        // Linqで出力対象の項目をSelect
+                        // カラム名は以下のようにつける(カラム名でフォーマットを判断するため)
+                        // 金額関係：＊＊＊kingaku
+                        // 単価関係：＊＊＊tanka
+                        // 原価：＊＊＊genka
+                        // 数量：＊＊＊suryo
+                        var outDat = dtSeikyuItiran.AsEnumerable()
+                            .Select(dat => new
+                            {
+                                code = dat["得意先コード"],
+                                tokuisakiName = dat["得意先名"],
+                                zenurizanKingaku = dat["前月売掛残"],
+                                genKingaku = dat["入金現金"],
+                                kogiteKingaku = dat["入金小切手"],
+                                furikomiKingaku = dat["入金振込"],
+                                teagataKingaku = dat["入金手形"],
+                                sosaiKingaku = dat["入金相殺"],
+                                tesuryoKingaku = dat["入金手数料"],
+                                sonotakingaku = dat["入金その他"],
+                                kurizanKingaku = dat["繰越残高"],
+                                uriagedataKingaku = dat["当月売上高"],
+                                zeiKingaku = dat["当月消費税"],
+                                tougetuzanKingaku = dat["当月残高"],
+                                zeiku = dat["税区"],
+                            }).ToList();
+
+                        // listをDataTableに変換
+                        DataTable dtSiireChk = cpdf.ConvertToDataTable(outDat);
+
+                        string outFile = sfd.FileName;
+
+                        cpdf.DtToXls(dtSiireChk, "請求一覧表", outFile, 3, 1, header);
+
+                        this.Cursor = Cursors.Default;
+
+                        // メッセージボックスの処理、Excel作成完了の場合のウィンドウ（OK）
+                        BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_VIEW, "Excelファイルを作成しました。", CommonTeisu.BTN_OK, CommonTeisu.DIAG_INFOMATION);
+                        basemessagebox.ShowDialog();
+
+                    }
+                }
+                else
+                {
+                    // メッセージボックスの処理、項目が空の場合のウィンドウ（OK）
+                    BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_INPUT, "対象のデータはありません", CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                    basemessagebox.ShowDialog();
+
+                    //元に戻す
+                    Cursor.Current = Cursors.Default;
+                    return;
+                }
+            }
+            catch (Exception ex)
+            {
+                // エラーロギング
+                new CommonException(ex);
+
+                // メッセージボックスの処理、PDF作成失敗の場合のウィンドウ（OK）
+                BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_VIEW, "印刷が失敗しました。", CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                basemessagebox.ShowDialog();
+
+                return;
+            }
+            
         }
 
         /// <summary>

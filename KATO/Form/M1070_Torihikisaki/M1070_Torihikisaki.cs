@@ -21,8 +21,8 @@ namespace KATO.Form.M1070_Torihikisaki
     ///取引先フォーム
     ///作成者：大河内
     ///作成日：2017/5/1
-    ///更新者：大河内
-    ///更新日：2017/5/1
+    ///更新者：宇津野
+    ///更新日：2019/02/02
     ///カラム論理名
     ///</summary>
     public partial class M1070_Torihikisaki : BaseForm
@@ -83,6 +83,7 @@ namespace KATO.Form.M1070_Torihikisaki
             this.btnF04.Text = STR_FUNC_F4;
             this.btnF08.Text = STR_FUNC_F8_KARABAN;
             this.btnF09.Text = STR_FUNC_F9;
+            this.btnF10.Text = "Excel出力";
             this.btnF11.Text = STR_FUNC_F11;
             this.btnF12.Text = STR_FUNC_F12;
 
@@ -163,6 +164,8 @@ namespace KATO.Form.M1070_Torihikisaki
                 case Keys.F9:
                     break;
                 case Keys.F10:
+                    logger.Info(LogUtil.getMessage(this._Title, "Excel出力実行"));
+                    excelTorihiki();
                     break;
                 case Keys.F11:
                     logger.Info(LogUtil.getMessage(this._Title, "印刷実行"));
@@ -329,6 +332,10 @@ namespace KATO.Form.M1070_Torihikisaki
                 case STR_BTN_F08: // 未割当の番号検索
                     logger.Info(LogUtil.getMessage(this._Title, "空番実行"));
                     this.showTorihikicdList();
+                    break;
+                case STR_BTN_F10: // Excel出力
+                    logger.Info(LogUtil.getMessage(this._Title, "Excel出力実行"));
+                    this.excelTorihiki();
                     break;
                 case STR_BTN_F11: // 印刷
                     logger.Info(LogUtil.getMessage(this._Title, "印刷実行"));
@@ -1159,6 +1166,79 @@ namespace KATO.Form.M1070_Torihikisaki
             {
                 //押されたキーが 0～9でない場合は、イベントをキャンセルする
                 e.Handled = true;
+            }
+        }
+
+        ///<summary>
+        ///     F10：Excel出力
+        ///</summary>
+        private void excelTorihiki()
+        {
+            //SQL実行時に取り出したデータを入れる用
+            DataTable dtSetCd_B = new DataTable();
+
+            //ビジネス層のインスタンス生成
+            M1070_Torihikisaki_B daibunB = new M1070_Torihikisaki_B();
+            try
+            {
+                dtSetCd_B = daibunB.getPrintData();
+
+                BaseMessageBox basemessagebox;
+                //取得したデータがない場合
+                if (dtSetCd_B == null || dtSetCd_B.Rows.Count == 0)
+                {
+                    //例外発生メッセージ（OK）
+                    basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_ERROR, "対象のデータはありません", CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                    basemessagebox.ShowDialog();
+                    return;
+                }
+
+                // SaveFileDialogクラスのインスタンスを作成
+                SaveFileDialog sfd = new SaveFileDialog();
+                // ファイル名の指定
+                sfd.FileName = "取引先マスタ_" + DateTime.Now.ToString("yyyy_MM_dd_HH_mm_ss") + ".xlsx";
+                // デフォルトパス取得（デスクトップ）
+                string Init_dir = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
+                //はじめに表示されるフォルダを指定する
+                sfd.InitialDirectory = Init_dir;
+                // ファイルフィルタの設定
+                sfd.Filter = "すべてのファイル(*.*)|*.*";
+
+                //ダイアログを表示する
+                if (sfd.ShowDialog() == DialogResult.OK)
+                {
+                    CreatePdf cpdf = new CreatePdf();
+                    string[] header =
+                    {
+                            "コード",
+                            "取引先",
+                            "カナ",
+                            "郵便番号",
+                            "住所１",
+                            "住所２",
+                            "電話番号",
+                            "ＦＡＸ",
+                        };
+
+                    string outFile = sfd.FileName;
+
+                    // Excel作成処理
+                    cpdf.DtToXls(dtSetCd_B, "取引先マスタリスト", outFile, 3, 1, header);
+
+                    // メッセージボックスの処理、Excel作成完了の場合のウィンドウ（OK）
+                    basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_VIEW, "Excelファイルを作成しました。", CommonTeisu.BTN_OK, CommonTeisu.DIAG_INFOMATION);
+                    basemessagebox.ShowDialog();
+
+                }
+            }
+            catch (Exception ex)
+            {
+                //データロギング
+                new CommonException(ex);
+                //例外発生メッセージ（OK）
+                BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_ERROR, CommonTeisu.LABEL_ERROR_MESSAGE, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                basemessagebox.ShowDialog();
+                return;
             }
         }
 

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Linq;
 using System.Windows.Forms;
 using KATO.Common.Ctl;
 using KATO.Common.Util;
@@ -74,6 +75,7 @@ namespace KATO.Form.F0570_TanaorosiKinyuhyoPrint
 
             //this.btnF01.Text = "F1:更新";
             this.btnF04.Text = STR_FUNC_F4;
+            this.btnF10.Text = "Excel出力";
             this.btnF11.Text = STR_FUNC_F11;
             this.btnF12.Text = STR_FUNC_F12;
 
@@ -130,6 +132,8 @@ namespace KATO.Form.F0570_TanaorosiKinyuhyoPrint
                 case Keys.F9:
                     break;
                 case Keys.F10:
+                    logger.Info(LogUtil.getMessage(this._Title, "Excel出力実行"));
+                    this.excelTanaorosiKinyuuhyo();
                     break;
                 case Keys.F11:
                     logger.Info(LogUtil.getMessage(this._Title, "印刷実行"));
@@ -161,6 +165,10 @@ namespace KATO.Form.F0570_TanaorosiKinyuhyoPrint
                     logger.Info(LogUtil.getMessage(this._Title, "取消実行"));
                     this.delText();
                     break;
+                case STR_BTN_F10: // Excel出力
+                    logger.Info(LogUtil.getMessage(this._Title, "Excel出力実行"));
+                    this.excelTanaorosiKinyuuhyo();
+                    break;
                 case STR_BTN_F11: // 印刷
                     logger.Info(LogUtil.getMessage(this._Title, "印刷実行"));
                     this.printReport();
@@ -185,6 +193,234 @@ namespace KATO.Form.F0570_TanaorosiKinyuhyoPrint
             delFormClear(this);
 
             chkPrintOnly.Checked = blnPrintOnly;
+        }
+        ///<summary>
+        ///     F10：Excel出力
+        ///</summary>
+        private void excelTanaorosiKinyuuhyo()
+        {
+            // データ検索用
+            List<string> lstSearchItem = new List<string>();
+
+            // データ検索用（プロシージャ用）
+            List<string> lstSearchItemProc = new List<string>();
+
+            // データチェック
+            if (!blnDataCheack())
+            {
+                return;
+            }
+
+            // 検索するデータをリストに格納
+            lstSearchItem.Add(txtYmd.Text);
+            lstSearchItem.Add(labelSet_Eigyosho.CodeTxtText);
+            lstSearchItem.Add(labelSet_Daibunrui.CodeTxtText);
+            lstSearchItem.Add(labelSet_Chubunrui.CodeTxtText);
+            lstSearchItem.Add(labelSet_Maker.CodeTxtText);
+            lstSearchItem.Add(txtTanabanFrom.Text);
+            lstSearchItem.Add(txtTanabanTo.Text);
+
+            // 検索するデータをリストに格納（プロシージャ用）
+            lstSearchItemProc.Add(txtYmd.Text);
+            lstSearchItemProc.Add(labelSet_Eigyosho.CodeTxtText);
+            lstSearchItemProc.Add(labelSet_Daibunrui.CodeTxtText);
+            lstSearchItemProc.Add((radSort.judCheckBtn() + 1).ToString());
+
+            // ビジネス層のインスタンス生成
+            F0570_TanaorosiKinyuhyoPrint_B tanaorosiPrint_B = new F0570_TanaorosiKinyuhyoPrint_B();
+            try
+            {
+                BaseMessageBox basemessagebox;
+
+                // 印刷するにチェックが入っていない場合
+                if (chkPrintOnly.Checked == false)
+                {
+                    //待機状態
+                    Cursor.Current = Cursors.WaitCursor;
+
+                    // 棚卸記入表の件数を取得
+                    DataTable dtTanaorosiCount = tanaorosiPrint_B.getTanaorosiCount(lstSearchItem);
+
+                    //元に戻す
+                    Cursor.Current = Cursors.Default;
+
+                    // 対象データがある場合
+                    if (dtTanaorosiCount != null && dtTanaorosiCount.Rows.Count > 0)
+                    {
+                        // 件数が1件以上の場合
+                        if (int.Parse(dtTanaorosiCount.Rows[0][0].ToString()) > 0)
+                        {
+                            // メッセージボックスの処理（YES,NO）
+                            basemessagebox = new BaseMessageBox(this, "棚卸記入表", "既にデータが作成されています。書き換えますか？", CommonTeisu.BTN_YESNO, CommonTeisu.DIAG_QUESTION);
+
+                            // Noが押された場合
+                            if (basemessagebox.ShowDialog() == DialogResult.No)
+                            {
+                                return;
+                            }
+                        }
+                    }
+
+                    try
+                    {
+                        //待機状態
+                        Cursor.Current = Cursors.WaitCursor;
+
+                        // 棚卸記入表テーブルに追加
+                        tanaorosiPrint_B.addTanaorosi(lstSearchItem);
+
+                        //元に戻す
+                        Cursor.Current = Cursors.Default;
+
+                    }
+                    catch (Exception ex)
+                    {
+                        //元に戻す
+                        Cursor.Current = Cursors.Default;
+
+                        // エラーロギング
+                        new CommonException(ex);
+
+                        // メッセージボックスの処理、追加失敗の場合のウィンドウ（OK）
+                        basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_TOUROKU, CommonTeisu.LABEL_TOUROKU_MISS, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                        basemessagebox.ShowDialog();
+
+                        return;
+                    }
+                }
+
+                //待機状態
+                Cursor.Current = Cursors.WaitCursor;
+
+                // 検索実行
+                DataTable dtTanaorosi = tanaorosiPrint_B.getTanaorosi(lstSearchItemProc);
+
+                //元に戻す
+                Cursor.Current = Cursors.Default;
+
+                // 対象データがある場合
+                if (dtTanaorosi != null && dtTanaorosi.Rows.Count > 0)
+                {
+                    string strFilter = "";
+
+                    // 中分類コードがある場合
+                    if (!lstSearchItem[3].Equals(""))
+                    {
+                        strFilter += "中分類コード = '" + lstSearchItem[3] + "'";
+                    }
+
+                    // メーカーコードがある場合
+                    if (!lstSearchItem[4].Equals(""))
+                    {
+                        if (!strFilter.Equals(""))
+                        {
+                            strFilter += " AND ";
+                        }
+                        strFilter += "メーカーコード = '" + lstSearchItem[4] + "'";
+                    }
+
+                    // 棚番がある場合
+                    if (!lstSearchItem[5].Equals("") && !lstSearchItem[6].Equals(""))
+                    {
+                        if (!strFilter.Equals(""))
+                        {
+                            strFilter += " AND ";
+                        }
+                        strFilter += "棚番 >= '" + lstSearchItem[5] + "' AND 棚番 <= '" + lstSearchItem[6] + "'";
+                    }
+
+                    // 対象データから更に絞り込み（中分類コード、メーカーコード、棚番）
+                    if (!strFilter.Equals(""))
+                    {
+                        DataView dvTanaorosi = new DataView(dtTanaorosi);
+                        dvTanaorosi.RowFilter = strFilter;
+                        dtTanaorosi = dvTanaorosi.ToTable();
+
+                        // 対象データがない場合
+                        if (dtTanaorosi == null || dtTanaorosi.Rows.Count == 0)
+                        {
+                            // メッセージボックスの処理、対象データがない場合のウィンドウ（OK）
+                            basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_VIEW, "対象のデータはありません。", CommonTeisu.BTN_OK, CommonTeisu.DIAG_INFOMATION);
+                            basemessagebox.ShowDialog();
+
+                            return;
+                        }
+                    }
+
+                    // SaveFileDialogクラスのインスタンスを作成
+                    SaveFileDialog sfd = new SaveFileDialog();
+                    // ファイル名の指定
+                    sfd.FileName = "棚卸プレシート_" + DateTime.Now.ToString("yyyy_MM_dd_HH_mm_ss") + ".xlsx";
+                    // デフォルトパス取得（デスクトップ）
+                    string Init_dir = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
+                    //はじめに表示されるフォルダを指定する
+                    sfd.InitialDirectory = Init_dir;
+                    // ファイルフィルタの設定
+                    sfd.Filter = "すべてのファイル(*.*)|*.*";
+
+                    //ダイアログを表示する
+                    if (sfd.ShowDialog() == DialogResult.OK)
+                    {
+                        //待機状態
+                        Cursor.Current = Cursors.WaitCursor;
+
+                        CreatePdf cpdf = new CreatePdf();
+
+                        // 出力するヘッダを設定
+
+                        //Linqで必要なデータをselect
+                        var outDataAll = dtTanaorosi.AsEnumerable()
+                            .Select(dat => new
+                            {
+                                eigyo = dat["営業所名"],
+                                daibunruiName = dat["大分類名"],
+                                chubunruiName = dat["中分類名"],
+                                tanaban = dat["棚番"],
+                                maker = dat["メーカー名"],
+                                kataban = dat["品名型番"],
+                                zsuryo= (decimal)dat["指定日在庫"],
+                                suryo = (decimal)dat["棚卸数量"]
+                            }).ToList();
+
+                        //リストをデータテーブルに変換
+                        DataTable dtChkList = cpdf.ConvertToDataTable(outDataAll);
+
+                        string[] header =
+                        {
+                                    "営業所名",
+                                    "大分類名",
+                                    "中分類名",
+                                    "棚番",
+                                    "メーカー名",
+                                    "品名型番",
+                                    "指定日在庫",
+                                    "棚卸数量",
+                                };
+
+                        string outFile = sfd.FileName;
+
+                        // Excel作成処理
+                        cpdf.DtToXls(dtChkList, "業種マスタリスト", outFile, 3, 1, header);
+
+                        //元に戻す
+                        Cursor.Current = Cursors.Default;
+
+                        // メッセージボックスの処理、Excel作成完了の場合のウィンドウ（OK）
+                        basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_VIEW, "Excelファイルを作成しました。", CommonTeisu.BTN_OK, CommonTeisu.DIAG_INFOMATION);
+                        basemessagebox.ShowDialog();
+
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                //データロギング
+                new CommonException(ex);
+                //例外発生メッセージ（OK）
+                BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_ERROR, CommonTeisu.LABEL_ERROR_MESSAGE, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                basemessagebox.ShowDialog();
+                return;
+            }
         }
 
         /// <summary>

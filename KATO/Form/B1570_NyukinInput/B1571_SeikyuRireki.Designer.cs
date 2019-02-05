@@ -35,6 +35,55 @@
             ((System.ComponentModel.ISupportInitialize)(this.gridSeikyuRireki)).BeginInit();
             this.SuspendLayout();
             // 
+            // btnF01
+            // 
+            this.btnF01.Click += new System.EventHandler(this.btnF12_Click);
+            // 
+            // btnF12
+            // 
+            this.btnF12.Text = "F12:終了";
+            this.btnF12.Click += new System.EventHandler(this.btnF12_Click);
+            // 
+            // btnF11
+            // 
+            this.btnF11.Click += new System.EventHandler(this.btnF12_Click);
+            // 
+            // btnF10
+            // 
+            this.btnF10.Click += new System.EventHandler(this.btnF12_Click);
+            // 
+            // btnF09
+            // 
+            this.btnF09.Click += new System.EventHandler(this.btnF12_Click);
+            // 
+            // btnF08
+            // 
+            this.btnF08.Click += new System.EventHandler(this.btnF12_Click);
+            // 
+            // btnF07
+            // 
+            this.btnF07.Click += new System.EventHandler(this.btnF12_Click);
+            // 
+            // btnF06
+            // 
+            this.btnF06.Click += new System.EventHandler(this.btnF12_Click);
+            // 
+            // btnF05
+            // 
+            this.btnF05.Click += new System.EventHandler(this.btnF12_Click);
+            // 
+            // btnF04
+            // 
+            this.btnF04.Click += new System.EventHandler(this.btnF12_Click);
+            // 
+            // btnF03
+            // 
+            this.btnF03.Click += new System.EventHandler(this.btnF12_Click);
+            // 
+            // btnF02
+            // 
+            this.btnF02.Click += new System.EventHandler(this.btnF12_Click);
+            // 
             // gridSeikyuRireki
             // 
             this.gridSeikyuRireki.AllowUserToAddRows = false;
@@ -73,7 +122,7 @@
             this.gridSeikyuRireki.RowHeadersVisible = false;
             this.gridSeikyuRireki.RowTemplate.Height = 21;
             this.gridSeikyuRireki.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.gridSeikyuRireki.Size = new System.Drawing.Size(924, 382);
+            this.gridSeikyuRireki.Size = new System.Drawing.Size(924, 705);
             this.gridSeikyuRireki.StandardTab = true;
             this.gridSeikyuRireki.TabIndex = 125;
             this.gridSeikyuRireki.TabStop = false;
@@ -86,6 +135,7 @@
             this.Controls.Add(this.gridSeikyuRireki);
             this.Name = "B1571_SeikyuRireki";
             this.Text = "B1571_SeikyuRireki";
+            this.Load += new System.EventHandler(this.B1581_ShiharaiJisseki_Load);
             this.Controls.SetChildIndex(this.btnF01, 0);
             this.Controls.SetChildIndex(this.btnF02, 0);
             this.Controls.SetChildIndex(this.btnF03, 0);

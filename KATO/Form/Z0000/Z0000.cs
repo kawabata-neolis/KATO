@@ -1102,6 +1102,11 @@ namespace KATO.Form.Z0000
                     ShiharaiInput.ShowDialog();
                     break;
 
+                case "159":
+                    B1590_TegataCalendar.B1590_TegataCalendar tegataCal = new B1590_TegataCalendar.B1590_TegataCalendar(this);
+                    tegataCal.ShowDialog();
+                    break;
+
             }
             txtShoriNo.Text = "";
             txtShoriNo.Focus();
@@ -1645,6 +1650,11 @@ namespace KATO.Form.Z0000
                     case "158":
                         B1580_ShiharaiInput.B1580_ShiharaiInput ShiharaiInput = new B1580_ShiharaiInput.B1580_ShiharaiInput(this);
                         ShiharaiInput.ShowDialog();
+                        break;
+
+                    case "159":
+                        B1590_TegataCalendar.B1590_TegataCalendar tegataCal = new B1590_TegataCalendar.B1590_TegataCalendar(this);
+                        tegataCal.ShowDialog();
                         break;
 
                     default:

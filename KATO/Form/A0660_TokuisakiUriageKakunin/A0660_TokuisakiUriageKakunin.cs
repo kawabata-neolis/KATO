@@ -22,6 +22,8 @@ namespace KATO.Form.A0660_TokuisakiUriageKakunin
     ///     作成日：2017/12/22
     ///     更新者：大河内
     ///     更新日：2017/02/01
+    ///     更新者：山本
+    ///     更新日：2019/02/02
     ///</summary>
     public partial class A0660_TokuisakiUriageKakunin : BaseForm
     {
@@ -68,6 +70,7 @@ namespace KATO.Form.A0660_TokuisakiUriageKakunin
             this.btnF02.Text = "F2:更新";
             this.btnF04.Text = STR_FUNC_F4;
             this.btnF09.Text = STR_FUNC_F9;
+            this.btnF10.Text = "Excel出力";
             this.btnF12.Text = STR_FUNC_F12;
 
             // 検索ボタン無効化
@@ -147,6 +150,8 @@ namespace KATO.Form.A0660_TokuisakiUriageKakunin
                 case Keys.F9:
                     break;
                 case Keys.F10:
+                    logger.Info(LogUtil.getMessage(this._Title, "Excel出力"));
+                    exportXls();
                     break;
                 case Keys.F11:
                     break;
@@ -180,6 +185,10 @@ namespace KATO.Form.A0660_TokuisakiUriageKakunin
                 case STR_BTN_F04:
                     logger.Info(LogUtil.getMessage(this._Title, "取消実行"));
                     this.clearForm();
+                    break;
+                case STR_BTN_F10:
+                    logger.Info(LogUtil.getMessage(this._Title, "Excel出力"));
+                    exportXls();
                     break;
                 case STR_BTN_F12: // 終了
                     logger.Info(LogUtil.getMessage(this._Title, "終了実行"));
@@ -389,19 +398,19 @@ namespace KATO.Form.A0660_TokuisakiUriageKakunin
                 arrDisplay[1] = radDisplay.radbtn1.Checked.ToString().ToUpper();  // 表示　未検収
                 arrDisplay[2] = radDisplay.radbtn2.Checked.ToString().ToUpper();  // 表示　検収済
 
-                DataTable dtSiirekensyu = siirekakuninB.getSiireData(arrSerach, arrOrder, arrDisplay);
+                DataTable dtUriagekensyu = siirekakuninB.getSiireData(arrSerach, arrOrder, arrDisplay);
 
                 // 入力合計
-                var total = (int)dtSiirekensyu.AsEnumerable().Sum(s => s.Field<decimal>("売上金額"));
+                var total = (int)dtUriagekensyu.AsEnumerable().Sum(s => s.Field<decimal>("売上金額"));
                 // 検収済合計
-                var kensyuSum = (int)dtSiirekensyu.AsEnumerable().Where(s => s.Field<string>("検収状態") == "済")
+                var kensyuSum = (int)dtUriagekensyu.AsEnumerable().Where(s => s.Field<string>("検収状態") == "済")
                     .Sum(s => s.Field<decimal>("売上金額"));
                 // 未検収合計
-                var mikenSum = (int)dtSiirekensyu.AsEnumerable().Where(s => s.Field<string>("検収状態") != "済")
+                var mikenSum = (int)dtUriagekensyu.AsEnumerable().Where(s => s.Field<string>("検収状態") != "済")
                     .Sum(s => s.Field<decimal>("売上金額"));
 
                 // gridにバインド
-                gridTokuisakiKensyu.DataSource = dtSiirekensyu;
+                gridTokuisakiKensyu.DataSource = dtUriagekensyu;
 
                 // カンマを付けてテキストボックスに入れる
                 txtInputTotal.Text = String.Format("{0:#,0}", total);
@@ -422,6 +431,7 @@ namespace KATO.Form.A0660_TokuisakiUriageKakunin
                     }
                     rowCnt++;
                 }
+
             }
             catch (Exception ex)
             {
@@ -432,6 +442,216 @@ namespace KATO.Form.A0660_TokuisakiUriageKakunin
                 basemessagebox.ShowDialog();
             }
 
+        }
+
+        ///<summary>
+        ///     F10：Excel出力
+        ///</summary>
+        private void exportXls()
+        {
+            // SaveFileDialogクラスのインスタンスを作成
+            SaveFileDialog sfd = new SaveFileDialog();
+            // ファイル名の指定
+            sfd.FileName = "得意先売上検収入力_" + DateTime.Now.ToString("yyyy_MM_dd_HH_mm_ss") + ".xlsx";
+            // デフォルトパス取得（デスクトップ）
+            string Init_dir = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
+            //はじめに表示されるフォルダを指定する
+            sfd.InitialDirectory = Init_dir;
+            // ファイルフィルタの設定
+            sfd.Filter = "すべてのファイル(*.*)|*.*";
+
+
+            //年月日の日付フォーマット後を入れる用
+            string strYMDformat = "";
+
+            //待機状態
+            Cursor.Current = Cursors.WaitCursor;
+
+            //得意先が空の場合
+            if (labelSet_Tokuisaki.codeTxt.blIsEmpty() == false)
+            {
+                BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_INPUT, "得意先を指定してください ", CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                basemessagebox.ShowDialog();
+
+                labelSet_Tokuisaki.Focus();
+
+                return;
+            }
+
+            //検索開始年月日に記入がある場合
+            if (txtDenpyoYMDStart.blIsEmpty())
+            {
+                //日付フォーマット生成、およびチェック
+                strYMDformat = txtDenpyoYMDStart.chkDateDataFormat(txtDenpyoYMDStart.Text);
+
+                //検索開始年月日の日付チェック
+                if (strYMDformat == "")
+                {
+                    // メッセージボックスの処理、項目が日付でない場合のウィンドウ（OK）
+                    BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_INPUT, "入力された日付が正しくありません。", CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                    basemessagebox.ShowDialog();
+
+                    txtDenpyoYMDStart.Focus();
+
+                    return;
+                }
+                else
+                {
+                    txtDenpyoYMDStart.Text = strYMDformat;
+                }
+            }
+
+            //検索終了年月日に記入がある場合
+            if (txtDenpyoYMDEnd.blIsEmpty())
+            {
+                //初期化
+                strYMDformat = "";
+
+                //日付フォーマット生成、およびチェック
+                strYMDformat = txtDenpyoYMDEnd.chkDateDataFormat(txtDenpyoYMDEnd.Text);
+
+                //検索終了年月日の日付チェック
+                if (strYMDformat == "")
+                {
+                    // メッセージボックスの処理、項目が日付でない場合のウィンドウ（OK）
+                    BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_INPUT, "入力された日付が正しくありません。", CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                    basemessagebox.ShowDialog();
+
+                    txtDenpyoYMDEnd.Focus();
+
+                    return;
+                }
+                else
+                {
+                    txtDenpyoYMDEnd.Text = strYMDformat;
+                }
+            }
+
+            //大分類チェック
+            if (labelSet_Daibunrui.chkTxtDaibunrui())
+            {
+                labelSet_Daibunrui.Focus();
+                return;
+            }
+
+            //中分類チェック
+            if (labelSet_Chubunrui.chkTxtChubunrui(labelSet_Daibunrui.CodeTxtText))
+            {
+                labelSet_Chubunrui.Focus();
+                return;
+            }
+
+            try
+            {
+                A0660_TokuisakiUriageKakunin_B siirekakuninB = new A0660_TokuisakiUriageKakunin_B();
+
+                // 検索文字列格納用
+                string[] arrSerach = new string[7];
+                // 出力順条件取得用
+                string[] arrOrder = new string[2];
+                // 表示条件取得用
+                string[] arrDisplay = new string[3];
+
+                arrSerach[0] = labelSet_Tokuisaki.CodeTxtText;  // 得意先コード
+                arrSerach[1] = txtDenpyoYMDStart.Text;          // 伝票年月日start
+                arrSerach[2] = txtDenpyoYMDEnd.Text;            // 伝票年月日end
+                arrSerach[3] = labelSet_Daibunrui.CodeTxtText;  // 大分類コード
+                arrSerach[4] = labelSet_Chubunrui.CodeTxtText;  // 中分類コード
+                arrSerach[5] = txtKataban.Text;                 // 品名・型番
+                arrSerach[6] = txtBiko.Text;                    // 備考
+
+                arrOrder[0] = radOutOrder.radbtn0.Checked.ToString().ToUpper();   // 出力順　日付・伝票番号順
+                arrOrder[1] = radOutOrder.radbtn1.Checked.ToString().ToUpper();   // 出力順　型番・日付順
+
+                arrDisplay[0] = radDisplay.radbtn0.Checked.ToString().ToUpper();  // 表示　すべて
+                arrDisplay[1] = radDisplay.radbtn1.Checked.ToString().ToUpper();  // 表示　未検収
+                arrDisplay[2] = radDisplay.radbtn2.Checked.ToString().ToUpper();  // 表示　検収済
+
+                // 検索実行
+                DataTable dtUriagekensyu = siirekakuninB.getSiireData(arrSerach, arrOrder, arrDisplay);
+
+                // カーソルをデフォルトに戻す
+                this.Cursor = Cursors.Default;
+
+                if (dtUriagekensyu.Rows.Count > 0)
+                {
+                    //ダイアログを表示する
+                    if (sfd.ShowDialog() == DialogResult.OK)
+                    {
+                        //待機状態
+                        Cursor.Current = Cursors.WaitCursor;
+
+                        CreatePdf cpdf = new CreatePdf();
+
+                        // 出力するヘッダを設定
+                        string[] header =
+                        {
+                            "日付",
+                            "伝No.",
+                            "メーカー",
+                            "品名・型式",
+                            "数量",
+                            "売上単価",
+                            "売上金額",
+                            "備考",
+                            "検収",
+                        };
+
+                        // Linqで出力対象の項目をSelect
+                        // カラム名は以下のようにつける(カラム名でフォーマットを判断するため)
+                        // 金額関係：＊＊＊kingaku
+                        // 単価関係：＊＊＊tanka
+                        // 原価：＊＊＊genka
+                        // 数量：＊＊＊suryo
+                        var outDat = dtUriagekensyu.AsEnumerable()
+                            .Select(dat => new
+                            {
+                                denYmd = dat["伝票年月日"],
+                                denNo = dat["伝票番号"],
+                                maker = dat["メーカー"],
+                                hinmei = dat["品名型式"],
+                                suryo = dat["数量"],
+                                uriagetanka = dat["売上単価"],
+                                uriagekingaku = dat["売上金額"],
+                                biko = dat["備考"],
+                                kensyu = dat["検収状態"]
+                            }).ToList();
+
+                        // listをDataTableに変換
+                        DataTable dtUriKensyuList = cpdf.ConvertToDataTable(outDat);
+
+                        string outFile = sfd.FileName;
+
+                        cpdf.DtToXls(dtUriKensyuList, "得意先売上検収入力", outFile, 3, 1, header);
+
+                        this.Cursor = Cursors.Default;
+
+                        // メッセージボックスの処理、Excel作成完了の場合のウィンドウ（OK）
+                        BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_VIEW, "Excelファイルを作成しました。", CommonTeisu.BTN_OK, CommonTeisu.DIAG_INFOMATION);
+                        basemessagebox.ShowDialog();
+                    }
+                }
+                else
+                {
+                    // メッセージボックスの処理、項目が空の場合のウィンドウ（OK）
+                    BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_INPUT, "対象のデータはありません", CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                    basemessagebox.ShowDialog();
+                    return;
+                }
+            }
+            catch (Exception ex)
+            {
+                this.Cursor = Cursors.Default;
+
+                // エラーロギング
+                new CommonException(ex);
+
+                // Excel出力失敗メッセージ
+                BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_VIEW, "Excel出力に失敗しました。", CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                basemessagebox.ShowDialog();
+
+                return;
+            }
         }
 
         /// <summary>
@@ -466,7 +686,6 @@ namespace KATO.Form.A0660_TokuisakiUriageKakunin
             }
 
         }
-
 
 
         /// <summary>

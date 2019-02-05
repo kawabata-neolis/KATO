@@ -2723,7 +2723,7 @@ namespace KATO.Form.A0010_JuchuInput
                                 {
                                     decimal decZaikoSu = 0;
                                     decimal decZaikoSuF = 0;
-                                    decimal decHonshaSu = getDecValue(txtHonshaShukko.Text);
+                                    decimal decHonshaSu = getDecValue(txtHonshaShukko.Text) - getDecValue(txtUriSuryo.Text);
 
                                     DataTable dtZaiko = juchuB.getZaiko("0001", txtShohinCd.Text);
 
@@ -2785,7 +2785,7 @@ namespace KATO.Form.A0010_JuchuInput
                                 {
                                     decimal decZaikoSu = 0;
                                     decimal decZaikoSuF = 0;
-                                    decimal decGihuSu = getDecValue(txtGihuShukko.Text);
+                                    decimal decGihuSu = getDecValue(txtGihuShukko.Text) - getDecValue(txtUriSuryo.Text);
 
                                     DataTable dtZaiko = juchuB.getZaiko("0002", txtShohinCd.Text);
 

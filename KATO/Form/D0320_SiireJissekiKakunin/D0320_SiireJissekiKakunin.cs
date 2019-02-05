@@ -20,9 +20,9 @@ namespace KATO.Form.D0320_SiireJissekiKakunin
     /// 仕入実績確認フォーム
     /// 作成者：多田
     /// 作成日：2017/7/5
-    /// 更新者：多田
-    /// 更新日：2017/7/5
-    /// カラム論理名
+    /// 更新者：山本
+    /// 更新日：2019/2/2
+    /// F10：Excel出力 機能追加
     /// </summary>
     public partial class D0320_SiireJissekiKakunin : BaseForm
     {
@@ -95,15 +95,17 @@ namespace KATO.Form.D0320_SiireJissekiKakunin
 
             this.btnF01.Text = STR_FUNC_F1_HYOJII;
             this.btnF04.Text = STR_FUNC_F4;
+            this.btnF10.Text = "Excel出力";
             this.btnF12.Text = STR_FUNC_F12;
 
             // F9:検索は常にdisable
             this.btnF09.Enabled = false;
 
-            // 閲覧権限がある場合のみF7とF11に文字を表示
+            // 閲覧権限がある場合のみF7とF10とF11に文字を表示
             if (etsuranFlg.Equals("1"))
             {
                 this.btnF07.Text = "F7:CSV";
+                this.btnF10.Text = "Excel出力";
                 this.btnF11.Text = STR_FUNC_F11;
             }
             else
@@ -375,6 +377,12 @@ namespace KATO.Form.D0320_SiireJissekiKakunin
                 case Keys.F8:
                     break;
                 case Keys.F10:
+                    // 閲覧権限がある場合のみ有効
+                    if (etsuranFlg.Equals("1"))
+                    {
+                        logger.Info(LogUtil.getMessage(this._Title, "Excel出力"));
+                        this.exportXls();
+                    }
                     break;
                 case Keys.F11:
                     // 閲覧権限がある場合のみ有効
@@ -416,6 +424,14 @@ namespace KATO.Form.D0320_SiireJissekiKakunin
                     {
                         logger.Info(LogUtil.getMessage(this._Title, "CSV実行"));
                         this.exportCsv();
+                    }
+                    break;
+                case STR_BTN_F10: // Excel出力
+                    // 閲覧権限がある場合のみ有効
+                    if (etsuranFlg.Equals("1"))
+                    {
+                        logger.Info(LogUtil.getMessage(this._Title, "Excel出力"));
+                        this.exportXls();
                     }
                     break;
                 case STR_BTN_F11: // 印刷
@@ -701,6 +717,142 @@ namespace KATO.Form.D0320_SiireJissekiKakunin
                 return;
             }
 
+        }
+
+        /// <summary>
+        /// F10：Excel出力
+        /// </summary>
+        private void exportXls()
+        {
+            // SaveFileDialogクラスのインスタンスを作成
+            SaveFileDialog sfd = new SaveFileDialog();
+            // ファイル名の指定
+            sfd.FileName = "仕入実績確認_" + DateTime.Now.ToString("yyyy_MM_dd_HH_mm_ss") + ".xlsx";
+            // デフォルトパス取得（デスクトップ）
+            string Init_dir = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
+            //はじめに表示されるフォルダを指定する
+            sfd.InitialDirectory = Init_dir;
+            // ファイルフィルタの設定
+            sfd.Filter = "すべてのファイル(*.*)|*.*";
+
+            try
+            {
+                // 検索条件格納用
+                List<string> lstSearchItem = new List<string>();
+                List<Array> lstSearchItem2 = new List<Array>();
+
+                DataTable dtSiireJisseki = new DataTable();
+
+                // データチェック
+                if (!blnDataCheck())
+                {
+                    return;
+                }
+
+                // ヘッダーに条件を出力する値
+                lstSearchItem.Add(labelSet_Siiresaki.ValueLabelText);   //仕入先名
+                lstSearchItem.Add(labelSet_Daibunrui.ValueLabelText);   //大分類名
+                lstSearchItem.Add(labelSet_Chubunrui.ValueLabelText);   //中分類名
+
+                // ビジネス層のインスタンス生成
+                D0320_SiireJissekiKakunin_B siireB = new D0320_SiireJissekiKakunin_B();
+
+                // 検索データをリストに格納
+                lstSearchItem = setSearchList();
+                lstSearchItem2 = getRadioBtn();
+
+                // 検索実行
+                dtSiireJisseki = siireB.getSiireJissekiList(lstSearchItem, lstSearchItem2);
+
+                if (dtSiireJisseki != null && dtSiireJisseki.Rows.Count > 0)
+                {
+                    // ダイアログ表示
+                    if (sfd.ShowDialog() == DialogResult.OK)
+                    {
+                        //待機状態
+                        Cursor.Current = Cursors.WaitCursor;
+
+                        CreatePdf cpdf = new CreatePdf();
+
+                        // 出力するヘッダを設定
+                        string[] header =
+                        {
+                            "仕入日",
+                            "伝票番号",
+                            "メーカー",
+                            "品名・型式",
+                            "数量",
+                            "仕入単価",
+                            "仕入金額",
+                            "備考",
+                            "出荷先",
+                            "仕入先",
+                            "発注番号",
+                            "発注担当",
+                            "仕入担当",
+                            "受注番号",
+                    };
+
+                        // Linqで出力対象の項目をSelect
+                        // カラム名は以下のようにつける(カラム名でフォーマットを判断するため)
+                        // 金額関係：＊＊＊kingaku
+                        // 単価関係：＊＊＊tanka
+                        // 原価：＊＊＊genka
+                        // 数量：＊＊＊suryo
+                        var outDat = dtSiireJisseki.AsEnumerable()
+                            .Select(dat => new
+                            {
+                                denYmd = dat["伝票年月日"],
+                                denNo = dat["伝票番号"],
+                                maker = dat["メーカー"],
+                                hinkata = dat["品名型式"],
+                                suryo = dat["数量"],
+                                siireTanka = dat["仕入単価"],
+                                siireKingaku = dat["仕入金額"],
+                                biko = dat["備考"],
+                                shukaName = dat["出荷先名"],
+                                siireName = dat["仕入先名"],
+                                hachuNo = dat["発注番号"],
+                                hachuName = dat["発注担当"],
+                                siireTanto = dat["仕入担当"],
+                                juchuNo = dat["受注番号"],
+                            }).ToList();
+
+                        // listをDataTableに変換
+                        DataTable dtSiireJiseki = cpdf.ConvertToDataTable(outDat);
+
+                        string outFile = sfd.FileName;
+
+                        cpdf.DtToXls(dtSiireJiseki, "仕入実績確認", outFile, 3, 1, header);
+
+                        this.Cursor = Cursors.Default;
+
+                        // メッセージボックスの処理、Excel作成完了の場合のウィンドウ（OK）
+                        BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_VIEW, "Excelファイルを作成しました。", CommonTeisu.BTN_OK, CommonTeisu.DIAG_INFOMATION);
+                        basemessagebox.ShowDialog();
+                    }
+                }
+                else
+                {
+                    // メッセージボックスの処理、項目が空の場合のウィンドウ（OK）
+                    BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_INPUT, "対象のデータはありません", CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                    basemessagebox.ShowDialog();
+                    return;
+                }
+            }
+            catch (Exception ex)
+            {
+                this.Cursor = Cursors.Default;
+
+                // エラーロギング
+                new CommonException(ex);
+
+                // Excel出力失敗メッセージ
+                BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_VIEW, "Excel出力に失敗しました。", CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                basemessagebox.ShowDialog();
+
+                return;
+            }
         }
 
         /// <summary>

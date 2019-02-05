@@ -150,7 +150,7 @@ namespace KATO.Form.B1580_ShiharaiInput
             colShiharaiYoteiYMD.HeaderText = "支払予定日";
             setColumn(gridShiharai, colShiharaiYoteiYMD, posRight, posCenter, fmtString, 140);
             colShiharaiYoteiYMD.ReadOnly = true;
-            colShiharaiYoteiYMD.Visible = false;
+            //colShiharaiYoteiYMD.Visible = false;
 
             DataGridViewTextBoxColumn colShiharaiYMD = new DataGridViewTextBoxColumn();
             colShiharaiYMD.DataPropertyName = "支払日";
@@ -206,9 +206,9 @@ namespace KATO.Form.B1580_ShiharaiInput
             colShiharaiYoteiGaku.DataPropertyName = "支払予定額";
             colShiharaiYoteiGaku.Name = "支払予定額";
             colShiharaiYoteiGaku.HeaderText = "支払予定額";
-            setColumn(gridShiharai, colShiharaiYoteiGaku, posRight, posCenter, fmtNumComma, 140);
+            setColumn(gridShiharai, colShiharaiYoteiGaku, posRight, posCenter, "#,0", 140);
             colShiharaiYoteiGaku.ReadOnly = true;
-            colShiharaiYoteiGaku.Visible = false;
+            //colShiharaiYoteiGaku.Visible = false;
 
             DataGridViewTextBoxColumn colShiharaiGaku = new DataGridViewTextBoxColumn();
             colShiharaiGaku.DataPropertyName = "支払額";
@@ -269,12 +269,28 @@ namespace KATO.Form.B1580_ShiharaiInput
             colBikou.ReadOnly = true;
 
             DataGridViewTextBoxColumn colHasuu = new DataGridViewTextBoxColumn();
-            colHasuu.DataPropertyName = "消費税端数計算区分";
-            colHasuu.Name = "消費税端数計算区分";
-            colHasuu.HeaderText = "消費税端数計算区分";
+            colHasuu.DataPropertyName = "仕入手形期日";
+            colHasuu.Name = "仕入手形期日";
+            colHasuu.HeaderText = "仕入手形期日";
             setColumn(gridShiharai, colHasuu, posLeft, posCenter, fmtString, 140);
             colHasuu.ReadOnly = true;
             colHasuu.Visible = false;
+
+            DataGridViewTextBoxColumn colSYMD = new DataGridViewTextBoxColumn();
+            colSYMD.DataPropertyName = "消費税端数計算区分";
+            colSYMD.Name = "消費税端数計算区分";
+            colSYMD.HeaderText = "消費税端数計算区分";
+            setColumn(gridShiharai, colSYMD, posLeft, posCenter, fmtString, 140);
+            colSYMD.ReadOnly = true;
+            colSYMD.Visible = false;
+
+            DataGridViewTextBoxColumn colTorokuYMD = new DataGridViewTextBoxColumn();
+            colTorokuYMD.DataPropertyName = "登録日時";
+            colTorokuYMD.Name = "登録日時";
+            colTorokuYMD.HeaderText = "登録日時";
+            setColumn(gridShiharai, colTorokuYMD, posRight, posCenter, fmtString, 400);
+            colTorokuYMD.ReadOnly = true;
+            colTorokuYMD.Visible = false;
             #endregion
         }
 
@@ -444,7 +460,7 @@ namespace KATO.Form.B1580_ShiharaiInput
                 gridShiharai.Rows[rowIdx].Cells["取引区分コード"].Value = lsTorihikiCdInput.CodeTxtText;
                 gridShiharai.Rows[rowIdx].Cells["取引区分名"].Value = lsTorihikiCdInput.ValueLabelText;
                 gridShiharai.Rows[rowIdx].Cells["支払額"].Value = getDecValue(txtShiharaiGakuInput.Text);
-                gridShiharai.Rows[rowIdx].Cells["支払額"].Value = setNumString(rowIdx, "支払額", fmtNumComma);
+                //gridShiharai.Rows[rowIdx].Cells["支払予定額"].Value = setNumString(rowIdx, "支払予定額", fmtNumComma);
                 gridShiharai.Rows[rowIdx].Cells["支払条件"].Value = txtShiharaiJoken.Text;
                 gridShiharai.Rows[rowIdx].Cells["備考"].Value = txtBikoInput.Text;
                 gridShiharai.Rows[rowIdx].Cells["廻し先"].Value = txtMawashisakiInput.Text;
@@ -566,10 +582,10 @@ namespace KATO.Form.B1580_ShiharaiInput
                 else if (noForce == 1)
                 {
                     #region 初期表示用(強制的に0件検索)
-                    lstSearchItem.Add("1900/01/01");
-                    lstSearchItem.Add("1900/01/01");
-                    lstSearchItem.Add("1900/01/01");
-                    lstSearchItem.Add("1900/01/01");
+                    lstSearchItem.Add("2000/01/01");
+                    lstSearchItem.Add("2000/01/01");
+                    lstSearchItem.Add("2000/01/01");
+                    lstSearchItem.Add("2000/01/01");
                     lstSearchItem.Add("");
                     lstSearchItem.Add("0000");
                     lstSearchItem.Add("0000");
@@ -685,6 +701,7 @@ namespace KATO.Form.B1580_ShiharaiInput
                 for (int i = 0; i < gridShiharai.Rows.Count; i++)
                 {
                     gridShiharai.Rows[i].Cells["支払額"].Value = setNumString(i, "支払額", fmtNumComma);
+                    gridShiharai.Rows[i].Cells["支払予定額"].Value = setNumString(i, "支払予定額", fmtNumComma);
                     d += getDecValue(getCellValue(i, "支払額", true));
                 }
 
@@ -766,7 +783,7 @@ namespace KATO.Form.B1580_ShiharaiInput
 
                 for (int i = 0; i < gridShiharai.Rows.Count; i++)
                 {
-                    string[] strs = new string[14];
+                    string[] strs = new string[15];
 
                     if (string.IsNullOrWhiteSpace(getCellValue(i, "伝票年月日", false)))
                     {
@@ -803,6 +820,15 @@ namespace KATO.Form.B1580_ShiharaiInput
                     strs[11] = getCellValue(i, "支店名", false);
                     strs[12] = getCellValue(i, "口座", false);
                     strs[13] = Environment.UserName;
+
+                    if (string.IsNullOrWhiteSpace(getCellValueYMD(i, "登録日時", false)))
+                    {
+                        strs[14] = DateTime.Now.ToString("yyyy/MM/dd HH:mm:ss");
+                    }
+                    else
+                    {
+                        strs[14] = getCellValueYMD2(i, "登録日時", false);
+                    }
 
                     lsInput.Add(strs);
                 }
@@ -953,7 +979,7 @@ namespace KATO.Form.B1580_ShiharaiInput
                 lstSearchItem.Add(txtTegataShiten.Text);
                 lstSearchItem.Add(txtTegataKouza.Text);
 
-                DataTable dtp = bis.getShiharaiList(lstSearchItem);
+                DataTable dtp = bis.getShiharaiCheakList(lstSearchItem);
 
                 if (dtp == null || dtp.Rows.Count == 0)
                 {
@@ -1263,6 +1289,35 @@ namespace KATO.Form.B1580_ShiharaiInput
                 else
                 {
                     ret = DateTime.Parse(ret).ToString("yyyy/MM/dd");
+                }
+
+            }
+
+            return ret;
+        }
+
+        private string getCellValueYMD2(int rowIdx, string col, bool zero)
+        {
+            string ret = "";
+
+            DataGridViewCell c = gridShiharai.Rows[rowIdx].Cells[col];
+
+            if (zero)
+            {
+                ret = "0";
+            }
+
+            if (c != null && c.Value != null && c.Value != DBNull.Value && !string.IsNullOrWhiteSpace(c.Value.ToString()))
+            {
+                ret = c.Value.ToString();
+
+                if (DateTime.Parse(ret).ToString("yyyy/MM/dd").CompareTo("0001/01/01") <= 0)
+                {
+                    ret = "";
+                }
+                else
+                {
+                    ret = DateTime.Parse(ret).ToString("yyyy/MM/dd HH:mm:ss");
                 }
 
             }

@@ -29,6 +29,9 @@ namespace KATO.Form.B1570_NyukinInput
 
         private void B1581_ShiharaiJisseki_Load(object sender, EventArgs e)
         {
+            this.Show();
+            this._Title = "請求履歴";
+
             SetUpGrid();
             if (dt != null)
             {
@@ -45,32 +48,57 @@ namespace KATO.Form.B1570_NyukinInput
             // 列自動生成禁止
             gridSeikyuRireki.AutoGenerateColumns = false;
 
-            // データをバインド
-            DataGridViewTextBoxColumn hiduke = new DataGridViewTextBoxColumn();
-            hiduke.DataPropertyName = "年月";
-            hiduke.Name = "年月";
-            hiduke.HeaderText = "年月";
+            //データをバインド
+            DataGridViewTextBoxColumn Seikyuubi = new DataGridViewTextBoxColumn();
+            Seikyuubi.DataPropertyName = "請求年月日";
+            Seikyuubi.Name = "請求年月日";
+            Seikyuubi.HeaderText = "請求日";
 
-            DataGridViewTextBoxColumn kingaku = new DataGridViewTextBoxColumn();
-            kingaku.DataPropertyName = "税抜合計金額";
-            kingaku.Name = "税抜合計金額";
-            kingaku.HeaderText = "仕入金額";
+            DataGridViewTextBoxColumn NyuukinYoteibi = new DataGridViewTextBoxColumn();
+            NyuukinYoteibi.DataPropertyName = "入金予定年月日";
+            NyuukinYoteibi.Name = "入金予定年月日";
+            NyuukinYoteibi.HeaderText = "入金予定日";
 
-            DataGridViewTextBoxColumn zei = new DataGridViewTextBoxColumn();
-            zei.DataPropertyName = "消費税";
-            zei.Name = "消費税";
-            zei.HeaderText = "消費税";
+            DataGridViewTextBoxColumn ZenkaiSeikyuugaku = new DataGridViewTextBoxColumn();
+            ZenkaiSeikyuugaku.DataPropertyName = "前回請求額";
+            ZenkaiSeikyuugaku.Name = "前回請求額";
+            ZenkaiSeikyuugaku.HeaderText = "前回請求額";
 
-            DataGridViewTextBoxColumn goukei = new DataGridViewTextBoxColumn();
-            goukei.DataPropertyName = "税込合計金額";
-            goukei.Name = "税込合計金額";
-            goukei.HeaderText = "合計";
+            DataGridViewTextBoxColumn Nyuukingaku = new DataGridViewTextBoxColumn();
+            Nyuukingaku.DataPropertyName = "入金額";
+            Nyuukingaku.Name = "入金額";
+            Nyuukingaku.HeaderText = "入金額";
 
-            // 個々の幅、文字の寄せ
-            setColumn(hiduke, DataGridViewContentAlignment.MiddleCenter, DataGridViewContentAlignment.MiddleCenter, "yyyy/MM", 90);
-            setColumn(kingaku, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0", 160);
-            setColumn(zei, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0", 140);
-            setColumn(goukei, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0", 160);
+            DataGridViewTextBoxColumn Kurikosigaku = new DataGridViewTextBoxColumn();
+            Kurikosigaku.DataPropertyName = "繰越額";
+            Kurikosigaku.Name = "繰越額";
+            Kurikosigaku.HeaderText = "繰越額";
+
+            DataGridViewTextBoxColumn Uriagegaku = new DataGridViewTextBoxColumn();
+            Uriagegaku.DataPropertyName = "売上額";
+            Uriagegaku.Name = "売上額";
+            Uriagegaku.HeaderText = "売上額";
+
+            DataGridViewTextBoxColumn Syouhizei = new DataGridViewTextBoxColumn();
+            Syouhizei.DataPropertyName = "消費税";
+            Syouhizei.Name = "消費税";
+            Syouhizei.HeaderText = "消費税";
+
+            DataGridViewTextBoxColumn KonkaiSeikyugaku = new DataGridViewTextBoxColumn();
+            KonkaiSeikyugaku.DataPropertyName = "今回請求額";
+            KonkaiSeikyugaku.Name = "今回請求額";
+            KonkaiSeikyugaku.HeaderText = "今回請求額";
+
+
+            //個々の幅、文章の寄せ
+            setColumn(Seikyuubi, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter, null, 120);
+            setColumn(NyuukinYoteibi, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter, null, 120);
+            setColumn(ZenkaiSeikyuugaku, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleRight, "#,0", 120);
+            setColumn(Nyuukingaku, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleRight, "#,0", 100);
+            setColumn(Kurikosigaku, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleRight, "#,0", 100);
+            setColumn(Uriagegaku, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleRight, "#,0", 100);
+            setColumn(Syouhizei, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleRight, "#,0", 100);
+            setColumn(KonkaiSeikyugaku, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleRight, "#,0", 120);
         }
 
         /// <summary>

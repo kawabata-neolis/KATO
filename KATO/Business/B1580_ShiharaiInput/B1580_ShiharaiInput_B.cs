@@ -18,96 +18,185 @@ namespace KATO.Business.B1580_ShiharaiInput
         ///</summary>
         public DataTable getShiharaiList(List<string> lstItem)
         {
-            string strSql;
+            string strSql = "";
             DataTable dtShiharaiCheakList = new DataTable();
 
-            strSql = "SELECT TOP 5000 S.支払年月日 AS 伝票年月日, ";
-            strSql += "S.行番号, ";
-            strSql += "T.締切日, ";
-            strSql += "S.仕入先コード, ";
-            strSql += "T.取引先名称 AS 仕入先名,";
-            strSql += "S.手形期日 AS 支払予定日, ";
-            strSql += "T.支払日, ";
-            strSql += "S.伝票番号, ";
-            strSql += "S.取引区分コード, ";
-            strSql += "dbo.f_get取引区分名(S.取引区分コード) AS 取引区分名, ";
-            strSql += "CASE WHEN Rtrim(ISNULL(S.口座,'')) = '' THEN '当' ELSE S.口座 END AS 口座,";
-            strSql += "CASE WHEN Rtrim(ISNULL(S.金融機関名,'')) = '' THEN '第三銀行' ELSE S.金融機関名 END AS 金融機関名,";
-            strSql += "CASE WHEN Rtrim(ISNULL(S.支店名,'')) = '' THEN '中川' ELSE S.支店名 END AS 支店名,";
-            strSql += "CONVERT(CHAR, ROUND(S.支払額, 0), 126) AS 支払予定額,";
-            strSql += "CONVERT(CHAR, ROUND(S.支払額, 0), 126) AS 支払額, ";
-            strSql += "S.手形期日, ";
-            strSql += "T.支払月数 AS 支払月数,";
-            strSql += "T.支払条件 AS 支払条件,";
-            strSql += "T.集金区分 AS 集金区分,";
-            strSql += "T.消費税端数計算区分,";
-            strSql += "S.廻し先,";
-            strSql += "S.廻し先日付,";
-            strSql += "S.備考, ";
-            strSql += "S.支払額 AS 額 ";
-            strSql += " FROM 支払 S, 取引先 T";
-            strSql += " WHERE S.削除 ='N' ";
-            strSql += "   AND T.削除 ='N' ";
-            strSql += "   AND S.仕入先コード = T.取引先コード ";
+            string fromfrom = DateTime.Parse(lstItem[0]).AddYears(-1).ToString("yyyy/MM/dd");
 
+            strSql += "SELECT TOP 5000 S3.伝票年月日, ";
+            strSql += "S3.行番号, ";
+            strSql += "sz.締切日, ";
+            strSql += "sz.仕入先コード, ";
+            strSql += "sz.仕入先名,";
+            strSql += "sz.支払予定日, ";
+            strSql += "sz.支払日, ";
+            strSql += "S3.伝票番号, ";
+            strSql += "S3.取引区分コード, ";
+            strSql += "dbo.f_get取引区分名(S3.取引区分コード) AS 取引区分名, ";
+            strSql += "CASE WHEN Rtrim(ISNULL(S3.口座,'')) = '' THEN '当' ELSE S3.口座 END AS 口座,";
+            strSql += "CASE WHEN Rtrim(ISNULL(S3.金融機関名,'')) = '' THEN '第三銀行' ELSE S3.金融機関名 END AS 金融機関名,";
+            strSql += "CASE WHEN Rtrim(ISNULL(S3.支店名,'')) = '' THEN '中川' ELSE S3.支店名 END AS 支店名,";
+            strSql += "CONVERT(CHAR, ROUND(sz.支払予定額, 0), 126) AS 支払予定額,";
+            strSql += "CONVERT(CHAR, ROUND(S3.支払額, 0), 126) AS 支払額, ";
+            strSql += "S3.手形期日, ";
+            strSql += "sz.支払月数,";
+            strSql += "sz.支払条件,";
+            strSql += "sz.集金区分,";
+            strSql += "sz.消費税端数計算区分,";
+            strSql += "S3.廻し先,";
+            strSql += "S3.廻し先日付,";
+            strSql += "sz.仕入手形期日,";
+            strSql += "S3.備考, ";
+            strSql += "S3.額, ";
+            strSql += "S3.登録日時";
+
+
+            strSql += "  from";
+            strSql += "       (SELECT S2.仕入先コード,";
+            strSql += "               S2.支払予定日,";
+            strSql += "               SUM(S2.税込合計金額) AS 支払予定額,";
+            strSql += "               S2.締切日, ";
+            strSql += "               S2.仕入先名,";
+            strSql += "               S2.支払日, ";
+            strSql += "               S2.支払月数, ";
+            strSql += "               S2.支払条件, ";
+            strSql += "               S2.集金区分, ";
+            strSql += "               S2.消費税端数計算区分, ";
+            strSql += "               S2.仕入手形期日";
+            strSql += "          FROM";
+            strSql += "               (select S.仕入先コード,";
+            strSql += "                       CASE WHEN RIGHT(CONVERT(VARCHAR, DATEADD(month, T.支払月数, S.伝票年月日), 111), 2) <= RIGHT('00' + LTRIM(STR(T.支払日, 2)), 2)";
+            strSql += "                            THEN";
+            strSql += "                                CASE WHEN RIGHT('00' + LTRIM(STR(T.支払日, 2)), 2) > RIGHT(CONVERT(VARCHAR, dbo.f_月末日(DATEADD(month, T.支払月数, S.伝票年月日)), 111), 2)";
+            strSql += "                                     THEN dbo.f_月末日(DATEADD(month, T.支払月数, S.伝票年月日))";
+            strSql += "                                     ELSE LEFT(CONVERT(CHAR, DATEADD(month, T.支払月数, S.伝票年月日), 111), 8) + RIGHT('00' + LTRIM(STR(T.支払日, 2)), 2)";
+            strSql += "                                END";
+            strSql += "                            ELSE";
+            strSql += "                                CASE WHEN RIGHT('00' + LTRIM(STR(T.支払日, 2)), 2) > RIGHT(CONVERT(VARCHAR, dbo.f_月末日(DATEADD(month, T.支払月数 + 1, S.伝票年月日)), 111), 2)";
+            strSql += "                                     THEN dbo.f_月末日(DATEADD(month, T.支払月数 + 1, S.伝票年月日))";
+            strSql += "                                     ELSE LEFT(CONVERT(CHAR, DATEADD(month, T.支払月数 + 1, S.伝票年月日), 111), 8) + RIGHT('00' + LTRIM(STR(T.支払日, 2)), 2)";
+            strSql += "                                END";
+            strSql += "                            END 支払予定日,";
+            strSql += "                       S.税込合計金額,";
+
+            strSql += "                       T.締切日, ";
+            strSql += "                       T.取引先名称 AS 仕入先名,";
+            strSql += "                       T.支払日, ";
+            strSql += "                       T.支払月数 AS 支払月数,";
+            strSql += "                       T.支払条件 AS 支払条件,";
+            strSql += "                       T.集金区分 AS 集金区分,";
+            strSql += "                       T.消費税端数計算区分,";
+            strSql += "                       CASE WHEN Rtrim(ISNULL(T.仕入手形期日,'')) = '' THEN CONVERT(CHAR, ROUND(T.支払日, 0), 126) ELSE T.仕入手形期日 END AS 仕入手形期日";
+
+            strSql += "                  from 仕入ヘッダ S,";
+            strSql += "                       取引先 T";
+            strSql += "                 where S.削除 = 'N'";
+            strSql += "                   and S.伝票年月日 >= '" + fromfrom + "'";
+            strSql += "                   and T.削除 = 'N'";
+            strSql += "                   and S.仕入先コード = T.取引先コード) AS S2";
+            strSql += "         WHERE S2.支払予定日 >= '" + lstItem[0] + "'";
+            strSql += "           AND S2.支払予定日 <= '" + lstItem[1] + "'";
+            strSql += "         group by S2.仕入先コード, S2.支払予定日, S2.仕入先名, S2.締切日, S2.支払日, S2.支払月数, S2.支払条件, S2.集金区分, S2.消費税端数計算区分, S2.仕入手形期日) as sz";
+
+            strSql += "  left join";
+            strSql += "(SELECT Sf.支払年月日 AS 伝票年月日, ";
+            strSql += "Sf.行番号, ";
+            //strSql += "T.締切日, ";
+            strSql += "Sf.仕入先コード, ";
+            //strSql += "T.取引先名称 AS 仕入先名,";
+            //strSql += "Sf.手形期日 AS 支払予定日, ";
+            //strSql += "T.支払日, ";
+            strSql += "Sf.伝票番号, ";
+            strSql += "Sf.取引区分コード, ";
+            strSql += "dbo.f_get取引区分名(Sf.取引区分コード) AS 取引区分名, ";
+            strSql += "CASE WHEN Rtrim(ISNULL(Sf.口座,'')) = '' THEN '当' ELSE Sf.口座 END AS 口座,";
+            strSql += "CASE WHEN Rtrim(ISNULL(Sf.金融機関名,'')) = '' THEN '第三銀行' ELSE Sf.金融機関名 END AS 金融機関名,";
+            strSql += "CASE WHEN Rtrim(ISNULL(Sf.支店名,'')) = '' THEN '中川' ELSE Sf.支店名 END AS 支店名,";
+            //strSql += "CONVERT(CHAR, ROUND(Sf.支払額, 0), 126) AS 支払予定額,";
+            strSql += "Sf.支払額,";
+            strSql += "Sf.手形期日, ";
+            //strSql += "T.支払月数 AS 支払月数,";
+            //strSql += "T.支払条件 AS 支払条件,";
+            //strSql += "T.集金区分 AS 集金区分,";
+            //strSql += "T.消費税端数計算区分,";
+            strSql += "Sf.廻し先,";
+            strSql += "Sf.廻し先日付,";
+            //strSql += "CASE WHEN Rtrim(ISNULL(T.仕入手形期日,'')) = '' THEN CONVERT(CHAR, ROUND(T.支払日, 0), 126) ELSE T.仕入手形期日 END AS 仕入手形期日,";
+            strSql += "Sf.備考, ";
+            strSql += "Sf.支払額 AS 額, ";
+            strSql += "Sf.登録日時 ";
+            //strSql += " FROM 支払 S, 取引先 T";
+            strSql += " FROM 支払 Sf";
+            strSql += " WHERE Sf.削除 ='N' ";
+            //strSql += "   AND T.削除 ='N' ";
+            //strSql += "   AND S.仕入先コード = T.取引先コード ";
+
+            #region 追加検索条件
             // 入力年月日（開始）がある場合
             if (!lstItem[0].Equals(""))
             {
-                strSql += " AND CONVERT(VARCHAR(10),S.更新日時,111) >='" + lstItem[0] + "'";
-                strSql += " AND CONVERT(VARCHAR(10),S.更新日時,111) <='" + lstItem[1] + "'";
+                strSql += " AND CONVERT(VARCHAR(10),Sf.更新日時,111) >='" + lstItem[0] + "'";
+                strSql += " AND CONVERT(VARCHAR(10),Sf.更新日時,111) <='" + lstItem[1] + "'";
             }
 
             // 伝票年月日（開始）がある場合
             if (!lstItem[2].Equals(""))
             {
-                strSql += " AND S.支払年月日 >='" + lstItem[2] + "'";
-                strSql += " AND S.支払年月日 <='" + lstItem[3] + "'";
+                strSql += " AND Sf.支払年月日 >='" + lstItem[2] + "'";
+                strSql += " AND Sf.支払年月日 <='" + lstItem[3] + "'";
             }
 
             // ユーザーIDがある場合
             if (!lstItem[4].Equals(""))
             {
-                strSql += " AND S.更新ユーザー名='" + lstItem[4] + "'";
+                strSql += " AND Sf.更新ユーザー名='" + lstItem[4] + "'";
             }
 
             // 仕入先コードがある場合
             if (!lstItem[5].Equals("") && !lstItem[6].Equals(""))
             {
-                strSql += " AND S.仕入先コード >='" + lstItem[5] + "'";
-                strSql += " AND S.仕入先コード <='" + lstItem[6] + "'";
+                strSql += " AND Sf.仕入先コード >='" + lstItem[5] + "'";
+                strSql += " AND Sf.仕入先コード <='" + lstItem[6] + "'";
             }
 
             if (!lstItem[7].Equals(""))
             {
-                strSql += " AND S.取引区分コード IN (" + lstItem[7] + ")";
+                strSql += " AND Sf.取引区分コード IN (" + lstItem[7] + ")";
             }
 
             if (!lstItem[8].Equals(""))
             {
-                strSql += " AND S.手形期日 >='" + lstItem[8] + "'";
+                strSql += " AND Sf.手形期日 >='" + lstItem[8] + "'";
             }
 
             if (!lstItem[9].Equals(""))
             {
-                strSql += " AND S.手形期日 <='" + lstItem[9] + "'";
+                strSql += " AND Sf.手形期日 <='" + lstItem[9] + "'";
             }
 
             if (!lstItem[12].Equals(""))
             {
-                strSql += " AND S.金融機関名 like '%" + lstItem[12] + "%'";
+                strSql += " AND Sf.金融機関名 like '%" + lstItem[12] + "%'";
             }
 
             if (!lstItem[13].Equals(""))
             {
-                strSql += " AND S.支店名 like '%" + lstItem[13] + "%'";
+                strSql += " AND Sf.支店名 like '%" + lstItem[13] + "%'";
             }
 
             if (!lstItem[14].Equals(""))
             {
-                strSql += " AND S.口座 like '%" + lstItem[14] + "%'";
+                strSql += " AND Sf.口座 like '%" + lstItem[14] + "%'";
             }
+            #endregion
 
-            strSql += " ORDER BY S.支払年月日,S.伝票番号,S.行番号";
+            strSql += ") AS S3 ";
+            strSql += "  on sz.仕入先コード = S3.仕入先コード";
+            strSql += "   AND S3.伝票年月日 >= DATEADD(month, sz.支払月数 * -1, sz.支払予定日)";
+            strSql += "   AND S3.伝票年月日 <= sz.支払予定日";
+
+
+            //strSql += " ORDER BY 支払年月日, 伝票番号, 行番号";
 
 
 
@@ -215,7 +304,9 @@ namespace KATO.Business.B1580_ShiharaiInput
                         strProc += "'" + strs[12] + "', ";
                     }
 
-                    strProc += "'" + strs[13] + "'";
+                    strProc += "'" + strs[13] + "',";
+
+                    strProc += "'" + strs[14] + "'";
 
                     // 支払追加_PROCを実行
                     dbconnective.ReadSql(strProc);
@@ -259,6 +350,81 @@ namespace KATO.Business.B1580_ShiharaiInput
             }
         }
 
+        /// <summary>
+        /// getShiharaiCheakList
+        /// 支払チェックリストを取得
+        /// </summary>
+        public DataTable getShiharaiCheakList(List<string> lstItem)
+        {
+            string strSql;
+            DataTable dtShiharaiCheakList = new DataTable();
+
+            strSql  = "SELECT S.支払年月日 AS 伝票年月日, ";
+            strSql += "       S.伝票番号, ";
+            strSql += "       S.行番号, ";
+            strSql += "       S.仕入先コード, ";
+            strSql += "       T.取引先名称 AS 仕入先名, ";
+            strSql += "       S.取引区分コード, ";
+            strSql += "       dbo.f_get取引区分名(S.取引区分コード) AS 取引区分名, ";
+            strSql += "       CASE WHEN Rtrim(ISNULL(S.口座,'')) = '' THEN '当' ELSE S.口座 END AS 口座,";
+            strSql += "       CASE WHEN Rtrim(ISNULL(S.金融機関名,'')) = '' THEN '第三銀行' ELSE S.金融機関名 END AS 金融機関名,";
+            strSql += "       CASE WHEN Rtrim(ISNULL(S.支店名,'')) = '' THEN '中川' ELSE S.支店名 END AS 支店名,";
+            strSql += "       S.支払額, ";
+            strSql += "       S.手形期日, ";
+            strSql += "       S.備考 ";
+            strSql += "  FROM 支払 S,";
+            strSql += "       取引先 T";
+            strSql += " WHERE S.削除 ='N' ";
+            strSql += "   AND T.削除 ='N' ";
+            strSql += "   AND S.仕入先コード = T.取引先コード ";
+
+            // 入力年月日（開始）がある場合
+            if (!lstItem[0].Equals(""))
+            {
+                strSql += " AND CONVERT(VARCHAR(10),S.更新日時,111) >='" + lstItem[0] + "'";
+                strSql += " AND CONVERT(VARCHAR(10),S.更新日時,111) <='" + lstItem[1] + "'";
+            }
+
+            // 伝票年月日（開始）がある場合
+            if (!lstItem[2].Equals(""))
+            {
+                strSql += " AND S.支払年月日 >='" + lstItem[2] + "'";
+                strSql += " AND S.支払年月日 <='" + lstItem[3] + "'";
+            }
+
+            // ユーザーIDがある場合
+            if (!lstItem[4].Equals(""))
+            {
+                strSql += " AND S.更新ユーザー名='" + lstItem[4] + "'";
+            }
+
+            // 仕入先コードがある場合
+            if (!lstItem[5].Equals("") && !lstItem[6].Equals(""))
+            {
+                strSql += " AND S.仕入先コード >='" + lstItem[5] + "'";
+                strSql += " AND S.仕入先コード <='" + lstItem[6] + "'";
+            }
+
+            strSql += " ORDER BY S.支払年月日,S.伝票番号,S.行番号";
+
+            DBConnective dbconnective = new DBConnective();
+            try
+            {
+                // 検索データをテーブルへ格納
+                dtShiharaiCheakList = dbconnective.ReadSql(strSql);
+
+                return dtShiharaiCheakList;
+            }
+            catch
+            {
+                throw;
+            }
+            finally
+            {
+                dbconnective.DB_Disconnect();
+            }
+        }
+
         // 印刷用ファイル作成
         public string dbToPdf(DataTable dtShiharaiCheakList, List<string> lstItem)
         {
@@ -293,14 +459,14 @@ namespace KATO.Business.B1580_ShiharaiInput
                         bunruiName = dat["取引区分名"],
                         koza = dat["口座"],
                         kinyuKikan = dat["金融機関名"],
-                        kingaku = dat["支払額"],
+                        kingaku = (decimal)dat["支払額"],
                         kijitsu = dat["手形期日"],
-                        bikou = dat["備考"],
-                        gaku = (decimal)dat["額"]
+                        bikou = dat["備考"]
+                        //gaku = (decimal)dat["額"]
                     }).ToList();
 
                 // linqで税抜合計金額、消費税、税込合計金額の合計算出
-                decimal decKingaku = outDataAll.Select(gokei => gokei.gaku).Sum();
+                decimal decKingaku = outDataAll.Select(gokei => gokei.kingaku).Sum();
 
                 // リストをデータテーブルに変換
                 DataTable dtChkList = pdf.ConvertToDataTable(outDataAll);
@@ -546,14 +712,14 @@ namespace KATO.Business.B1580_ShiharaiInput
                         bunruiName = dat["取引区分名"],
                         koza = dat["口座"],
                         kinyuKikan = dat["金融機関名"],
-                        kingaku = dat["支払額"],
+                        kingaku = (decimal)dat["支払額"],
                         kijitsu = dat["手形期日"],
-                        bikou = dat["備考"],
-                        gaku = (decimal)dat["額"]
+                        bikou = dat["備考"]
+                        //gaku = (decimal)dat["額"]
                     }).ToList();
 
                 // linqで税抜合計金額、消費税、税込合計金額の合計算出
-                decimal decKingaku = outDataAll.Select(gokei => gokei.gaku).Sum();
+                decimal decKingaku = outDataAll.Select(gokei => gokei.kingaku).Sum();
 
                 // リストをデータテーブルに変換
                 DataTable dtChkList = pdf.ConvertToDataTable(outDataAll);

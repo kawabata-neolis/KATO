@@ -555,5 +555,185 @@ namespace KATO.Common.Util
             return dt;
         }
 
+        /// -----------------------------------------------------------------------------
+        /// <summary>
+        ///     DataTableをもとにxlsxファイルを作成（テンプレート無し）</summary>
+        /// <param name="dt">
+        ///     出力対象DataTable</param>
+        /// <param name="functionName">
+        ///     機能名</param>
+        /// <param name="startRow">
+        ///     出力開始行</param>
+        /// <param name="startCol">
+        ///     出力開始列</param>
+        /// <param name="header">
+        ///     出力するヘッダを格納した配列</param>
+        /// -----------------------------------------------------------------------------
+        public void DtToXls(DataTable dt, string functionName, string outXlsFile, int startRow, int startCol, string[] header)
+        {
+            //string xlspath = System.Configuration.ConfigurationManager.AppSettings["workpath"];
+            ////string xlspath = System.Environment.GetFolderPath(Environment.SpecialFolder.Personal);
+            XLWorkbook currentWorkbook = new XLWorkbook();
+            IXLWorksheet worksheet = currentWorkbook.Worksheets.Add("data");
+
+            //string DTime = DateTime.Now.ToString("yyyy_MM_dd_HH_mm_ss");
+            //string outXlsFile = xlspath + functionName + "_" + DTime + ".xlsx";
+
+            try
+            {
+                int cntrow = 0; // 行カウント
+                int cntcol = 0; // 列カウント 
+                int maxcol = dt.Columns.Count;
+
+                // DataTable を一行ずつエクセルに出力
+                foreach (DataRow row in dt.Rows)
+                {
+                    foreach (DataColumn col in dt.Columns)
+                    {
+                        if (cntcol < maxcol)
+                        {
+                            string colName = col.ColumnName.ToUpper();
+                            var value = row[cntcol];
+                            // 値の型取得
+                            string valueType = value.GetType().Name.ToUpper();
+
+                            #region カラム名を見て、フォーマット指定してセルに出力
+                            // 金額関係
+                            if (colName.IndexOf("KINGAKU") > -1)
+                            {
+                                // 値をdecimalにキャスト（Excel出力時に文字列扱いにさせないため）
+                                decimal dValue = decimal.Parse(value.ToString());
+                                // セルに値出力
+                                worksheet.Cell(cntrow + startRow, cntcol + startCol).SetValue(dValue)
+                                    .Style.NumberFormat.SetFormat("#,##0");
+                            }
+                            // 単価・原価関係
+                            else if (colName.IndexOf("TANKA") > -1 || colName.IndexOf("GENKA") > -1)
+                            {
+                                // 値をdecimalにキャスト（Excel出力時に文字列扱いにさせないため）
+                                decimal dValue = decimal.Parse(value.ToString());
+                                // セルに値出力
+                                worksheet.Cell(cntrow + startRow, cntcol + startCol).SetValue(dValue)
+                                    .Style.NumberFormat.SetFormat("#,##0.00");
+                            }
+                            // 数量関係
+                            else if (colName.IndexOf("SURYO") > -1)
+                            {
+                                // 値をdecimalにキャスト（Excel出力時に文字列扱いにさせないため）
+                                decimal dValue = decimal.Parse(value.ToString());
+                                // セルに値出力
+                                worksheet.Cell(cntrow + startRow, cntcol + startCol).SetValue(dValue)
+                                    .Style.NumberFormat.SetFormat("0.00");
+                            }
+                            // 日付関係の場合
+                            else if (valueType.Equals("DATETIME"))
+                            {
+                                DateTime dtValue = DateTime.Parse(value.ToString());
+                                // セルに値出力
+                                worksheet.Cell(cntrow + startRow, cntcol + startCol).SetValue(dtValue)
+                                    .Style.NumberFormat.SetFormat("yyyy/mm/dd");
+                            }
+                            // 金額・単価・数量関係以外のdecimalの場合
+                            else if (valueType.Equals("DECIMAL"))
+                            {
+                                // 値をdecimalにキャスト（Excel出力時に文字列扱いにさせないため）
+                                decimal dValue = decimal.Parse(value.ToString());
+                                // セルに値出力
+                                worksheet.Cell(cntrow + startRow, cntcol + startCol).SetValue(dValue)
+                                    .Style.NumberFormat.SetFormat("0.00");
+                            }
+                            else
+                            {
+                                string strValue = value.ToString().TrimEnd();
+                                // セルに値出力
+                                worksheet.Cell(cntrow + startRow, cntcol + startCol).SetValue(strValue)
+                                    .Style.NumberFormat.SetFormat("@");
+                            }
+                            #endregion
+
+                            #region 型を見て、文字の配列を指定
+                            // 値の型がSTRINGの場合
+                            if (valueType.Equals("STRING"))
+                            {
+                                IXLCell targetcell = worksheet.Cell(cntrow + startRow, cntcol + startCol);
+                                // 左揃え
+                                targetcell.Style.Alignment.Horizontal = XLAlignmentHorizontalValues.Left;
+                            }
+                            // 値の型がINTまたはDECIMALの場合
+                            else if (valueType.IndexOf("INT") > -1 || valueType.Equals("DECIMAL"))
+                            {
+                                IXLCell targetcell = worksheet.Cell(cntrow + startRow, cntcol + startCol);
+                                // 右揃え
+                                targetcell.Style.Alignment.Horizontal = XLAlignmentHorizontalValues.Right;
+                            }
+                            // 値の型がDATETIMEの場合
+                            else if (valueType.IndexOf("DATETIME") > -1)
+                            {
+                                IXLCell targetcell = worksheet.Cell(cntrow + startRow, cntcol + startCol);
+                                // 中央揃え
+                                targetcell.Style.Alignment.Horizontal = XLAlignmentHorizontalValues.Center;
+                            }
+                            #endregion
+
+                            // 列カウントアップ
+                            cntcol++;
+                        }
+
+                    }
+                    // 列カウントリセット
+                    cntcol = 0;
+                    // 行カウントアップ
+                    cntrow++;
+                }
+
+                // ヘッダ挿入
+                worksheet.Cell("A2").InsertData(new[] { header });
+                // ヘッダ行の色を変える
+                worksheet.Range(2, 1, 2, worksheet.LastColumnUsed().ColumnNumber()).Style.Fill.BackgroundColor = XLColor.LightGray;
+
+                // 値が存在するセル範囲を取得
+                var usedRange = worksheet.RangeUsed();
+                // 使用している範囲のフォントサイズ指定
+                usedRange.Style.Font.FontSize = 11;
+                // 使用している範囲のフォントの種類を指定
+                usedRange.Style.Font.FontName = "ＭＳ Ｐ明朝";
+                // 全部の列の幅を自動調整
+                worksheet.Columns().AdjustToContents();
+
+                // 使用しているセルの範囲に罫線を引く
+                usedRange.Style.Border.SetTopBorder(XLBorderStyleValues.Thin)
+                               .Border.SetBottomBorder(XLBorderStyleValues.Thin)
+                               .Border.SetLeftBorder(XLBorderStyleValues.Thin)
+                               .Border.SetRightBorder(XLBorderStyleValues.Thin);
+
+                // RangeUsedメソッドを使用してセルの範囲を取得するとタイトル部分まで取得してしまうため
+                // タイトルのフォーマットは別で指定
+                #region タイトル行の設定
+                // タイトル挿入
+                worksheet.Cell("A1").Value = functionName;
+                // タイトルのみ大きくする
+                worksheet.Cell("A1").Style.Font.FontSize = 20;
+                // タイトルのフォントの種類を指定
+                worksheet.Cell("A1").Style.Font.FontName = "ＭＳ Ｐ明朝";
+                // タイトルセルを結合
+                worksheet.Range(1, 1, 1, worksheet.LastColumnUsed().ColumnNumber()).Merge();
+                #endregion
+
+                // ヘッダとタイトルを中央揃え
+                worksheet.Range(1, 1, 2, worksheet.LastColumnUsed().ColumnNumber()).Style.Alignment.Horizontal = XLAlignmentHorizontalValues.Center;
+
+                // 保存
+                currentWorkbook.SaveAs(outXlsFile);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                currentWorkbook.Dispose();
+            }
+        }
+
     }
 }

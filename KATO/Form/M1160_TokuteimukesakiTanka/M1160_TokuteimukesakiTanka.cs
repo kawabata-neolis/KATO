@@ -80,6 +80,7 @@ namespace KATO.Form.M1160_TokuteimukesakiTanka
 
             this.btnF06.Text = "F6:表示";
             this.btnF09.Text = STR_FUNC_F9;
+            this.btnF10.Text = "Excel出力";
             this.btnF11.Text = STR_FUNC_F11;
             this.btnF12.Text = STR_FUNC_F12;
 
@@ -234,6 +235,12 @@ namespace KATO.Form.M1160_TokuteimukesakiTanka
                 case Keys.F9:
                     break;
                 case Keys.F10:
+                    //グリッドにデータがある場合
+                    if (gridTokuteimukesakiTanka.Rows.Count > 0)
+                    {
+                        logger.Info(LogUtil.getMessage(this._Title, "Excel実行"));
+                        this.excelTokuteimukesakiTanka();
+                    }
                     break;
                 case Keys.F11:
                     //グリッドにデータがある場合
@@ -277,9 +284,21 @@ namespace KATO.Form.M1160_TokuteimukesakiTanka
                     logger.Info(LogUtil.getMessage(this._Title, "表示実行"));
                     this.CheckMaster();
                     break;
+                case STR_BTN_F10: // Excel出力
+                    //グリッドにデータがある場合
+                    if (gridTokuteimukesakiTanka.Rows.Count > 0)
+                    {
+                        logger.Info(LogUtil.getMessage(this._Title, "Excel出力実行"));
+                        this.excelTokuteimukesakiTanka();
+                    }
+                    break;
                 case STR_BTN_F11: // 印刷
-                    logger.Info(LogUtil.getMessage(this._Title, "印刷実行"));
-                    this.printReport();
+                    //グリッドにデータがある場合
+                    if (gridTokuteimukesakiTanka.Rows.Count > 0)
+                    {
+                        logger.Info(LogUtil.getMessage(this._Title, "印刷実行"));
+                        this.printReport();
+                    }
                     break;
                 case STR_BTN_F12: // 終了
                     logger.Info(LogUtil.getMessage(this._Title, "終了実行"));
@@ -801,6 +820,87 @@ namespace KATO.Form.M1160_TokuteimukesakiTanka
             catch (Exception ex)
             {
                 //エラーロギング
+                new CommonException(ex);
+                //例外発生メッセージ（OK）
+                BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_ERROR, CommonTeisu.LABEL_ERROR_MESSAGE, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                basemessagebox.ShowDialog();
+                return;
+            }
+        }
+
+        ///<summary>
+        ///     F10：Excel出力
+        ///</summary>
+        private void excelTokuteimukesakiTanka()
+        {
+            //SQL実行時に取り出したデータを入れる用
+            DataTable dtSetCd_B = new DataTable();
+            
+            try
+            {
+                dtSetCd_B = (DataTable) gridTokuteimukesakiTanka.DataSource;
+
+                BaseMessageBox basemessagebox;
+                //取得したデータがない場合
+                if (dtSetCd_B == null || dtSetCd_B.Rows.Count == 0)
+                {
+                    //例外発生メッセージ（OK）
+                    basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_ERROR, "対象のデータはありません", CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                    basemessagebox.ShowDialog();
+                    return;
+                }
+
+                // SaveFileDialogクラスのインスタンスを作成
+                SaveFileDialog sfd = new SaveFileDialog();
+                // ファイル名の指定
+                sfd.FileName = "CBC単価マスタ_" + DateTime.Now.ToString("yyyy_MM_dd_HH_mm_ss") + ".xlsx";
+                // デフォルトパス取得（デスクトップ）
+                string Init_dir = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
+                //はじめに表示されるフォルダを指定する
+                sfd.InitialDirectory = Init_dir;
+                // ファイルフィルタの設定
+                sfd.Filter = "すべてのファイル(*.*)|*.*";
+
+                //ダイアログを表示する
+                if (sfd.ShowDialog() == DialogResult.OK)
+                {
+                    CreatePdf cpdf = new CreatePdf();
+
+                    //Linqで必要なデータをselect
+                    var outDataAll = dtSetCd_B.AsEnumerable()
+                        .Select(dat => new
+                        {
+                            kataban = dat["型番"],
+                            tanka = dat["単価"],
+                            simukesaki = dat["仕向先"],
+                            saisyuSiireYMD = dat["最終仕入日"],
+                        }).ToList();
+
+                    //リストをデータテーブルに変換
+                    DataTable dtChkList = cpdf.ConvertToDataTable(outDataAll);
+
+                    string[] header =
+                    {
+                            "型　番",
+                            "単　価",
+                            "仕向先",
+                            "最終仕入日",
+                        };
+
+                    string outFile = sfd.FileName;
+
+                    // Excel作成処理
+                    cpdf.DtToXls(dtChkList, "特定向け先単価一覧表", outFile, 3, 1, header);
+
+                    // メッセージボックスの処理、Excel作成完了の場合のウィンドウ（OK）
+                    basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_VIEW, "Excelファイルを作成しました。", CommonTeisu.BTN_OK, CommonTeisu.DIAG_INFOMATION);
+                    basemessagebox.ShowDialog();
+
+                }
+            }
+            catch (Exception ex)
+            {
+                //データロギング
                 new CommonException(ex);
                 //例外発生メッセージ（OK）
                 BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_ERROR, CommonTeisu.LABEL_ERROR_MESSAGE, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);

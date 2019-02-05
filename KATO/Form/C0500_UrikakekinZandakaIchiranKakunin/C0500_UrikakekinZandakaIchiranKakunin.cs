@@ -23,6 +23,8 @@ namespace KATO.Form.C0500_UrikakekinZandakaIchiranKakunin
     ///作成日：2018/01/30
     ///更新者：大河内
     ///更新日：2018/01/30
+    ///更新者：山本
+    ///更新日：2019/02/02
     ///</summary>
     public partial class C0500_UrikakekinZandakaIchiranKakunin : BaseForm
     {
@@ -75,6 +77,7 @@ namespace KATO.Form.C0500_UrikakekinZandakaIchiranKakunin
             this.btnF01.Text = STR_FUNC_F1_HYOJII;
             this.btnF04.Text = STR_FUNC_F4;
             this.btnF09.Text = STR_FUNC_F9;
+            this.btnF10.Text = "Excel出力";
             this.btnF11.Text = STR_FUNC_F11;
             this.btnF12.Text = STR_FUNC_F12;
 
@@ -293,6 +296,8 @@ namespace KATO.Form.C0500_UrikakekinZandakaIchiranKakunin
                 case Keys.F9:
                     break;
                 case Keys.F10:
+                    logger.Info(LogUtil.getMessage(this._Title, "Excel出力"));
+                    this.exportXls();
                     break;
                 case Keys.F11:
                     //印刷
@@ -324,6 +329,10 @@ namespace KATO.Form.C0500_UrikakekinZandakaIchiranKakunin
                 case STR_BTN_F04: // 取消
                     logger.Info(LogUtil.getMessage(this._Title, "取消実行"));
                     this.delText();
+                    break;
+                case STR_BTN_F10: // Excel出力
+                    logger.Info(LogUtil.getMessage(this._Title, "Excel出力"));
+                    this.exportXls();
                     break;
                 case STR_BTN_F11: // 印刷
                     logger.Info(LogUtil.getMessage(this._Title, "印刷実行"));
@@ -851,6 +860,533 @@ namespace KATO.Form.C0500_UrikakekinZandakaIchiranKakunin
                 BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_ERROR, CommonTeisu.LABEL_ERROR_MESSAGE, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
                 basemessagebox.ShowDialog();
                 return;
+            }
+        }
+
+        ///<summary>
+        ///     F10：Excel出力
+        ///</summary>
+        private void exportXls()
+        {
+            // SaveFileDialogクラスのインスタンスを作成
+            SaveFileDialog sfd = new SaveFileDialog();
+            // ファイル名の指定
+            sfd.FileName = "売掛金残高一覧確認_" + DateTime.Now.ToString("yyyy_MM_dd_HH_mm_ss") + ".xlsx";
+            // デフォルトパス取得（デスクトップ）
+            string Init_dir = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
+            //はじめに表示されるフォルダを指定する
+            sfd.InitialDirectory = Init_dir;
+            // ファイルフィルタの設定
+            sfd.Filter = "すべてのファイル(*.*)|*.*";
+
+            try
+            {
+                //グリッドに表示されていない場合
+                if (gridTokuisaki.Rows.Count == 0)
+                {
+                    return;
+                }
+
+                //データの取り出し用
+                DataTable dtPrintData = new DataTable();
+
+                this.Cursor = Cursors.WaitCursor;
+
+                //列情報を取得
+                DataGridViewColumnCollection cols = gridTokuisaki.Columns;
+
+                //行情報を取得
+                DataGridViewRowCollection rows = gridTokuisaki.Rows;
+
+                //取引先経理情報登録時の情報
+                List<string> lstTorihiki = new List<string>();
+
+                //年月日の日付フォーマット後を入れる用
+                string strYMDformat = "";
+
+                //空チェック（開始得意先コード）
+                if (StringUtl.blIsEmpty(lblsetTokuisakiCdopen.CodeTxtText) == false)
+                {
+                    this.Cursor = Cursors.Default;
+
+                    // メッセージボックスの処理、項目が空の場合のウィンドウ（OK）
+                    BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_INPUT, "項目が空です。\r\n数値を入力してください。", CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                    basemessagebox.ShowDialog();
+
+                    lblsetTokuisakiCdopen.Focus();
+                    return;
+                }
+
+                //空チェック（終了得意先コード）
+                if (StringUtl.blIsEmpty(lblsetTokuisakiCdclose.CodeTxtText) == false)
+                {
+                    this.Cursor = Cursors.Default;
+
+                    // メッセージボックスの処理、項目が空の場合のウィンドウ（OK）
+                    BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_INPUT, "項目が空です。\r\n数値を入力してください。", CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                    basemessagebox.ShowDialog();
+
+                    lblsetTokuisakiCdclose.Focus();
+                    return;
+                }
+
+                //日付フォーマット生成、およびチェック
+                strYMDformat = txtYMopen.chkDateYMDataFormat(txtYMopen.Text);
+
+                //開始年月日の日付チェック
+                if (strYMDformat == "")
+                {
+                    this.Cursor = Cursors.Default;
+
+                    // メッセージボックスの処理、項目が日付でない場合のウィンドウ（OK）
+                    BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_INPUT, "入力された日付が正しくありません。", CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                    basemessagebox.ShowDialog();
+
+                    txtYMopen.Focus();
+
+                    return;
+                }
+                else
+                {
+                    txtYMopen.Text = strYMDformat;
+                }
+
+                //初期化
+                strYMDformat = "";
+
+                //日付フォーマット生成、およびチェック
+                strYMDformat = txtYMclose.chkDateYMDataFormat(txtYMclose.Text);
+
+                //終了年月日の日付チェック
+                if (strYMDformat == "")
+                {
+                    this.Cursor = Cursors.Default;
+
+                    // メッセージボックスの処理、項目が日付でない場合のウィンドウ（OK）
+                    BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_INPUT, "入力された日付が正しくありません。", CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                    basemessagebox.ShowDialog();
+
+                    txtYMclose.Focus();
+
+                    return;
+                }
+                else
+                {
+                    txtYMclose.Text = strYMDformat;
+                }
+
+                this.Cursor = Cursors.Default;
+
+                //年月日が空の場合
+                if (txtYMopen.blIsEmpty() == false)
+                {
+                    // メッセージボックスの処理、項目が空の場合のウィンドウ（OK）
+                    BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_INPUT, "項目が空です。\r\n日付を入力してください。 ", CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                    basemessagebox.ShowDialog();
+                    txtYMopen.Focus();
+                    return;
+
+                }
+
+                //年月日が空の場合
+                if (txtYMclose.blIsEmpty() == false)
+                {
+                    // メッセージボックスの処理、項目が空の場合のウィンドウ（OK）
+                    BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_INPUT, "項目が空です。\r\n日付を入力してください。 ", CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                    basemessagebox.ShowDialog();
+                    txtYMclose.Focus();
+                    return;
+
+                }
+
+                //検索開始得意先コードのチェック
+                if (lblsetTokuisakiCdopen.chkTxtTorihikisaki() == true)
+                {
+                    lblsetTokuisakiCdopen.Focus();
+
+                    return;
+                }
+
+                //検索終了得意先コードのチェック
+                if (lblsetTokuisakiCdclose.chkTxtTorihikisaki() == true)
+                {
+                    lblsetTokuisakiCdclose.Focus();
+
+                    return;
+                }
+
+                DataTable dtGridViewTokusaki = new DataTable();
+
+                List<string> lstStringViewData = new List<string>();
+
+                lstStringViewData.Add(lblsetTokuisakiCdopen.CodeTxtText);
+                lstStringViewData.Add(lblsetTokuisakiCdclose.CodeTxtText);
+
+                string strShuturyoku = "";
+
+                //出力順のラジオボタン判定
+                if (radShuturyoku.radbtn0.Checked == true)
+                {
+                    strShuturyoku = "Tokuisaki";
+                }
+                else
+                {
+                    strShuturyoku = "Hurigana";
+                }
+
+                lstStringViewData.Add(DateTime.Parse(txtYMopen.Text).ToString("yyyy/MM/dd"));
+                lstStringViewData.Add(DateTime.Parse(txtYMclose.Text).ToString("yyyy/MM/dd"));
+                lstStringViewData.Add(strShuturyoku);
+
+                C0500_UrikakekinZandakaIchiranKakunin_B urikakekakuninB = new C0500_UrikakekinZandakaIchiranKakunin_B();
+
+                DataTable dtXlsData = urikakekakuninB.getPrintData(lstStringViewData);
+
+                // カーソルをデフォルトに戻す
+                this.Cursor = Cursors.Default;
+
+                if (dtXlsData.Rows.Count > 0)
+                {
+                    if (sfd.ShowDialog() == DialogResult.OK)
+                    {
+                        //待機状態
+                        Cursor.Current = Cursors.WaitCursor;
+
+                        CreatePdf cpdf = new CreatePdf();
+
+                        // 出力するヘッダを設定
+                        string[] header =
+                        {
+                            "コード",
+                            "得意先名",
+                            "年月",
+                            "前月売掛残",
+                            "入金現金",
+                            "入金小切手",
+                            "入金振込",
+                            "入金手形",
+                            "入金相殺",
+                            "入金手数料",
+                            "入金その他",
+                            "繰越残高",
+                            "当月売上高",
+                            "当月消費税",
+                            "当月残高",
+                            "税区",
+                        };
+
+                        // Linqで出力対象の項目をSelect
+                        // カラム名は以下のようにつける(カラム名でフォーマットを判断するため)
+                        // 金額関係：＊＊＊kingaku
+                        // 単価関係：＊＊＊tanka
+                        // 原価：＊＊＊genka
+                        // 数量：＊＊＊suryo
+                        var outDat = dtXlsData.AsEnumerable()
+                            .Select(dat => new
+                            {
+                                code = dat["コード"],
+                                tokuisakiName = dat["得意先名"],
+                                YM = dat["年月"],
+                                zenurikakezanKingaku = dat["前月売掛残"],
+                                nyukinGenkinKingaku = dat["入金現金"],
+                                nyukinKogiteKingaku = dat["入金小切手"],
+                                nyukinFurikomiKingaku = dat["入金振込"],
+                                nyukinTegataKingaku = dat["入金手形"],
+                                nyukinSosaiKingaku = dat["入金相殺"],
+                                nyukinTesuryoKingaku = dat["入金手数料"],
+                                nyukinSonotaKingaku = dat["入金その他"],
+                                kurikosizanKingaku = dat["繰越残高"],
+                                togetuUriageKingaku = dat["当月売上高"],
+                                togetuZeiKingaku = dat["当月消費税"],
+                                togetuZanKingaku = dat["当月残高"],
+                                zeiku = dat["税区"]
+                            }).ToList();
+
+                        // listをDataTableに変換
+                        DataTable dtUrikakeZan = cpdf.ConvertToDataTable(outDat);
+
+                        string outFile = sfd.FileName;
+
+                        cpdf.DtToXls(dtUrikakeZan, "売掛金残高一覧確認", outFile, 3, 1, header);
+
+                        // カーソルをデフォルトに戻す
+                        this.Cursor = Cursors.Default;
+
+                        // メッセージボックスの処理、Excel作成完了の場合のウィンドウ（OK）
+                        BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_VIEW, "Excelファイルを作成しました。", CommonTeisu.BTN_OK, CommonTeisu.DIAG_INFOMATION);
+                        basemessagebox.ShowDialog();
+                    }
+                    else
+                    {
+                        // メッセージボックスの処理、項目が空の場合のウィンドウ（OK）
+                        BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_INPUT, "対象のデータはありません", CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                        basemessagebox.ShowDialog();
+                        return;
+                    }
+                }
+
+            }
+            catch (Exception ex)
+            {
+                // カーソルをデフォルトに戻す
+                this.Cursor = Cursors.Default;
+
+                // エラーロギング
+                new CommonException(ex);
+
+                // Excel出力失敗メッセージ
+                BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_VIEW, "Excel出力に失敗しました。", CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                basemessagebox.ShowDialog();
+
+                return;
+            }
+
+            //ダイアログを表示する
+            if (sfd.ShowDialog() == DialogResult.OK)
+            {
+                //グリッドに表示されていない場合
+                if (gridTokuisaki.Rows.Count == 0)
+                {
+                    return;
+                }
+
+                //データの取り出し用
+                DataTable dtPrintData = new DataTable();
+
+                //列情報を取得
+                DataGridViewColumnCollection cols = gridTokuisaki.Columns;
+
+                //行情報を取得
+                DataGridViewRowCollection rows = gridTokuisaki.Rows;
+
+                //取引先経理情報登録時の情報
+                List<string> lstTorihiki = new List<string>();
+
+                //年月日の日付フォーマット後を入れる用
+                string strYMDformat = "";
+
+                this.Cursor = Cursors.WaitCursor;
+
+                //空チェック（開始得意先コード）
+                if (StringUtl.blIsEmpty(lblsetTokuisakiCdopen.CodeTxtText) == false)
+                {
+                    this.Cursor = Cursors.Default;
+
+                    // メッセージボックスの処理、項目が空の場合のウィンドウ（OK）
+                    BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_INPUT, "項目が空です。\r\n数値を入力してください。", CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                    basemessagebox.ShowDialog();
+
+                    lblsetTokuisakiCdopen.Focus();
+                    return;
+                }
+
+                //空チェック（終了得意先コード）
+                if (StringUtl.blIsEmpty(lblsetTokuisakiCdclose.CodeTxtText) == false)
+                {
+                    this.Cursor = Cursors.Default;
+
+                    // メッセージボックスの処理、項目が空の場合のウィンドウ（OK）
+                    BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_INPUT, "項目が空です。\r\n数値を入力してください。", CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                    basemessagebox.ShowDialog();
+
+                    lblsetTokuisakiCdclose.Focus();
+                    return;
+                }
+
+                //日付フォーマット生成、およびチェック
+                strYMDformat = txtYMopen.chkDateYMDataFormat(txtYMopen.Text);
+
+                //開始年月日の日付チェック
+                if (strYMDformat == "")
+                {
+                    this.Cursor = Cursors.Default;
+
+                    // メッセージボックスの処理、項目が日付でない場合のウィンドウ（OK）
+                    BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_INPUT, "入力された日付が正しくありません。", CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                    basemessagebox.ShowDialog();
+
+                    txtYMopen.Focus();
+
+                    return;
+                }
+                else
+                {
+                    txtYMopen.Text = strYMDformat;
+                }
+
+                //初期化
+                strYMDformat = "";
+
+                //日付フォーマット生成、およびチェック
+                strYMDformat = txtYMclose.chkDateYMDataFormat(txtYMclose.Text);
+
+                //終了年月日の日付チェック
+                if (strYMDformat == "")
+                {
+                    this.Cursor = Cursors.Default;
+
+                    // メッセージボックスの処理、項目が日付でない場合のウィンドウ（OK）
+                    BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_INPUT, "入力された日付が正しくありません。", CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                    basemessagebox.ShowDialog();
+
+                    txtYMclose.Focus();
+
+                    return;
+                }
+                else
+                {
+                    txtYMclose.Text = strYMDformat;
+                }
+
+                this.Cursor = Cursors.Default;
+
+                //年月日が空の場合
+                if (txtYMopen.blIsEmpty() == false)
+                {
+                    // メッセージボックスの処理、項目が空の場合のウィンドウ（OK）
+                    BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_INPUT, "項目が空です。\r\n日付を入力してください。 ", CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                    basemessagebox.ShowDialog();
+                    txtYMopen.Focus();
+                    return;
+
+                }
+
+                //年月日が空の場合
+                if (txtYMclose.blIsEmpty() == false)
+                {
+                    // メッセージボックスの処理、項目が空の場合のウィンドウ（OK）
+                    BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_INPUT, "項目が空です。\r\n日付を入力してください。 ", CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                    basemessagebox.ShowDialog();
+                    txtYMclose.Focus();
+                    return;
+
+                }
+
+                //検索開始得意先コードのチェック
+                if (lblsetTokuisakiCdopen.chkTxtTorihikisaki() == true)
+                {
+                    lblsetTokuisakiCdopen.Focus();
+
+                    return;
+                }
+
+                //検索終了得意先コードのチェック
+                if (lblsetTokuisakiCdclose.chkTxtTorihikisaki() == true)
+                {
+                    lblsetTokuisakiCdclose.Focus();
+
+                    return;
+                }
+
+                this.Cursor = Cursors.WaitCursor;
+
+                DataTable dtGridViewTokusaki = new DataTable();
+
+                List<string> lstStringViewData = new List<string>();
+
+                lstStringViewData.Add(lblsetTokuisakiCdopen.CodeTxtText);
+                lstStringViewData.Add(lblsetTokuisakiCdclose.CodeTxtText);
+
+                string strShuturyoku = "";
+
+                //出力順のラジオボタン判定
+                if (radShuturyoku.radbtn0.Checked == true)
+                {
+                    strShuturyoku = "Tokuisaki";
+                }
+                else
+                {
+                    strShuturyoku = "Hurigana";
+                }
+
+                lstStringViewData.Add(DateTime.Parse(txtYMopen.Text).ToString("yyyy/MM/dd"));
+                lstStringViewData.Add(DateTime.Parse(txtYMclose.Text).ToString("yyyy/MM/dd"));
+                lstStringViewData.Add(strShuturyoku);
+
+                C0500_UrikakekinZandakaIchiranKakunin_B urikakekakuninB = new C0500_UrikakekinZandakaIchiranKakunin_B();
+
+                try
+                {
+                    DataTable dtXlsData = urikakekakuninB.getPrintData(lstStringViewData);
+
+                    if (dtXlsData.Rows.Count > 0)
+                    {
+                        CreatePdf cpdf = new CreatePdf();
+
+                        // 出力するヘッダを設定
+                        string[] header =
+                        {
+                            "コード",
+                            "得意先名",
+                            "年月",
+                            "前月売掛残",
+                            "入金現金",
+                            "入金小切手",
+                            "入金振込",
+                            "入金手形",
+                            "入金相殺",
+                            "入金手数料",
+                            "入金その他",
+                            "繰越残高",
+                            "当月売上高",
+                            "当月消費税",
+                            "当月残高",
+                            "税区",
+                        };
+
+                        // Linqで出力対象の項目をSelect
+                        // カラム名は以下のようにつける(カラム名でフォーマットを判断するため)
+                        // 金額関係：＊＊＊kingaku
+                        // 単価関係：＊＊＊tanka
+                        // 原価：＊＊＊genka
+                        // 数量：＊＊＊suryo
+                        var outDat = dtXlsData.AsEnumerable()
+                            .Select(dat => new
+                            {
+                                code = dat["コード"],
+                                tokuisakiName = dat["得意先名"],
+                                YM = dat["年月"],
+                                zenurikakezanKingaku = dat["前月売掛残"],
+                                nyukinGenkinKingaku = dat["入金現金"],
+                                nyukinKogiteKingaku = dat["入金小切手"],
+                                nyukinFurikomiKingaku = dat["入金振込"],
+                                nyukinTegataKingaku = dat["入金手形"],
+                                nyukinSosaiKingaku = dat["入金相殺"],
+                                nyukinTesuryoKingaku = dat["入金手数料"],
+                                nyukinSonotaKingaku = dat["入金その他"],
+                                kurikosizanKingaku = dat["繰越残高"],
+                                togetuUriageKingaku = dat["当月売上高"],
+                                togetuZeiKingaku = dat["当月消費税"],
+                                togetuZanKingaku = dat["当月残高"],
+                                zeiku = dat["税区"]
+                            }).ToList();
+
+                        // listをDataTableに変換
+                        DataTable dtUrikakeZan = cpdf.ConvertToDataTable(outDat);
+
+                        string outFile = sfd.FileName;
+
+                        cpdf.DtToXls(dtUrikakeZan, "売掛金残高一覧確認", outFile, 3, 1, header);
+
+                        this.Cursor = Cursors.Default;
+
+                        // メッセージボックスの処理、Excel作成完了の場合のウィンドウ（OK）
+                        BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_VIEW, "Excelファイルを作成しました。", CommonTeisu.BTN_OK, CommonTeisu.DIAG_INFOMATION);
+                        basemessagebox.ShowDialog();
+                    }
+
+                }
+                catch (Exception ex)
+                {
+                    this.Cursor = Cursors.Default;
+
+                    //データロギング
+                    new CommonException(ex);
+                    //例外発生メッセージ（OK）
+                    BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_ERROR, CommonTeisu.LABEL_ERROR_MESSAGE, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                    basemessagebox.ShowDialog();
+                    return;
+                }
             }
         }
     }

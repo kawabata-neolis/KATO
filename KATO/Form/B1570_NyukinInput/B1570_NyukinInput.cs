@@ -14,6 +14,7 @@ using KATO.Business.B0250_MOnyuryoku;
 using static KATO.Common.Util.CommonTeisu;
 using KATO.Business.B1570_NyukinInput;
 using KATO.Business.B0060_ShiharaiInput_B;
+using KATO.Business.B0040_NyukinInput;
 
 namespace KATO.Form.B1570_NyukinInput
 {
@@ -71,7 +72,6 @@ namespace KATO.Form.B1570_NyukinInput
             this.Left = c.Left + (intWindowWidth - this.Width) / 2;
             this.Top = c.Top + (intWindowHeight - this.Height) / 2;
 
-            setupGrid();
         }
 
 
@@ -140,18 +140,18 @@ namespace KATO.Form.B1570_NyukinInput
             colShiiresakiNm.DataPropertyName = "得意先名";
             colShiiresakiNm.Name = "得意先名";
             colShiiresakiNm.HeaderText = "得意先名";
-            setColumn(gridNyukin, colShiiresakiNm, posLeft, posCenter, fmtString, 122);
+            setColumn(gridNyukin, colShiiresakiNm, posLeft, posCenter, fmtString, 200);
 
             DataGridViewTextBoxColumn colShiharaiYoteiYMD = new DataGridViewTextBoxColumn();
             colShiharaiYoteiYMD.DataPropertyName = "入金予定日";
             colShiharaiYoteiYMD.Name = "入金予定日";
             colShiharaiYoteiYMD.HeaderText = "入金予定日";
-            setColumn(gridNyukin, colShiharaiYoteiYMD, posRight, posCenter, fmtYMD, 122);
+            setColumn(gridNyukin, colShiharaiYoteiYMD, posRight, posCenter, fmtString, 122);
 
             DataGridViewTextBoxColumn colShiharaiYMD = new DataGridViewTextBoxColumn();
-            colShiharaiYMD.DataPropertyName = "入金日";
-            colShiharaiYMD.Name = "入金日";
-            colShiharaiYMD.HeaderText = "入金日";
+            colShiharaiYMD.DataPropertyName = "支払日";
+            colShiharaiYMD.Name = "支払日";
+            colShiharaiYMD.HeaderText = "支払日";
             setColumn(gridNyukin, colShiharaiYMD, posRight, posCenter, fmtYMD, 122);
 
             DataGridViewTextBoxColumn colDenpyoNo = new DataGridViewTextBoxColumn();
@@ -200,13 +200,13 @@ namespace KATO.Form.B1570_NyukinInput
             colShiharaiYoteiGaku.DataPropertyName = "入金予定額";
             colShiharaiYoteiGaku.Name = "入金予定額";
             colShiharaiYoteiGaku.HeaderText = "入金予定額";
-            setColumn(gridNyukin, colShiharaiYoteiGaku, posRight, posCenter, fmtNumComma, 122);
+            setColumn(gridNyukin, colShiharaiYoteiGaku, posRight, posCenter, "#,0", 122);
 
             DataGridViewTextBoxColumn colShiharaiGaku = new DataGridViewTextBoxColumn();
             colShiharaiGaku.DataPropertyName = "入金額";
             colShiharaiGaku.Name = "入金額";
             colShiharaiGaku.HeaderText = "入金額";
-            setColumn(gridNyukin, colShiharaiGaku, posRight, posCenter, fmtNumComma, 122);
+            setColumn(gridNyukin, colShiharaiGaku, posRight, posCenter, "#,0", 122);
 
             DataGridViewTextBoxColumn colTegataYMD = new DataGridViewTextBoxColumn();
             colTegataYMD.DataPropertyName = "手形期日";
@@ -215,9 +215,9 @@ namespace KATO.Form.B1570_NyukinInput
             setColumn(gridNyukin, colTegataYMD, posRight, posCenter, fmtYMD, 122);
 
             DataGridViewTextBoxColumn colShiharaiMonths = new DataGridViewTextBoxColumn();
-            colShiharaiMonths.DataPropertyName = "入金月数";
-            colShiharaiMonths.Name = "入金月数";
-            colShiharaiMonths.HeaderText = "入金月数";
+            colShiharaiMonths.DataPropertyName = "支払月数";
+            colShiharaiMonths.Name = "支払月数";
+            colShiharaiMonths.HeaderText = "支払月数";
             setColumn(gridNyukin, colShiharaiMonths, posCenter, posCenter, fmtNumNormal, 122);
 
             DataGridViewTextBoxColumn colShiharaiJoken = new DataGridViewTextBoxColumn();
@@ -242,13 +242,37 @@ namespace KATO.Form.B1570_NyukinInput
             colMawashisakiYMD.DataPropertyName = "廻し先日付";
             colMawashisakiYMD.Name = "廻し先日付";
             colMawashisakiYMD.HeaderText = "廻し先日付";
-            setColumn(gridNyukin, colMawashisakiYMD, posRight, posCenter, fmtYMD, 122);
+            setColumn(gridNyukin, colMawashisakiYMD, posRight, posCenter, fmtString, 122);
 
             DataGridViewTextBoxColumn colBikou = new DataGridViewTextBoxColumn();
             colBikou.DataPropertyName = "備考";
             colBikou.Name = "備考";
             colBikou.HeaderText = "備考";
             setColumn(gridNyukin, colBikou, posLeft, posCenter, fmtString, 122);
+
+            DataGridViewTextBoxColumn colHasuu = new DataGridViewTextBoxColumn();
+            colHasuu.DataPropertyName = "入金手形期日";
+            colHasuu.Name = "入金手形期日";
+            colHasuu.HeaderText = "入金手形期日";
+            setColumn(gridNyukin, colHasuu, posLeft, posCenter, fmtString, 140);
+            colHasuu.ReadOnly = true;
+            colHasuu.Visible = false;
+
+            DataGridViewTextBoxColumn colSYMD = new DataGridViewTextBoxColumn();
+            colSYMD.DataPropertyName = "消費税端数計算区分";
+            colSYMD.Name = "消費税端数計算区分";
+            colSYMD.HeaderText = "消費税端数計算区分";
+            setColumn(gridNyukin, colSYMD, posLeft, posCenter, fmtString, 140);
+            colSYMD.ReadOnly = true;
+            colSYMD.Visible = false;
+
+            DataGridViewTextBoxColumn colTorokuYMD = new DataGridViewTextBoxColumn();
+            colTorokuYMD.DataPropertyName = "登録日時";
+            colTorokuYMD.Name = "登録日時";
+            colTorokuYMD.HeaderText = "登録日時";
+            setColumn(gridNyukin, colTorokuYMD, posRight, posCenter, fmtString, 400);
+            colTorokuYMD.ReadOnly = true;
+            colTorokuYMD.Visible = false;
 
             #endregion
         }
@@ -402,8 +426,8 @@ namespace KATO.Form.B1570_NyukinInput
         {
             if (!string.IsNullOrWhiteSpace(lsTokuisakiInput.CodeTxtText))
             {
-                gridNyukin.Rows[rowIdx].Cells["仕入先コード"].Value = lsTokuisakiInput.CodeTxtText;
-                gridNyukin.Rows[rowIdx].Cells["仕入先名"].Value = lsTokuisakiInput.ValueLabelText;
+                gridNyukin.Rows[rowIdx].Cells["得意先コード"].Value = lsTokuisakiInput.CodeTxtText;
+                gridNyukin.Rows[rowIdx].Cells["得意先名"].Value = lsTokuisakiInput.ValueLabelText;
                 if (string.IsNullOrWhiteSpace(txtKijitsuInput.Text))
                 {
                     gridNyukin.Rows[rowIdx].Cells["手形期日"].Value = DBNull.Value;
@@ -419,8 +443,8 @@ namespace KATO.Form.B1570_NyukinInput
                 gridNyukin.Rows[rowIdx].Cells["集金区分"].Value = txtSyukinKbn.Text;
                 gridNyukin.Rows[rowIdx].Cells["取引区分コード"].Value = lsTorihikiCdInput.CodeTxtText;
                 gridNyukin.Rows[rowIdx].Cells["取引区分名"].Value = lsTorihikiCdInput.ValueLabelText;
-                gridNyukin.Rows[rowIdx].Cells["支払額"].Value = getDecValue(txtNyukinGakuInput.Text);
-                gridNyukin.Rows[rowIdx].Cells["支払額"].Value = setNumString(rowIdx, "支払額", fmtNumComma);
+                //gridNyukin.Rows[rowIdx].Cells["入金予定額"].Value = setNumString(rowIdx, "入金予定額", fmtNumComma);
+                gridNyukin.Rows[rowIdx].Cells["入金額"].Value = getDecValue(txtNyukinGakuInput.Text);
                 gridNyukin.Rows[rowIdx].Cells["支払条件"].Value = txtShiharaiJoken.Text;
                 gridNyukin.Rows[rowIdx].Cells["備考"].Value = txtBikoInput.Text;
                 gridNyukin.Rows[rowIdx].Cells["廻し先"].Value = txtMawashisakiInput.Text;
@@ -450,8 +474,8 @@ namespace KATO.Form.B1570_NyukinInput
 
         private void gridToForm()
         {
-            lsTokuisakiInput.CodeTxtText = getCellValue(rowIdx, "仕入先コード", false);
-            lsTokuisakiInput.ValueLabelText = getCellValue(rowIdx, "仕入先名", false);
+            lsTokuisakiInput.CodeTxtText = getCellValue(rowIdx, "得意先コード", false);
+            lsTokuisakiInput.ValueLabelText = getCellValue(rowIdx, "得意先名", false);
             txtKijitsuInput.Text = getCellValueYMD(rowIdx, "手形期日", false);
 
             txtShimekiribi.Text = getCellValue(rowIdx, "締切日", false);
@@ -460,10 +484,10 @@ namespace KATO.Form.B1570_NyukinInput
             txtSyukinKbn.Text = getCellValue(rowIdx, "集金区分", false);
             lsTorihikiCdInput.CodeTxtText = getCellValue(rowIdx, "取引区分コード", false);
             lsTorihikiCdInput.ValueLabelText = getCellValue(rowIdx, "取引区分名", false);
-            txtNyukinGakuInput.Text = getCellValue(rowIdx, "支払額", false);
+            txtNyukinGakuInput.Text = getCellValue(rowIdx, "入金額", false);
             if (!string.IsNullOrWhiteSpace(txtNyukinGakuInput.Text))
             {
-                txtNyukinGakuInput.Text = getDecValue(getCellValue(rowIdx, "支払額", true)).ToString(fmtNumComma);
+                txtNyukinGakuInput.Text = getDecValue(getCellValue(rowIdx, "入金額", true)).ToString(fmtNumComma);
             }
             txtShiharaiJoken.Text = getCellValue(rowIdx, "支払条件", false);
             txtBikoInput.Text = getCellValue(rowIdx, "備考", false);
@@ -544,10 +568,10 @@ namespace KATO.Form.B1570_NyukinInput
                 else if (noForce == 1)
                 {
                     #region 初期表示用(強制的に0件検索)
-                    lstSearchItem.Add("1900/01/01");
-                    lstSearchItem.Add("1900/01/01");
-                    lstSearchItem.Add("1900/01/01");
-                    lstSearchItem.Add("1900/01/01");
+                    lstSearchItem.Add("2000/01/01");
+                    lstSearchItem.Add("2000/01/01");
+                    lstSearchItem.Add("2000/01/01");
+                    lstSearchItem.Add("2000/01/01");
                     lstSearchItem.Add("");
                     lstSearchItem.Add("0000");
                     lstSearchItem.Add("0000");
@@ -664,8 +688,9 @@ namespace KATO.Form.B1570_NyukinInput
                 decimal d = 0;
                 for (int i = 0; i < gridNyukin.Rows.Count; i++)
                 {
-                    gridNyukin.Rows[i].Cells["支払額"].Value = setNumString(i, "支払額", fmtNumComma);
-                    d += getDecValue(getCellValue(i, "支払額", true));
+                    gridNyukin.Rows[i].Cells["入金額"].Value = setNumString(i, "入金額", fmtNumComma);
+                    gridNyukin.Rows[i].Cells["入金予定額"].Value = setNumString(i, "入金予定額", fmtNumComma);
+                    d += getDecValue(getCellValue(i, "入金額", true));
                 }
 
                 txtShiharaiTotal.Text = d.ToString(fmtNumComma);
@@ -746,7 +771,7 @@ namespace KATO.Form.B1570_NyukinInput
 
                 for (int i = 0; i < gridNyukin.Rows.Count; i++)
                 {
-                    string[] strs = new string[15];
+                    string[] strs = new string[16];
 
                     if (string.IsNullOrWhiteSpace(getCellValue(i, "伝票年月日", false)))
                     {
@@ -772,9 +797,9 @@ namespace KATO.Form.B1570_NyukinInput
                     }
 
                     strs[2] = getCellValueYMD(i, "伝票年月日", false);
-                    strs[3] = getCellValue(i, "仕入先コード", false);
+                    strs[3] = getCellValue(i, "得意先コード", false);
                     strs[4] = getCellValue(i, "取引区分コード", false);
-                    strs[5] = getCellValue(i, "支払額", false);
+                    strs[5] = getCellValue(i, "入金額", false);
                     strs[6] = getCellValueYMD(i, "手形期日", false);
                     strs[7] = getCellValue(i, "備考", false);
                     strs[8] = getCellValue(i, "廻し先", false);
@@ -784,6 +809,15 @@ namespace KATO.Form.B1570_NyukinInput
                     strs[12] = getCellValue(i, "支店名", false);
                     strs[13] = getCellValue(i, "口座", false);
                     strs[14] = Environment.UserName;
+
+                    if (string.IsNullOrWhiteSpace(getCellValueYMD(i, "登録日時", false)))
+                    {
+                        strs[15] = DateTime.Now.ToString("yyyy/MM/dd HH:mm:ss");
+                    }
+                    else
+                    {
+                        strs[15] = getCellValueYMD2(i, "登録日時", false);
+                    }
 
                     lsInput.Add(strs);
                 }
@@ -889,12 +923,12 @@ namespace KATO.Form.B1570_NyukinInput
         /// 得意先元帳確認フォームを開く
         private void showMotocyou()
         {
-            // 仕入先コードがある場合
-            if (gridNyukin.CurrentCell != null && !string.IsNullOrWhiteSpace(getCellValue(gridNyukin.CurrentCell.RowIndex, "仕入先コード", false)))
+            // 得意先コードがある場合
+            if (gridNyukin.CurrentCell != null && !string.IsNullOrWhiteSpace(getCellValue(gridNyukin.CurrentCell.RowIndex, "得意先コード", false)))
             {
-                // 仕入先元帳確認フォームを開く
+                // 得意先元帳確認フォームを開く
                 E0340_SiiresakiMotochouKakunin.E0340_SiiresakiMotochouKakunin tokuisaki =
-                    new E0340_SiiresakiMotochouKakunin.E0340_SiiresakiMotochouKakunin(this, 6, getCellValue(gridNyukin.CurrentCell.RowIndex, "仕入先コード", false));
+                    new E0340_SiiresakiMotochouKakunin.E0340_SiiresakiMotochouKakunin(this, 6, getCellValue(gridNyukin.CurrentCell.RowIndex, "得意先コード", false));
                 tokuisaki.ShowDialog();
             }
         }
@@ -1015,7 +1049,7 @@ namespace KATO.Form.B1570_NyukinInput
             // 検索時のデータ取り出し先
             DataTable dtSetView;
 
-            // 空文字判定（仕入先コード）
+            // 空文字判定（得意先コード）
             if (lsTokuisakiInput.CodeTxtText.Equals(""))
             {
                 return;
@@ -1026,7 +1060,7 @@ namespace KATO.Form.B1570_NyukinInput
             try
             {
                 // データの存在確認を検索する情報を入れる
-                /* [0]仕入先コード */
+                /* [0]得意先コード */
                 lstSiiresakiDataLoad.Add(lsTokuisakiInput.CodeTxtText);
 
                 // ビジネス層、取引先情報表示用ロジックに移動
@@ -1158,22 +1192,22 @@ namespace KATO.Form.B1570_NyukinInput
 
         private void subShow()
         {
-            B0060_ShiharaiInput_B siireB = new B0060_ShiharaiInput_B();
+            B0040_NyukinInput_B siireB = new B0040_NyukinInput_B();
             try
             {
                 // データ検索用
                 List<string> lstSearchItem = new List<string>();
 
-                if (gridNyukin.CurrentCell == null || string.IsNullOrWhiteSpace(getCellValue(gridNyukin.CurrentCell.RowIndex, "仕入先コード", false)))
+                if (gridNyukin.CurrentCell == null || string.IsNullOrWhiteSpace(getCellValue(gridNyukin.CurrentCell.RowIndex, "得意先コード", false)))
                 {
                     return;
                 }
 
-                lstSearchItem.Add(getCellValue(gridNyukin.CurrentCell.RowIndex, "仕入先コード", false));       // 仕入先コード
-                lstSearchItem.Add(getCellValue(gridNyukin.CurrentCell.RowIndex, "締切日", false));             // 締切日
-                lstSearchItem.Add(getCellValue(gridNyukin.CurrentCell.RowIndex, "消費税端数計算区分", false)); // 消費税端数計算区分
+                lstSearchItem.Add(getCellValue(gridNyukin.CurrentCell.RowIndex, "得意先コード", false));       // 得意先コード
+                //lstSearchItem.Add(getCellValue(gridNyukin.CurrentCell.RowIndex, "締切日", false));             // 締切日
+                //lstSearchItem.Add(getCellValue(gridNyukin.CurrentCell.RowIndex, "消費税端数計算区分", false)); // 消費税端数計算区分
 
-                DataTable dt = siireB.getSiireJissekiList(lstSearchItem);
+                DataTable dt = siireB.getSeikyuRireki(lstSearchItem);
 
                 B1571_SeikyuRireki f = new B1571_SeikyuRireki(this, dt);
 
@@ -1246,6 +1280,35 @@ namespace KATO.Form.B1570_NyukinInput
                 else
                 {
                     ret = DateTime.Parse(ret).ToString("yyyy/MM/dd");
+                }
+
+            }
+
+            return ret;
+        }
+
+        private string getCellValueYMD2(int rowIdx, string col, bool zero)
+        {
+            string ret = "";
+
+            DataGridViewCell c = gridNyukin.Rows[rowIdx].Cells[col];
+
+            if (zero)
+            {
+                ret = "0";
+            }
+
+            if (c != null && c.Value != null && c.Value != DBNull.Value && !string.IsNullOrWhiteSpace(c.Value.ToString()))
+            {
+                ret = c.Value.ToString();
+
+                if (DateTime.Parse(ret).ToString("yyyy/MM/dd").CompareTo("0001/01/01") <= 0)
+                {
+                    ret = "";
+                }
+                else
+                {
+                    ret = DateTime.Parse(ret).ToString("yyyy/MM/dd HH:mm:ss");
                 }
 
             }
@@ -1362,11 +1425,11 @@ namespace KATO.Form.B1570_NyukinInput
                 return false;
             }
 
-            // 空文字判定（仕入先コード）from なし　to　あり　エラー
+            // 空文字判定（得意先コード）from なし　to　あり　エラー
             if (string.IsNullOrWhiteSpace(txtShiireCdFr.Text) && string.IsNullOrWhiteSpace(txtShiireCdTo.Text))
             {
                 // メッセージボックスの処理、項目が空の場合のウィンドウ（OK）
-                BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_INPUT, "項目が空です。仕入先を入力してください。", CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_INPUT, "項目が空です。得意先を入力してください。", CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
                 basemessagebox.ShowDialog();
 
                 txtShiireCdFr.Focus();
@@ -1440,9 +1503,9 @@ namespace KATO.Form.B1570_NyukinInput
             for (int i = 0; i < gridNyukin.Rows.Count; i++)
             {
                 strChkYMD = getCellValueYMD(rowIdx, "伝票年月日", false);
-                strChkShiire = getCellValue(rowIdx, "仕入先コード", false);
+                strChkShiire = getCellValue(rowIdx, "得意先コード", false);
                 strChkKbn = getCellValue(rowIdx, "取引区分コード", false);
-                strChkGaku = getCellValue(rowIdx, "支払額", false);
+                strChkGaku = getCellValue(rowIdx, "入金額", false);
 
                 // 入力必須項目全てに入力のない行は空行扱いとする
                 if (string.IsNullOrWhiteSpace(strChkYMD)
@@ -1465,7 +1528,7 @@ namespace KATO.Form.B1570_NyukinInput
                     txtDenpyoYMD.Focus();
                     return false;
                 }
-                // 仕入先
+                // 得意先
                 if (string.IsNullOrWhiteSpace(strChkShiire))
                 {
                     BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_INPUT, "項目が空です。値を入力してください。", CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);

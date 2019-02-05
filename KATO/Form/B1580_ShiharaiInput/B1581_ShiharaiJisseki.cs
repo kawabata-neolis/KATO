@@ -28,6 +28,9 @@ namespace KATO.Form.B1580_ShiharaiInput
 
         private void B1581_ShiharaiJisseki_Load(object sender, EventArgs e)
         {
+            this.Show();
+            this._Title = "支払実績";
+
             SetUpGrid();
             if (dt != null)
             {

@@ -29,9 +29,9 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             this.txtKouza = new KATO.Common.Ctl.BaseText();
             this.baseLabel13 = new KATO.Common.Ctl.BaseLabel(this.components);
             this.txtShiten = new KATO.Common.Ctl.BaseText();
@@ -120,43 +120,78 @@
             // 
             // btnF01
             // 
+            this.btnF01.TabIndex = 27;
             this.btnF01.Text = "F1:登録";
+            this.btnF01.Click += new System.EventHandler(this.judBtnClick);
             // 
             // btnF12
             // 
+            this.btnF12.TabIndex = 36;
             this.btnF12.Text = "F12:終了";
+            this.btnF12.Click += new System.EventHandler(this.judBtnClick);
             // 
             // btnF11
             // 
+            this.btnF11.TabIndex = 35;
             this.btnF11.Text = "F11:印刷";
+            this.btnF11.Click += new System.EventHandler(this.judBtnClick);
             // 
             // btnF10
             // 
+            this.btnF10.TabIndex = 34;
             this.btnF10.Text = "Excel出力";
+            this.btnF10.Click += new System.EventHandler(this.judBtnClick);
             // 
             // btnF09
             // 
+            this.btnF09.TabIndex = 33;
             this.btnF09.Text = "F9:検索";
+            this.btnF09.Click += new System.EventHandler(this.judBtnClick);
             // 
             // btnF08
             // 
+            this.btnF08.TabIndex = 32;
             this.btnF08.Text = "F8:元帳";
+            this.btnF08.Click += new System.EventHandler(this.judBtnClick);
+            // 
+            // btnF07
+            // 
+            this.btnF07.TabStop = false;
+            this.btnF07.Click += new System.EventHandler(this.judBtnClick);
+            // 
+            // btnF06
+            // 
+            this.btnF06.TabStop = false;
+            this.btnF06.Click += new System.EventHandler(this.judBtnClick);
             // 
             // btnF05
             // 
+            this.btnF05.TabIndex = 31;
             this.btnF05.Text = "F5:行追加";
+            this.btnF05.Click += new System.EventHandler(this.judBtnClick);
             // 
             // btnF04
             // 
+            this.btnF04.TabIndex = 30;
             this.btnF04.Text = "F4:取消";
+            this.btnF04.Click += new System.EventHandler(this.judBtnClick);
             // 
             // btnF03
             // 
+            this.btnF03.TabIndex = 29;
             this.btnF03.Text = "F3:削除";
+            this.btnF03.Click += new System.EventHandler(this.judBtnClick);
+            // 
+            // btnF02
+            // 
+            this.btnF02.TabIndex = 28;
+            this.btnF02.TabStop = false;
+            this.btnF02.Click += new System.EventHandler(this.judBtnClick);
             // 
             // cmbSubWinShow
             // 
             this.cmbSubWinShow.Visible = true;
+            this.cmbSubWinShow.SelectedIndexChanged += new System.EventHandler(this.cmbSubWinShow_SelectedIndexChanged);
             // 
             // txtKouza
             // 
@@ -164,7 +199,7 @@
             this.txtKouza.Location = new System.Drawing.Point(1193, 97);
             this.txtKouza.Name = "txtKouza";
             this.txtKouza.Size = new System.Drawing.Size(100, 22);
-            this.txtKouza.TabIndex = 153;
+            this.txtKouza.TabIndex = 11;
             // 
             // baseLabel13
             // 
@@ -184,7 +219,7 @@
             this.txtShiten.Location = new System.Drawing.Point(967, 97);
             this.txtShiten.Name = "txtShiten";
             this.txtShiten.Size = new System.Drawing.Size(166, 22);
-            this.txtShiten.TabIndex = 151;
+            this.txtShiten.TabIndex = 10;
             // 
             // baseLabel11
             // 
@@ -204,7 +239,7 @@
             this.txtKinyu.Location = new System.Drawing.Point(581, 97);
             this.txtKinyu.Name = "txtKinyu";
             this.txtKinyu.Size = new System.Drawing.Size(320, 22);
-            this.txtKinyu.TabIndex = 149;
+            this.txtKinyu.TabIndex = 9;
             // 
             // baseLabel10
             // 
@@ -356,7 +391,7 @@
             this.txtTegataYMDTo.Location = new System.Drawing.Point(716, 69);
             this.txtTegataYMDTo.Name = "txtTegataYMDTo";
             this.txtTegataYMDTo.Size = new System.Drawing.Size(100, 22);
-            this.txtTegataYMDTo.TabIndex = 138;
+            this.txtTegataYMDTo.TabIndex = 8;
             // 
             // baseLabel7
             // 
@@ -388,46 +423,48 @@
             this.txtTegataYMDFr.Location = new System.Drawing.Point(581, 69);
             this.txtTegataYMDFr.Name = "txtTegataYMDFr";
             this.txtTegataYMDFr.Size = new System.Drawing.Size(100, 22);
-            this.txtTegataYMDFr.TabIndex = 135;
+            this.txtTegataYMDFr.TabIndex = 7;
             // 
             // gridNyukin
             // 
             this.gridNyukin.AllowUserToAddRows = false;
             this.gridNyukin.AllowUserToResizeColumns = false;
             this.gridNyukin.AllowUserToResizeRows = false;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.Gainsboro;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("ＭＳ ゴシック", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.ScrollBar;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.ScrollBar;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.gridNyukin.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle4.BackColor = System.Drawing.Color.Gainsboro;
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("ＭＳ ゴシック", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.ScrollBar;
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.ScrollBar;
+            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.gridNyukin.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle4;
             this.gridNyukin.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.Cyan;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.Desktop;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.gridNyukin.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle5.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
+            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.Color.Cyan;
+            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.Desktop;
+            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.gridNyukin.DefaultCellStyle = dataGridViewCellStyle5;
             this.gridNyukin.EnableHeadersVisualStyles = false;
             this.gridNyukin.Location = new System.Drawing.Point(12, 157);
             this.gridNyukin.Name = "gridNyukin";
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.ControlLight;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.ControlLight;
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.gridNyukin.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle6.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
+            dataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.ControlLight;
+            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.ControlLight;
+            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.gridNyukin.RowHeadersDefaultCellStyle = dataGridViewCellStyle6;
             this.gridNyukin.RowHeadersVisible = false;
             this.gridNyukin.RowTemplate.Height = 21;
             this.gridNyukin.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
             this.gridNyukin.Size = new System.Drawing.Size(1560, 464);
             this.gridNyukin.TabIndex = 154;
+            this.gridNyukin.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.gridNyukin_CellClick);
+            this.gridNyukin.SelectionChanged += new System.EventHandler(this.gridNyukin_SelectionChanged);
             // 
             // txtTegataKinyu
             // 
@@ -435,7 +472,7 @@
             this.txtTegataKinyu.Location = new System.Drawing.Point(581, 125);
             this.txtTegataKinyu.Name = "txtTegataKinyu";
             this.txtTegataKinyu.Size = new System.Drawing.Size(320, 22);
-            this.txtTegataKinyu.TabIndex = 156;
+            this.txtTegataKinyu.TabIndex = 12;
             // 
             // baseLabel12
             // 
@@ -455,7 +492,7 @@
             this.txtTegataShiten.Location = new System.Drawing.Point(967, 125);
             this.txtTegataShiten.Name = "txtTegataShiten";
             this.txtTegataShiten.Size = new System.Drawing.Size(166, 22);
-            this.txtTegataShiten.TabIndex = 158;
+            this.txtTegataShiten.TabIndex = 13;
             this.txtTegataShiten.Visible = false;
             // 
             // baseLabel14
@@ -497,6 +534,7 @@
             this.txtShiharaiTotal.Name = "txtShiharaiTotal";
             this.txtShiharaiTotal.Size = new System.Drawing.Size(100, 22);
             this.txtShiharaiTotal.TabIndex = 159;
+            this.txtShiharaiTotal.TabStop = false;
             this.txtShiharaiTotal.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // baseLabel19
@@ -530,7 +568,8 @@
             this.txtShiireCdTo.MaxLength = 4;
             this.txtShiireCdTo.Name = "txtShiireCdTo";
             this.txtShiireCdTo.Size = new System.Drawing.Size(40, 22);
-            this.txtShiireCdTo.TabIndex = 171;
+            this.txtShiireCdTo.TabIndex = 5;
+            this.txtShiireCdTo.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtBikoInput_KeyDown);
             // 
             // txtShiireCdFr
             // 
@@ -539,7 +578,8 @@
             this.txtShiireCdFr.MaxLength = 4;
             this.txtShiireCdFr.Name = "txtShiireCdFr";
             this.txtShiireCdFr.Size = new System.Drawing.Size(40, 22);
-            this.txtShiireCdFr.TabIndex = 170;
+            this.txtShiireCdFr.TabIndex = 4;
+            this.txtShiireCdFr.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtBikoInput_KeyDown);
             // 
             // txtDenpyoYMDTo
             // 
@@ -547,7 +587,7 @@
             this.txtDenpyoYMDTo.Location = new System.Drawing.Point(256, 41);
             this.txtDenpyoYMDTo.Name = "txtDenpyoYMDTo";
             this.txtDenpyoYMDTo.Size = new System.Drawing.Size(100, 22);
-            this.txtDenpyoYMDTo.TabIndex = 169;
+            this.txtDenpyoYMDTo.TabIndex = 3;
             // 
             // baseLabel21
             // 
@@ -579,7 +619,7 @@
             this.txtDenpyoYMDFr.Location = new System.Drawing.Point(121, 41);
             this.txtDenpyoYMDFr.Name = "txtDenpyoYMDFr";
             this.txtDenpyoYMDFr.Size = new System.Drawing.Size(100, 22);
-            this.txtDenpyoYMDFr.TabIndex = 166;
+            this.txtDenpyoYMDFr.TabIndex = 2;
             // 
             // lsTantousha
             // 
@@ -596,9 +636,10 @@
             this.lsTantousha.SpaceCodeValue = 4;
             this.lsTantousha.SpaceNameCode = 8;
             this.lsTantousha.SpaceValueAppend = 4;
-            this.lsTantousha.TabIndex = 165;
+            this.lsTantousha.TabIndex = 6;
             this.lsTantousha.ValueLabelSize = 130;
             this.lsTantousha.ValueLabelText = "";
+            this.lsTantousha.Leave += new System.EventHandler(this.lsTantousha_Leave);
             // 
             // object_825443ad_62d4_4da5_8cbe_90c636408b3c
             // 
@@ -618,7 +659,7 @@
             this.txtInputYMDTo.Location = new System.Drawing.Point(256, 12);
             this.txtInputYMDTo.Name = "txtInputYMDTo";
             this.txtInputYMDTo.Size = new System.Drawing.Size(100, 22);
-            this.txtInputYMDTo.TabIndex = 164;
+            this.txtInputYMDTo.TabIndex = 1;
             // 
             // baseLabel23
             // 
@@ -650,7 +691,7 @@
             this.txtInputYMDFr.Location = new System.Drawing.Point(121, 13);
             this.txtInputYMDFr.Name = "txtInputYMDFr";
             this.txtInputYMDFr.Size = new System.Drawing.Size(100, 22);
-            this.txtInputYMDFr.TabIndex = 161;
+            this.txtInputYMDFr.TabIndex = 0;
             // 
             // txtShiharaiYoteiYMDTo
             // 
@@ -698,7 +739,7 @@
             this.txtTegataKouza.Location = new System.Drawing.Point(1193, 125);
             this.txtTegataKouza.Name = "txtTegataKouza";
             this.txtTegataKouza.Size = new System.Drawing.Size(100, 22);
-            this.txtTegataKouza.TabIndex = 185;
+            this.txtTegataKouza.TabIndex = 14;
             this.txtTegataKouza.Visible = false;
             // 
             // baseLabel3
@@ -732,7 +773,8 @@
             this.txtMawashisakiYMDInput.Location = new System.Drawing.Point(953, 719);
             this.txtMawashisakiYMDInput.Name = "txtMawashisakiYMDInput";
             this.txtMawashisakiYMDInput.Size = new System.Drawing.Size(100, 22);
-            this.txtMawashisakiYMDInput.TabIndex = 206;
+            this.txtMawashisakiYMDInput.TabIndex = 22;
+            this.txtMawashisakiYMDInput.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtBikoInput_KeyDown);
             this.txtMawashisakiYMDInput.Leave += new System.EventHandler(this.txtMawashisakiYMDInput_Leave);
             // 
             // txtMawashisakiInput
@@ -741,7 +783,8 @@
             this.txtMawashisakiInput.Location = new System.Drawing.Point(520, 719);
             this.txtMawashisakiInput.Name = "txtMawashisakiInput";
             this.txtMawashisakiInput.Size = new System.Drawing.Size(320, 22);
-            this.txtMawashisakiInput.TabIndex = 205;
+            this.txtMawashisakiInput.TabIndex = 21;
+            this.txtMawashisakiInput.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtBikoInput_KeyDown);
             this.txtMawashisakiInput.Leave += new System.EventHandler(this.txtMawashisakiYMDInput_Leave);
             // 
             // baseLabel27
@@ -762,7 +805,8 @@
             this.txtBikoInput.Location = new System.Drawing.Point(109, 719);
             this.txtBikoInput.Name = "txtBikoInput";
             this.txtBikoInput.Size = new System.Drawing.Size(320, 22);
-            this.txtBikoInput.TabIndex = 203;
+            this.txtBikoInput.TabIndex = 20;
+            this.txtBikoInput.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtBikoInput_KeyDown);
             this.txtBikoInput.Leave += new System.EventHandler(this.txtMawashisakiYMDInput_Leave);
             // 
             // baseLabel26
@@ -784,6 +828,7 @@
             this.txtShiharaiJoken.Name = "txtShiharaiJoken";
             this.txtShiharaiJoken.Size = new System.Drawing.Size(330, 22);
             this.txtShiharaiJoken.TabIndex = 201;
+            this.txtShiharaiJoken.TabStop = false;
             // 
             // baseLabel25
             // 
@@ -811,6 +856,7 @@
             this.txtShiharaiMonthInput.Name = "txtShiharaiMonthInput";
             this.txtShiharaiMonthInput.Size = new System.Drawing.Size(24, 22);
             this.txtShiharaiMonthInput.TabIndex = 199;
+            this.txtShiharaiMonthInput.TabStop = false;
             this.txtShiharaiMonthInput.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // baseLabel4
@@ -843,7 +889,7 @@
             this.txtKijitsuInput.Location = new System.Drawing.Point(723, 663);
             this.txtKijitsuInput.Name = "txtKijitsuInput";
             this.txtKijitsuInput.Size = new System.Drawing.Size(100, 22);
-            this.txtKijitsuInput.TabIndex = 196;
+            this.txtKijitsuInput.TabIndex = 17;
             this.txtKijitsuInput.Leave += new System.EventHandler(this.txtMawashisakiYMDInput_Leave);
             // 
             // lsTokuisakiInput
@@ -861,7 +907,7 @@
             this.lsTokuisakiInput.SpaceCodeValue = 4;
             this.lsTokuisakiInput.SpaceNameCode = 23;
             this.lsTokuisakiInput.SpaceValueAppend = 4;
-            this.lsTokuisakiInput.TabIndex = 195;
+            this.lsTokuisakiInput.TabIndex = 16;
             this.lsTokuisakiInput.ValueLabelSize = 300;
             this.lsTokuisakiInput.ValueLabelText = "";
             this.lsTokuisakiInput.Leave += new System.EventHandler(this.lsTokuisakiInput_Leave);
@@ -903,8 +949,9 @@
             this.txtNyukinGakuInput.MinusFlg = true;
             this.txtNyukinGakuInput.Name = "txtNyukinGakuInput";
             this.txtNyukinGakuInput.Size = new System.Drawing.Size(100, 22);
-            this.txtNyukinGakuInput.TabIndex = 193;
+            this.txtNyukinGakuInput.TabIndex = 19;
             this.txtNyukinGakuInput.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.txtNyukinGakuInput.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtBikoInput_KeyDown);
             this.txtNyukinGakuInput.Leave += new System.EventHandler(this.txtMawashisakiYMDInput_Leave);
             // 
             // lsTorihikiCdInput
@@ -922,9 +969,10 @@
             this.lsTorihikiCdInput.SpaceCodeValue = 20;
             this.lsTorihikiCdInput.SpaceNameCode = 41;
             this.lsTorihikiCdInput.SpaceValueAppend = 4;
-            this.lsTorihikiCdInput.TabIndex = 192;
+            this.lsTorihikiCdInput.TabIndex = 18;
             this.lsTorihikiCdInput.ValueLabelSize = 350;
             this.lsTorihikiCdInput.ValueLabelText = "";
+            this.lsTorihikiCdInput.Leave += new System.EventHandler(this.txtMawashisakiYMDInput_Leave);
             // 
             // object_d63cdb69_6b8c_47e0_8029_a495776d9805
             // 
@@ -952,6 +1000,7 @@
             this.txtSyukinKbn.Name = "txtSyukinKbn";
             this.txtSyukinKbn.Size = new System.Drawing.Size(24, 22);
             this.txtSyukinKbn.TabIndex = 191;
+            this.txtSyukinKbn.TabStop = false;
             this.txtSyukinKbn.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // baseLabel29
@@ -980,6 +1029,7 @@
             this.txtShiharaibi.Name = "txtShiharaibi";
             this.txtShiharaibi.Size = new System.Drawing.Size(24, 22);
             this.txtShiharaibi.TabIndex = 189;
+            this.txtShiharaibi.TabStop = false;
             this.txtShiharaibi.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // txtShimekiribi
@@ -996,6 +1046,7 @@
             this.txtShimekiribi.Name = "txtShimekiribi";
             this.txtShimekiribi.Size = new System.Drawing.Size(24, 22);
             this.txtShimekiribi.TabIndex = 188;
+            this.txtShimekiribi.TabStop = false;
             this.txtShimekiribi.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // baseLabel30
@@ -1040,7 +1091,8 @@
             this.txtDenpyoYMD.Location = new System.Drawing.Point(109, 663);
             this.txtDenpyoYMD.Name = "txtDenpyoYMD";
             this.txtDenpyoYMD.Size = new System.Drawing.Size(100, 22);
-            this.txtDenpyoYMD.TabIndex = 208;
+            this.txtDenpyoYMD.TabIndex = 15;
+            this.txtDenpyoYMD.Leave += new System.EventHandler(this.txtMawashisakiYMDInput_Leave);
             // 
             // txtKozaInput
             // 
@@ -1048,7 +1100,9 @@
             this.txtKozaInput.Location = new System.Drawing.Point(953, 747);
             this.txtKozaInput.Name = "txtKozaInput";
             this.txtKozaInput.Size = new System.Drawing.Size(100, 22);
-            this.txtKozaInput.TabIndex = 214;
+            this.txtKozaInput.TabIndex = 25;
+            this.txtKozaInput.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtBikoInput_KeyDown);
+            this.txtKozaInput.Leave += new System.EventHandler(this.txtMawashisakiYMDInput_Leave);
             // 
             // baseLabel32
             // 
@@ -1080,7 +1134,9 @@
             this.txtShitenInput.Location = new System.Drawing.Point(520, 747);
             this.txtShitenInput.Name = "txtShitenInput";
             this.txtShitenInput.Size = new System.Drawing.Size(320, 22);
-            this.txtShitenInput.TabIndex = 212;
+            this.txtShitenInput.TabIndex = 24;
+            this.txtShitenInput.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtBikoInput_KeyDown);
+            this.txtShitenInput.Leave += new System.EventHandler(this.txtMawashisakiYMDInput_Leave);
             // 
             // baseLabel18
             // 
@@ -1100,7 +1156,9 @@
             this.txtKinyuInput.Location = new System.Drawing.Point(109, 747);
             this.txtKinyuInput.Name = "txtKinyuInput";
             this.txtKinyuInput.Size = new System.Drawing.Size(320, 22);
-            this.txtKinyuInput.TabIndex = 210;
+            this.txtKinyuInput.TabIndex = 23;
+            this.txtKinyuInput.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtBikoInput_KeyDown);
+            this.txtKinyuInput.Leave += new System.EventHandler(this.txtMawashisakiYMDInput_Leave);
             // 
             // baseLabel33
             // 
@@ -1120,7 +1178,9 @@
             this.txtHakkoMoto.Location = new System.Drawing.Point(1167, 747);
             this.txtHakkoMoto.Name = "txtHakkoMoto";
             this.txtHakkoMoto.Size = new System.Drawing.Size(320, 22);
-            this.txtHakkoMoto.TabIndex = 216;
+            this.txtHakkoMoto.TabIndex = 26;
+            this.txtHakkoMoto.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtBikoInput_KeyDown);
+            this.txtHakkoMoto.Leave += new System.EventHandler(this.txtMawashisakiYMDInput_Leave);
             // 
             // B1570_NyukinInput
             // 

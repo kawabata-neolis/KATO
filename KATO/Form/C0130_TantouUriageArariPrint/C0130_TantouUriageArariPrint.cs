@@ -6,6 +6,7 @@ using KATO.Common.Ctl;
 using KATO.Common.Util;
 using static KATO.Common.Util.CommonTeisu;
 using KATO.Business.C0130_TantouUriageArariPrint;
+using System.Linq;
 
 namespace KATO.Form.C0130_TantouUriageArariPrint
 {
@@ -68,6 +69,7 @@ namespace KATO.Form.C0130_TantouUriageArariPrint
             this.KeyPreview = true;
 
             this.btnF04.Text = STR_FUNC_F4;
+            this.btnF10.Text = "Excel出力";
             this.btnF12.Text = STR_FUNC_F12;
 
             // 閲覧権限がある場合
@@ -151,6 +153,11 @@ namespace KATO.Form.C0130_TantouUriageArariPrint
                 case Keys.F9:
                     break;
                 case Keys.F10:
+                    if ("1".Equals(etsuranFlg))
+                    {
+                        logger.Info(LogUtil.getMessage(this._Title, "Excel出力"));
+                        this.exportXls();
+                    }
                     break;
                 case Keys.F11:
                     if ("1".Equals(etsuranFlg))
@@ -180,6 +187,13 @@ namespace KATO.Form.C0130_TantouUriageArariPrint
                 case STR_BTN_F04: // 取消
                     logger.Info(LogUtil.getMessage(this._Title, "取消実行"));
                     this.delText();
+                    break;
+                case STR_BTN_F10: // 印刷
+                    if ("1".Equals(etsuranFlg))
+                    {
+                        logger.Info(LogUtil.getMessage(this._Title, "Excel出力"));
+                        this.exportXls();
+                    }
                     break;
                 case STR_BTN_F11: // 印刷
                     if ("1".Equals(etsuranFlg))
@@ -372,6 +386,202 @@ namespace KATO.Form.C0130_TantouUriageArariPrint
 
                 // メッセージボックスの処理、PDF作成失敗の場合のウィンドウ（OK）
                 BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_VIEW, "印刷が失敗しました。", CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                basemessagebox.ShowDialog();
+
+                return;
+            }
+        }
+
+        /// <summary>
+        /// F10：Excel出力
+        /// </summary>
+        private void exportXls()
+        {
+            // SaveFileDialogクラスのインスタンスを作成
+            SaveFileDialog sfd = new SaveFileDialog();
+            // ファイル名の指定
+            sfd.FileName = "担当者別売上管理表_" + DateTime.Now.ToString("yyyy_MM_dd_HH_mm_ss") + ".xlsx";
+            // デフォルトパス取得（デスクトップ）
+            string Init_dir = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
+            //はじめに表示されるフォルダを指定する
+            sfd.InitialDirectory = Init_dir;
+            // ファイルフィルタの設定
+            sfd.Filter = "すべてのファイル(*.*)|*.*";
+
+            try
+            {
+                // データ検索用
+                List<string> lstSearchItem = new List<string>();
+
+                // データチェック
+                if (!blnDataCheack())
+                {
+                    return;
+                }
+
+                //待機状態
+                Cursor.Current = Cursors.WaitCursor;
+
+                // 検索するデータをリストに格納
+                lstSearchItem.Add(txtYmdFrom.Text);
+                lstSearchItem.Add(txtYmdTo.Text);
+
+                // 営業所コード（開始）が空の場合
+                if (labelSet_EigyoshoCdFrom.CodeTxtText.Equals(""))
+                {
+                    lstSearchItem.Add("0000");
+                }
+                else
+                {
+                    lstSearchItem.Add(labelSet_EigyoshoCdFrom.CodeTxtText);
+                }
+                // 営業所コード（終了）が空の場合
+                if (labelSet_EigyoshoCdTo.CodeTxtText.Equals(""))
+                {
+                    lstSearchItem.Add("9999");
+                }
+                else
+                {
+                    lstSearchItem.Add(labelSet_EigyoshoCdTo.CodeTxtText);
+                }
+
+                // グループコード（開始）が空の場合
+                if (labelSet_GroupCdFrom.CodeTxtText.Equals(""))
+                {
+                    lstSearchItem.Add("0000");
+                }
+                else
+                {
+                    lstSearchItem.Add(labelSet_GroupCdFrom.CodeTxtText);
+                }
+                // グループコード（終了）が空の場合
+                if (labelSet_GroupCdTo.CodeTxtText.Equals(""))
+                {
+                    lstSearchItem.Add("9999");
+                }
+                else
+                {
+                    lstSearchItem.Add(labelSet_GroupCdTo.CodeTxtText);
+                }
+
+                // 担当者コード（開始）が空の場合
+                if (labelSet_TantoushaCdFrom.CodeTxtText.Equals(""))
+                {
+                    lstSearchItem.Add("0000");
+                }
+                else
+                {
+                    lstSearchItem.Add(labelSet_TantoushaCdFrom.CodeTxtText);
+                }
+                // 担当者コード（終了）が空の場合
+                if (labelSet_TantoushaCdTo.CodeTxtText.Equals(""))
+                {
+                    lstSearchItem.Add("9999");
+                }
+                else
+                {
+                    lstSearchItem.Add(labelSet_TantoushaCdTo.CodeTxtText);
+                }
+
+                // 経過月数
+                lstSearchItem.Add(intDateDiff(txtYmdFrom.Text, txtYmdTo.Text).ToString());
+
+                // ビジネス層のインスタンス生成
+                C0130_TantouUriageArariPrint_B uriagePrint_B = new C0130_TantouUriageArariPrint_B();
+
+                // 検索実行
+                DataTable dtUriage = uriagePrint_B.getUriage(lstSearchItem);
+
+                // カーソルを戻す
+                this.Cursor = Cursors.Default;
+
+                // 対象データがある場合
+                if (dtUriage != null && dtUriage.Rows.Count > 0)
+                {
+                    // ダイアログ表示
+                    if (sfd.ShowDialog() == DialogResult.OK)
+                    {
+                        //待機状態
+                        Cursor.Current = Cursors.WaitCursor;
+
+                        CreatePdf cpdf = new CreatePdf();
+
+                        // 出力するヘッダを設定
+                        string[] header =
+                        {
+                            "営業所名",
+                            "グループ名",
+                            "担当者名",
+                            "売上額",
+                            "粗利額",
+                            "粗利率",
+                            "指定期間内受注残金額",
+                            "指定期間内受注残粗利",
+                            "指定期間以降受注残金額",
+                            "指定期間以降受注残粗利",
+                            "月末売掛金残",
+                            "当月入金額",
+                            "月目標",
+                            "期間達成率",
+                    };
+
+                        // Linqで出力対象の項目をSelect
+                        // カラム名は以下のようにつける(カラム名でフォーマットを判断するため)
+                        // 金額関係：＊＊＊kingaku
+                        // 単価関係：＊＊＊tanka
+                        // 原価：＊＊＊genka
+                        // 数量：＊＊＊suryo
+                        var outDat = dtUriage.AsEnumerable()
+                            .Select(dat => new
+                            {
+                                eigyosyoName = dat["営業所名"],
+                                groupName = dat["グループ名"],
+                                tantoName = dat["担当者名"],
+                                uriageKingaku = dat["売上額"],
+                                arariKingaku = dat["粗利額"],
+                                arariritu = dat["粗利率"],
+                                getumatuJuchuzanKingaku = dat["月末迄受注残売上"],
+                                getumatuJuchuarariKingaku = dat["月末迄受注残粗利"],
+                                yokugetuJuchuzankingaku = dat["翌月以降受注残売上"],
+                                yokugetuJuchuarariKingaku = dat["翌月以降受注残粗利"],
+                                urikakezanKingaku = dat["月末売掛金残"],
+                                nyuKingaku = dat["当月入金額"],
+                                tougetuzanKingaku = dat["年間売上目標"],
+                                taseiritu = dat["達成率"],
+                            }).ToList();
+
+                        // listをDataTableに変換
+                        DataTable dtTantoArari = cpdf.ConvertToDataTable(outDat);
+
+                        string outFile = sfd.FileName;
+
+                        cpdf.DtToXls(dtTantoArari, "担当者別売上管理表", outFile, 3, 1, header);
+
+                        this.Cursor = Cursors.Default;
+
+                        // メッセージボックスの処理、Excel作成完了の場合のウィンドウ（OK）
+                        BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_VIEW, "Excelファイルを作成しました。", CommonTeisu.BTN_OK, CommonTeisu.DIAG_INFOMATION);
+                        basemessagebox.ShowDialog();
+                    }
+                }
+                else
+                {
+                    // メッセージボックスの処理、項目が空の場合のウィンドウ（OK）
+                    BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_INPUT, "対象のデータはありません", CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                    basemessagebox.ShowDialog();
+
+                    //元に戻す
+                    Cursor.Current = Cursors.Default;
+                    return;
+                }
+            }
+            catch (Exception ex)
+            {
+                // エラーロギング
+                new CommonException(ex);
+
+                // Excel出力失敗メッセージ
+                BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_VIEW, "Excel出力に失敗しました。", CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
                 basemessagebox.ShowDialog();
 
                 return;

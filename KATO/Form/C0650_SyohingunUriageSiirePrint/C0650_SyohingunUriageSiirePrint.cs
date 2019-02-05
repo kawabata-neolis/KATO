@@ -19,8 +19,9 @@ namespace KATO.Form.C0650_SyohingunUriageSiirePrint
     ///商品群別売上仕入管理表
     ///作成者：太田
     ///作成日：2017/07/20
-    ///更新者：
-    ///更新日：
+    ///更新者：山本
+    ///更新日：2019/2/2
+    ///F10：Excel出力 機能追加
     ///</summary>
     public partial class C0650_SyohingunUriageSiirePrint : BaseForm
     {
@@ -67,6 +68,7 @@ namespace KATO.Form.C0650_SyohingunUriageSiirePrint
             this.KeyPreview = true;
 
             this.btnF04.Text = STR_FUNC_F4;
+            this.btnF10.Text = "Excel出力";
             this.btnF11.Text = STR_FUNC_F11;
             this.btnF12.Text = STR_FUNC_F12;
 
@@ -157,6 +159,8 @@ namespace KATO.Form.C0650_SyohingunUriageSiirePrint
                 case Keys.F9:
                     break;
                 case Keys.F10:
+                    logger.Info(LogUtil.getMessage(this._Title, "Excel出力"));
+                    this.exportXls();
                     break;
                 case Keys.F11:
                     logger.Info(LogUtil.getMessage(this._Title, "印刷実行"));
@@ -184,6 +188,10 @@ namespace KATO.Form.C0650_SyohingunUriageSiirePrint
                 case STR_BTN_F04: // 取消
                     logger.Info(LogUtil.getMessage(this._Title, "取消実行"));
                     this.delText();
+                    break;
+                case STR_BTN_F10: // Excel出力
+                    logger.Info(LogUtil.getMessage(this._Title, "Excel出力"));
+                    this.exportXls();
                     break;
                 case STR_BTN_F11: // 印刷
                     logger.Info(LogUtil.getMessage(this._Title, "印刷実行"));
@@ -302,6 +310,133 @@ namespace KATO.Form.C0650_SyohingunUriageSiirePrint
                 return;
             }
 
+        }
+
+        /// <summary>
+        /// F10：Excel出力
+        /// </summary>
+        private void exportXls()
+        {
+            // SaveFileDialogクラスのインスタンスを作成
+            SaveFileDialog sfd = new SaveFileDialog();
+            // ファイル名の指定
+            sfd.FileName = "商品群別売上仕入管理表_" + DateTime.Now.ToString("yyyy_MM_dd_HH_mm_ss") + ".xlsx";
+            // デフォルトパス取得（デスクトップ）
+            string Init_dir = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
+            //はじめに表示されるフォルダを指定する
+            sfd.InitialDirectory = Init_dir;
+            // ファイルフィルタの設定
+            sfd.Filter = "すべてのファイル(*.*)|*.*";
+
+            try
+            {
+                // データチェック処理
+                if (!dataCheack())
+                {
+                    return;
+                }
+
+                // データ検索用
+                List<string> lstSearchItem = new List<string>();
+
+                this.Cursor = Cursors.WaitCursor;
+
+                // ビジネス層のインスタンス生成
+                C0650_SyohingunUriageSiirePrint_B syohingunuriagesiireprintB = new C0650_SyohingunUriageSiirePrint_B();
+
+                // 検索するデータをリストに格納
+                lstSearchItem.Add(txtKamikiYMDopen.Text);               //[0]
+                lstSearchItem.Add(txtKamikiYMDclose.Text);              //[1]
+                lstSearchItem.Add(txtSimokiYMDopen.Text);               //[2]
+                lstSearchItem.Add(txtSimokiYMDclose.Text);              //[3]
+                lstSearchItem.Add(labelSet_Torihikisaki.CodeTxtText);   //[4]
+                lstSearchItem.Add(labelSet_Tantousha.CodeTxtText);      //[5]
+                lstSearchItem.Add(labelSet_Daibunrui.CodeTxtText);      //[6]
+                lstSearchItem.Add(labelSet_Chubunrui.CodeTxtText);      //[7]
+                lstSearchItem.Add(labelSet_Maker.CodeTxtText);          //[8]
+
+                // 検索実行
+                DataTable dtSyohingunUriageSiire = syohingunuriagesiireprintB.getSyohingunUriageSiireItiran(lstSearchItem);
+
+                this.Cursor = Cursors.Default;
+
+                if (dtSyohingunUriageSiire.Rows.Count > 0)
+                {
+                    // ダイアログ表示
+                    if (sfd.ShowDialog() == DialogResult.OK)
+                    {
+                        //待機状態
+                        Cursor.Current = Cursors.WaitCursor;
+
+                        CreatePdf cpdf = new CreatePdf();
+
+                        // 出力するヘッダを設定
+                        string[] header =
+                        {
+                            "大分類名",
+                            "中分類名",
+                            "上期売上高",
+                            "上期仕入高",
+                            "下期売上高",
+                            "下期仕入高",
+                            "合計売上高",
+                            "合計仕入高",
+                    };
+
+                        // Linqで出力対象の項目をSelect
+                        // カラム名は以下のようにつける(カラム名でフォーマットを判断するため)
+                        // 金額関係：＊＊＊kingaku
+                        // 単価関係：＊＊＊tanka
+                        // 原価：＊＊＊genka
+                        // 数量：＊＊＊suryo
+                        var outDat = dtSyohingunUriageSiire.AsEnumerable()
+                            .Select(dat => new
+                            {
+                                daiName = dat["大分類名"],
+                                chuName = dat["中分類名"],
+                                kamiUriKingaku = dat["上期売上額"],
+                                kamiSiireKingaku = dat["上期仕入額"],
+                                simoUriKingaku = dat["下期売上額"],
+                                simoSiireKingaku = dat["下期仕入額"],
+                                uriKeiKingaku = dat["合計売上額"],
+                                siireKeiKingaku = dat["合計仕入額"],
+                            }).ToList();
+
+                        // listをDataTableに変換
+                        DataTable dtShohin = cpdf.ConvertToDataTable(outDat);
+
+                        string outFile = sfd.FileName;
+
+                        cpdf.DtToXls(dtShohin, "商品群別売上仕入管理表", outFile, 3, 1, header);
+
+                        this.Cursor = Cursors.Default;
+
+                        // メッセージボックスの処理、Excel作成完了の場合のウィンドウ（OK）
+                        BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_VIEW, "Excelファイルを作成しました。", CommonTeisu.BTN_OK, CommonTeisu.DIAG_INFOMATION);
+                        basemessagebox.ShowDialog();
+                    }
+                }
+                else
+                {
+                    // メッセージボックスの処理、項目が空の場合のウィンドウ（OK）
+                    BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_INPUT, "対象のデータはありません", CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                    basemessagebox.ShowDialog();
+                    return;
+                }
+            }
+            catch (Exception ex)
+            {
+                this.Cursor = Cursors.Default;
+
+                // エラーロギング
+                new CommonException(ex);
+
+                // Excel出力失敗メッセージ
+                BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_VIEW, "Excel出力に失敗しました。", CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                basemessagebox.ShowDialog();
+
+                return;
+            }
         }
 
         /// <summary>
