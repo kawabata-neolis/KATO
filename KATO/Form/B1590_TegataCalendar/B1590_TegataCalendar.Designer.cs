@@ -1062,6 +1062,7 @@
             this.gridShirarai.Size = new System.Drawing.Size(829, 595);
             this.gridShirarai.StandardTab = true;
             this.gridShirarai.TabIndex = 148;
+            this.gridShirarai.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.gridShirarai_CellDoubleClick);
             // 
             // lblSelectDay
             // 
@@ -1127,6 +1128,7 @@
             this.gridNyukin.Size = new System.Drawing.Size(829, 595);
             this.gridNyukin.StandardTab = true;
             this.gridNyukin.TabIndex = 151;
+            this.gridNyukin.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.gridNyukin_CellDoubleClick);
             // 
             // B1590_TegataCalendar
             // 

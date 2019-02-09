@@ -1297,16 +1297,11 @@
         }
 
         #endregion
-
-        private Common.Ctl.BaseCalendar txtInputYMDFr;
         private Common.Ctl.BaseLabel baseLabel1;
         private Common.Ctl.BaseLabel baseLabel2;
-        private Common.Ctl.BaseCalendar txtInputYMDTo;
         private Common.Ctl.LabelSet_Tantousha lsTantousha;
-        private Common.Ctl.BaseCalendar txtDenpyoYMDTo;
         private Common.Ctl.BaseLabel baseLabel3;
         private Common.Ctl.BaseLabel baseLabel4;
-        private Common.Ctl.BaseCalendar txtDenpyoYMDFr;
         private Common.Ctl.BaseLabel baseLabel5;
         private Common.Ctl.BaseLabel baseLabel6;
         private Common.Ctl.BaseCalendar txtTegataYMDTo;
@@ -1322,8 +1317,6 @@
         private Common.Ctl.BaseCheckBox cbTegataUragaki;
         private Common.Ctl.BaseCheckBox cbTegataTesuuryo;
         private Common.Ctl.BaseCheckBox cbTegataSousai;
-        private Common.Ctl.BaseText txtShiireCdTo;
-        private Common.Ctl.BaseText txtShiireCdFr;
         private Common.Ctl.BaseLabel baseLabel10;
         private Common.Ctl.BaseText txtKinyu;
         private Common.Ctl.BaseLabel baseLabel11;
@@ -1373,5 +1366,11 @@
         private Common.Ctl.BaseLabel baseLabel31;
         private Common.Ctl.BaseText txtKozaInput;
         private Common.Ctl.BaseLabel baseLabel32;
+        public Common.Ctl.BaseCalendar txtInputYMDFr;
+        public Common.Ctl.BaseCalendar txtInputYMDTo;
+        public Common.Ctl.BaseCalendar txtDenpyoYMDTo;
+        public Common.Ctl.BaseCalendar txtDenpyoYMDFr;
+        public Common.Ctl.BaseText txtShiireCdTo;
+        public Common.Ctl.BaseText txtShiireCdFr;
     }
 }

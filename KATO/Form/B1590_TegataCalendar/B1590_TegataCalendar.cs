@@ -11,6 +11,8 @@ using System.Windows.Forms;
 using static KATO.Common.Util.CommonTeisu;
 using KATO.Business.B1590_TegataCalendar;
 using KATO.Common.Util;
+using KATO.Form.B1580_ShiharaiInput;
+using KATO.Form.B1570_NyukinInput;
 
 namespace KATO.Form.B1590_TegataCalendar
 {
@@ -194,7 +196,22 @@ namespace KATO.Form.B1590_TegataCalendar
             colTegataYMD.Name = "手形期日";
             colTegataYMD.HeaderText = "手形期日";
             setColumn(gridShirarai, colTegataYMD, posRight, posCenter, fmtString, 130);
+
+            DataGridViewTextBoxColumn colShiharaiYMD = new DataGridViewTextBoxColumn();
+            colShiharaiYMD.DataPropertyName = "支払年月日";
+            colShiharaiYMD.Name = "支払年月日";
+            colShiharaiYMD.HeaderText = "支払年月日";
+            colShiharaiYMD.Visible = false;
+            setColumn(gridShirarai, colShiharaiYMD, posRight, posCenter, fmtString, 130);
+
+            DataGridViewTextBoxColumn colUpdYMD = new DataGridViewTextBoxColumn();
+            colUpdYMD.DataPropertyName = "更新日時";
+            colUpdYMD.Name = "更新日時";
+            colUpdYMD.HeaderText = "更新日時";
+            colUpdYMD.Visible = false;
+            setColumn(gridShirarai, colUpdYMD, posRight, posCenter, fmtString, 130);
             #endregion
+
 
             #region 列項目定義 入金
             DataGridViewTextBoxColumn colNRowNum = new DataGridViewTextBoxColumn();
@@ -204,9 +221,9 @@ namespace KATO.Form.B1590_TegataCalendar
             setColumn(gridNyukin, colNRowNum, posRight, posCenter, fmtString, 54);
 
             DataGridViewTextBoxColumn colNShiireCd = new DataGridViewTextBoxColumn();
-            colNShiireCd.DataPropertyName = "仕入先コード";
-            colNShiireCd.Name = "仕入先コード";
-            colNShiireCd.HeaderText = "仕入先コード";
+            colNShiireCd.DataPropertyName = "得意先コード";
+            colNShiireCd.Name = "得意先コード";
+            colNShiireCd.HeaderText = "得意先コード";
             colNShiireCd.Visible = false;
             setColumn(gridNyukin, colNShiireCd, posRight, posCenter, fmtString, 48);
 
@@ -240,6 +257,20 @@ namespace KATO.Form.B1590_TegataCalendar
             colNTegataYMD.Name = "手形期日";
             colNTegataYMD.HeaderText = "手形期日";
             setColumn(gridNyukin, colNTegataYMD, posRight, posCenter, fmtString, 130);
+
+            DataGridViewTextBoxColumn colNShiharaiYMD = new DataGridViewTextBoxColumn();
+            colNShiharaiYMD.DataPropertyName = "入金年月日";
+            colNShiharaiYMD.Name = "入金年月日";
+            colNShiharaiYMD.HeaderText = "入金年月日";
+            colNShiharaiYMD.Visible = false;
+            setColumn(gridShirarai, colNShiharaiYMD, posRight, posCenter, fmtString, 130);
+
+            DataGridViewTextBoxColumn colNUpdYMD = new DataGridViewTextBoxColumn();
+            colNUpdYMD.DataPropertyName = "更新日時";
+            colNUpdYMD.Name = "更新日時";
+            colNUpdYMD.HeaderText = "更新日時";
+            colNUpdYMD.Visible = false;
+            setColumn(gridShirarai, colNUpdYMD, posRight, posCenter, fmtString, 130);
             #endregion
         }
 
@@ -822,5 +853,81 @@ namespace KATO.Form.B1590_TegataCalendar
                 btnNyukin.BackColor = Color.Cyan;
             }
         }
+
+        private void gridShirarai_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex >= 0)
+            {
+                B1580_ShiharaiInput.B1580_ShiharaiInput si = new B1580_ShiharaiInput.B1580_ShiharaiInput(this);
+
+                si.txtInputYMDFr.Text  = getCellValueYMD(gridShirarai, e.RowIndex, "支払予定日", false);
+                si.txtInputYMDTo.Text  = getCellValueYMD(gridShirarai, e.RowIndex, "支払予定日", false);
+                si.txtDenpyoYMDFr.Text = getMonthFirst(si.txtInputYMDFr.Text);
+                si.txtDenpyoYMDTo.Text = getMonthEnd(si.txtInputYMDFr.Text);
+                si.txtShiireCdFr.Text  = getCellValue(gridShirarai, e.RowIndex, "仕入先コード", false);
+                si.txtShiireCdTo.Text  = getCellValue(gridShirarai, e.RowIndex, "仕入先コード", false);
+
+                si.Location = this.Location;
+                si.ShowDialog();
+            }
+        }
+
+        private void gridNyukin_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+            if (e.RowIndex >= 0)
+            {
+
+            }
+        }
+
+        // cellの値を文字列で取得
+        private string getCellValue(BaseDataGridView g, int rowIdx, string col, bool zero)
+        {
+            string ret = "";
+
+            DataGridViewCell c = g.Rows[rowIdx].Cells[col];
+
+            if (zero)
+            {
+                ret = "0";
+            }
+
+            if (c != null && c.Value != null && c.Value != DBNull.Value && !string.IsNullOrWhiteSpace(c.Value.ToString()))
+            {
+                ret = c.Value.ToString();
+            }
+            return ret;
+        }
+
+        private string getCellValueYMD(BaseDataGridView g, int rowIdx, string col, bool zero)
+        {
+            string ret = "";
+
+            DataGridViewCell c = g.Rows[rowIdx].Cells[col];
+
+            if (zero)
+            {
+                ret = "0";
+            }
+
+            if (c != null && c.Value != null && c.Value != DBNull.Value && !string.IsNullOrWhiteSpace(c.Value.ToString()))
+            {
+                ret = c.Value.ToString();
+
+                if (DateTime.Parse(ret).ToString("yyyy/MM/dd").CompareTo("0001/01/01") <= 0)
+                {
+                    ret = "";
+                }
+                else
+                {
+                    ret = DateTime.Parse(ret).ToString("yyyy/MM/dd");
+                }
+
+            }
+
+            return ret;
+        }
+
     }
 }

@@ -138,6 +138,12 @@ namespace KATO.Form.A0156_HachuPrint
             gridHachu.AutoGenerateColumns = false;
 
             //カラム名の指定
+            DataGridViewTextBoxColumn printF = new DataGridViewTextBoxColumn();
+            printF.DataPropertyName = "印刷フラグ";
+            printF.Name = "印刷フラグ";
+            printF.HeaderText = "印";
+
+            //カラム名の指定
             DataGridViewTextBoxColumn hachuban = new DataGridViewTextBoxColumn();
             hachuban.DataPropertyName = "発注番号";
             hachuban.Name = "発注番号";
@@ -187,6 +193,7 @@ namespace KATO.Form.A0156_HachuPrint
 
             //各カラムのバインド（文章の寄せ、カラム名の位置、フォーマット指定、横幅サイズ）
             setColumn(hachuban, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter, null, 0);
+            setColumn(printF, DataGridViewContentAlignment.MiddleCenter, DataGridViewContentAlignment.MiddleCenter, null, 30);
             setColumn(shisakiname, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter, null, 252);
             setColumn(chuban, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter, null, 172);
             setColumn(maker, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter, null, 160);
@@ -1428,7 +1435,7 @@ namespace KATO.Form.A0156_HachuPrint
             try
             {
                 //戻り値のDatatableを取り込む
-                dtSetCd = hachuB.getHachuGrid(textSet_Torihikisaki.CodeTxtText);
+                dtSetCd = hachuB.getHachuGrid2(textSet_Torihikisaki.CodeTxtText);
 
                 //１件以上データがある場合
                 if (dtSetCd.Rows.Count > 0)
@@ -1864,10 +1871,12 @@ namespace KATO.Form.A0156_HachuPrint
 
                     // 一括印刷
                     pf.execPrint(null, strFile, CommonTeisu.SIZE_A4, CommonTeisu.YOKO, true);
+                    //発注テーブルの該当発注番号の印刷フラグを立てる
+                    hachuB.updHachu(txtHachuban.Text);
+
+                    setGridData();
                 }
-                
-                //発注テーブルの該当発注番号の印刷フラグを立てる
-                hachuB.updHachu(txtHachuban.Text);
+
 
             }
             catch (Exception ex)

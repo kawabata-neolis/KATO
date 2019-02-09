@@ -72,6 +72,60 @@ namespace KATO.Business.A0100_HachuInput_B
             }
         }
 
+        public DataTable getHachuGrid2(string strHachuGrid)
+        {
+            //SQLファイルのパスとファイル名を入れる用
+            List<string> lstSQL = new List<string>();
+
+            //SQLファイルのパスとファイル名を追加
+            lstSQL.Add("A0100_HachuInput");
+            lstSQL.Add("HachuInput_SELECT_GRID");
+
+            //SQL実行時に取り出したデータを入れる用
+            DataTable dtSetCd_B = new DataTable();
+
+            //SQL発行
+            OpenSQL opensql = new OpenSQL();
+
+            //接続用クラスのインスタンス作成
+            DBConnective dbconnective = new DBConnective();
+            try
+            {
+                //SQLファイルのパス取得
+                string strSQLInput = "";
+
+                strSQLInput += "SELECT a.発注番号,";
+                strSQLInput += "       CASE WHEN a.印刷フラグ = 1 THEN '済' ELSE '' END as 印刷フラグ,";
+                strSQLInput += "       a.注番,";
+                strSQLInput += "       dbo.f_getメーカー名(a.メーカーコード) as メーカー名,";
+                strSQLInput += "       dbo.f_get中分類名(a.大分類コード, a.中分類コード) as 中分類名,";
+                strSQLInput += "       RTRIM(ISNULL(a.Ｃ１, '')) as 型番,";
+                strSQLInput += "       a.発注数量,a.納期,";
+                strSQLInput += "       a.仕入先名称 AS 仕入先名";
+                strSQLInput += "  FROM 発注 a";
+                strSQLInput += " WHERE 仕入先コード = '" + strHachuGrid  + "'";
+                strSQLInput += "   AND a.削除 = 'N'";
+                strSQLInput += "   AND((a.発注数量 <> 0";
+                strSQLInput += "        AND((a.仕入済数量 = 0) OR (abs(a.仕入済数量) < abs(a.発注数量))))";
+                strSQLInput += "    OR a.印刷フラグ != '1')";
+                strSQLInput += " ORDER BY a.納期";
+
+                //SQL接続後、該当データを取得
+                dtSetCd_B = dbconnective.ReadSql(strSQLInput);
+
+                return (dtSetCd_B);
+            }
+            catch (Exception ex)
+            {
+                throw (ex);
+            }
+            finally
+            {
+                //トランザクション終了
+                dbconnective.DB_Disconnect();
+            }
+        }
+
         ///<summary>
         ///getHachuLeave
         ///code入力箇所からフォーカスが外れた時
